@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Digital Signage Display</title>
-  <meta http-equiv="refresh" content="600">
+  <meta http-equiv="refresh" content="600"> <!-- Reloads the page every 10 minutes -->
   <style>
     body, html {
       margin: 0;
@@ -46,7 +46,7 @@
 <body>
   <div id="container">
     <div id="main-content">
-      <iframe id="slides" src="YOUR_EMBED_URL" allowfullscreen></iframe>
+      <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vQKBgntnjgh_VNOpz21q_s3rOEfwgbo0LMKm4GeeDfZUGIZ3KdGhs0pyf7IppkoleXYu9ujK_XIMqcm/embed?start=true&loop=true&delayms=10000" allowfullscreen></iframe>
       <div id="sidebar">
         <div id="clock"></div>
       </div>
@@ -54,6 +54,7 @@
   </div>
 
   <script>
+    // Clock Script
     function updateClock() {
       const clockElement = document.getElementById('clock');
       const now = new Date();
@@ -67,7 +68,7 @@
       clockElement.textContent = now.toLocaleTimeString('en-GB', options);
     }
     setInterval(updateClock, 1000);
-    updateClock();
+    updateClock(); // Initial call
   </script>
 </body>
 </html>
