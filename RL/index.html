@@ -1,22 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="60"> <!-- Reload every 60 seconds -->
+  <meta charset="UTF-8">
+  <title>Digital Signage Display</title>
+  <meta http-equiv="refresh" content="600">
   <style>
-    html, body {
-      height: 100%;
+    body, html {
       margin: 0;
       padding: 0;
+      height: 100%;
+    }
+    #container {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      height: 100%;
+    }
+    #main-content {
+      display: flex;
+      height: 100%;
+    }
+    #slides {
+      flex: 3;
+      border: none;
+    }
+    #sidebar {
+      flex: 1;
+      background-color: #f0f0f0;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #clock {
+      font-size: 3em;
+      text-align: center;
+      font-family: Arial, sans-serif;
     }
     iframe {
-      display: block;
-      border: none;
       width: 100%;
       height: 100%;
     }
   </style>
 </head>
 <body>
-  <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQKBgntnjgh_VNOpz21q_s3rOEfwgbo0LMKm4GeeDfZUGIZ3KdGhs0pyf7IppkoleXYu9ujK_XIMqcm/embed?start=true&loop=true&delayms=10000" allowfullscreen></iframe>
+  <div id="container">
+    <div id="main-content">
+      <iframe id="slides" src="YOUR_EMBED_URL" allowfullscreen></iframe>
+      <div id="sidebar">
+        <div id="clock"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const clockElement = document.getElementById('clock');
+      const now = new Date();
+      const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZone: 'Europe/London',
+        hour12: false
+      };
+      clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
 </body>
 </html>
