@@ -34,6 +34,52 @@
       justify-content: center;
       color: white;
     }
+    #weather-bar {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      color: white;
+      padding: 15px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    .weather-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .weather-day {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .weather-day:hover {
+      transform: translateY(-5px);
+    }
+    .weather-icon {
+      font-size: 2em;
+      margin: 5px 0;
+      color: #03a9f4;
+    }
+    .weather-date {
+      font-size: 0.9em;
+      margin-bottom: 5px;
+      color: #03a9f4;
+    }
+    .weather-temp {
+      font-size: 1.1em;
+      margin: 5px 0;
+    }
+    .weather-desc {
+      font-size: 0.8em;
+      opacity: 0.8;
+    }
     #clock-container {
       text-align: center;
       width: 100%;
@@ -100,11 +146,12 @@
       display: block;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <div id="container">
     <div id="main-content">
-      <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vQKBgntnjgh_VNOpz21q_s3rOEfwgbo0LMKm4GeeDfZUGIZ3KdGhs0pyf7IppkoleXYu9ujK_XIMqcm/embed?start=true&loop=true&delayms=30000&rm=minimal" allowfullscreen></iframe>
+      <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vQKBgntnjgh_VNOpz21q_s3rOEfwgbo0LMKm4GeeDfZUGIZ3KdGhs0pyf7IppkoleXYu9ujK_XIMqcm/embed?start=true&loop=true&delayms=10000&rm=minimal" allowfullscreen></iframe>
       <div id="sidebar">
         <div id="clock-container">
           <div id="digital-clock"></div>
@@ -117,9 +164,14 @@
         </div>
       </div>
     </div>
+    <div id="weather-bar">
+      <div class="weather-container">
+        <!-- Weather data will be inserted here -->
+      </div>
+    </div>
   </div>
   <script>
-    // Create clock markers
+    // Clock script
     const analogClock = document.getElementById('analog-clock');
     for (let i = 0; i < 12; i++) {
       const marker = document.createElement('div');
@@ -138,11 +190,9 @@
         hour12: false
       };
       
-      // Update digital clock
       document.getElementById('digital-clock').textContent = 
         now.toLocaleTimeString('en-GB', options);
       
-      // Update date
       const dateOptions = { 
         weekday: 'long', 
         year: 'numeric', 
@@ -152,7 +202,6 @@
       document.getElementById('date').textContent = 
         now.toLocaleDateString('en-GB', dateOptions);
       
-      // Update analog clock
       const hours = now.getHours() % 12;
       const minutes = now.getMinutes();
       const seconds = now.getSeconds();
@@ -169,8 +218,77 @@
         `rotate(${secondDeg}deg)`;
     }
 
+    // Weather functions
+    function getWeatherIcon(code) {
+      // Map weather codes to Font Awesome icons
+      const icons = {
+        '01': 'sun',
+        '02': 'cloud-sun',
+        '03': 'cloud',
+        '04': 'cloud',
+        '09': 'cloud-showers-heavy',
+        '10': 'cloud-rain',
+        '11': 'bolt',
+        '13': 'snowflake',
+        '50': 'smog'
+      };
+      const prefix = code.startsWith('13') ? 'far' : 'fas';
+      const iconName = icons[code.substring(0, 2)] || 'cloud';
+      return `${prefix} fa-${iconName}`;
+    }
+
+    function formatDate(timestamp) {
+      const date = new Date(timestamp * 1000);
+      return date.toLocaleDateString('en-GB', { weekday: 'short', month: 'short', day: 'numeric' });
+    }
+
+    async function getWeather(lat, lon) {
+      // Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
+      const API_KEY = '02605f575692d3f037dcf77c54d7c674';
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+      );
+      const data = await response.json();
+      
+      // Filter for one forecast per day
+      const dailyForecasts = data.list.filter((forecast, index) => index % 8 === 0).slice(0, 5);
+      
+      const weatherContainer = document.querySelector('.weather-container');
+      weatherContainer.innerHTML = dailyForecasts.map(forecast => `
+        <div class="weather-day">
+          <div class="weather-date">${formatDate(forecast.dt)}</div>
+          <i class="${getWeatherIcon(forecast.weather[0].icon)} weather-icon"></i>
+          <div class="weather-temp">${Math.round(forecast.main.temp)}°C</div>
+          <div class="weather-desc">${forecast.weather[0].description}</div>
+        </div>
+      `).join('');
+    }
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            getWeather(position.coords.latitude, position.coords.longitude);
+          },
+          error => {
+            console.error('Error getting location:', error);
+            // Default to London coordinates if geolocation fails
+            getWeather(51.5074, -0.1278);
+          }
+        );
+      } else {
+        console.error('Geolocation is not supported');
+        // Default to London coordinates if geolocation is not supported
+        getWeather(51.5074, -0.1278);
+      }
+    }
+
+    // Initialize everything
     setInterval(updateClock, 1000);
-    updateClock(); // Initial call
+    updateClock();
+    getLocation();
+    // Update weather every hour
+    setInterval(getLocation, 3600000);
   </script>
 </body>
 </html>
