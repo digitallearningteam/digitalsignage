@@ -34,21 +34,6 @@
       justify-content: center;
       color: white;
     }
-    #weather-bar {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-      color: white;
-      height: 120px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-    #weather-frame {
-      width: 100%;
-      height: 400px;
-      border: none;
-      margin-top: -140px; /* Adjust this value to position the weather widget */
-    }
     #clock-container {
       text-align: center;
       width: 100%;
@@ -132,12 +117,9 @@
         </div>
       </div>
     </div>
-    <div id="weather-bar">
-      <iframe id="weather-frame" src="https://www.google.com/search?igu=1&q=weather"></iframe>
-    </div>
   </div>
   <script>
-    // Clock script
+    // Create clock markers
     const analogClock = document.getElementById('analog-clock');
     for (let i = 0; i < 12; i++) {
       const marker = document.createElement('div');
@@ -156,9 +138,11 @@
         hour12: false
       };
       
+      // Update digital clock
       document.getElementById('digital-clock').textContent = 
         now.toLocaleTimeString('en-GB', options);
       
+      // Update date
       const dateOptions = { 
         weekday: 'long', 
         year: 'numeric', 
@@ -168,6 +152,7 @@
       document.getElementById('date').textContent = 
         now.toLocaleDateString('en-GB', dateOptions);
       
+      // Update analog clock
       const hours = now.getHours() % 12;
       const minutes = now.getMinutes();
       const seconds = now.getSeconds();
@@ -184,30 +169,8 @@
         `rotate(${secondDeg}deg)`;
     }
 
-    // Get location and update weather frame
-    function updateWeatherLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          position => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            const weatherFrame = document.getElementById('weather-frame');
-            weatherFrame.src = `https://www.google.com/search?igu=1&q=weather+${lat},${lon}`;
-          },
-          error => {
-            console.error('Error getting location:', error);
-            // Keep default weather search if geolocation fails
-          }
-        );
-      }
-    }
-
-    // Initialize everything
     setInterval(updateClock, 1000);
-    updateClock();
-    updateWeatherLocation();
-    // Update weather location every hour
-    setInterval(updateWeatherLocation, 3600000);
+    updateClock(); // Initial call
   </script>
 </body>
 </html>
