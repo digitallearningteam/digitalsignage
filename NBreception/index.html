@@ -31,13 +31,13 @@
       display: flex;
       flex-direction: column;
       color: white;
-      overflow: hidden; /* Prevent scrolling */
+      overflow: hidden;
     }
     #clock-container {
       text-align: center;
       width: 100%;
       margin-bottom: 20px;
-      flex-shrink: 0; /* Prevent clock from shrinking */
+      flex: 0 0 auto;
     }
     #digital-clock {
       font-size: 2em;
@@ -91,24 +91,21 @@
       opacity: 0.8;
     }
     #twitter-feed {
-      flex-grow: 1;
+      flex: 1 1 auto;
+      min-height: 0;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
-      padding: 10px;
-      position: relative;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     #twitter-embed {
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
+      flex: 1;
+      min-height: 0;
     }
-    /* Custom Twitter Timeline Styles */
     #twitter-embed iframe {
-      height: 100% !important;
       width: 100% !important;
+      height: 100% !important;
+      min-height: 0 !important;
     }
     @keyframes pulse {
       0% { opacity: 1; }
@@ -119,6 +116,7 @@
       width: 100%;
       height: 100%;
       display: block;
+      border: none;
     }
   </style>
 </head>
@@ -143,11 +141,9 @@
     </div>
   </div>
 
-  <!-- Twitter Widget Script -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   
   <script>
-    // Initialize clock markers
     function initializeClock() {
       const clockFace = document.getElementById('analog-clock');
       for (let i = 0; i < 12; i++) {
@@ -168,11 +164,9 @@
         hour12: false
       };
       
-      // Update digital clock
       document.getElementById('digital-clock').textContent = 
         now.toLocaleTimeString('en-GB', options);
       
-      // Update date
       const dateOptions = { 
         weekday: 'long', 
         year: 'numeric', 
@@ -182,7 +176,6 @@
       document.getElementById('date').textContent = 
         now.toLocaleDateString('en-GB', dateOptions);
       
-      // Update analog clock
       const hours = now.getHours() % 12;
       const minutes = now.getMinutes();
       const seconds = now.getSeconds();
@@ -191,18 +184,24 @@
       const minuteDeg = minutes * 6;
       const secondDeg = seconds * 6;
       
-      document.getElementById('hour-hand').style.transform = 
-        `rotate(${hourDeg}deg)`;
-      document.getElementById('minute-hand').style.transform = 
-        `rotate(${minuteDeg}deg)`;
-      document.getElementById('second-hand').style.transform = 
-        `rotate(${secondDeg}deg)`;
+      document.getElementById('hour-hand').style.transform = `rotate(${hourDeg}deg)`;
+      document.getElementById('minute-hand').style.transform = `rotate(${minuteDeg}deg)`;
+      document.getElementById('second-hand').style.transform = `rotate(${secondDeg}deg)`;
     }
 
-    // Initialize Twitter Timeline with optimized settings
+    function calculateTwitterHeight() {
+      const sidebar = document.getElementById('sidebar');
+      const clockContainer = document.getElementById('clock-container');
+      const twitterFeed = document.getElementById('twitter-feed');
+      
+      // Get the available height
+      const availableHeight = sidebar.clientHeight - clockContainer.offsetHeight - 40; // 40px for margins
+      return availableHeight;
+    }
+
     function initializeTwitterTimeline() {
       const embed = document.getElementById('twitter-embed');
-      const feedHeight = document.getElementById('twitter-feed').clientHeight;
+      const availableHeight = calculateTwitterHeight();
       
       twttr.widgets.createTimeline(
         {
@@ -213,30 +212,27 @@
         {
           theme: 'dark',
           chrome: "noheader nofooter transparent",
-          height: feedHeight,
-          tweetLimit: 3, // Limit to 3 most recent tweets
-          dnt: true, // Enable Do Not Track
+          height: availableHeight,
+          tweetLimit: 3,
+          dnt: true,
           align: 'center',
-          conversation: 'none', // Hide conversation threads
-          cards: 'hidden', // Hide cards for cleaner display
-          width: '100%'
+          conversation: 'none',
+          cards: 'hidden',
+          width: embed.clientWidth
         }
       ).then(function (el) {
-        // Callback after timeline is loaded
         console.log("Timeline loaded successfully");
       }).catch(function(error) {
         console.error("Could not load timeline:", error);
       });
     }
 
-    // Refresh Twitter feed periodically
     function refreshTwitterFeed() {
       const twitterEmbed = document.getElementById('twitter-embed');
-      twitterEmbed.innerHTML = ''; // Clear existing feed
-      initializeTwitterTimeline(); // Reinitialize feed
+      twitterEmbed.innerHTML = '';
+      initializeTwitterTimeline();
     }
 
-    // Twitter widget initialization
     window.twttr = (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0],
         t = window.twttr || {};
@@ -252,23 +248,23 @@
       return t;
     }(document, "script", "twitter-wjs"));
 
-    // Initialize everything when the page loads
     document.addEventListener('DOMContentLoaded', function() {
       initializeClock();
       updateClock();
       setInterval(updateClock, 1000);
     });
 
-    // Initialize Twitter Timeline when Twitter script is ready
+    // Initialize and refresh handling
     twttr.ready(function (twttr) {
       initializeTwitterTimeline();
-      // Refresh Twitter feed every 5 minutes
-      setInterval(refreshTwitterFeed, 300000);
+      setInterval(refreshTwitterFeed, 300000); // Refresh every 5 minutes
     });
 
-    // Handle window resize
+    // Debounced resize handler
+    let resizeTimeout;
     window.addEventListener('resize', function() {
-      refreshTwitterFeed();
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(refreshTwitterFeed, 250);
     });
   </script>
 </body>
