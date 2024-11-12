@@ -31,11 +31,13 @@
       display: flex;
       flex-direction: column;
       color: white;
+      overflow: hidden; /* Prevent scrolling */
     }
     #clock-container {
       text-align: center;
       width: 100%;
       margin-bottom: 20px;
+      flex-shrink: 0; /* Prevent clock from shrinking */
     }
     #digital-clock {
       font-size: 2em;
@@ -93,8 +95,20 @@
       background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       padding: 10px;
+      position: relative;
       overflow: hidden;
-      min-height: 400px;
+    }
+    #twitter-embed {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    /* Custom Twitter Timeline Styles */
+    #twitter-embed iframe {
+      height: 100% !important;
+      width: 100% !important;
     }
     @keyframes pulse {
       0% { opacity: 1; }
@@ -123,7 +137,6 @@
           <div id="date"></div>
         </div>
         <div id="twitter-feed">
-          <!-- Replace USERNAME with the Twitter/X account username you want to display -->
           <div id="twitter-embed"></div>
         </div>
       </div>
@@ -186,9 +199,11 @@
         `rotate(${secondDeg}deg)`;
     }
 
-    // Initialize Twitter Timeline
+    // Initialize Twitter Timeline with optimized settings
     function initializeTwitterTimeline() {
       const embed = document.getElementById('twitter-embed');
+      const feedHeight = document.getElementById('twitter-feed').clientHeight;
+      
       twttr.widgets.createTimeline(
         {
           sourceType: "profile",
@@ -197,14 +212,31 @@
         embed,
         {
           theme: 'dark',
-          chrome: "noheader nofooter noborders transparent",
-          height: 400,
-          tweetLimit: 5
+          chrome: "noheader nofooter transparent",
+          height: feedHeight,
+          tweetLimit: 3, // Limit to 3 most recent tweets
+          dnt: true, // Enable Do Not Track
+          align: 'center',
+          conversation: 'none', // Hide conversation threads
+          cards: 'hidden', // Hide cards for cleaner display
+          width: '100%'
         }
-      );
+      ).then(function (el) {
+        // Callback after timeline is loaded
+        console.log("Timeline loaded successfully");
+      }).catch(function(error) {
+        console.error("Could not load timeline:", error);
+      });
     }
 
-    // Wait for Twitter widgets to load
+    // Refresh Twitter feed periodically
+    function refreshTwitterFeed() {
+      const twitterEmbed = document.getElementById('twitter-embed');
+      twitterEmbed.innerHTML = ''; // Clear existing feed
+      initializeTwitterTimeline(); // Reinitialize feed
+    }
+
+    // Twitter widget initialization
     window.twttr = (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0],
         t = window.twttr || {};
@@ -230,6 +262,13 @@
     // Initialize Twitter Timeline when Twitter script is ready
     twttr.ready(function (twttr) {
       initializeTwitterTimeline();
+      // Refresh Twitter feed every 5 minutes
+      setInterval(refreshTwitterFeed, 300000);
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      refreshTwitterFeed();
     });
   </script>
 </body>
