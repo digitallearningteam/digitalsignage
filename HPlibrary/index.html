@@ -33,45 +33,52 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-evenly;
       font-family: 'Comic Neue', cursive;
       position: relative;
       overflow: hidden;
+      min-width: 300px;
     }
-    /* Floating background elements */
     .floating-item {
       position: absolute;
       pointer-events: none;
       animation: float 6s infinite;
       opacity: 0.3;
-      font-size: min(4vw, 3rem);
+      font-size: min(3vw, 2.5rem);
+      z-index: 0;
     }
-    .book { top: 10%; left: 10%; animation-delay: 0s; }
-    .star { top: 20%; right: 15%; animation-delay: 1s; }
-    .heart { bottom: 15%; left: 20%; animation-delay: 2s; }
-    .pencil { bottom: 25%; right: 10%; animation-delay: 3s; }
+    .book { top: 5%; left: 5%; animation-delay: 0s; }
+    .star { top: 75%; right: 10%; animation-delay: 1s; }
+    .pencil { bottom: 10%; left: 10%; animation-delay: 3s; }
 
     #clock-container {
       text-align: center;
       width: 100%;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
     }
     #digital-clock {
-      font-size: min(4vw, 3.5rem);
+      font-size: min(3vw, 2.5rem);
       margin: 2vh 0;
       color: #FF85B3;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
       animation: bounce 2s infinite;
+      z-index: 2;
     }
     #analog-clock {
-      width: min(25vw, 400px);
-      height: min(25vw, 400px);
+      width: min(20vw, 300px);
+      height: min(20vw, 300px);
       border: max(0.8vw, 8px) solid #FF85B3;
       border-radius: 50%;
       position: relative;
       margin: 2vh auto;
       background: white;
       box-shadow: 0 0 20px rgba(255,133,179,0.3);
+      z-index: 2;
     }
     .hand {
       position: absolute;
@@ -101,13 +108,14 @@
       height: max(1.5vw, 15px);
       background: #FFB5E8;
       left: 50%;
-      transform-origin: 50% calc(min(12.5vw, 200px));
+      transform-origin: 50% calc(min(10vw, 150px));
       border-radius: 10px;
     }
     #date {
-      font-size: min(2vw, 1.8rem);
+      font-size: min(1.5vw, 1.3rem);
       margin-top: 2vh;
       color: #FF85B3;
+      z-index: 2;
     }
 
     @keyframes float {
@@ -121,11 +129,14 @@
     }
 
     @media (min-width: 3840px) {
-      #digital-clock { font-size: 4.5rem; }
-      #date { font-size: 2.2rem; }
+      #digital-clock { font-size: 3.5rem; }
+      #date { font-size: 2rem; }
       #analog-clock {
-        width: 500px;
-        height: 500px;
+        width: 400px;
+        height: 400px;
+      }
+      .floating-item {
+        font-size: 3rem;
       }
     }
   </style>
@@ -137,7 +148,6 @@
       <div id="sidebar">
         <div class="floating-item book">📚</div>
         <div class="floating-item star">⭐</div>
-        <div class="floating-item heart">💖</div>
         <div class="floating-item pencil">✏️</div>
         <div id="clock-container">
           <div id="digital-clock"></div>
