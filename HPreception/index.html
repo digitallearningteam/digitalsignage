@@ -9,45 +9,56 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      overflow: hidden;
     }
     #container {
-      display: grid;
-      grid-template-rows: 1fr auto;
-      height: 100%;
-    }
-    #main-content {
-      display: flex;
-      height: 100%;
-    }
-    #slides {
-      flex: 4.5;
-      border: none;
-    }
-    #sidebar {
-      flex: 0.8;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-      padding: 15px;
-      box-sizing: border-box;
       display: flex;
       flex-direction: column;
+      height: 100vh;
+    }
+    #slides-container {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      background: #000;
+    }
+    #slides {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    #maintain-ratio {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      max-width: 177.78vh; /* 16:9 aspect ratio */
+      max-height: 56.25vw; /* 16:9 aspect ratio */
+    }
+    #clock-bar {
+      height: 40px;
+      background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
       color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      justify-content: flex-end;
+      font-family: 'Arial', sans-serif;
     }
     #clock-container {
-      text-align: center;
-      width: 100%;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
     #time {
-      font-size: 1.8em;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
+      font-size: 1.2em;
       font-weight: bold;
     }
     #date {
       font-size: 0.9em;
-      margin-top: 5px;
       opacity: 0.8;
     }
     .separator {
@@ -58,22 +69,19 @@
       50% { opacity: 0; }
       100% { opacity: 1; }
     }
-    iframe {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
   </style>
 </head>
 <body>
   <div id="container">
-    <div id="main-content">
-      <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vTZKitepJczErKqscCuB4hnxkVHGkTuv1vYYpkSjy0xUU7g9JNhBBT6rruYkv6XCJ3br8w_n9oDzRs-/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
-      <div id="sidebar">
-        <div id="clock-container">
-          <div id="time"></div>
-          <div id="date"></div>
-        </div>
+    <div id="slides-container">
+      <div id="maintain-ratio">
+        <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vTZKitepJczErKqscCuB4hnxkVHGkTuv1vYYpkSjy0xUU7g9JNhBBT6rruYkv6XCJ3br8w_n9oDzRs-/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div id="clock-bar">
+      <div id="clock-container">
+        <div id="date"></div>
+        <div id="time"></div>
       </div>
     </div>
   </div>
@@ -82,13 +90,6 @@
       const now = new Date();
       
       // Update time
-      const timeOptions = {
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZone: 'Europe/London',
-        hour12: false
-      };
-      
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
       document.getElementById('time').innerHTML = 
