@@ -30,68 +30,32 @@
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       color: white;
     }
     #clock-container {
       text-align: center;
       width: 100%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
     }
-    #digital-clock {
-      font-size: 2em;
+    #time {
+      font-size: 1.8em;
       font-family: 'Arial', sans-serif;
-      margin: 15px 0;
-      text-shadow: 0 0 10px rgba(255,255,255,0.5);
-      animation: pulse 2s infinite;
-    }
-    #analog-clock {
-      width: 160px;
-      height: 160px;
-      border: 4px solid #ffffff3d;
-      border-radius: 50%;
-      position: relative;
-      margin: 15px auto;
-    }
-    .hand {
-      position: absolute;
-      bottom: 50%;
-      left: 50%;
-      transform-origin: bottom;
-      background: white;
-      border-radius: 4px;
-    }
-    #hour-hand {
-      width: 4px;
-      height: 30%;
-      background: #ff9800;
-    }
-    #minute-hand {
-      width: 3px;
-      height: 40%;
-      background: #03a9f4;
-    }
-    #second-hand {
-      width: 2px;
-      height: 45%;
-      background: #f44336;
-    }
-    .marker {
-      position: absolute;
-      width: 4px;
-      height: 12px;
-      background: #ffffff3d;
-      left: 50%;
-      transform-origin: 50% 80px;
+      margin: 0;
+      font-weight: bold;
     }
     #date {
-      font-size: 1em;
-      margin-top: 15px;
+      font-size: 0.9em;
+      margin-top: 5px;
       opacity: 0.8;
     }
-    @keyframes pulse {
+    .separator {
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
       0% { opacity: 1; }
-      50% { opacity: 0.8; }
+      50% { opacity: 0; }
       100% { opacity: 1; }
     }
     iframe {
@@ -107,66 +71,37 @@
       <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vTZKitepJczErKqscCuB4hnxkVHGkTuv1vYYpkSjy0xUU7g9JNhBBT6rruYkv6XCJ3br8w_n9oDzRs-/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
       <div id="sidebar">
         <div id="clock-container">
-          <div id="digital-clock"></div>
-          <div id="analog-clock">
-            <div id="hour-hand" class="hand"></div>
-            <div id="minute-hand" class="hand"></div>
-            <div id="second-hand" class="hand"></div>
-          </div>
+          <div id="time"></div>
           <div id="date"></div>
         </div>
       </div>
     </div>
   </div>
   <script>
-    // Create clock markers
-    const analogClock = document.getElementById('analog-clock');
-    for (let i = 0; i < 12; i++) {
-      const marker = document.createElement('div');
-      marker.className = 'marker';
-      marker.style.transform = `rotate(${i * 30}deg)`;
-      analogClock.appendChild(marker);
-    }
-
     function updateClock() {
       const now = new Date();
-      const options = {
+      
+      // Update time
+      const timeOptions = {
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit',
         timeZone: 'Europe/London',
         hour12: false
       };
       
-      // Update digital clock
-      document.getElementById('digital-clock').textContent = 
-        now.toLocaleTimeString('en-GB', options);
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('time').innerHTML = 
+        `${hours}<span class="separator">:</span>${minutes}`;
       
       // Update date
       const dateOptions = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+        weekday: 'short', 
+        day: 'numeric',
+        month: 'short'
       };
       document.getElementById('date').textContent = 
         now.toLocaleDateString('en-GB', dateOptions);
-      
-      // Update analog clock
-      const hours = now.getHours() % 12;
-      const minutes = now.getMinutes();
-      const seconds = now.getSeconds();
-      
-      const hourDeg = (hours * 30) + (minutes * 0.5);
-      const minuteDeg = minutes * 6;
-      const secondDeg = seconds * 6;
-      
-      document.getElementById('hour-hand').style.transform = 
-        `rotate(${hourDeg}deg)`;
-      document.getElementById('minute-hand').style.transform = 
-        `rotate(${minuteDeg}deg)`;
-      document.getElementById('second-hand').style.transform = 
-        `rotate(${secondDeg}deg)`;
     }
 
     setInterval(updateClock, 1000);
