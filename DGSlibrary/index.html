@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Signage Display</title>
+  <meta http-equiv="refresh" content="300">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    #container {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      height: 100%;
+    }
+    #main-content {
+      display: flex;
+      height: 100%;
+    }
+    .slides {
+      flex: 4.5;
+      border: none;
+      display: none; /* Hide both iframes by default */
+    }
+    .active {
+      display: block; /* Show active iframe */
+    }
+    #sidebar {
+      flex: 0.8;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      padding: 15px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    #clock-container {
+      text-align: center;
+      width: 100%;
+    }
+    #digital-clock {
+      font-size: 2em;
+      font-family: 'Arial', sans-serif;
+      margin: 15px 0;
+      text-shadow: 0 0 10px rgba(255,255,255,0.5);
+      animation: pulse 2s infinite;
+    }
+    #analog-clock {
+      width: 160px;
+      height: 160px;
+      border: 4px solid #ffffff3d;
+      border-radius: 50%;
+      position: relative;
+      margin: 15px auto;
+    }
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: bottom;
+      background: white;
+      border-radius: 4px;
+    }
+    #hour-hand {
+      width: 4px;
+      height: 30%;
+      background: #ff9800;
+    }
+    #minute-hand {
+      width: 3px;
+      height: 40%;
+      background: #03a9f4;
+    }
+    #second-hand {
+      width: 2px;
+      height: 45%;
+      background: #f44336;
+    }
+    .marker {
+      position: absolute;
+      width: 4px;
+      height: 12px;
+      background: #ffffff3d;
+      left: 50%;
+      transform-origin: 50% 80px;
+    }
+    #date {
+      font-size: 1em;
+      margin-top: 15px;
+      opacity: 0.8;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="main-content">
+      <iframe id="slides1" class="slides active" src="https://docs.google.com/presentation/d/e/1Fji8WrggjpM0gSgKeltSre9DvzbJjOefQma2go8Mmlc/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
+      <iframe id="slides2" class="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vTPek8Ta2qD4oG-f0tBRhH2wx6q0i8ni1Ic4eiqXJGRr3DRWauR2Bk9Hz1RfleuiuxD8q3GyCRk1e9_/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
+      <div id="sidebar">
+        <div id="clock-container">
+          <div id="digital-clock"></div>
+          <div id="analog-clock">
+            <div id="hour-hand" class="hand"></div>
+            <div id="minute-hand" class="hand"></div>
+            <div id="second-hand" class="hand"></div>
+          </div>
+          <div id="date"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Create clock markers
+    const analogClock = document.getElementById('analog-clock');
+    for (let i = 0; i < 12; i++) {
+      const marker = document.createElement('div');
+      marker.className = 'marker';
+      marker.style.transform = `rotate(${i * 30}deg)`;
+      analogClock.appendChild(marker);
+    }
+
+    // Presentation switching logic
+    const presentations = document.querySelectorAll('.slides');
+    let currentPresentation = 0;
+    const presentationDuration = 5 * 60 * 1000; // 5 minutes per presentation
+
+    function switchPresentation() {
+      presentations[currentPresentation].classList.remove('active');
+      currentPresentation = (currentPresentation + 1) % presentations.length;
+      presentations[currentPresentation].classList.add('active');
+    }
+
+    setInterval(switchPresentation, presentationDuration);
+
+    function updateClock() {
+      const now = new Date();
+      const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZone: 'Europe/London',
+        hour12: false
+      };
+      
+      // Update digital clock
+      document.getElementById('digital-clock').textContent = 
+        now.toLocaleTimeString('en-GB', options);
+      
+      // Update date
+      const dateOptions = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      };
+      document.getElementById('date').textContent = 
+        now.toLocaleDateString('en-GB', dateOptions);
+      
+      // Update analog clock
+      const hours = now.getHours() % 12;
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      
+      const hourDeg = (hours * 30) + (minutes * 0.5);
+      const minuteDeg = minutes * 6;
+      const secondDeg = seconds * 6;
+      
+      document.getElementById('hour-hand').style.transform = 
+        `rotate(${hourDeg}deg)`;
+      document.getElementById('minute-hand').style.transform = 
+        `rotate(${minuteDeg}deg)`;
+      document.getElementById('second-hand').style.transform = 
+        `rotate(${secondDeg}deg)`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call
+  </script>
+</body>
+</html>
