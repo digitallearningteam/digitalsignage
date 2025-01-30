@@ -2,111 +2,256 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Digital Signage Display</title>
+  <title>Kids Library Display</title>
   <meta http-equiv="refresh" content="300">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
+      font-family: 'Comic Neue', cursive;
+      background-color: #fff;
     }
-    #container {
+    
+    #main-content {
       display: flex;
-      flex-direction: column;
-      height: 100vh;
+      height: calc(100vh - 70px); /* Leave space at the bottom for the bar */
     }
-    #slides-container {
-      flex: 1;
-      position: relative;
-      width: 100%;
-      background: #000;
-    }
+    
     #slides {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+      flex: 4.5;
       border: none;
     }
-    #maintain-ratio {
+    
+    #sidebar {
+      flex: 0.8;
+      min-width: 300px;
+      background: linear-gradient(135deg, #FFB5E8 0%, #AFF8DB 100%);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .clock-container {
+      width: min(400px, 90%);
+      aspect-ratio: 1;
+      position: relative;
+      background: white;
+      border-radius: 50%;
+      border: 8px solid #FF85B3;
+      box-shadow: 0 0 20px rgba(255,133,179,0.3);
+      margin: 20px 0;
+    }
+
+    .number {
+      position: absolute;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #FF85B3;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      transform-origin: center;
+      font-weight: bold;
+    }
+
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: 50% 100%;
+      background: #FF85B3;
+      border-radius: 10px;
+    }
+
+    .hour {
+      width: 4px;
+      height: 25%;
+      background: #FF85B3;
+      margin-left: -2px;
+    }
+
+    .minute {
+      width: 3px;
+      height: 35%;
+      background: #B5DEFF;
+      margin-left: -1.5px;
+    }
+
+    .second {
+      width: 2px;
+      height: 40%;
+      background: #AFF8DB;
+      margin-left: -1px;
+    }
+
+    .center-dot {
       position: absolute;
       top: 50%;
       left: 50%;
+      width: 12px;
+      height: 12px;
+      background: #FF85B3;
+      border-radius: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      max-width: 177.78vh; /* 16:9 aspect ratio */
-      max-height: 56.25vw; /* 16:9 aspect ratio */
     }
-    #clock-bar {
-      height: 40px;
-      background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      justify-content: flex-end;
-      font-family: 'Arial', sans-serif;
+
+    #digital-time {
+      font-size: 2.5rem;
+      color: #FF85B3;
+      text-align: center;
+      margin: 20px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
-    #clock-container {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    #time {
-      font-size: 1.2em;
-      font-weight: bold;
-    }
+
     #date {
-      font-size: 0.9em;
-      opacity: 0.8;
+      font-size: 1.2rem;
+      color: #FF85B3;
+      text-align: center;
+      margin-top: 10px;
     }
-    .separator {
-      animation: blink 1s infinite;
+
+    .floating-emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 6s infinite ease-in-out;
+      opacity: 0.5;
+      z-index: 1;
     }
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0; }
-      100% { opacity: 1; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .book { top: 10%; left: 10%; animation-delay: 0s; }
+    .star { top: 80%; right: 10%; animation-delay: 2s; }
+    .pencil { bottom: 10%; left: 15%; animation-delay: 4s; }
+
+    /* Bar at the bottom */
+    #bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70px; /* Slightly taller bar */
+      background: #FF85B3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <div id="slides-container">
-      <div id="maintain-ratio">
-        <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vTZKitepJczErKqscCuB4hnxkVHGkTuv1vYYpkSjy0xUU7g9JNhBBT6rruYkv6XCJ3br8w_n9oDzRs-/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
+  <div id="main-content">
+    <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vT9ucyEN-eki6oOXmg8cNZoiDRBvgjBLwGUHKQfHR_pUE66krhY9PgFRALQuD88basB3lQRtf-db5HN/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
+    <div id="sidebar">
+      <div class="floating-emoji book">📚</div>
+      <div class="floating-emoji star">⭐</div>
+      <div class="floating-emoji pencil">✏️</div>
+      
+      <div id="digital-time"></div>
+      <div class="clock-container">
+        <div class="hand hour"></div>
+        <div class="hand minute"></div>
+        <div class="hand second"></div>
+        <div class="center-dot"></div>
       </div>
-    </div>
-    <div id="clock-bar">
-      <div id="clock-container">
-        <div id="date"></div>
-        <div id="time"></div>
-      </div>
+      <div id="date"></div>
     </div>
   </div>
+
+  <!-- Bottom bar with weather widget -->
+  <div id="bottom-bar">
+    <a class="weatherwidget-io" 
+       href="https://forecast7.com/en/55d96n2d77/haddington/" 
+       data-label_1="HADDINGTON" 
+       data-label_2="WEATHER" 
+       data-theme="original"
+    >
+      HADDINGTON WEATHER
+    </a>
+  </div>
+
   <script>
+    // -------------------------
+    // 1) Analog & Digital Clock
+    // -------------------------
+    const clockContainer = document.querySelector('.clock-container');
+    const radius = clockContainer.offsetWidth / 2.5;
+
+    for (let i = 1; i <= 12; i++) {
+      const number = document.createElement('div');
+      number.className = 'number';
+      const angle = (i * 30 - 90) * (Math.PI / 180);
+      const x = radius * Math.cos(angle);
+      const y = radius * Math.sin(angle);
+      
+      number.textContent = i;
+      number.style.left = `calc(50% + ${x}px - 15px)`;
+      number.style.top = `calc(50% + ${y}px - 15px)`;
+      
+      clockContainer.appendChild(number);
+    }
+
     function updateClock() {
       const now = new Date();
       
-      // Update time
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      document.getElementById('time').innerHTML = 
-        `${hours}<span class="separator">:</span>${minutes}`;
+      const timeOptions = { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit',
+        hour12: false 
+      };
+      document.getElementById('digital-time').textContent = 
+        now.toLocaleTimeString('en-GB', timeOptions);
       
-      // Update date
       const dateOptions = { 
-        weekday: 'short', 
-        day: 'numeric',
-        month: 'short'
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
       };
       document.getElementById('date').textContent = 
         now.toLocaleDateString('en-GB', dateOptions);
+      
+      const hours = now.getHours() % 12;
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      
+      const hourRotation = (hours * 30) + (minutes * 0.5);
+      const minuteRotation = minutes * 6;
+      const secondRotation = seconds * 6;
+      
+      document.querySelector('.hour').style.transform = `rotate(${hourRotation}deg)`;
+      document.querySelector('.minute').style.transform = `rotate(${minuteRotation}deg)`;
+      document.querySelector('.second').style.transform = `rotate(${secondRotation}deg)`;
     }
 
     setInterval(updateClock, 1000);
-    updateClock(); // Initial call
+    updateClock();
   </script>
+
+  <!-- Weatherwidget.io script -->
+  <script>
+  !function(d,s,id){
+    var js,fjs=d.getElementsByTagName(s)[0];
+    if(!d.getElementById(id)){
+      js=d.createElement(s);
+      js.id=id;
+      js.src='https://weatherwidget.io/js/widget.min.js';
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,'script','weatherwidget-io-js');
+  </script>
+
 </body>
 </html>
