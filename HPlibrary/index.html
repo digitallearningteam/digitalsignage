@@ -11,11 +11,13 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      font-family: 'Comic Neue', cursive;
+      background-color: #fff;
     }
     
     #main-content {
       display: flex;
-      height: 100vh;
+      height: calc(100vh - 70px); /* Leave space at the bottom for the bar */
     }
     
     #slides {
@@ -32,7 +34,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Comic Neue', cursive;
       position: relative;
     }
 
@@ -131,6 +132,22 @@
     .book { top: 10%; left: 10%; animation-delay: 0s; }
     .star { top: 80%; right: 10%; animation-delay: 2s; }
     .pencil { bottom: 10%; left: 15%; animation-delay: 4s; }
+
+    /* Bar at the bottom */
+    #bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70px; /* Slightly taller bar */
+      background: #FF85B3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -152,7 +169,22 @@
     </div>
   </div>
 
+  <!-- Bottom bar with weather widget -->
+  <div id="bottom-bar">
+    <a class="weatherwidget-io" 
+       href="https://forecast7.com/en/55d96n2d77/haddington/" 
+       data-label_1="HADDINGTON" 
+       data-label_2="WEATHER" 
+       data-theme="original"
+    >
+      HADDINGTON WEATHER
+    </a>
+  </div>
+
   <script>
+    // -------------------------
+    // 1) Analog & Digital Clock
+    // -------------------------
     const clockContainer = document.querySelector('.clock-container');
     const radius = clockContainer.offsetWidth / 2.5;
 
@@ -207,5 +239,19 @@
     setInterval(updateClock, 1000);
     updateClock();
   </script>
+
+  <!-- Weatherwidget.io script -->
+  <script>
+  !function(d,s,id){
+    var js,fjs=d.getElementsByTagName(s)[0];
+    if(!d.getElementById(id)){
+      js=d.createElement(s);
+      js.id=id;
+      js.src='https://weatherwidget.io/js/widget.min.js';
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,'script','weatherwidget-io-js');
+  </script>
+
 </body>
 </html>
