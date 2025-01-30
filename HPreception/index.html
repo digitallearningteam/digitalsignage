@@ -9,7 +9,9 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
+      /* If you need absolutely no scrollbar, keep overflow hidden. 
+         But if the widget is cut off, consider removing or changing it. */
+      overflow: hidden; 
     }
     #container {
       display: flex;
@@ -38,25 +40,26 @@
       max-width: 177.78vh; /* 16:9 aspect ratio */
       max-height: 56.25vw; /* 16:9 aspect ratio */
     }
+
+    /* Bottom bar */
     #clock-bar {
-      height: 40px;
+      /* Increase bar height for widget to fit */
+      height: 60px;  
       background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
       color: white;
       display: flex;
       align-items: center;
       padding: 0 20px;
       font-family: 'Arial', sans-serif;
-      /* 
-       * Use 'justify-content: flex-end' if you want the clock and weather
-       * all the way to the right. Or use 'space-between' if you'd like to 
-       * separate them across the bar. Adjust as desired. 
-       */
-      justify-content: flex-end; 
+      justify-content: flex-end;
     }
+
     #clock-container {
       display: flex;
       align-items: center;
       gap: 15px;
+      /* Ensure all items fit side-by-side */
+      height: 100%;
     }
     #time {
       font-size: 1.2em;
@@ -74,13 +77,23 @@
       50% { opacity: 0; }
       100% { opacity: 1; }
     }
+
+    /* Weather widget override to ensure visibility */
+    .weatherwidget-io {
+      display: block !important; 
+      line-height: normal !important; 
+      padding: 0 10px;
+    }
   </style>
 </head>
 <body>
   <div id="container">
     <div id="slides-container">
       <div id="maintain-ratio">
-        <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vTZKitepJczErKqscCuB4hnxkVHGkTuv1vYYpkSjy0xUU7g9JNhBBT6rruYkv6XCJ3br8w_n9oDzRs-/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
+        <iframe id="slides" 
+                src="https://docs.google.com/presentation/d/e/2PACX-1vTZKitepJczErKqscCuB4hnxkVHGkTuv1vYYpkSjy0xUU7g9JNhBBT6rruYkv6XCJ3br8w_n9oDzRs-/embed?start=true&loop=true&delayms=15000&rm=minimal" 
+                allowfullscreen>
+        </iframe>
       </div>
     </div>
     <div id="clock-bar">
