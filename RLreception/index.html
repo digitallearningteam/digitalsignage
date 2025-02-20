@@ -9,168 +9,145 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      /* If you need absolutely no scrollbar, keep overflow hidden. 
+         But if the widget is cut off, consider removing or changing it. */
+      overflow: hidden; 
     }
     #container {
-      display: grid;
-      grid-template-rows: 1fr auto;
-      height: 100%;
-    }
-    #main-content {
-      display: flex;
-      height: 100%;
-    }
-    #slides {
-      flex: 4.5;
-      border: none;
-    }
-    #sidebar {
-      flex: 0.8;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-      padding: 15px;
-      box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
+      height: 100vh;
     }
-    #clock-container {
-      text-align: center;
-      width: 100%;
-    }
-    #digital-clock {
-      font-size: 2em;
-      font-family: 'Arial', sans-serif;
-      margin: 15px 0;
-      text-shadow: 0 0 10px rgba(255,255,255,0.5);
-      animation: pulse 2s infinite;
-    }
-    #analog-clock {
-      width: 160px;
-      height: 160px;
-      border: 4px solid #ffffff3d;
-      border-radius: 50%;
+    #slides-container {
+      flex: 1;
       position: relative;
-      margin: 15px auto;
+      width: 100%;
+      background: #000;
     }
-    .hand {
+    #slides {
       position: absolute;
-      bottom: 50%;
-      left: 50%;
-      transform-origin: bottom;
-      background: white;
-      border-radius: 4px;
-    }
-    #hour-hand {
-      width: 4px;
-      height: 30%;
-      background: #ff9800;
-    }
-    #minute-hand {
-      width: 3px;
-      height: 40%;
-      background: #03a9f4;
-    }
-    #second-hand {
-      width: 2px;
-      height: 45%;
-      background: #f44336;
-    }
-    .marker {
-      position: absolute;
-      width: 4px;
-      height: 12px;
-      background: #ffffff3d;
-      left: 50%;
-      transform-origin: 50% 80px;
-    }
-    #date {
-      font-size: 1em;
-      margin-top: 15px;
-      opacity: 0.8;
-    }
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.8; }
-      100% { opacity: 1; }
-    }
-    iframe {
       width: 100%;
       height: 100%;
-      display: block;
+      border: none;
+    }
+    #maintain-ratio {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      max-width: 177.78vh; /* 16:9 aspect ratio */
+      max-height: 56.25vw; /* 16:9 aspect ratio */
+    }
+
+    /* Bottom bar */
+    #clock-bar {
+      /* Increase bar height for widget to fit */
+      height: 60px;  
+      background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      font-family: 'Arial', sans-serif;
+      justify-content: flex-end;
+    }
+
+    #clock-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      /* Ensure all items fit side-by-side */
+      height: 100%;
+    }
+    #time {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    #date {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    .separator {
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Weather widget override to ensure visibility */
+    .weatherwidget-io {
+      display: block !important; 
+      line-height: normal !important; 
+      padding: 0 10px;
     }
   </style>
 </head>
 <body>
   <div id="container">
-    <div id="main-content">
-      <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vSq_CNdl9cBb0BBYPEjSsmJGF9TvWVuSpSJjBV07ViTittfR3GQFqu6pDHPFft_-A/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
-      <div id="sidebar">
-        <div id="clock-container">
-          <div id="digital-clock"></div>
-          <div id="analog-clock">
-            <div id="hour-hand" class="hand"></div>
-            <div id="minute-hand" class="hand"></div>
-            <div id="second-hand" class="hand"></div>
-          </div>
-          <div id="date"></div>
-        </div>
+    <div id="slides-container">
+      <div id="maintain-ratio">
+        <iframe id="slides" 
+                src="https://docs.google.com/presentation/d/e/2PACX-1vSq_CNdl9cBb0BBYPEjSsmJGF9TvWVuSpSJjBV07ViTittfR3GQFqu6pDHPFft_-A/embed?start=true&loop=true&delayms=15000&rm=minimal" 
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <div id="clock-bar">
+      <div id="clock-container">
+        <div id="date"></div>
+        <div id="time"></div>
+        
+        <!-- Weather Widget -->
+        <a class="weatherwidget-io"
+           href="https://forecast7.com/en/55d96n2d77/wallyford/"
+           data-label_1="WALLYFORD"
+           data-label_2="WEATHER"
+           data-theme="original"
+        >
+          HADDINGTON WEATHER
+        </a>
       </div>
     </div>
   </div>
-  <script>
-    // Create clock markers
-    const analogClock = document.getElementById('analog-clock');
-    for (let i = 0; i < 12; i++) {
-      const marker = document.createElement('div');
-      marker.className = 'marker';
-      marker.style.transform = `rotate(${i * 30}deg)`;
-      analogClock.appendChild(marker);
-    }
 
+  <script>
     function updateClock() {
       const now = new Date();
-      const options = {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZone: 'Europe/London',
-        hour12: false
-      };
       
-      // Update digital clock
-      document.getElementById('digital-clock').textContent = 
-        now.toLocaleTimeString('en-GB', options);
+      // Update time
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('time').innerHTML = 
+        `${hours}<span class="separator">:</span>${minutes}`;
       
       // Update date
       const dateOptions = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+        weekday: 'short', 
+        day: 'numeric',
+        month: 'short'
       };
       document.getElementById('date').textContent = 
         now.toLocaleDateString('en-GB', dateOptions);
-      
-      // Update analog clock
-      const hours = now.getHours() % 12;
-      const minutes = now.getMinutes();
-      const seconds = now.getSeconds();
-      
-      const hourDeg = (hours * 30) + (minutes * 0.5);
-      const minuteDeg = minutes * 6;
-      const secondDeg = seconds * 6;
-      
-      document.getElementById('hour-hand').style.transform = 
-        `rotate(${hourDeg}deg)`;
-      document.getElementById('minute-hand').style.transform = 
-        `rotate(${minuteDeg}deg)`;
-      document.getElementById('second-hand').style.transform = 
-        `rotate(${secondDeg}deg)`;
     }
 
     setInterval(updateClock, 1000);
     updateClock(); // Initial call
+  </script>
+  
+  <!-- Weatherwidget.io script -->
+  <script>
+  !function(d,s,id){
+      var js,fjs=d.getElementsByTagName(s)[0];
+      if(!d.getElementById(id)){
+          js=d.createElement(s);js.id=id;
+          js.src='https://weatherwidget.io/js/widget.min.js';
+          fjs.parentNode.insertBefore(js,fjs);
+      }
+  }(document,'script','weatherwidget-io-js');
   </script>
 </body>
 </html>
