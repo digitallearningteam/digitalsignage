@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Signage Display</title>
   <meta http-equiv="refresh" content="300">
+  <meta name="robots" content="noindex, nofollow">
   <style>
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
     #container {
       display: grid;
@@ -20,31 +24,33 @@
       height: 100%;
     }
     #slides {
-      flex: 4.5;
+      flex: 5.7;
       border: none;
     }
     #sidebar {
-      flex: 1.2;
+      flex: 0.8;
       background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-      padding: 15px;
+      padding: 20px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       color: white;
       overflow: hidden;
     }
     #clock-container {
       text-align: center;
       width: 100%;
-      margin-bottom: 20px;
-      flex: 0 0 auto;
     }
     #digital-clock {
       font-size: 2em;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Roboto Mono', 'Courier New', monospace;
       margin: 15px 0;
       text-shadow: 0 0 10px rgba(255,255,255,0.5);
       animation: pulse 2s infinite;
+      font-weight: 500;
+      letter-spacing: 0.05em;
     }
     #analog-clock {
       width: 160px;
@@ -86,31 +92,44 @@
       transform-origin: 50% 80px;
     }
     #date {
-      font-size: 1em;
-      margin-top: 15px;
-      opacity: 0.8;
-    }
-    #twitter-feed {
-      flex: 1 1 auto;
-      min-height: 0;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-    }
-    #twitter-embed {
-      flex: 1;
-      min-height: 0;
-    }
-    #twitter-embed iframe {
-      width: 100% !important;
-      height: 100% !important;
-      min-height: 0 !important;
+      font-size: 1.1em;
+      margin-top: 20px;
+      opacity: 0.9;
+      line-height: 1.5;
     }
     @keyframes pulse {
       0% { opacity: 1; }
       50% { opacity: 0.8; }
       100% { opacity: 1; }
+    }
+    
+    /* Error state styling */
+    .error-message {
+      color: #ff5252;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+    
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255,255,255,0.6);
+    }
+    
+    /* Prevent screen burn-in */
+    @media screen {
+      body {
+        animation: subtle-shift 3600s infinite;
+      }
+    }
+    
+    @keyframes subtle-shift {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(1px); }
+      50% { transform: translateX(-1px); }
+      75% { transform: translateY(1px); }
     }
     iframe {
       width: 100%;
@@ -134,15 +153,10 @@
           </div>
           <div id="date"></div>
         </div>
-        <div id="twitter-feed">
-          <div id="twitter-embed"></div>
-        </div>
       </div>
     </div>
   </div>
 
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  
   <script>
     function initializeClock() {
       const clockFace = document.getElementById('analog-clock');
@@ -155,14 +169,15 @@
     }
 
     function updateClock() {
-      const now = new Date();
-      const options = {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZone: 'Europe/London',
-        hour12: false
-      };
+      try {
+        const now = new Date();
+        const options = {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          timeZone: 'Europe/London',
+          hour12: false
+        };
       
       document.getElementById('digital-clock').textContent = 
         now.toLocaleTimeString('en-GB', options);
@@ -187,66 +202,10 @@
       document.getElementById('hour-hand').style.transform = `rotate(${hourDeg}deg)`;
       document.getElementById('minute-hand').style.transform = `rotate(${minuteDeg}deg)`;
       document.getElementById('second-hand').style.transform = `rotate(${secondDeg}deg)`;
+      } catch (error) {
+        console.error('Clock update error:', error);
+      }
     }
-
-    function calculateTwitterHeight() {
-      const sidebar = document.getElementById('sidebar');
-      const clockContainer = document.getElementById('clock-container');
-      const twitterFeed = document.getElementById('twitter-feed');
-      
-      // Get the available height
-      const availableHeight = sidebar.clientHeight - clockContainer.offsetHeight - 40; // 40px for margins
-      return availableHeight;
-    }
-
-    function initializeTwitterTimeline() {
-      const embed = document.getElementById('twitter-embed');
-      const availableHeight = calculateTwitterHeight();
-      
-      twttr.widgets.createTimeline(
-        {
-          sourceType: "profile",
-          screenName: "northberwickhs" // Replace with desired Twitter username
-        },
-        embed,
-        {
-          theme: 'dark',
-          chrome: "noheader nofooter transparent",
-          height: availableHeight,
-          tweetLimit: 3,
-          dnt: true,
-          align: 'center',
-          conversation: 'none',
-          cards: 'hidden',
-          width: embed.clientWidth
-        }
-      ).then(function (el) {
-        console.log("Timeline loaded successfully");
-      }).catch(function(error) {
-        console.error("Could not load timeline:", error);
-      });
-    }
-
-    function refreshTwitterFeed() {
-      const twitterEmbed = document.getElementById('twitter-embed');
-      twitterEmbed.innerHTML = '';
-      initializeTwitterTimeline();
-    }
-
-    window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-      return t;
-    }(document, "script", "twitter-wjs"));
 
     document.addEventListener('DOMContentLoaded', function() {
       initializeClock();
@@ -254,17 +213,32 @@
       setInterval(updateClock, 1000);
     });
 
-    // Initialize and refresh handling
-    twttr.ready(function (twttr) {
-      initializeTwitterTimeline();
-      setInterval(refreshTwitterFeed, 300000); // Refresh every 5 minutes
+    // Prevent memory leaks with periodic page reload
+    setTimeout(function() {
+      location.reload();
+    }, 3600000); // Reload page every hour
+    
+    // Visibility API to pause updates when hidden
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        // Page is hidden, could pause updates to save resources
+        console.log('Page hidden');
+      } else {
+        // Page is visible again
+        updateClock();
+      }
     });
-
-    // Debounced resize handler
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(refreshTwitterFeed, 250);
+    
+    // Prevent right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // Prevent text selection
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+      return false;
     });
   </script>
 </body>
