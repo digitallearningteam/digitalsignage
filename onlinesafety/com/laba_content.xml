@@ -1,0 +1,1900 @@
+<xml>
+  <projectNote>
+    <noteTitle><![CDATA[]]></noteTitle>
+    <noteText><![CDATA[]]></noteText>
+  </projectNote>
+  <page id="0" page-nav-id="146699" section="true">
+    <sectionTitle><![CDATA[Introduction]]></sectionTitle>
+    <title><![CDATA[Introduction]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="image" style="width:920px; height:270px;  margin:20px 10px 20px 20px; position: absolute;">
+      <transition type="None" delay="1.00" period="1.00" />
+      <image imageAlt="Image without description." imageScale="Width">images/3.jpeg</image>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:270px; height:auto !important; margin:310px 10px 20px 20px; position: absolute;background-color: rgb(180, 167, 214);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;The information in this module was developed by the Aberdeenshire Council GIRFEC (Getting it Right for Every Child) Training Officer who has kindly allowed us to develop the original material into a Learnpro module.&#160; &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;It is acknowledged that technology and social media plays a major part in everyday life and has many benefits. This module is an introduction to online safety and the wellbeing of children and young people as part of our wider GIRFEC agenda. &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;At the end of the module there is a list of websites providing the most up to date information and resources available for you to keep up with the latest information and assist in helping children and young people stay safe when online.&#160;&#160;&#160;&#160; &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="1" page-nav-id="146700" sectionId="0">
+    <sectionTitle><![CDATA[Introduction]]></sectionTitle>
+    <title><![CDATA[Learning outcomes]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;p&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Learning outcomes &lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;By the end of the module you will have raised your awareness of:&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Children and young people&amp;apos;s use of technology and social media&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;How technology and social media impact families and parenting&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;The risks associated with social media and the internet &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;The impact on behaviours, relationships and wellbeing&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;How to support children and young people&amp;apos;s online resilience &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Available resources to help keep your child safe and promote their wellbeing&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="2" page-nav-id="146701" section="true">
+    <sectionTitle><![CDATA[Children and Technology]]></sectionTitle>
+    <title><![CDATA[Children and Technology]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Children and Technology&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size:16px;&quot;&gt;&lt;/span&gt;4 in 10 children aged 3-4 have regular internet access&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Mobile phone ownership&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size:16px;&quot;&gt;39% of children aged 5-10&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size:16px;&quot;&gt;94% of children aged 11-16&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size:16px;&quot;&gt;74% access the internet on their phone (raising to 76% for 11-16 year olds).&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size:16px;&quot;&gt;Average age for getting a smart phone is 9&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="3" page-nav-id="146702" sectionId="2">
+    <sectionTitle><![CDATA[Children and Technology]]></sectionTitle>
+    <title><![CDATA[Games consoles]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Games consoles&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;53% of 5-10 year olds &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;63% of 11-16 year olds&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;28% play games with friends&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;13% play games with people they don&amp;apos;t know&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Smartphones and tablets present unique risk environments as most network level filters do not apply to applications used on such devices. However, there are some technical tools available for parents / carers. The following 3 controls are specific to app management and can help protect what children and young people can download and view online: &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li style=&quot;margin: 0cm 0cm 8pt 36pt;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Changing the settings on a phone or tablet to stop apps being downloaded&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li style=&quot;margin: 0cm 0cm 8pt 36pt;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Changing the settings to prevent in-app purchases &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li style=&quot;margin: 0cm 0cm 8pt 36pt;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Parental control software to restrict app installation or use &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt 36pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;In the study conducted by UKCCIS, 60% of parents were not aware of these and less than 17% actively used them (Literature review by UKCCIS evidence group).&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="4" page-nav-id="146703" sectionId="2">
+    <sectionTitle><![CDATA[Children and Technology]]></sectionTitle>
+    <title><![CDATA[Children and Technology Continued]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Children and Technology Continued&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;5-6 year olds report spending 1.4 hours per day on devices online&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;15-16 year olds reported spending an average of 4.4 hours per day&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;27% reported being able to turn off or get around parental controls&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;63% of teens surveyed say they know how to hide what they do online from their parents&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;54% said they would feel isolated if they couldn&amp;apos;t talk to friends online&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;(The figures are approximate and come from a selection of several studies)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="5" page-nav-id="146704" section="true">
+    <sectionTitle><![CDATA[Family Life and Technology]]></sectionTitle>
+    <title><![CDATA[Family Life and Technology]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Family Life and Technology&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt 18pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Schools increasingly communicate with parents electronically  through text, email and facebook pages.&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt 18pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt; Educational activities can be accessed online, providing parents with a way to get involved in the following ways; &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt 18pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Improving connectedness :-&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Parents can keep in contact with their children throughout the day/night. Knowing where they are and what time they are coming home. Children and young people can contact parents if they&amp;apos;re upset, have missed their bus etc. Facetime, WhatsApp and Skype provide a way of keeping in contact with extended family.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;When families are together however, studies show that technology may have the opposite impact. Parents and children are &amp;apos;plugged into&amp;apos; various devices, and leaving less time to interact with each other face to face. &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="6" page-nav-id="146707" sectionId="5">
+    <sectionTitle><![CDATA[Family Life and Technology]]></sectionTitle>
+    <title><![CDATA[Distracted parenting]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;Distracted parenting&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Little research in the area, although there are anecdotal examples&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Parents passing on bad habits to their children.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Children feeling ignored&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Behaviours are then passed onto teenagers who in turn disengage from communicating with their family&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;An American study in 2016 found there was a strong correlation between the amount of time parents spent on social media and their parenting style&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Those parents who reported spending more time on social media, were found to have more authoritarian parenting styles  shouting or threatening consequences&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Parents who spent less time, by and large spent more time explaining things to their children&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="7" page-nav-id="146708" section="true">
+    <sectionTitle><![CDATA[UK Safer Internet Centre - Digital Friendships Sur]]></sectionTitle>
+    <title><![CDATA[UK Safer Internet Centre - Digital Friendships Sur]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;strong&gt;UK Safer Internet Centre  Digital Friendships Survey&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;&lt;em&gt;Snap chat and snap map&lt;/em&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;Snap Map enables people to see exactly where you are on a map.&#160; It can be turned off, but young people are often not aware of the potential dangers of leaving it on.&#160; In extreme situations it can be used by unsafe adults, traffickers, paedophiles. Or coercive partners to track a person&amp;apos;s movements. &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;A Snap story  runs alongside Snap Chat. This provides a stream of updates from people you follow, e.g. friends, family, celebrities/strangers &#160;which can often have very sexualised content. &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="8" page-nav-id="146709" sectionId="7">
+    <sectionTitle><![CDATA[UK Safer Internet Centre - Digital Friendships Sur]]></sectionTitle>
+    <title><![CDATA[Other media trends]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Other media trends&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Yellow&lt;/strong&gt; is growing in popularity among school-age teens who use it to chat and send pictures to friends and strangers. It is similar to dating app&#160;Tinder&#160;in that it allows people to connect with others based on their location, with users &amp;apos;swiping&amp;apos; to accept or decline talking to someone based on their profile picture. &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;strong&gt;Whatsapp&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; is an instant messaging application.&#160; Recently Whatsapp increased its recommended age for use to 16 years old.&#160; The app has access to the user&amp;apos;s contacts and allows them to direct message, share videos/images or even have phone calls or video calls with a friend or group. &lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Kik&lt;/strong&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;is used for&#160;instant messaging.&#160;It allows its users to create a free account by email and password. Kik allows users to message friends with everything from photos and videos, to&#160;GIFs&#160;and emoticons.&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt 18pt;&quot;&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt 18pt;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="9" page-nav-id="146969" sectionId="7">
+    <sectionTitle><![CDATA[UK Safer Internet Centre - Digital Friendships Sur]]></sectionTitle>
+    <title><![CDATA[Other media trends (cont.)]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Other media trends (cont.)&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Instagram&lt;/strong&gt;&#160;is a mobile photo-sharing application that allows users to share pictures and videos either publicly or privately on the service, as well as through a variety of other social networking platforms, such as Facebook and Twitter. &amp;apos;Instagram&#160;Direct&amp;apos; enables users to send private messages&#160;to another user. &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Musical.ly&lt;/strong&gt; (also now known as TIKTOK) is an app that joins social networking and music together into a do-it-yourself video platform. Users can create, save and share videos. Videos typically show lip-syncing and dance routines. This app requires careful monitoring as there are high levels of sexual exploitation and cyber bullying within it. Users can like and comment on other peoples videos, and even remix them and share them on again. &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Monkey &lt;/strong&gt;allows users to video chat with strangers for 10 seconds before moving onto the next person. They can add more time or add the person on Snapchat&#160;to continue the connection. Before connecting, teens will see the age and gender of the potential friend, and they can accept the video chat or not. The&#160;terms of service&#160;allow users aged 13 and older, but there&#39;s no verification of age.&lt;/span&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&#160;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="10" page-nav-id="146991" sectionId="7">
+    <sectionTitle><![CDATA[UK Safer Internet Centre - Digital Friendships Sur]]></sectionTitle>
+    <title><![CDATA[Other media trends (cont.)]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Other media trends (cont.)&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;&amp;apos;Sarahah&amp;apos;&lt;/strong&gt; is an anonymous feedback app that teens are using to pass anonymous digital notes to each other. The app lets you create a profile and works as an add-on to the popular social networking app Snapchat. Drawing upon the contact list on your phone, it lets you connect with friends and send anonymous comments to them. It also lets you search for users and send anonymous messages to them as well, even if you don&amp;apos;t know them. Users can choose not to have their name or profile picture appear in the app&amp;apos;s search or receive messages from unregistered users, but they must opt out to make this happen. If they don&amp;apos;t, the name and photo they use to register will appear if other users search for them.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Secret Piano &lt;/strong&gt;is a fake gaming application. The app requires the user to perform a certain set of keys on the piano before unlocking photos/videos and apps that they want to keep hidden from others. &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Mylol&lt;/strong&gt; is a site and mobile app aimed at teenagers for the purposes of social networking and dating. On a user&amp;apos;s profile, they can display information including pictures, sexual orientation, quiz questions, videos and interests.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="11" page-nav-id="146993" section="true">
+    <sectionTitle><![CDATA[What are the risks?]]></sectionTitle>
+    <title><![CDATA[What are the risks?]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;What are the risks?&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt 18pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;The video clip Kayleigh&amp;apos;s love story is a true story provided by Leicestershire Police in 2017. If shown in a cinema this would have a 15 certificate.&#160; Click on the link to view. &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt 18pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/font&gt;&lt;a target=&quot;_blank&quot;   href=&quot;https://www.youtube.com/watch?v=LRYPG7dM0vQ&quot;&gt;&lt;font color=&quot;#0563c1&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;https://www.youtube.com/watch?v=LRYPG7dM0vQ&lt;/font&gt;&lt;/font&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="12" page-nav-id="146994" sectionId="11">
+    <sectionTitle><![CDATA[What are the risks?]]></sectionTitle>
+    <title><![CDATA[General risks]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;What are the general risks to children&amp;apos;s and young people&amp;apos;s wellbeing?&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Exposure to violence and pornography&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Technology assisted child sexual abuse&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Cyberbullying&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Radicalisation&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Influence on behaviour, self-image and wellbeing&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Impact on emotional and psychological wellbeing &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Impact on sleep and health&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Wider than the above risks mentioned. Online gambling can affect a child and young person&amp;apos;s mental, material and social wellbeing (Jackson 1999). Young people who have developed problem gambling also commonly experience a range of mental health issues including high rates of depression, increased risk of suicide and attempted suicide as well as feelings of guilt, and problems with relationships. Huxley and Carroll research in 1992 found evidence of young people stealing from family to fund their gambling. In a survey conducted by the UK Gambling Commission in 2015 they found 3% of children aged 11-15 had taken money without the permission from their family. There is a significant amount of international evidence that suggest that young people&amp;apos;s problem gambling correlates with other addictive behaviours.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="13" page-nav-id="146996" sectionId="11">
+    <sectionTitle><![CDATA[What are the risks?]]></sectionTitle>
+    <title><![CDATA[Content - Contact - Conduct]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Content - Contact - Conduct&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Content&lt;/strong&gt;  child being exposed to inappropriate or harmful material that can be distressing and frightening and can influence their behaviours, activities, the way they behave towards each other and how they feel about themselves. Information is not individually targeted towards the child but things like advertising and online games may be marketed towards their age group. &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Contact&lt;/strong&gt; Adult initiated online activity can result in physical contact  such as harassment or sexual abuse. Online activity also used to radicalise young people and influence them ideologically.&#160; Contact also refers to the obtaining of their data and possibly being blackmailed.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Conduct&lt;/strong&gt;  The use of social media can influence children and young people&amp;apos;s behaviour and activities and often towards each other. In some instances. Some children and young people they will be placing themselves at risk of breaking the law.&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="14" page-nav-id="147000" section="true">
+    <sectionTitle><![CDATA[Child Sexual Abuse - Modern Technology]]></sectionTitle>
+    <title><![CDATA[Child Sexual Abuse - Modern Technology]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Child Sexual Abuse  Modern Technology&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Technology assisted grooming &lt;/strong&gt; perpetrators forging a close relationship with a victim via technology in order to gain the child&amp;apos;s compliance in and secrecy around subsequent sexual abuse (for example, the perpetrator shows care and interest in a child online who subsequently &amp;apos;falls in love&amp;apos; and consents to online and/or offline sexual activity despite the perpetrator being an adult and/or coercive and/or the child feeling uncomfortable.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;strong&gt;Sexual images&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; created consensually but shared non-consensually &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;- for example, a young person shares images with a romantic partner, the relationship ends and those images are shared by their ex-partner with peers. &lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Technology assisted sexual blackmail&lt;/strong&gt;  Sexual imagery of a child is obtained via technology and then used as leverage in sexual abuse, which may be either technical assisted, offline or both; for example, a young person shares a sexual image with a person via technology; this person (the abuser) then threatens to share this imagery if the young person does not produce further sexual images or comply with offline abuse.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;strong&gt;Offline contact child sexual exploitation&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; commissioned via technology - &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;For example, perpetrators using technology to direct perpetrators who are physically with the child to commit abusive acts (for example, perpetrators in the UK watching and directing live streamed sexual abuse of children by perpetrators in another part of the world).&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="15" page-nav-id="147008" section="true">
+    <sectionTitle><![CDATA[Added concerns of modern technology]]></sectionTitle>
+    <title><![CDATA[Added concerns of modern technology]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Added concerns of modern technology&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Perpetrators have many different online forums by which to contact children &lt;/strong&gt;&lt;/span&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;and young people, whether they are known to them or not. &lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;As they have a &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;constant way of keeping in contact &lt;/strong&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;with the young person, technology helps to keep the abuse going and can also be a means to escalate by using blackmail to share images or pass on information through video calling, skype etc. which are free. Therefore young people can be much more easily contacted. &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Sometimes young people might not be aware they are being groomed and can believe that they&amp;apos;re in a relationship with girlfriend or boyfriend.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="16" page-nav-id="147009" sectionId="15">
+    <sectionTitle><![CDATA[Added concerns of modern technology]]></sectionTitle>
+    <title><![CDATA[Concerns (cont.)]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2 style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;strong&gt;&lt;font face=&quot;Calibri&quot;&gt;Concerns (cont.)&lt;/font&gt;&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Lowered inhibitions &lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;There is a sense from some young people that had abusive individuals asked them to carry out their requests offline, they would not have complied. In other words, the online medium worked to lower their inhibitions or disguise abusive dynamics and threat.&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Control of the night time space&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Perpetrators regularly contacting the victim during the night&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Increases perpetrators control over the victim and their immersion into their life&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Strategy to maintain the abusive situation by heightening the impact on the victim though increased fear, tiredness and concentration difficulties. &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="17" page-nav-id="147011" sectionId="15">
+    <sectionTitle><![CDATA[Added concerns of modern technology]]></sectionTitle>
+    <title><![CDATA[Concerns (cont.)]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;Concerns (cont.)&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Increased use of emotional blackmail&lt;/strong&gt; possibly because it&amp;apos;s harder to physically intimidate online &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Wider audience for re-victimisation: &lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Images being shared&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Victims not knowing who had seen them or when they may re-appear&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Self-blame related to sharing images and complying to with offenders requests&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="18" page-nav-id="147012" sectionId="15">
+    <sectionTitle><![CDATA[Added concerns of modern technology]]></sectionTitle>
+    <title><![CDATA[Responses of others]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Responses of others &lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Responses of others &lt;/strong&gt;- Some young people feel that the impact of the abuse was minimised, or not considered to be such an ordeal, if it had not resulted in contact abuse.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Victims report that responses from parents and professionals is not always helpful&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;This piece of research suggests that professionals had a lack of understanding around technology assisted sexual abuse which can lead to victims feeling/being blamed for it and its impact being minimised.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Victims who received therapy after the abuse described positive experiences, increased being helped to recognise self-worth, and move away from self-blame and shame. &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="19" page-nav-id="147013" section="true">
+    <sectionTitle><![CDATA[Bad Romance - Live Snap chat Story]]></sectionTitle>
+    <title><![CDATA[Bad Romance - Live Snap chat Story]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;strong&gt;Bad Romance  Live Snap chat Story&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;This video clip tells the story of how a young girl is groomed online. Click on the link to view: &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/font&gt;&lt;a target=&quot;_blank&quot;   href=&quot;https://www.youtube.com/watch?v=KHF3TC0KCjU&quot;&gt;&lt;font color=&quot;#0563c1&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;https://www.youtube.com/watch?v=KHF3TC0KCjU&lt;/font&gt;&lt;/font&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="20" page-nav-id="147014" section="true">
+    <sectionTitle><![CDATA[Definitions - Sextortion]]></sectionTitle>
+    <title><![CDATA[Definitions - Sextortion]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Definitions - Sextortion&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Sextortion&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Is when someone talks you into exposing yourself on web cam after which they extort you, i.e. pressurise or blackmail you to do things you don&amp;apos;t want to, or to give them money. &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Criminals operating abroad often commit these crimes. They think that distance and the anonymity the internet can provide will prevent their identification and capture  that is not true, in many cases they can be identified and stopped.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;The key is early reporting facilitating early intervention and support. Whilst this crime is most often targeted at adults, children can and are caught up in the scam. When they are, it is crucial that they tell someone and are properly supported when they do so. A local example is of a young Edinburgh man took his own life due to being sextorted  as he felt too ashamed to ask for help.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="21" page-nav-id="147015" sectionId="20">
+    <sectionTitle><![CDATA[Definitions - Sextortion]]></sectionTitle>
+    <title><![CDATA[Definitions - Radicalisation]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Definitions - &lt;/strong&gt;&lt;/span&gt;&lt;strong&gt;Radicalisation&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Adolescence is a stage when young people begin to question their identities and sense of belonging. They start to push against boundaries and look for something to identify with. &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Specific vulnerabilities may include:&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Young people who feel a sense of injustice.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Feel marginalised within society or their community.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Who have experienced bullying or racism. &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Organisations looking to recruit people will try to exploit the above vulnerabilities in young people.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="22" page-nav-id="147016" sectionId="20">
+    <sectionTitle><![CDATA[Definitions - Sextortion]]></sectionTitle>
+    <title><![CDATA[Signs to look out for]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Signs to look out for&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Signs to look out for: &lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;(Be mindful that &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;many of the signs are common teenage behaviours)&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Young person can start to isolate themselves from people/ friends they previously associated with.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Young person starts to show a conviction that their religion, culture or beliefs are under threat or being treated unfairly.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Choosing to spend less time with family.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Young person is speaking in a way you don&amp;apos;t recognise  not using own words and sounding scripted. &lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;May appear more agitated discussing their views or refuse to discuss certain views.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;More secretive, especially around internet use. &lt;/span&gt;&lt;br /&gt;
+	&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Sites like Facebook, ASK FM and Twitter can be used by extremists looking to identify and target young people.&#160; Once they have established contact the young people are often asked to continue discussions on less main stream platforms such as Kick Messenger, whisper, Yik Yak or Omegle that can give a greater degree of anonymity and can be less easy to monitor.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Sometimes young people may have met the person, through friends or associates. The internet then provides the extremist a medium through which to build a rapport with the YP and begin to influence their thinking. Often young people may regard the person as their friend and will not recognise that their thoughts are being shaped and manipulated by them. &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="23" page-nav-id="147017" section="true">
+    <sectionTitle><![CDATA[Impact on Behaviours and Wellbeing]]></sectionTitle>
+    <title><![CDATA[Impact on Behaviours and Wellbeing]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Impact on Behaviours and Wellbeing&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Finger on the pulse  share all culture &lt;/span&gt;&lt;/strong&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;- most young people today are comfortable with recording their entire lives on-line. This could include uploading and sharing photos, status messages (single/ in a relationship), how they are feeling, what they are doing.&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;It can create an environment where young people make impulsive decisions  click before they think  without thinking about the possible consequences &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;A click away from doing something digitally that they wouldn&amp;apos;t do in the &amp;apos;real world&amp;apos;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Puts pressure on children and young people to be constantly alert and available  they don&amp;apos;t want to miss out or be rejected from the chat.&#160;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Numbers game  Likes, loves and shares are the currency of social media. They quantify&#160;the popularity of a profile, image, video or status.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;The number of likes on social media can have significant effect on people&amp;apos;s self-esteem /status within their peer group.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;More likes leads many&#160; young person to feel more endorsed and accepted by their peers&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;What happens when the likes don&amp;apos;t rack up? Receiving fewer likes is likely to leave a person feel rejected&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="24" page-nav-id="147018" sectionId="23">
+    <sectionTitle><![CDATA[Impact on Behaviours and Wellbeing]]></sectionTitle>
+    <title><![CDATA[An American study]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;An American study &lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;An American study showed that a greater sense of &amp;apos;purpose&amp;apos; a person felt they had in life, the less affected they were by the amount of likes they received online. &lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;People who felt a greater amount of &amp;apos;purpose&amp;apos; were&#160;less rewarded and validated&#160;by many likes but&#160;also less negatively affected&#160;by few likes and negative comments.  can be related to achievements such as doing well in school or sports or having good friends, family and support.&lt;/span&gt;&lt;br /&gt;
+	&#160;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;This suggests that children from more adverse backgrounds or with self-esteem/ mental health / confidence issues are likely to experience online rejection more negatively.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;br /&gt;
+This means that having a strong sense of well-being and worthiness offline could help to mediate the potential effects of social media.&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="25" page-nav-id="147019" sectionId="23">
+    <sectionTitle><![CDATA[Impact on Behaviours and Wellbeing]]></sectionTitle>
+    <title><![CDATA[Self-Image and Selfies]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2 style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Self-Image and Selfies &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Pressure to always look good  value placed on appearance and attractiveness&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;73% of 8-12 year olds and 95% of 13-17 year olds studied had shared selfies on line.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;2 in 5 said they had received negative comments on a photo they had posted  can have a real impact on young person&amp;apos;s expression&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;On average young people take 12 selfies before they are happy to post one online&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;43% said they worry about how attractive they look when they share photos online&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;45% have used a filter in the last year to make themselves look better  particularly the case with 13-17 year old girls&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;61% of 13-17 year old girls worried about how attractive their online pictures look&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;47% have felt sad about their looks after seeing a particular image or video online&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Body image  reports in 2015 that hospital admissions of teenagers with eating disorders nearly doubled in 3 years. The Royal College of Psychiatrists research showed the internet/social media had a part to play as young people exposed to images of perfect bodies constantly&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="26" page-nav-id="147020" sectionId="23">
+    <sectionTitle><![CDATA[Impact on Behaviours and Wellbeing]]></sectionTitle>
+    <title><![CDATA[Further Pressures]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;Further Pressures&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Pressures on keeping up&lt;/strong&gt;  The nature of social media is such that information is constantly refreshed/updated and children and young people are worried about &amp;apos;missing out&amp;apos; or being rejected.&#160; Parental efforts to limit online time can often lead to confrontation. &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Impact on sleep and night time space&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Receptors in the eyes react to the blue light in electronic screens and this can affect melatonin production and sleep&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Constant need to be in contact&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Impact on family life&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Parents can struggle to enforce boundaries&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Children wanting latest gadgets and mobiles&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Vulnerable in real life &#160;= Vulnerable on the internet&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Teenagers with pre-existing vulnerabilities of low self-esteem, psychological problems, and problematic relationships with parents or learning difficulties are more likely to be unable to adopt appropriate coping strategies whilst online and are the ones most likely to comply with the online offender&amp;apos;s requests to engage (Vandoninck et al., 2015). &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="27" page-nav-id="147022" section="true">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Sex, Relationships and the Internet]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Sex, Relationships and the Internet&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;It is normal for children and young people to be curious about sex either &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;previously talking to each other and or with older siblings. It is natural for children and young people to push boundaries and explore, however, there are associated risks.&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Platform for exploring sex  &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In the UK, adult video on demand websites are regulated, and sites must keep explicit sexual images out of reach of under 18&amp;apos;s&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;HOWEVER, the internet is global and websites from other countries, who are not subject to regulation, can be accessed from the UK&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Children and young people may stumble across content online or actively search for sexual content which isn&amp;apos;t appropriate for their age.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="28" page-nav-id="147023" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Sex, Relationships and the Internet (cont.)]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Sex, Relationships and the Internet (cont.)&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Over half of 11-16 year olds in a study by the Safe Internet Centre said they had been exposed to online pornography  Many reported being upset by the images they saw&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;A study by the NSPCC found that children were as likely to see pornography for the first time via &amp;apos;pop ups&amp;apos; as to search for it deliberately or be shown by others&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Once they had seen online pornography (either intentionally or not)&#160; - study showed 59% of&#160; boys and 40% of girls continued to view it&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Online it is easy to quickly access a wide variety of pornographic content including hard-core and extreme images and videos&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;NSPCC study  53% of boys and 39% of girls thought the pornography they had viewed online was realistic with some saying that it had given them ideas about sexual practices they wanted to act out/ try&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Pornography rarely presents sex in the context of a loving relationship and&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;There is concern that early exposure to hard core pornography could give young people unhealthy views about the opposite sex and what they can expect from them.&lt;br /&gt;
+	Researcher Martin Flood, &amp;apos;&lt;em&gt;pornography is a poor, and indeed dangerous, sex educator&amp;apos;.&lt;/em&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="29" page-nav-id="147308" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Findings from Research]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Findings from Research&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&#160;Research suggest that children and young people&amp;apos;s exposure to pornography can lead to the following; &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Unrealistic attitudes about sex&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Maladaptive attitudes about relationships&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;More sexually permissive attitudes&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Greater acceptance of casual sex&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Beliefs that women are sex objects / negative gender attitudes&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;More pre-occupation with sex&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Sexual uncertainty&lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In some examples viewing extreme pornography can may be associated with sexually deviant / coercive behaviour. &lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="30" page-nav-id="147310" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Digital Romances]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Digital Romances&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Digital technology used for initiating and ending relationships  integral part of young people&amp;apos;s relationships:&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Rarely replaces face-to-face interaction&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Young people find aspects very positive, but there are also negative aspects &lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="31" page-nav-id="147311" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Positives]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;POSITIVES as expressed by young people&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Flirting can be  befriending someone, liking/commenting on the post, sharing a funny video, sending a sexual/nude image &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Use of emojis control context of messages&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;More control  YP commented on having more time to consider what they would say / how to respond / come up with funny stuff / chat up line&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;More privacy  other&amp;apos;s not hearing you chatting to each other&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Less emotionally risky  Can hide embarrassment if rejected when not face to face. Can take time to consider how to say something&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&quot;Not under immediate pressure&quot;  some young women felt that digital communication offered some protection from coercion as they could flirt without feeling like they had to do anything &amp;apos;in the moment&amp;apos; &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="32" page-nav-id="147312" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Negatives]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Negatives&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Gendered patterns of pressure and coercion&#160; &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;There is more sexualised focus on girls. Physical appearance commented on frequently- can contribute to disproportionate focus on body image&#160; which can cause significant emotional and psychological distress&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;48% had chatted to someone online about the kind of sexual things they would like to do&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="33" page-nav-id="147313" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[What is Sexting?]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;p&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;What is Sexting?&lt;u&gt; &lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;If one party is an adult (over 16/18) and the other is a child, then the matter is child protection and other social work and police should be involved. &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;If both parties are children and young people. The general guide is that professionals can use their professional&amp;apos;s judgement when faced with sexual relationships between young people when the age difference does not exceed two years if it&amp;apos;s in the context of a consenting relationship. &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Whatever the circumstance, young people need to know that it is a criminal offence to distribute indecent images of anyone under the age 16 (including themselves).&#160; Notwithstanding this, it is recognised that in some situations education and guidance is far more appropriate, constructive and child centred than criminalising young people&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Where there are any indications of coercion, blackmail and/or a power imbalance, concerns should be discussed with social work or police. &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="34" page-nav-id="147361" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[What is Live Streaming?]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2 style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;What is Live Streaming? &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Live streaming is highly appealing to children and young people as it offers the opportunity for them to be a creator, a presenter and to be seen by a potentially huge audience, potentially thousands. &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;We know that for adolescents, self-expression/self-presentation is really important, so sharing something and having hundreds/thousands people show an interest, can feel like the ultimate confidence and ego boost. The immediacy of live streaming combined with the pleasure of affirmation satisfies some of the developmental needs and desires that children and young people experience during adolescence.&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Anyone with a camera enabled device and access to the internet can share a live video &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Live  shown in real time. There is no opportunity to edit or stop and think before things are posted&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Some apps allow viewers to comment on a live video as its broadcast&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Often the person in the video can read the comments as they are live streaming and feel pressured to respond&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Children and young people need to be warned of the risks and told to stop and tell someone if anyone asks them to take off clothing.&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="35" page-nav-id="147472" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Associated Risks]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2 style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Associated Risks&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Sharing unedited videos over the internet in &amp;apos;real time&amp;apos;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Unmoderated, unrehearsed and unpredictable&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Young people can act on impulse and not consider consequences&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;May be accidentally exposed to inappropriate content&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Can be used by adult offenders to use tricks and dares to coerce young people into performing acts that may involve nudity &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="36" page-nav-id="147473" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Cyber Bullying]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Cyber Bullying&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Dangerous phenomenon&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;With online technologies accessible 24 hours a day, cyberbullying can be relentless. It can also intrude on spaces that were previously personal, for example at home; it can feel that there is no escape from it. A variety of psychological and social impacts have been identified as a result of cyber bullying. This can include: &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Emotional distress&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Anxiety, loneliness and depression&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Suicidal ideation and self-harm&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Research suggests that a large proportion of cyber bullying or online harassment is focussed on identity related characteristics &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Sexual orientation &lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Race, Religion &lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Disability &lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Gender identity &lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Gender&#160; &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="37" page-nav-id="147474" sectionId="27">
+    <sectionTitle><![CDATA[Sex, Relationships and the Internet]]></sectionTitle>
+    <title><![CDATA[Girls and Boys]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2 style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Girls generally fair worse than boys&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Often judged on their looks &lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Girls more likely to be referred to negatively or demandingly regarding &amp;apos; &lt;strong&gt;&amp;apos;sex- ubut -uality&amp;apos; &lt;/strong&gt;i.e. referred to as sluts etc. or referred to as sexual objects&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;A study by the UK Council for Child Internet Safety (2018) found 28% of 11-16 year olds reported having been upset when using a social networking site last year. &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Bullying is one of the most common reasons why children contact Childline. There was a 13% rise from the previous year. &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
+	&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Children and Young people report being unsure about the action taken when they report cyber bullying to social media platforms. Some reported their concerns were not taken seriously.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;&lt;em&gt;CYBERMENTORS&lt;/em&gt;&lt;/strong&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;i&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;is&lt;/span&gt;&lt;/span&gt;&lt;/i&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; an online counselling service with a difference; the counsellors are&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt; also children and young people. This site has proved very popular and offers practical advice.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="38" page-nav-id="147651" section="true">
+    <sectionTitle><![CDATA[What does the law say?]]></sectionTitle>
+    <title><![CDATA[What does the law say?]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2 style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;What does the law say?&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Indecent Images of Children &lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+	&lt;ul style=&quot;list-style-type: circle;&quot;&gt;
+		&lt;li&gt;
+		&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;It is an offence to take, distribute or have in your possession an indecent image of a child under the age of 18. Civic Government (Scotland) Act 1982 Section 52.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Voyeurism&lt;/strong&gt;&lt;/span&gt;
+
+	&lt;ul style=&quot;list-style-type: circle;&quot;&gt;
+		&lt;li&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;It is an offence to observe, record or distribute images of a person doing a private act (including nudity/in underwear) without their consent. Sexual Offences (Scotland) Act 2009 Section 9.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Stalking&lt;/strong&gt;&lt;/span&gt;
+
+	&lt;ul style=&quot;list-style-type: circle;&quot;&gt;
+		&lt;li&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Includes publishing any statement relating to a person or purporting to originate from that person, or from any other person, that causes them to feel alarm Criminal Justice and Licensing (Scotland) Act 2010&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;/span&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="39" page-nav-id="147652" sectionId="38">
+    <sectionTitle><![CDATA[What does the law say?]]></sectionTitle>
+    <title><![CDATA[The Law (cont.)]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;&lt;strong&gt;What does the law say? (cont.)&lt;/strong&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: bold;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Coercing a person into looking at a sexual image&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;
+		&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;It is an offence to make someone else look at a sexual image without their consent Sexual Offences (Scotland) Act 2009 Section 6&lt;/span&gt;&lt;/p&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Communicating &#160;Indecently&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+	&lt;ul style=&quot;list-style-type: circle;&quot;&gt;
+		&lt;li&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;It is an offence to make someone else see written sexual communication, or hear verbal sexual communication without their consent Sexual Offences (Scotland) Act 2009 Section 7&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: bold;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;Threatening or upsetting messaging&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;
+		&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;It is an offence to send a message which is grossly offensive or of an indecent obscene or menacing character. Communications Act 2003 Section 127&lt;/span&gt;&lt;/p&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="40" page-nav-id="147653" section="true">
+    <sectionTitle><![CDATA[What can we do as a parent/carer?]]></sectionTitle>
+    <title><![CDATA[What can we do as a parent/carer?]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2 style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;What can we do as a parent/carer?&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Efforts to develop children and young people&amp;apos;s digital resilience should focus on critical ability and technical competency in order to support children and young people in becoming active agents in their own protection and safety. Make sure they have technical safeguards in place, however; &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;We also have to accept that children can learn to by pass them &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;They do not protect children from many of the various risks of being online&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;We need to prepare our children to have the skills and coping strategies&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;tab-stops: list 36.0pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: &quot;Calibri&quot;,sans-serif;&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;strong&gt;Digital resilience&lt;/strong&gt; is about having appropriate coping strategies and learning to adjust responses according to situations&#160; Feeling able to seek help and support and knowing where to go. Knowing about potential consequences of your own actions in order for children to regulate their own online behaviours.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Support around self-esteem and emotional resilience is also important to help them maintain perspective in an environment where looks and body image are disproportionally focussed on. &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="41" page-nav-id="147654" sectionId="40">
+    <sectionTitle><![CDATA[What can we do as a parent/carer?]]></sectionTitle>
+    <title><![CDATA[What can we do as a parent/carer? (cont.)]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2 style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;What can we do as a parent/carer? (cont.)&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;The responses when children do get things wrong must be calm and supportive so that they will not be discouraged from seeking support in the future; &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Put safeguards in place&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Put on parental controls onto smart phones as well as computers&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Set rules and boundaries at the start&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Ensure all devices are handed in to parent/carer at bed time&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Show interest in the social media your child is using&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Install app on your phone to get an idea of what&amp;apos;s going on&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Become your child&amp;apos;s online friend&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Do not show disapproval or shock if your child discloses something to you. &lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="42" page-nav-id="147655" section="true">
+    <sectionTitle><![CDATA[Sources of information]]></sectionTitle>
+    <title><![CDATA[Sources of information]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Sources of information&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;b&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;Sources of information for parent/s/ carer/s and children and young people &lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;CEOP&lt;/strong&gt; offers a range of tools to help promote internet safety &#160;&lt;a target=&quot;_blank&quot;   href=&quot;https://www.ceop.police.uk/safety-centre/&quot; &gt;https://www.ceop.police.uk/safety-centre/&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Think you Know &lt;/strong&gt;offers age appropriate advice for young people, with content broken down from ages 5-7 up to 14+. They also have content for parents and other adults responsible for the wellbeing of children.&#160; &lt;a target=&quot;_blank&quot;   href=&quot;https://www.thinkuknow.co.uk/&quot; &gt;https://www.thinkuknow.co.uk/&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Childline&lt;/strong&gt;  the website provides young people with information and advice about&#160;&lt;a target=&quot;_blank&quot;   href=&quot;https://www.childline.org.uk/Explore/OnlineSafety/Pages/Online-porn.aspx&quot; &gt;online porn&lt;/a&gt;agraphy. The information is for young people aged 12 and above and aims to answer any difficult questions or concerns they may have.&#160; &lt;a target=&quot;_blank&quot;   href=&quot;https://www.childline.org.uk/&quot; &gt;https://www.childline.org.uk/&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;The Mix &lt;/strong&gt; content on The Site is aimed at young people aged 16+. They offer &quot;real world&quot; advice on a range of subjects including sex and relationships, drink and drugs, and health.&#160; &lt;a target=&quot;_blank&quot;   href=&quot;https://www.themix.org.uk/&quot; &gt;https://www.themix.org.uk/&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="43" page-nav-id="147656" sectionId="42">
+    <sectionTitle><![CDATA[Sources of information]]></sectionTitle>
+    <title><![CDATA[Sources of information (cont.)]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:85px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&lt;span style=&quot;line-height: 107%; font-family: &quot;Calibri&quot;,sans-serif; font-size: 14pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;&quot;&gt;&lt;strong&gt;Sources of information (cont.)&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="text" resize="False" style="width:920px; max-height:470px; height:auto !important; margin:115px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;&#160;&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;Schools Out &lt;/strong&gt; Online counselling service with a difference; the counsellors are also children and young people. This site has proved very popular and offers practical advice. &lt;a target=&quot;_blank&quot;   href=&quot;http://www.schools-out.org.uk/&quot;&gt;http://www.schools-out.org.uk/&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;East Lothian and Midlothian Public Protection Committee &lt;/strong&gt; The East Lothian and Midlothian Public Protection Office has helpful resources and guidance. &lt;a target=&quot;_blank&quot;   href=&quot;https://www.emppc.org.uk/home/&quot;&gt;https://www.emppc.org.uk/home/&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;BBC Own It&lt;/strong&gt;  Created for children and young people to support them with safe use of online platforms.&#160; &lt;a target=&quot;_blank&quot;   href=&quot;https://www.bbc.com/ownit&quot;&gt;https://www.bbc.com/ownit&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;strong&gt;UK Safer Internet Centre &lt;/strong&gt; provides online safety tips, advice and resources to help children and young people stay safe online.&#160; &lt;a target=&quot;_blank&quot;   href=&quot;https://www.saferinternet.org.uk/&quot;&gt;https://www.saferinternet.org.uk/&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+  </page>
+  <page id="44" page-nav-id="147751" sectionId="42">
+    <sectionTitle><![CDATA[Sources of information]]></sectionTitle>
+    <title><![CDATA[Summary]]></title>
+    <background type="Colour" fit="Cover" colour="rgb(255, 255, 255)" />
+    <content type="text" resize="False" style="width:920px; max-height:270px; height:auto !important; margin:20px 10px 20px 20px; position: absolute;background-color: rgb(217, 210, 233);">
+      <transition type="None" delay="1.00" period="1.00" />
+      <text><![CDATA[&lt;h2&gt;Summary&lt;/h2&gt;
+
+&lt;p style=&quot;margin: 0cm 0cm 8pt;&quot;&gt;&lt;span style=&quot;font-size: 14pt;&quot;&gt;&lt;span style=&quot;line-height: 107%;&quot;&gt;&lt;font face=&quot;Calibri&quot;&gt;You have now reached the end of the module you will now have a better awareness of:&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Children and young people&amp;apos;s use of technology and social media&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;How technology and social media impact families and parenting&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;The risks associated with social media and the internet&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;The impact on behaviours, relationships and wellbeing&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;How to support children and young people&amp;apos;s online resilience&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Available resources to help keep your child safe and promote their wellbeing&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+
+&lt;p&gt;&#160;&lt;/p&gt;
+]]></text>
+    </content>
+    <content type="image" style="width:920px; height:270px;  margin:310px 10px 20px 20px; position: absolute;">
+      <transition type="None" delay="1.00" period="1.00" />
+      <image imageAlt="Image without description." imageScale="Width">images/3.jpeg</image>
+    </content>
+  </page>
+</xml>

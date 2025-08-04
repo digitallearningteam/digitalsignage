@@ -1,0 +1,228 @@
+/* Project background */
+.ContainerBackground,
+.ContainerBackground div,
+.ContainerBackground img,
+.ContainerBackground video {
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+
+/* Logo */
+.labalogo {
+    display: block;
+    width: 140px;
+    position: fixed;
+    left: 50%;
+    bottom: 15px;
+    transform: translate(-50%);
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Nav bar */
+.navContainer {
+    padding: 8px 20px;
+    height: 22px;
+    width: 960px;
+    margin: auto;
+}
+
+/* Player content */
+.PlayerContent {
+    width: 960px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.box-shadow {
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+
+/* Page audio */
+.AudioContainer {
+    position: absolute;
+    bottom: 0px;
+    z-index: 1000;
+    width: 100%;
+    height: 30px;
+}
+
+    .AudioContainer audio {
+        display: block !important;
+    }
+
+/* Page content */
+.ContentBlock {
+    border-radius: 5px;
+}
+
+/* Text */
+.TextContent {
+    padding: 10px 12px;
+    margin: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+    .TextContent td {
+        padding: 5px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .TextContent #iframePDF {
+        position: fixed;
+        margin-left: -32px !important;
+        margin-top: -30px !important;
+        border-radius: 5px;
+        max-width: 920px;
+    }
+
+    .TextContent img {
+        border-radius: 5px;
+    }
+
+/* IMAGE */
+.ImageContent[data-align="Fit"] img {
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin: auto;
+}
+
+/* Interaction */
+.TemplateContent iframe {
+    border-radius: 5px;
+}
+
+.interactionLoader {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 960px;
+    height: 600px;
+    z-index: 999999999;
+    background-color: #fff;
+    text-align: center;
+    line-height: 600px;
+    border-radius: 5px;
+}
+
+    .interactionLoader img {
+        vertical-align: middle;
+        width: 50px;
+    }
+
+
+/* QUESTION */
+.QuestionContent {
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    line-height: 1.5;
+}
+
+    .QuestionContent[data-size="half"] div[data-style="colour"] {
+        position: relative;
+        height: 100%;
+    }
+
+
+/* ASSESSMENT SUMMARY */
+img.PageBackground {
+    position: absolute;
+}
+
+
+/* OAT Editor block text content specific styles */
+.ckeditor_content div,
+.ckeditor_content span,
+.ckeditor_content iframe,
+.ckeditor_content h1,
+.ckeditor_content h2,
+.ckeditor_content h3,
+.ckeditor_content h4,
+.ckeditor_content h5,
+.ckeditor_content h6,
+.ckeditor_content p,
+.ckeditor_content blockquote,
+.ckeditor_content pre,
+.ckeditor_content a,
+.ckeditor_content abbr,
+.ckeditor_content acronym,
+.ckeditor_content address,
+.ckeditor_content big,
+.ckeditor_content cite,
+.ckeditor_content code,
+.ckeditor_content del,
+.ckeditor_content dfn,
+.ckeditor_content img,
+.ckeditor_content ins,
+.ckeditor_content kbd,
+.ckeditor_content q,
+.ckeditor_content s,
+.ckeditor_content samp,
+.ckeditor_content small,
+.ckeditor_content strike,
+.ckeditor_content sub,
+.ckeditor_content sup,
+.ckeditor_content tt,
+.ckeditor_content var,
+.ckeditor_content u,
+.ckeditor_content center,
+.ckeditor_content dl,
+.ckeditor_content dt,
+.ckeditor_content dd,
+.ckeditor_content fieldset,
+.ckeditor_content form,
+.ckeditor_content label,
+.ckeditor_content legend,
+.ckeditor_content caption,
+.ckeditor_content article,
+.ckeditor_content aside,
+.ckeditor_content canvas,
+.ckeditor_content details,
+.ckeditor_content embed,
+.ckeditor_content figure,
+.ckeditor_content figcaption,
+.ckeditor_content footer,
+.ckeditor_content header,
+.ckeditor_content hgroup,
+.ckeditor_content menu,
+.ckeditor_content nav,
+.ckeditor_content output,
+.ckeditor_content ruby,
+.ckeditor_content section,
+.ckeditor_content summary,
+.ckeditor_content time,
+.ckeditor_content mark,
+.ckeditor_content audio,
+.ckeditor_content video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    line-height: inherit;
+    vertical-align: baseline;
+}

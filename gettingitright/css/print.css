@@ -1,0 +1,64 @@
+﻿body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    position: relative;
+    font-family: Open-Sans, Arial !important;
+    font-size: 12pt;
+    padding: 0 12%;
+}
+
+div:empty {
+    display: none;
+}
+
+.PrintSettings {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.PrintPage {
+    margin: 100px 0;
+    page-break-after: always;
+    background-color: #eaeaea;
+    border-radius: 5px;
+    padding: 50px;
+}
+
+    .PrintPage[id="Page_0"] {
+        margin: 0 0 100px 0;
+    }
+
+    .PrintPage:last-of-type {
+        margin: 100px 0 0 0;
+    }
+
+.ImageContent img {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.QuestionContent img {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+@media print {
+
+    body {
+        padding: 0;
+    }
+
+    .PrintPage {
+        background-color: #fff;
+        padding: 0;
+        margin: 0;
+    }
+
+    .print-hide {
+        display: none;
+    }
+}

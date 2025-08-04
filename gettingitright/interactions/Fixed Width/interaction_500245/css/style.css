@@ -1,0 +1,155 @@
+.lpBulletContainer {
+    height: 595px;
+    padding: 20px 20px 20px 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+/* Title */
+
+.lpBulletContainer h3.oatTemplateTitle {
+    font-size: 1.4em;
+    padding: 0px 0px 10px 0px;
+    margin: 0;
+    color: #4B81BD;
+    max-height: 36px;
+    width: 100%;
+}
+
+.lpBulletContainer .lPBulletIntroText {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.lpBulletContainer .TemplateInput {
+    border: 1px dashed #BDBDBD;
+    background: transparent;
+    width: 98%;
+    resize: none;
+    height: 98%;
+    color: inherit;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    height: inherit;
+    width: inherit;
+}
+
+.lpBulletContainer .BulletDescription {
+    width: 100%;
+}
+
+
+/* Text */
+
+.lpBulletContainer .oatTemplateText {
+    font-size: 11pt;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+
+/* Instruction */
+
+.lpBulletContainer .oatTemplateInstructionImg {
+    background: transparent url('../images/instruction_Circle.png') no-repeat 5px 5px;
+    width: 46px;
+    height: 46px;
+    float: left;
+}
+
+.lpBulletContainer .instruction_All {
+    background-color: #4B81BD;
+    margin-bottom: 12px;
+    margin-top: 4px;
+    -webkit-border-radius: 99px 20px 20px 99px;
+    -moz-border-radius: 99px 20px 20px 99px;
+    border-radius: 99px 20px 20px 99px;
+}
+
+.lpBulletContainer .oatTemplateInstructionText {
+    font-size: 14px;
+    color: white;
+    white-space: nowrap;
+    padding: 16px 0 0 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.lpBulletContainer .bullet {
+    width: 100%;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    padding: 6px 10px 6px 58px;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+    min-height: 38px;
+    height: auto;
+}
+
+.lpBulletContainer .bulletIcon {
+    border: solid 3px black;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 22px
+}
+
+.lpBulletContainer .bulletText {
+    height: 100%;
+    overflow: hidden;
+}
+
+.lpBulletContainer .PanelContainer {
+    position: relative;
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.lpBulletContainer .disabled {
+    opacity: 0.4;
+}
+
+.lpBulletContainer .cf:before,
+.lpBulletContainer .cf:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.lpBulletContainer .cf:after {
+    clear: both;
+}
+
+.lpBulletContainer .cf {
+    *zoom: 1;
+}
+
+.lpBulletContainer .oatDropDownContainer {
+    display: inline;
+    margin-left: 7px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.lpBulletContainer .bulletContainer {
+    margin-top: 10px;
+}
+
+.lpBulletContainer .TextEditable {
+    width: 100%;
+    height: 100%;
+}
+
+.lpBulletContainer .jqteInteraction,
+.lpBulletContainer .EditableSpan
+ {
+    display:block;
+    height: 100%;
+}

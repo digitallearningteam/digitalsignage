@@ -1,0 +1,4 @@
+<AssessmentSchema PassMark="80" ResultsPolicy="ShowScoreOnly" LABVersion="Advanced_1.0.0">
+  <QuestionBanks />
+  <Questions />
+</AssessmentSchema>

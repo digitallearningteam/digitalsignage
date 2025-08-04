@@ -1,0 +1,142 @@
+.Accordion_Container {
+    /* width: 960px; */
+    height: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Title */
+.Accordion_Container h3.oatTemplateTitle {
+    font-size: 17pt;
+    padding: 0px 0px 10px 0px;
+    margin: 0;
+    color: #4B81BD;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 36px;
+}
+
+/* Text */
+.Accordion_Container .oatTemplateText {
+    font-family: 'Arial', sans-serif;
+    font-size: 11pt;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+/* Instruction */
+.Accordion_Container .oatTemplateInstructionImg {
+    background: transparent url('../images/instruction_Circle.png') no-repeat 5px 5px;
+    width: 46px;
+    height: 46px;
+    float: left;
+}
+
+.Accordion_Container .instruction_All {
+    background-color: #4B81BD;
+    margin-bottom: 16px;
+    margin-top: 4px;
+    -webkit-border-radius: 99px 0px 0px 99px;
+    -moz-border-radius: 99px 0px 0px 99px;
+    border-radius: 99px 20px 20px 99px;
+}
+
+.Accordion_Container .oatTemplateInstructionText {
+    font-size: 14px;
+    color: white;
+    white-space: nowrap;
+    padding: 16px 0 0 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.Accordion_Container .Accordion_Main {
+    height: 460px;
+    overflow: hidden;
+}
+
+.Accordion_Container .Accordion_Main h3 {
+    background-color: #F9F9F9;
+    background-image: url('../images/unselected.png');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: 8px;
+    border-top: 1px solid #C6C6C6;
+    border-left: 1px solid #C6C6C6;
+    border-right: 1px solid #C6C6C6;
+    color: #000000;
+    cursor: pointer;
+    margin: 0 !important;
+    padding: 9px 10px 10px 37px !important;
+    font-weight: bold !important;
+    font-size: 11pt !important;
+    height: 17px !important;
+}
+
+.Accordion_Container .Accordion_Main div.Accordion_Panel {
+    padding: 10px 20px;
+    border-top: 1px solid #C6C6C6;
+    border-left: 1px solid #C6C6C6;
+    border-right: 1px solid #C6C6C6;
+    overflow-y: auto !important;
+    font-size: 11pt;
+    min-height: 50px;
+    max-height: 200px;
+    height: auto !important;
+    background-color: #fff !important;
+}
+
+.Accordion_Container .TemplateInput {
+    border: 1px dashed #BDBDBD;
+    border-color: #BDBDBD;
+    background: transparent;
+    width: 98%;
+    resize: none;
+    height: 22px;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+.Accordion_Container .Accordion_Input {
+    padding: 0;
+}
+
+.Accordion_Container .SelectedPanel {
+    background-image: url('../images/selected.png') !important;
+}
+
+.Accordion_Container .cf:before,
+.Accordion_Container .cf:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.Accordion_Container .cf:after {
+    clear: both;
+}
+
+.Accordion_Container .cf {
+    *zoom: 1;
+}
+
+.Accordion_Container .ui-accordion .ui-accordion-header .ui-icon {
+    display: none !important;
+}
+
+.Accordion_Container .LinkHeader {
+    height: auto !important;
+}
+
+.Accordion_Container .jqteInteraction,
+.Accordion_Container .EditableSpan
+ {
+    display:block;
+    height: 100%;
+}

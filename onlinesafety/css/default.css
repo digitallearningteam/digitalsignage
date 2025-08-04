@@ -1,0 +1,1284 @@
+@font-face {
+    font-family: 'AventGarde';
+    src: url('fonts/AventGarde/itc_avant-garde-gothic-medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AventGarde';
+    src: url('fonts/AventGarde/itc_avant-garde-gothic-bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AventGarde';
+    src: url('fonts/AventGarde/itc_avant-garde-gothic-lighter.otf') format('opentype');
+    font-weight: lighter;
+    font-style: normal;
+}
+
+html,
+body,
+form {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    position: relative;
+    font-family: Open-Sans, Arial !important;
+    font-size: 12pt;
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/* Logo */
+.labalogo {
+    display: block;
+    width: 140px;
+    position: absolute;
+    left: 50%;
+    bottom: -12.5%;
+    transform: translate(-50%);
+    transition: all 1s;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Header */
+#header {
+    background: #ffffff;
+    margin: 0px auto;
+    height: 100px;
+    position: relative;
+}
+
+.HeaderContainer {
+    overflow: hidden !important;
+}
+
+#ImageLogo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-height: 70px;
+}
+
+.HeaderInfo {
+    position: absolute;
+    color: #fff;
+    top: 0;
+    bottom: 0;
+    max-height: 70px;
+    margin: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+    .HeaderInfo div:first-of-type {
+        font-size: 16px;
+    }
+
+    .HeaderInfo div:last-of-type {
+        font-size: 24px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+
+/* Nav bar */
+.navContainer {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 0.6em;
+    font-size: 14px;
+}
+
+.navInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+    .navInner > nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+.navButton {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.navDisabled {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+}
+
+.navSeparator {
+    border-left: 1px solid #fff;
+    height: 18px;
+    margin: 0 10px;
+}
+
+#projectHeader {
+    color: white;
+    max-width: 700px;
+    overflow: hidden;
+}
+
+.progressContainer {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+}
+
+.progressSection {
+    position: absolute;
+    top: -5px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    font-size: 6px;
+    display: none;
+    transition: all .5s;
+}
+
+    .progressSection:hover,
+    .progressSection.passed {
+        height: 30px;
+        width: 30px;
+        font-size: 12px;
+        top: -12px;
+    }
+
+    .progressSection i {
+        display: block;
+        left: 50%;
+        position: absolute;
+        top: 51%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+        transition: background-color .5s, color .5s, opacity .1s;
+        width: 70%;
+        height: 70%;
+        opacity: 0.5;
+    }
+
+        .progressSection i:before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    .progressSection:hover i {
+        opacity: 1;
+        background-color: #fff;
+    }
+
+    .progressSection.passed i {
+        opacity: 1;
+        background-color: #fff;
+    }
+
+    .progressSection.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+.progressBar {
+    width: 0%;
+    height: 4px;
+    transition: all 1s;
+}
+
+
+/* Menu */
+.ModuleMenu {
+    height: 470px;
+    max-height: 700px;
+    width: 350px;
+    position: fixed;
+    background: #fff;
+    z-index: 10000 !important;
+    white-space: nowrap;
+    font-size: 16px;
+    bottom: 60px;
+    right: 22px;
+    padding: 0;
+    -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: none;
+    transition: width .5s;
+}
+
+    .ModuleMenu[data-open="true"] {
+        width: 700px;
+    }
+
+        .ModuleMenu[data-open="true"] .MenuSections {
+            width: 50%;
+        }
+
+        .ModuleMenu[data-open="true"] .MenuPages {
+            width: 50%;
+            left: 50%;
+        }
+
+.MenuSections {
+    width: 65px;
+    height: 100%;
+    background-color: #EDEDED;
+    position: absolute;
+    overflow: hidden;
+    transition: all .5s;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.MenuSectionsInner {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.SectionItem {
+    height: 60px;
+    position: relative;
+}
+
+    .SectionItem.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+.SectionItemInner {
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.SectionOrder {
+    position: absolute;
+    padding: 15px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    box-sizing: border-box;
+}
+
+    .SectionOrder span {
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        height: 20px;
+        position: absolute;
+        left: 0;
+        text-align: center;
+        right: 0;
+    }
+
+.SectionItem .SectionOrder i {
+    color: #797979;
+}
+
+.SectionItem.selected .SectionOrder,
+.SectionItem.selected .SectionOrder i {
+    color: #fff;
+}
+
+.SectionName {
+    position: absolute;
+    margin: auto 0 auto 60px;
+    top: 0;
+    bottom: 0;
+    height: 20px;
+    width: 280px;
+}
+
+.SectionNameText {
+    display: block;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ExpandSectionMenu {
+    position: absolute;
+    padding: 15px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    box-sizing: border-box;
+    color: #fff;
+    bottom: -5px;
+    margin: 10px;
+    text-align: center;
+    background-color: #F68D25;
+}
+
+    .ExpandSectionMenu:before {
+        content: "\f0da";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 0;
+        right: 0;
+        height: 16px;
+        width: 44px;
+        transition: all .5s;
+    }
+
+.MenuSections[data-open="true"] .ExpandSectionMenu:before {
+    transform: rotate(180deg);
+    width: 38px;
+}
+
+.MenuAddSection .SectionOrder {
+    color: #797979;
+}
+
+.MenuPages {
+    position: absolute;
+    width: 285px;
+    left: 65px;
+    transition: all .5s;
+    height: 100%;
+    cursor: pointer;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.MenuPagesInner {
+    padding: 12px 20px 0 20px;
+}
+
+.PageItem {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 5px 15px;
+    position: relative;
+}
+
+    .PageItem.selected {
+        color: #fff;
+    }
+
+    .PageItem.ui-sortable-helper {
+        background-color: #ededed;
+        width: 215px;
+    }
+
+    .PageItem.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+.PageItemInner {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* Main content */
+.PlayerContent {
+    margin: 30px
+}
+
+
+/* Content */
+.ImageContent[data-align="Width"] img {
+    width: 100%;
+}
+
+.ImageContent[data-align="Height"] img {
+    height: 100%;
+}
+
+
+/* Util styles */
+.LoadingContainer,
+.PlayerOverlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999999999;
+    opacity: 0.9;
+    background-color: #eaeaea;
+    display: none;
+}
+
+.LoadingImage {
+    margin: auto;
+    width: 50px;
+    position: absolute;
+    z-index: 999999999;
+    top: 40%;
+    left: 45%;
+    display: none;
+}
+
+.PlayerMessage {
+    margin: auto;
+    width: 95%;
+    position: absolute;
+    z-index: 999999999;
+    top: 37%;
+    left: 50%;
+    font-size: 24px;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    display: none;
+    height: 100%;
+}
+
+.MessageIcons {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 150px;
+    bottom: 0;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+
+    .MessageIcons i {
+        font-size: 50px;
+        display: none;
+    }
+
+.MessageStartButton {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 50%;
+    bottom: 0;
+    width: 200px;
+    height: 33px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #24a558;
+    padding: 10px;
+    display: none;
+    border-radius: 10px;
+    transform: translateY(-50%);
+}
+
+    .MessageStartButton:hover {
+        text-decoration: underline;
+    }
+
+.MediaMessage {
+    width: 80%;
+    height: 40px;
+    margin: auto;
+    position: absolute;
+    top: 35%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.Button {
+    padding: 10px;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    background-color: #F68D25;
+    color: #FFF;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+    .Button:hover, .Button:hover {
+        background-color: #FBD1A8 !important;
+    }
+
+
+/* CUSTOM FONTS*/
+body.Arial .ContentBlock,
+body.Arial .ContentBlock input,
+body.Arial .ContentBlock textarea,
+body.Arial .ContentBlock button,
+body.Arial .AddNotePanel,
+body.Arial .HeaderInfo,
+body.Arial .navInner {
+    font-family: Arial !important;
+}
+
+body.Times .ContentBlock,
+body.Times .ContentBlock input,
+body.Times .ContentBlock textarea,
+body.Times .ContentBlock button,
+body.Times .AddNotePanel,
+body.Times .HeaderInfo,
+body.Times .navInner {
+    font-family: 'Times New Roman' !important;
+}
+
+body.AvantGarde .ContentBlock,
+body.AvantGarde .ContentBlock input,
+body.AvantGarde .ContentBlock textarea,
+body.AvantGarde .ContentBlock button,
+body.AvantGarde .AddNotePanel,
+body.AvantGarde .HeaderInfo,
+body.AvantGarde .navInner {
+    font-family: 'AventGarde' !important;
+}
+
+body.Helvetica .ContentBlock,
+body.Helvetica .ContentBlock input,
+body.Helvetica .ContentBlock textarea,
+body.Helvetica .ContentBlock button,
+body.Helvetica .AddNotePanel,
+body.Helvetica .HeaderInfo,
+body.Helvetica .navInner {
+    font-family: Helvetica !important;
+}
+
+body.Verdana .ContentBlock,
+body.Verdana .ContentBlock input,
+body.Verdana .ContentBlock textarea,
+body.Verdana .ContentBlock button,
+body.Verdana .AddNotePanel,
+body.Verdana .HeaderInfo,
+body.Verdana .navInner {
+    font-family: Verdana !important;
+}
+
+body.Palatino .ContentBlock,
+body.Palatino .ContentBlock input,
+body.Palatino .ContentBlock textarea,
+body.Palatino .ContentBlock button,
+body.Palatino .AddNotePanel,
+body.Palatino .HeaderInfo,
+body.Palatino .navInner {
+    font-family: Palatino !important;
+}
+
+body.Courier .ContentBlock,
+body.Courier .ContentBlock input,
+body.Courier .ContentBlock textarea,
+body.Courier .ContentBlock button,
+body.Courier .AddNotePanel,
+body.Courier .HeaderInfo,
+body.Courier .navInner {
+    font-family: Courier !important;
+}
+
+body.size10 .ContentBlock,
+body.size10 .AddNotePanel {
+    font-size: clamp(10px, 1vw, 2rem) !important;
+}
+
+body.size12 .ContentBlock,
+body.size12 .AddNotePanel {
+    font-size: clamp(12px, 1vw, 2rem) !important;
+}
+
+body.size14 .ContentBlock,
+body.size14 .AddNotePanel {
+    font-size: clamp(14px, 1vw, 2rem) !important;
+}
+
+body.size16 .ContentBlock,
+body.size16 .AddNotePanel {
+    font-size: clamp(16px, 1vw, 2rem) !important;
+}
+
+body.size18 .ContentBlock,
+body.size18 .AddNotePanel {
+    font-size: clamp(18px, 1vw, 2rem) !important;
+}
+
+body.size20 .ContentBlock,
+body.size20 .AddNotePanel {
+    font-size: clamp(20px, 1vw, 2rem) !important;
+}
+
+body.size22 .ContentBlock,
+body.size22 .AddNotePanel {
+    font-size: clamp(22px, 1vw, 2rem) !important;
+}
+
+body.size24 .ContentBlock,
+body.size24 .AddNotePanel {
+    font-size: clamp(24px, 1vw, 2rem) !important;
+}
+
+
+/* ACCESSIBILITY CONTENT */
+.FontLargeSetting .ContentBlock:not(.VideoContent) * {
+    font-size: 2rem !important;
+    line-height: 3rem !important;
+}
+
+.FontExtraLargeSetting .ContentBlock:not(.VideoContent) * {
+    font-size: 4rem !important;
+    line-height: 5rem !important;
+}
+
+.FontBlueSetting .ContentBlock:not(.VideoContent) {
+    border: solid 1px;
+    background: #9AE3F4 !important;
+    color: #00228F !important;
+    border-color: #00228F !important;
+}
+
+    .FontBlueSetting .ContentBlock:not(.VideoContent) * {
+        background: #9AE3F4 !important;
+        color: #00228F !important;
+        border-color: #00228F !important;
+    }
+
+.FontBlackSetting .ContentBlock:not(.VideoContent) {
+    border: solid 1px;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+    .FontBlackSetting .ContentBlock:not(.VideoContent) * {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        border-color: #000000 !important;
+    }
+
+.FontGreySetting .ContentBlock:not(.VideoContent) {
+    border: solid 1px;
+    background: #969696 !important;
+    color: #FFFF00 !important;
+    border-color: #FFFF00 !important;
+}
+
+    .FontGreySetting .ContentBlock:not(.VideoContent) * {
+        background: #969696 !important;
+        color: #FFFF00 !important;
+        border-color: #FFFF00 !important;
+    }
+
+
+.FontYellowSetting .ContentBlock:not(.VideoContent) {
+    border: solid 1px;
+    background: #FFFFCC !important;
+    color: #00358f !important;
+    border-color: #00358f !important;
+}
+
+    .FontYellowSetting .ContentBlock:not(.VideoContent) * {
+        background: #FFFFCC !important;
+        color: #00358f !important;
+        border-color: #00358f !important;
+    }
+
+
+/* ACCESSIBILTY BUTTONS */
+.AccessibilityMessage,
+.NavigationMessage {
+    display: none;
+}
+
+.AccessibilityMessage {
+    position: absolute;
+    bottom: -35px;
+    left: 10px;
+    font-size: 50px;
+    text-align: left;
+    width: 100%;
+}
+
+    .AccessibilityMessage span {
+        font-size: 18px;
+        position: absolute;
+        width: 50%;
+        padding: 20px 20px;
+        left: 60px;
+        top: 40px;
+        background-color: white;
+        color: black;
+        border-radius: 15px;
+        -webkit-box-shadow: 0px 4px 26px -2px rgba(0,0,0,0.39);
+        -moz-box-shadow: 0px 4px 26px -2px rgba(0,0,0,0.39);
+        box-shadow: 0px 4px 26px -2px rgba(0,0,0,0.39);
+    }
+
+        .AccessibilityMessage span h4 {
+            margin: 0;
+            padding: 0px 0px 15px 0px;
+        }
+
+    .AccessibilityMessage .fa-reply {
+        transform: rotate(-90deg);
+        color: #b1b1b1;
+    }
+
+
+.NavigationMessage {
+    position: absolute;
+    top: 310px;
+    font-size: 50px;
+    text-align: left;
+    width: 100%;
+}
+
+    .NavigationMessage span {
+        font-size: 18px;
+        position: absolute;
+        width: 50%;
+        padding: 23px 24px;
+        right: 60px;
+        background-color: white;
+        color: black;
+        border-radius: 15px;
+        -webkit-box-shadow: 0px 4px 26px -2px rgba(0,0,0,0.39);
+        -moz-box-shadow: 0px 4px 26px -2px rgba(0,0,0,0.39);
+        box-shadow: 0px 4px 26px -2px rgba(0,0,0,0.39);
+    }
+
+    .NavigationMessage .fa-reply {
+        transform: rotate(90deg);
+        float: right;
+        color: #b1b1b1;
+    }
+
+.AccessibilityButton {
+    position: absolute;
+    width: 62px !important;
+    height: 62px !important;
+    margin: -1px 1px !important;
+    z-index: 1;
+}
+
+.FontSettingContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    z-index: 99999999999;
+}
+
+    .FontSettingContainer ul {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        height: 60px;
+        cursor: pointer;
+        transition: 0.5s;
+        background: linear-gradient(45deg, #ff00ff, #8a2be2);
+    }
+
+        .FontSettingContainer ul li {
+            position: absolute;
+            list-style: none;
+            transition: 1s;
+        }
+
+            .FontSettingContainer ul li a {
+                display: block;
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                background: #262626;
+                color: #ffffff;
+                margin: 0 2px;
+                border-radius: 50%;
+                font-size: 30px;
+                transition: 1s;
+            }
+
+            .FontSettingContainer ul li:nth-child(2) a {
+                background: #000000;
+                font-size: 16px;
+            }
+
+            .FontSettingContainer ul li:nth-child(3) a {
+                background: #000000;
+                font-size: 22px;
+            }
+
+            .FontSettingContainer ul li:nth-child(4) a {
+                background: #000000;
+                font-size: 28px;
+            }
+
+            .FontSettingContainer ul li:nth-child(5) a {
+                background: #FFFFFF;
+                color: #000000;
+                font-size: 28px;
+            }
+
+            .FontSettingContainer ul li:nth-child(6) a {
+                background: #9AE3F4;
+                color: #00228F;
+                font-size: 28px;
+            }
+
+            .FontSettingContainer ul li:nth-child(7) a {
+                background: #969696 !important;
+                color: #FFFF00 !important;
+                font-size: 28px;
+            }
+
+            .FontSettingContainer ul li:nth-child(8) a {
+                background: #FFFFCC !important;
+                color: #00358f !important;
+                font-size: 28px;
+            }
+
+
+            .FontSettingContainer ul li:nth-child(9) a {
+                background: #FFFFFF;
+                color: #000000;
+                font-size: 28px;
+            }
+
+            .FontSettingContainer ul li:nth-child(10) a {
+                background: #000000;
+            }
+
+    .FontSettingContainer.selected li:nth-child(2) a {
+        transform: translateX(64px) rotate(360deg);
+        transition-delay: 1s;
+    }
+
+    .FontSettingContainer.selected li:nth-child(3) a {
+        transform: translateX(128px) rotate(360deg);
+        transition-delay: 0.875s;
+    }
+
+    .FontSettingContainer.selected li:nth-child(4) a {
+        transform: translateX(192px) rotate(360deg);
+        transition-delay: 0.75s;
+    }
+
+    .FontSettingContainer.selected li:nth-child(5) a {
+        transform: translateX(256px) rotate(360deg);
+        transition-delay: 0.625s;
+        border: #000000 solid 1px;
+    }
+
+    .FontSettingContainer.selected li:nth-child(6) a {
+        transform: translateX(320px) rotate(360deg);
+        transition-delay: 0.5s;
+        border: #00228F solid 1px;
+    }
+
+    .FontSettingContainer.selected li:nth-child(7) a {
+        transform: translateX(384px) rotate(360deg);
+        transition-delay: 0.375s;
+        border: #FFFF00 solid 1px;
+    }
+
+    .FontSettingContainer.selected li:nth-child(8) a {
+        transform: translateX(448px) rotate(360deg);
+        transition-delay: 0.25s;
+        border: #00358f solid 1px;
+    }
+
+    .FontSettingContainer.selected li:nth-child(9) a {
+        transform: translateX(512px) rotate(360deg);
+        transition-delay: 0.125s;
+        border: #000000 solid 1px;
+    }
+
+    .FontSettingContainer.selected li:nth-child(10) a {
+        transform: translateX(576px) rotate(360deg);
+        transition-delay: 0.1s;
+        border: #000000 solid 1px;
+    }
+
+
+/* ASSESSMENT SUMMARY*/
+.AssessmentStatus {
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.AssessmentSubStatus {
+    color: white;
+    font-weight: lighter;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.AssessmentScoreBox {
+    width: 60%;
+    margin-top: 35px;
+}
+
+.AssessmentScoreContainer {
+    width: 250px;
+    background-color: white;
+    border-radius: 10px;
+    height: 80px;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-box-shadow: 4px 6px 65px -3px rgba(0,0,0,0.4);
+    -moz-box-shadow: 4px 6px 65px -3px rgba(0,0,0,0.4);
+    box-shadow: 4px 6px 65px -3px rgba(0,0,0,0.4);
+}
+
+.AssessmentScoreTitle {
+    text-transform: uppercase;
+    color: black;
+    font-size: 12px;
+}
+
+.AssessmentScore {
+    text-transform: uppercase;
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.AssessmentScoreContainer p {
+    margin: 0px !important;
+}
+
+.TextContent img[src=""] {
+    display: none;
+}
+
+
+/* HTML Link Content*/
+.HTMLContentPanel.LinkPanel {
+    width: 100%;
+    position: relative;
+    border-radius: 5px;
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.HTMLContentPanel .LinkIntro {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.HTMLContentPanel .LinkIcon {
+    font-family: 'Font Awesome Free';
+    float: left;
+    height: 100%;
+    font-size: 40px;
+    padding-right: 30px;
+    padding-top: 4px;
+    width: 46px;
+    flex: 0 0 0%;
+}
+
+    .HTMLContentPanel .LinkIcon .fa-file-pdf {
+        color: #ff0000;
+    }
+
+    .HTMLContentPanel .LinkIcon .fa-file-word {
+        color: #00a1f1;
+    }
+
+    .HTMLContentPanel .LinkIcon .fa-file-excel {
+        color: #7cbb00;
+    }
+
+    .HTMLContentPanel .LinkIcon .fa-file-powerpoint {
+        color: #f65314;
+    }
+
+.HTMLContentPanel .LinkText {
+    font-size: 20px;
+    flex: 1 0 0%;
+    color: #797979;
+}
+
+.HTMLContentPanel a {
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* CONTENTBLOCK NOTES STYLING */
+.open_note_button {
+    cursor: pointer;
+}
+
+.AddNotePanel {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+    max-height: 550px;
+    max-width: 700px;
+    min-width: 460px;
+    margin: auto;
+    background: #fff;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    border-radius: 10px 10px 5px 5px;
+    display: block;
+    z-index: 10000;
+    font-size: 13px;
+}
+
+.AddNoteHeader {
+    width: 100%;
+    margin-top: -20px;
+    padding: 10px;
+    padding-right: 30px;
+    margin-left: -20px;
+    color: #000;
+    font-weight: 600;
+    border-radius: 5px 5px 0px 0px;
+    text-transform: uppercase;
+    font-size: 30px
+}
+
+.AddNoteHeaderText {
+    padding-left: 10px;
+    width: 85%;
+    display: inline-block;
+}
+
+
+.AddNoteClose {
+    background: url(../images/cross_close.png) no-repeat center;
+    background-size: 100%;
+    padding: 13px;
+    margin-top: 7px;
+    margin-right: 5px;
+    cursor: pointer;
+    height: 100%;
+    float: right;
+}
+
+.AddNoteContent {
+    margin-top: 10px;
+    color: #000;
+    text-transform: none;
+    align-content: center;
+    max-height: 490px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.AddNoteMessage {
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+    .AddNotePanel {
+        position: fixed !important;
+        overflow-y: scroll !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        border-radius: unset !important;
+        min-width: unset !important;
+        max-height: unset !important;
+    }
+}
+
+
+/* VIDEO OVERLAYS */
+.VideoOverlay {
+    position: absolute;
+    padding: 2%;
+    font-weight: bold;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    z-index: 1;
+    overflow: hidden;
+}
+
+    .VideoOverlay.Full {
+        width: auto !important;
+        height: auto !important;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: none;
+    }
+
+    .VideoOverlay.TopHalf {
+        height: 50%;
+        width: auto !important;
+        Top: 0;
+        left: 0;
+        right: 0;
+        display: none;
+    }
+
+    .VideoOverlay.TopSmall {
+        height: 25%;
+        width: auto !important;
+        Top: 0;
+        right: 0;
+        left: 0;
+        display: none;
+    }
+
+    .VideoOverlay.BottomHalf {
+        height: 50%;
+        width: auto !important;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: none;
+    }
+
+    .VideoOverlay.BottomSmall {
+        height: 25%;
+        width: auto !important;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        display: none;
+    }
+
+    .VideoOverlay.LeftHalf {
+        height: auto !important;
+        width: 50%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        display: none;
+    }
+
+    .VideoOverlay.LeftSmall {
+        height: auto !important;
+        width: 25%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        display: none;
+    }
+
+    .VideoOverlay.RightHalf {
+        height: auto !important;
+        width: 50%;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: none;
+    }
+
+    .VideoOverlay.RightSmall {
+        height: auto !important;
+        width: 25%;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: none;
+    }
+
+.VideoOverlayEditButton {
+    display: none;
+}
+
+
+.AssessedQuestionMarker {
+    border: 1px solid white;
+    display: inline-block;
+    /* position: fixed; */
+    /* float: left; */
+    background-color: #ff3860;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 10px 10px 0px 10px;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    font-size: 10pt;
+    z-index: 2;
+}
+
+    .AssessedQuestionMarker:before {
+        content: "Assessed Question"
+    }
+
+
+/* EXTERNAL */
+.ExternalContent iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 5px;
+}
+
+.glossary-button {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>LAB Advanced SCORM Module</title>
+    <link id="favicon" rel="shortcut icon" href="images/oat.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/header.css" />
+    <link rel="stylesheet" type="text/css" href="css/question.css" />
+    <link rel="stylesheet" type="text/css" href="css/videojs.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/pyw6rip.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+</head>
+
+<body onbeforeunload="EndModule()" onunload="EndModule()">
+    <div id="header" style="display: none"><img id="ImageLogo" src="images/1.jpeg" style="" alt="Organisation logo"><div class="HeaderContainer"></div><div class="FullBanner"></div><div class="HeaderInfo"><div>East Lothian Council</div><div>Getting It Right For Every Child</div></div></div>
+
+    <div id="navigation" style="display:none">
+        <div class="navContainer">
+            <h3 id="projectHeader"></h3>
+            <nav>
+                <div class="navButton menu-button">
+                    <span>OPEN MENU</span>
+                </div>
+
+                <div class="navButton navSeparator"></div>
+
+                <div href="#" class="navButton backButton">
+                    <span>BACK</span>
+                </div>
+
+                <div class="navButton navSeparator"></div>
+
+                <div href="#" class="navButton nextButton">
+                    <span>NEXT</span>
+                </div>
+            </nav>
+        </div>
+        <div class="progressContainer">
+            <div class="progressBar"></div>
+        </div>
+    </div>
+
+    <div class="PlayerContainer">
+        <div class="PlayerContent"></div>
+    </div>
+
+    <div class="PlayerOverlay"></div>
+    <div class="PlayerMessage">
+        <div class="MessageIcons">
+            <i class="audioIcon fas fa-volume-up"></i>
+            <i class="videoIcon fab fa-youtube"></i>
+        </div>
+        <div class="MessageStartButton">CONTINUE</div>
+    </div>
+
+    <div class="ContainerBackground"></div>
+
+    <a href="https://labadvanced.co.uk" target="_blank">
+        <img class="labalogo" src="images/laba_watermark.png" alt="Developed by learnPro" />
+    </a>
+
+    <div class="ModuleMenu">
+        <div class="MenuSections" data-open="false">
+            <div class="MenuSectionsInner"></div>
+            <i class="ExpandSectionMenu fas fa-caret-right accent-color-background"></i>
+        </div>
+        <div class="MenuPages">
+            <div class="MenuPagesInner"></div>
+        </div>
+    </div>
+
+    <div id="imagePreloader" style="display: none; width: 0; height: 0"></div>
+
+    <div class="LoadingContainer">
+        <img class="LoadingImage" src="images/laba_loading.gif" alt="Loading Image" />
+    </div>
+
+    <div class="AddNotePanel"
+         id="NotePanel"
+         style="display: none">
+        <div class="AddNoteHeader"
+             id="NoteHeader">
+            <div class="AddNoteHeaderText"
+                 id="NoteHeaderText">
+                Note
+            </div>
+            <a href="Javascript: HideNote()" class="AddNoteClose"></a>
+        </div>
+        <div class="AddNoteContent">
+            <div class="AddNoteMessage"
+                 id="NoteText">
+                Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your
+                note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add
+                text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note
+                here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to
+                your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here.
+                Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your
+                note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here. Add text to your note here.
+            </div>
+        </div>
+    </div>
+
+    <div aria-hidden="true" class="FontSettingContainerFooter FontSettingContainer" style="display:none">
+        <ul class="fas" id="AccessibilityContainer">
+            <li> <a class="AccessibilityButton"> <i class="fas fa-font" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="FontSmallButton"> <i class="fas fa-font" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="FontMediumButton"> <i class="fas fa-font" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="FontLargeButton"> <i class="fas fa-font" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="FontStandardButton"> <i class="fa fa-palette" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="FontBlueButton"> <i class="fa fa-palette" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="FontGreyButton"> <i class="fa fa-palette" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="FontYellowButton"> <i class="fa fa-palette" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="FontResetButton"> <i class="fa fa-undo" aria-hidden="true"> </i> </a> </li>
+            <li> <a class="AccessibilityPrintButton"> <i class="fas fa-print" aria-hidden="true"> </i> </a> </li>
+        </ul>
+    </div>
+
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+
+    <script src="js/animateCss.js" type="text/javascript"></script>
+    <script src="js/pdf.js" type="text/javascript"></script>
+    <script src="js/iframeResizer.min.js" type="text/javascript"></script>
+
+    <script src="js/videojs-core.js" type="text/javascript"></script>
+    <script src="js/dash.all.js" type="text/javascript"></script>
+    <script src="js/videojs-dash.js" type="text/javascript"></script>
+
+    <script src="js/scormlp_2004.js" type="text/javascript"></script>
+    <script src="js/command-default.js" type="text/javascript"></script>
+    <script src="com/defaults.js" type="text/javascript"></script>
+</body>
+
+</html>

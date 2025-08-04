@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3" xmlns:imsss="http://www.imsglobal.org/xsd/imsss" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:date="http://exslt.org/dates-and-times" identifier="learnProAdvance_202012141032AM" version="1.3" xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd http://ltsc.ieee.org/xsd/LOM lom.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>CAM 1.3</schemaversion>
+    <lom xmlns="http://ltsc.ieee.org/xsd/LOM">
+      <general>
+        <title>
+          <string>Getting It Right For Every Child</string>
+          <language>en</language>
+        </title>
+        <description>
+          <string>This module was created using learnPro LAB Advanced</string>
+          <language>en</language>
+        </description>
+        <keyword>
+          <string>learnPro</string>
+          <language>en</language>
+        </keyword>
+        <keyword>
+          <string>Advanced</string>
+          <language>en</language>
+        </keyword>
+      </general>
+      <lifeCycle>
+        <version>
+          <string>Generic V1</string>
+          <language>en</language>
+        </version>
+      </lifeCycle>
+      <metaMetadata>
+        <metadataSchema>SCORM_CAM_v1.3</metadataSchema>
+        <metadataSchema>LOMv1.0</metadataSchema>
+      </metaMetadata>
+      <rights>
+        <description>
+          <string>(c) learnPro Ltd</string>
+          <language>en</language>
+        </description>
+      </rights>
+    </lom>
+  </metadata>
+  <organizations default="LEARNPROEH202012141032AM-ORG-1">
+    <organization identifier="LEARNPROEH202012141032AM-ORG-1">
+      <title>Getting It Right For Every Child</title>
+      <imsss:sequencing>
+        <imsss:controlMode flow="true"/>
+      </imsss:sequencing>
+      <item identifier="LEARNPROEH202012141032AM-ITEM-1" identifierref="LEARNPROEH202012141032AM-RES-1" isvisible="true">
+        <title>Getting It Right For Every Child</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="LEARNPROEH202012141032AM-RES-1" type="webcontent" adlcp:scormType="sco" href="index2.html">
+      <file href="index2.html"/>
+    </resource>
+  </resources>
+</manifest>
