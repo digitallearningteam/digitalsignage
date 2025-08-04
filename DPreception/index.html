@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Signage Display</title>
+  <meta http-equiv="refresh" content="300">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      /* If you need absolutely no scrollbar, keep overflow hidden. 
+         But if the widget is cut off, consider removing or changing it. */
+      overflow: hidden; 
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    #slides-container {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      background: #000;
+    }
+    #slides {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    #maintain-ratio {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      max-width: 177.78vh; /* 16:9 aspect ratio */
+      max-height: 56.25vw; /* 16:9 aspect ratio */
+    }
+
+    /* Bottom bar */
+    #clock-bar {
+      /* Increase bar height for widget to fit */
+      height: 60px;  
+      background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      font-family: 'Arial', sans-serif;
+      justify-content: flex-end;
+    }
+
+    #clock-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      /* Ensure all items fit side-by-side */
+      height: 100%;
+    }
+    #time {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    #date {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    .separator {
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Weather widget override to ensure visibility */
+    .weatherwidget-io {
+      display: block !important; 
+      line-height: normal !important; 
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="slides-container">
+      <div id="maintain-ratio">
+        <iframe id="slides" 
+                src="https://docs.google.com/presentation/d/e/2PACX-1vRhYeP_BKUJyX9SZ19x0AYO24GSpWzmGTP2wxKPWp-1jYw-j_Qm4HcyM0eB6n3sz-Z1qdKB4TzWjdDx/embed?start=true&loop=true&delayms=15000&rm=minimal" 
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <div id="clock-bar">
+      <div id="clock-container">
+        <div id="date"></div>
+        <div id="time"></div>
+        
+        <!-- Weather Widget -->
+        <a class="weatherwidget-io"
+           href="https://forecast7.com/en/55d96n2d77/haddington/"
+           data-label_1="HADDINGTON"
+           data-label_2="WEATHER"
+           data-theme="original"
+        >
+          HADDINGTON WEATHER
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      
+      // Update time
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('time').innerHTML = 
+        `${hours}<span class="separator">:</span>${minutes}`;
+      
+      // Update date
+      const dateOptions = { 
+        weekday: 'short', 
+        day: 'numeric',
+        month: 'short'
+      };
+      document.getElementById('date').textContent = 
+        now.toLocaleDateString('en-GB', dateOptions);
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call
+  </script>
+  
+  <!-- Weatherwidget.io script -->
+  <script>
+  !function(d,s,id){
+      var js,fjs=d.getElementsByTagName(s)[0];
+      if(!d.getElementById(id)){
+          js=d.createElement(s);js.id=id;
+          js.src='https://weatherwidget.io/js/widget.min.js';
+          fjs.parentNode.insertBefore(js,fjs);
+      }
+  }(document,'script','weatherwidget-io-js');
+  </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Kids Library Display</title>
+  <meta http-equiv="refresh" content="300">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    
+    #main-content {
+      display: flex;
+      height: 100vh;
+    }
+    
+    #slides {
+      flex: 4.5;
+      border: none;
+    }
+    
+    #sidebar {
+      flex: 0.8;
+      min-width: 300px;
+      background: linear-gradient(135deg, #FFB5E8 0%, #AFF8DB 100%);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Comic Neue', cursive;
+      position: relative;
+    }
+
+    .clock-container {
+      width: min(400px, 90%);
+      aspect-ratio: 1;
+      position: relative;
+      background: white;
+      border-radius: 50%;
+      border: 8px solid #FF85B3;
+      box-shadow: 0 0 20px rgba(255,133,179,0.3);
+      margin: 20px 0;
+    }
+
+    .number {
+      position: absolute;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #FF85B3;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      transform-origin: center;
+      font-weight: bold;
+    }
+
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: 50% 100%;
+      background: #FF85B3;
+      border-radius: 10px;
+    }
+
+    .hour {
+      width: 4px;
+      height: 25%;
+      background: #FF85B3;
+      margin-left: -2px;
+    }
+
+    .minute {
+      width: 3px;
+      height: 35%;
+      background: #B5DEFF;
+      margin-left: -1.5px;
+    }
+
+    .second {
+      width: 2px;
+      height: 40%;
+      background: #AFF8DB;
+      margin-left: -1px;
+    }
+
+    .center-dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background: #FF85B3;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #digital-time {
+      font-size: 2.5rem;
+      color: #FF85B3;
+      text-align: center;
+      margin: 20px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #date {
+      font-size: 1.2rem;
+      color: #FF85B3;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .floating-emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 6s infinite ease-in-out;
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .book { top: 10%; left: 10%; animation-delay: 0s; }
+    .star { top: 80%; right: 10%; animation-delay: 2s; }
+    .pencil { bottom: 10%; left: 15%; animation-delay: 4s; }
+  </style>
+</head>
+<body>
+  <div id="main-content">
+    <iframe id="slides" src="https://docs.google.com/presentation/d/e/2PACX-1vRThYG7Kp8me6cNJTr7Ibqb-LMp1nDcHufUe8YqIoTwB765UYbJlbYHEYIlkPhTH_2Zs778NXyryyyM/embed?start=true&loop=true&delayms=15000&rm=minimal" allowfullscreen></iframe>
+    <div id="sidebar">
+      <div class="floating-emoji book">📚</div>
+      <div class="floating-emoji star">⭐</div>
+      <div class="floating-emoji pencil">✏️</div>
+      
+      <div id="digital-time"></div>
+      <div class="clock-container">
+        <div class="hand hour"></div>
+        <div class="hand minute"></div>
+        <div class="hand second"></div>
+        <div class="center-dot"></div>
+      </div>
+      <div id="date"></div>
+    </div>
+  </div>
+
+  <script>
+    const clockContainer = document.querySelector('.clock-container');
+    const radius = clockContainer.offsetWidth / 2.5;
+
+    for (let i = 1; i <= 12; i++) {
+      const number = document.createElement('div');
+      number.className = 'number';
+      const angle = (i * 30 - 90) * (Math.PI / 180);
+      const x = radius * Math.cos(angle);
+      const y = radius * Math.sin(angle);
+      
+      number.textContent = i;
+      number.style.left = `calc(50% + ${x}px - 15px)`;
+      number.style.top = `calc(50% + ${y}px - 15px)`;
+      
+      clockContainer.appendChild(number);
+    }
+
+    function updateClock() {
+      const now = new Date();
+      
+      const timeOptions = { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit',
+        hour12: false 
+      };
+      document.getElementById('digital-time').textContent = 
+        now.toLocaleTimeString('en-GB', timeOptions);
+      
+      const dateOptions = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      };
+      document.getElementById('date').textContent = 
+        now.toLocaleDateString('en-GB', dateOptions);
+      
+      const hours = now.getHours() % 12;
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      
+      const hourRotation = (hours * 30) + (minutes * 0.5);
+      const minuteRotation = minutes * 6;
+      const secondRotation = seconds * 6;
+      
+      document.querySelector('.hour').style.transform = `rotate(${hourRotation}deg)`;
+      document.querySelector('.minute').style.transform = `rotate(${minuteRotation}deg)`;
+      document.querySelector('.second').style.transform = `rotate(${secondRotation}deg)`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
