@@ -1,0 +1,844 @@
+const TEMPLATES = {
+    "categories": [
+        {
+            "id": "lesson-planning",
+            "name": "Lesson Planning",
+            "description": "Create lesson plans aligned to CfE Experiences & Outcomes",
+            "icon": "📝",
+            "group": "Instruction & Planning",
+            "fields": [
+                {
+                    "id": "level",
+                    "label": "CfE Level",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Early Level (Nursery – P1)",
+                        "First Level (P2 – P4)",
+                        "Second Level (P5 – P7)",
+                        "Third Level (S1 – S3)",
+                        "Fourth Level (S4 – S6)"
+                    ]
+                },
+                {
+                    "id": "subject",
+                    "label": "Curriculum Area",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Expressive Arts",
+                        "Health & Wellbeing",
+                        "Languages (Literacy & English)",
+                        "Languages (Gaelic)",
+                        "Languages (Modern Languages)",
+                        "Mathematics & Numeracy",
+                        "Religious & Moral Education",
+                        "Sciences",
+                        "Social Studies",
+                        "Technologies"
+                    ]
+                },
+                {
+                    "id": "topic",
+                    "label": "Topic",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "e.g. Fractions, World War II, Life cycles"
+                },
+                {
+                    "id": "es_and_os",
+                    "label": "Experiences & Outcomes / Benchmarks",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Paste specific Es & Os or Benchmarks if you have them"
+                },
+                {
+                    "id": "detail",
+                    "label": "Level of Detail",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Brief outline",
+                        "Detailed plan with timings",
+                        "Comprehensive plan with resources and differentiation"
+                    ]
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are an experienced Scottish educator with deep knowledge of Curriculum for Excellence.\n\nCreate a {{detail}} lesson plan for {{level}} in {{subject}} on the topic of \"{{topic}}\".\n\n{{#es_and_os}}The lesson should align to the following Experiences & Outcomes / Benchmarks:\n{{es_and_os}}\n\n{{/es_and_os}}Your lesson plan must:\n- Be fully aligned to the Curriculum for Excellence framework\n- Include clear learning intentions and success criteria written in pupil-friendly language\n- Follow a clear structure with a beginning (engagement/activation), middle (main learning activities), and end (plenary/review)\n- Suggest appropriate activities, resources, and materials\n- Include questions to check understanding throughout\n- Consider opportunities for cross-curricular links where natural\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "unit-planning",
+            "name": "Unit/Block Planning",
+            "description": "Plan a series of lessons across a block or term",
+            "icon": "📋",
+            "group": "Instruction & Planning",
+            "fields": [
+                {
+                    "id": "level",
+                    "label": "CfE Level",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Early Level (Nursery – P1)",
+                        "First Level (P2 – P4)",
+                        "Second Level (P5 – P7)",
+                        "Third Level (S1 – S3)",
+                        "Fourth Level (S4 – S6)"
+                    ]
+                },
+                {
+                    "id": "subject",
+                    "label": "Curriculum Area",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Expressive Arts",
+                        "Health & Wellbeing",
+                        "Languages (Literacy & English)",
+                        "Languages (Gaelic)",
+                        "Languages (Modern Languages)",
+                        "Mathematics & Numeracy",
+                        "Religious & Moral Education",
+                        "Sciences",
+                        "Social Studies",
+                        "Technologies"
+                    ]
+                },
+                {
+                    "id": "topic",
+                    "label": "Topic / Theme",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "e.g. Ancient Egypt, Persuasive Writing, Ecosystems"
+                },
+                {
+                    "id": "duration",
+                    "label": "Duration",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "2 weeks",
+                        "Half term",
+                        "Full term"
+                    ]
+                },
+                {
+                    "id": "es_and_os",
+                    "label": "Experiences & Outcomes / Benchmarks",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Paste specific Es & Os or Benchmarks if you have them"
+                },
+                {
+                    "id": "detail",
+                    "label": "Level of Detail",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Brief outline",
+                        "Detailed plan with timings",
+                        "Comprehensive plan with resources and differentiation"
+                    ]
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are an experienced Scottish educator with expertise in medium-term planning within Curriculum for Excellence.\n\nCreate a {{detail}} block/unit plan for {{level}} in {{subject}} on the topic of \"{{topic}}\", covering a duration of {{duration}}.\n\n{{#es_and_os}}The unit should address the following Experiences & Outcomes / Benchmarks:\n{{es_and_os}}\n\n{{/es_and_os}}Your block plan must include:\n- An overview of the unit showing clear progression of learning across the {{duration}} period\n- Learning intentions and success criteria for each lesson or session\n- A logical sequence that builds knowledge and skills progressively\n- Planned assessment opportunities (both formative and summative)\n- Key resources and materials needed for each session\n- Opportunities for cross-curricular links where appropriate\n- Differentiation strategies to support all learners\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "differentiation",
+            "name": "Differentiation",
+            "description": "Adapt content for different learner needs",
+            "icon": "🎯",
+            "group": "Instruction & Planning",
+            "fields": [
+                {
+                    "id": "level",
+                    "label": "CfE Level",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Early Level (Nursery – P1)",
+                        "First Level (P2 – P4)",
+                        "Second Level (P5 – P7)",
+                        "Third Level (S1 – S3)",
+                        "Fourth Level (S4 – S6)"
+                    ]
+                },
+                {
+                    "id": "subject",
+                    "label": "Curriculum Area",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Expressive Arts",
+                        "Health & Wellbeing",
+                        "Languages (Literacy & English)",
+                        "Languages (Gaelic)",
+                        "Languages (Modern Languages)",
+                        "Mathematics & Numeracy",
+                        "Religious & Moral Education",
+                        "Sciences",
+                        "Social Studies",
+                        "Technologies"
+                    ]
+                },
+                {
+                    "id": "topic",
+                    "label": "Topic",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "e.g. Fractions, Creative Writing, Forces"
+                },
+                {
+                    "id": "learner_needs",
+                    "label": "Learner Needs",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Additional Support Needs (ASN)",
+                        "English as Additional Language (EAL)",
+                        "Gifted & Talented",
+                        "Mixed Ability Class"
+                    ]
+                },
+                {
+                    "id": "existing_content",
+                    "label": "Existing Content to Adapt",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Paste existing lesson plan or content to adapt"
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are an inclusive education specialist working within the Scottish Curriculum for Excellence framework, with expertise in supporting {{learner_needs}}.\n\nProvide differentiation strategies and adapted materials for {{level}} in {{subject}} on the topic of \"{{topic}}\", specifically tailored for learners with {{learner_needs}}.\n\n{{#existing_content}}Here is the existing lesson plan or content to adapt:\n{{existing_content}}\n\n{{/existing_content}}Your differentiation guidance must:\n- Maintain high expectations for all learners while providing appropriate support\n- Offer concrete, practical scaffolding strategies the teacher can implement immediately\n- Suggest adaptations to tasks, resources, and outcomes at multiple levels\n- Include specific examples of modified activities, questioning techniques, and support materials\n- Consider the physical learning environment and grouping strategies\n- Align with the principles of Getting It Right For Every Child (GIRFEC)\n- Respect the dignity and inclusion of all learners\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "learning-activities",
+            "name": "Learning Activities",
+            "description": "Generate warm-ups, group tasks, discussion prompts, and plenaries",
+            "icon": "🎲",
+            "group": "Instruction & Planning",
+            "fields": [
+                {
+                    "id": "level",
+                    "label": "CfE Level",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Early Level (Nursery – P1)",
+                        "First Level (P2 – P4)",
+                        "Second Level (P5 – P7)",
+                        "Third Level (S1 – S3)",
+                        "Fourth Level (S4 – S6)"
+                    ]
+                },
+                {
+                    "id": "subject",
+                    "label": "Curriculum Area",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Expressive Arts",
+                        "Health & Wellbeing",
+                        "Languages (Literacy & English)",
+                        "Languages (Gaelic)",
+                        "Languages (Modern Languages)",
+                        "Mathematics & Numeracy",
+                        "Religious & Moral Education",
+                        "Sciences",
+                        "Social Studies",
+                        "Technologies"
+                    ]
+                },
+                {
+                    "id": "topic",
+                    "label": "Topic",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "e.g. Symmetry, Habitats, Descriptive Writing"
+                },
+                {
+                    "id": "activity_type",
+                    "label": "Activity Type",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Warm-up / Starter",
+                        "Group Task",
+                        "Discussion Prompt",
+                        "Plenary / Review",
+                        "Homework"
+                    ]
+                },
+                {
+                    "id": "duration",
+                    "label": "Duration",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "5 minutes",
+                        "10 minutes",
+                        "15 minutes",
+                        "20+ minutes"
+                    ]
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are a creative and experienced Scottish educator with a talent for designing engaging learning activities within Curriculum for Excellence.\n\nGenerate 3–5 {{activity_type}} activities for {{level}} in {{subject}} on the topic of \"{{topic}}\". Each activity should be designed to last approximately {{duration}}.\n\nFor each activity, provide:\n- A clear, catchy title\n- Step-by-step instructions that a teacher can follow easily\n- Any materials or resources needed\n- How it supports learning in this topic\n- A tip for adapting the activity for different learner needs\n\nEnsure all activities are age-appropriate for {{level}}, interactive where possible, and encourage active participation from all pupils.\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "assessment-creation",
+            "name": "Assessment Creation",
+            "description": "Create quizzes, tests, and formative checks aligned to Benchmarks",
+            "icon": "✏️",
+            "group": "Assessment",
+            "fields": [
+                {
+                    "id": "level",
+                    "label": "CfE Level",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Early Level (Nursery – P1)",
+                        "First Level (P2 – P4)",
+                        "Second Level (P5 – P7)",
+                        "Third Level (S1 – S3)",
+                        "Fourth Level (S4 – S6)"
+                    ]
+                },
+                {
+                    "id": "subject",
+                    "label": "Curriculum Area",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Expressive Arts",
+                        "Health & Wellbeing",
+                        "Languages (Literacy & English)",
+                        "Languages (Gaelic)",
+                        "Languages (Modern Languages)",
+                        "Mathematics & Numeracy",
+                        "Religious & Moral Education",
+                        "Sciences",
+                        "Social Studies",
+                        "Technologies"
+                    ]
+                },
+                {
+                    "id": "topic",
+                    "label": "Topic",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "e.g. Multiplication, The Water Cycle, Grammar"
+                },
+                {
+                    "id": "assessment_type",
+                    "label": "Assessment Type",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Formative check",
+                        "Quiz",
+                        "End-of-topic test",
+                        "Peer assessment"
+                    ]
+                },
+                {
+                    "id": "num_questions",
+                    "label": "Number of Questions",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "5",
+                        "10",
+                        "15",
+                        "20"
+                    ]
+                },
+                {
+                    "id": "difficulty",
+                    "label": "Difficulty",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Accessible",
+                        "Moderate",
+                        "Challenging",
+                        "Mixed difficulty"
+                    ]
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are an assessment specialist working within the Scottish Curriculum for Excellence framework.\n\nCreate a {{assessment_type}} for {{level}} in {{subject}} on the topic of \"{{topic}}\". The assessment should contain {{num_questions}} questions at {{difficulty}} difficulty.\n\nYour assessment must:\n- Align to CfE Benchmarks for {{subject}} at {{level}}\n- Include a variety of question types (e.g. multiple choice, short answer, extended response) appropriate for a {{assessment_type}}\n- Be written in clear, unambiguous language appropriate for {{level}} pupils\n- Progress logically from foundational to more complex understanding\n- Include a complete answer key with marking guidance and expected responses\n- Note which Benchmark or skill each question assesses\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "rubrics",
+            "name": "Rubrics & Success Criteria",
+            "description": "Create marking schemes and assessment criteria",
+            "icon": "📊",
+            "group": "Assessment",
+            "fields": [
+                {
+                    "id": "level",
+                    "label": "CfE Level",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Early Level (Nursery – P1)",
+                        "First Level (P2 – P4)",
+                        "Second Level (P5 – P7)",
+                        "Third Level (S1 – S3)",
+                        "Fourth Level (S4 – S6)"
+                    ]
+                },
+                {
+                    "id": "subject",
+                    "label": "Curriculum Area",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Expressive Arts",
+                        "Health & Wellbeing",
+                        "Languages (Literacy & English)",
+                        "Languages (Gaelic)",
+                        "Languages (Modern Languages)",
+                        "Mathematics & Numeracy",
+                        "Religious & Moral Education",
+                        "Sciences",
+                        "Social Studies",
+                        "Technologies"
+                    ]
+                },
+                {
+                    "id": "topic",
+                    "label": "Topic / Task",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "e.g. Persuasive essay, Science investigation, Art project"
+                },
+                {
+                    "id": "rubric_type",
+                    "label": "Rubric Type",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Teacher marking scheme",
+                        "Pupil self-assessment",
+                        "Peer assessment checklist"
+                    ]
+                },
+                {
+                    "id": "scale",
+                    "label": "Scale",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "3-point scale",
+                        "4-point scale",
+                        "5-point scale"
+                    ]
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are an assessment specialist with expertise in creating rubrics and success criteria within the Scottish Curriculum for Excellence framework.\n\nCreate a {{rubric_type}} using a {{scale}} for {{level}} in {{subject}} on the topic/task of \"{{topic}}\".\n\nYour rubric must:\n- Use a clear {{scale}} with distinct, well-defined descriptors at each level\n- Align criteria to CfE Benchmarks for {{subject}} at {{level}}\n- Cover all key aspects of the task (knowledge, skills, and application)\n- Use language appropriate for its audience — if this is a {{rubric_type}}, ensure the language is accessible to whoever will use it\n- Include specific, observable indicators at each level so judgements are consistent\n- Present the rubric in a clear table format\n- Add guidance notes on how to use the rubric effectively\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "feedback-reporting",
+            "name": "Feedback & Reporting",
+            "description": "Write report comments and formative feedback",
+            "icon": "💬",
+            "group": "Assessment",
+            "fields": [
+                {
+                    "id": "level",
+                    "label": "CfE Level",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Early Level (Nursery – P1)",
+                        "First Level (P2 – P4)",
+                        "Second Level (P5 – P7)",
+                        "Third Level (S1 – S3)",
+                        "Fourth Level (S4 – S6)"
+                    ]
+                },
+                {
+                    "id": "subject",
+                    "label": "Curriculum Area",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Expressive Arts",
+                        "Health & Wellbeing",
+                        "Languages (Literacy & English)",
+                        "Languages (Gaelic)",
+                        "Languages (Modern Languages)",
+                        "Mathematics & Numeracy",
+                        "Religious & Moral Education",
+                        "Sciences",
+                        "Social Studies",
+                        "Technologies"
+                    ]
+                },
+                {
+                    "id": "report_type",
+                    "label": "Report Type",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "End-of-term report comment",
+                        "Formative feedback",
+                        "Parent evening notes"
+                    ]
+                },
+                {
+                    "id": "tone",
+                    "label": "Tone",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Formal",
+                        "Supportive",
+                        "Celebratory"
+                    ]
+                },
+                {
+                    "id": "pupil_context",
+                    "label": "Pupil Context",
+                    "type": "textarea",
+                    "required": true,
+                    "placeholder": "Describe the pupil's strengths, areas for development, and any relevant context"
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are an experienced class teacher in Scotland, skilled at writing meaningful and constructive feedback.\n\nWrite a {{report_type}} for a pupil at {{level}} in {{subject}}. The tone should be {{tone}}.\n\nHere is the context about the pupil:\n{{pupil_context}}\n\nYour feedback must:\n- Be specific and personalised, avoiding generic statements\n- Highlight genuine strengths with concrete examples where possible\n- Identify clear, actionable next steps for learning\n- Be written in a {{tone}} tone that is encouraging and professional\n- Be appropriate in length and detail for a {{report_type}}\n- Avoid educational jargon that parents/carers may not understand (if applicable)\n- Reflect the pupil's progress within the CfE framework for {{subject}} at {{level}}\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "parent-communication",
+            "name": "Parent/Carer Communication",
+            "description": "Draft letters, emails, and newsletters",
+            "icon": "✉️",
+            "group": "Communication",
+            "fields": [
+                {
+                    "id": "communication_type",
+                    "label": "Communication Type",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Letter",
+                        "Email",
+                        "Newsletter",
+                        "Event invitation"
+                    ]
+                },
+                {
+                    "id": "tone",
+                    "label": "Tone",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Formal",
+                        "Friendly",
+                        "Urgent"
+                    ]
+                },
+                {
+                    "id": "topic",
+                    "label": "Topic",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "What is this communication about?"
+                },
+                {
+                    "id": "key_points",
+                    "label": "Key Points",
+                    "type": "textarea",
+                    "required": true,
+                    "placeholder": "List the main points to cover"
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are a professional educator in a Scottish school, experienced in communicating clearly and effectively with parents and carers.\n\nDraft a {{communication_type}} in a {{tone}} tone about \"{{topic}}\".\n\nKey points to cover:\n{{key_points}}\n\nYour {{communication_type}} must:\n- Be clear, concise, and free of educational jargon\n- Use a {{tone}} tone throughout\n- Include all relevant dates, times, and actions required from parents/carers\n- Be well-structured with a clear opening, body, and closing\n- Be inclusive and considerate of diverse family circumstances\n- Include appropriate sign-off and contact details placeholder\n- Be formatted appropriately for a {{communication_type}}\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "references",
+            "name": "Reference & Recommendation",
+            "description": "Write reference and recommendation letters",
+            "icon": "📄",
+            "group": "Communication",
+            "fields": [
+                {
+                    "id": "reference_for",
+                    "label": "Reference For",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Pupil — further education",
+                        "Pupil — employment",
+                        "Colleague — job application"
+                    ]
+                },
+                {
+                    "id": "qualities",
+                    "label": "Qualities & Achievements",
+                    "type": "textarea",
+                    "required": true,
+                    "placeholder": "Key qualities, achievements, and strengths to highlight"
+                },
+                {
+                    "id": "context",
+                    "label": "Context",
+                    "type": "textarea",
+                    "required": true,
+                    "placeholder": "Your relationship to the person, how long you've known them, in what capacity"
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are a professional referee writing in the context of Scottish education.\n\nDraft a reference letter for: {{reference_for}}.\n\nContext about your relationship:\n{{context}}\n\nKey qualities, achievements, and strengths to highlight:\n{{qualities}}\n\nYour reference letter must:\n- Be written in a professional, formal tone\n- Open with your relationship to the person and the capacity in which you know them\n- Provide specific examples and evidence to support each claim about their qualities\n- Be honest, balanced, and credible — avoid over-the-top praise without substance\n- Be structured logically: introduction, key qualities with evidence, summary recommendation\n- Include an appropriate formal sign-off with placeholder for your name, title, and contact details\n- Be appropriate in length and detail for a {{reference_for}} reference\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "policy-procedures",
+            "name": "Policy & Procedures",
+            "description": "Draft school policies and guidance documents",
+            "icon": "📑",
+            "group": "Communication",
+            "fields": [
+                {
+                    "id": "policy_type",
+                    "label": "Document Type",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "School policy",
+                        "Classroom procedure",
+                        "Risk assessment",
+                        "Guidance document"
+                    ]
+                },
+                {
+                    "id": "topic",
+                    "label": "Topic",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "e.g. Mobile phone use, Homework, Outdoor learning"
+                },
+                {
+                    "id": "scope",
+                    "label": "Scope",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Whole school",
+                        "Department",
+                        "Class level"
+                    ]
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are a member of school leadership in a Scottish school, experienced in drafting clear and effective policy documents that align with Scottish education guidance and legislation.\n\nDraft a {{policy_type}} on the topic of \"{{topic}}\" at {{scope}} level.\n\nYour {{policy_type}} must include:\n- A clear statement of purpose and rationale\n- The scope of the document ({{scope}})\n- Roles and responsibilities of all relevant parties (staff, pupils, parents/carers, leadership)\n- Detailed procedures and expectations\n- Links to relevant Scottish education legislation, guidance, or frameworks where applicable (e.g. GIRFEC, Education Scotland guidance, local authority policies)\n- A review date and process for updating the document\n- Be written in clear, accessible language\n- Follow a professional document structure with numbered sections\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "professional-development",
+            "name": "Professional Development",
+            "description": "PRD targets, reflective statements, and GTCS evidence",
+            "icon": "🎓",
+            "group": "Professional & Admin",
+            "fields": [
+                {
+                    "id": "pd_type",
+                    "label": "Document Type",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "PRD targets",
+                        "Reflective statement",
+                        "GTCS Standard evidence",
+                        "Professional learning plan"
+                    ]
+                },
+                {
+                    "id": "gtcs_standard",
+                    "label": "GTCS Standard",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Professional Values and Personal Commitment",
+                        "Professional Knowledge and Understanding",
+                        "Professional Skills and Abilities"
+                    ]
+                },
+                {
+                    "id": "context",
+                    "label": "Your Context",
+                    "type": "textarea",
+                    "required": true,
+                    "placeholder": "Describe your current role, experience, and what you want to focus on"
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are a professional development adviser with deep knowledge of the General Teaching Council for Scotland (GTCS) Professional Standards framework.\n\nHelp me create {{pd_type}} aligned to the GTCS Standard: \"{{gtcs_standard}}\".\n\nHere is my context:\n{{context}}\n\nYour response must:\n- Align explicitly to the GTCS Standard for {{gtcs_standard}} with reference to specific sub-standards where relevant\n- Be specific, evidence-based, and grounded in my actual practice and context\n- Use professional language appropriate for GTCS documentation\n- Include SMART targets or clear success indicators where appropriate\n- Suggest concrete actions and professional learning opportunities\n- Demonstrate critical reflection rather than simple description\n- Be realistic and achievable within a normal teaching workload\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "data-improvement",
+            "name": "Data & Improvement",
+            "description": "Analyse attainment data and write improvement plans",
+            "icon": "📈",
+            "group": "Professional & Admin",
+            "fields": [
+                {
+                    "id": "data_type",
+                    "label": "Document Type",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Attainment data analysis",
+                        "Improvement plan",
+                        "Self-evaluation",
+                        "Action plan"
+                    ]
+                },
+                {
+                    "id": "focus_area",
+                    "label": "Focus Area",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "e.g. Raising attainment in literacy, Closing the poverty-related attainment gap"
+                },
+                {
+                    "id": "context",
+                    "label": "Context & Data",
+                    "type": "textarea",
+                    "required": true,
+                    "placeholder": "Relevant background, current data, or situation"
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are a school improvement specialist with expertise in Scottish education, data analysis, and self-evaluation frameworks.\n\nHelp me create a {{data_type}} focused on \"{{focus_area}}\".\n\nHere is the relevant context and data:\n{{context}}\n\nYour response must:\n- Reference How Good Is Our School? 4th Edition (HGIOS?4) quality indicators where relevant\n- Be evidence-based, drawing on the data and context provided\n- Include clear, measurable outcomes and success indicators\n- Suggest practical, actionable steps with realistic timelines\n- Consider the Scottish Attainment Challenge and National Improvement Framework priorities where relevant\n- Use professional language appropriate for school improvement documentation\n- Include monitoring and evaluation strategies\n- Be structured in a clear, logical format suitable for sharing with stakeholders\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        },
+        {
+            "id": "general-purpose",
+            "name": "General Purpose",
+            "description": "Build a custom prompt for any task",
+            "icon": "🔧",
+            "group": "Professional & Admin",
+            "fields": [
+                {
+                    "id": "role",
+                    "label": "AI Role",
+                    "type": "text",
+                    "required": true,
+                    "placeholder": "What role should the AI take? e.g. Experienced primary teacher, Education policy expert"
+                },
+                {
+                    "id": "task",
+                    "label": "Task",
+                    "type": "textarea",
+                    "required": true,
+                    "placeholder": "What do you need help with?"
+                },
+                {
+                    "id": "context",
+                    "label": "Context",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any background information, constraints, or requirements"
+                },
+                {
+                    "id": "format",
+                    "label": "Output Format",
+                    "type": "select",
+                    "required": true,
+                    "options": [
+                        "Bullet points",
+                        "Detailed narrative",
+                        "Table",
+                        "Step-by-step guide"
+                    ]
+                },
+                {
+                    "id": "additional",
+                    "label": "Additional Notes",
+                    "type": "textarea",
+                    "required": false,
+                    "placeholder": "Any other requirements, context, or constraints"
+                }
+            ],
+            "template": "You are a {{role}}.\n\n{{task}}\n\n{{#context}}Context and background:\n{{context}}\n\n{{/context}}Please provide your response in the following format: {{format}}.\n\nEnsure your response is clear, well-structured, and actionable.\n{{#additional}}\nAdditional requirements:\n{{additional}}\n{{/additional}}"
+        }
+    ]
+}
+;

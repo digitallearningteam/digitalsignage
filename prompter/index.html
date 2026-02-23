@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Builder for Educators</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="page-grain"></div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-mark">
+                <svg class="header-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="6" width="22" height="28" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <rect x="14" y="6" width="22" height="28" rx="2" fill="currentColor" opacity="0.15" stroke="currentColor" stroke-width="2"/>
+                    <line x1="18" y1="14" x2="32" y2="14" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="18" y1="19" x2="30" y2="19" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="18" y1="24" x2="28" y2="24" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="header-text">
+                <h1 class="site-title">Prompt Builder</h1>
+                <p class="site-subtitle">for Educators &middot; Scottish Curriculum for Excellence</p>
+            </div>
+        </div>
+        <p class="header-tagline">Craft effective AI prompts for teaching, planning, and administration</p>
+    </header>
+
+    <main>
+        <noscript>
+            <p class="noscript-msg">This tool requires JavaScript to be enabled in your browser.</p>
+        </noscript>
+
+        <section id="categories" class="categories-grid">
+            <!-- Category cards rendered by JS -->
+        </section>
+
+        <section id="wizard" class="wizard" hidden>
+            <nav class="wizard-nav">
+                <button id="back-btn" class="back-btn" type="button">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    All Categories
+                </button>
+            </nav>
+            <div class="wizard-header">
+                <h2 id="wizard-title"></h2>
+            </div>
+            <div class="wizard-layout">
+                <div class="wizard-form-wrapper">
+                    <div class="form-panel-label">Configure your prompt</div>
+                    <form id="wizard-form" class="wizard-form">
+                        <!-- Form fields rendered by JS -->
+                    </form>
+                </div>
+                <div class="preview-wrapper">
+                    <div class="preview-panel">
+                        <div class="preview-header">
+                            <div class="preview-dot"></div>
+                            <span class="preview-label">Live Preview</span>
+                            <span id="copy-confirm" class="copy-confirm" hidden>Copied!</span>
+                        </div>
+                        <pre id="prompt-preview" class="prompt-preview">Fill in the form to generate your prompt...</pre>
+                        <div class="preview-actions">
+                            <button id="copy-btn" class="copy-btn" type="button" disabled>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Copy to Clipboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-rule"></div>
+        <p>Prompt Builder for Educators &middot; Scottish Curriculum for Excellence</p>
+    </footer>
+
+    <script src="js/templates.js"></script>
+    <script src="js/es-and-os.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
