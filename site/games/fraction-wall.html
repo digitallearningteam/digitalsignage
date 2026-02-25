@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fraction Wall Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Design System (inlined) ===== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea { font-size: max(var(--font-size-min), 1em); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.game-header { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-sm) var(--spacing-md); background: var(--color-bg); border-bottom: 3px solid var(--color-black); gap: var(--spacing-sm); flex-wrap: wrap; }
+.game-header h1 { font-size: var(--font-size-xl); font-weight: 700; margin: 0; }
+.game-card { background: var(--color-white); border: 3px solid var(--color-black); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: var(--spacing-lg); margin: var(--spacing-md); }
+.game-card-sm { background: var(--color-white); border: 2px solid var(--color-black); border-radius: var(--radius-md); box-shadow: var(--shadow-card-sm); padding: var(--spacing-md); }
+.game-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-xs); padding: var(--spacing-sm) var(--spacing-lg); border: 3px solid var(--color-black); border-radius: var(--radius-lg); font-family: var(--font-display); font-size: var(--font-size-base); font-weight: 600; cursor: pointer; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease; box-shadow: var(--shadow-btn); touch-action: manipulation; user-select: none; -webkit-tap-highlight-color: transparent; text-decoration: none; line-height: 1.2; }
+.game-btn:active { transform: translateY(2px); box-shadow: var(--shadow-btn-active); }
+.game-btn:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+}
+.game-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.game-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+.game-btn-sm { padding: var(--spacing-xs) var(--spacing-sm); font-size: var(--font-size-sm); border-width: 2px; border-radius: var(--radius-md); }
+.game-btn-lg { padding: var(--spacing-md) var(--spacing-xl); font-size: var(--font-size-xl); border-radius: var(--radius-xl); }
+.info-bar { display: flex; align-items: center; justify-content: center; gap: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md); background: var(--color-bg-dark); border-radius: var(--radius-md); font-weight: 600; flex-wrap: wrap; }
+.message-area { text-align: center; padding: var(--spacing-md); font-size: var(--font-size-lg); font-weight: 500; min-height: 2.5em; }
+.game-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 100; padding: var(--spacing-md); }
+.game-modal { background: var(--color-white); border: 3px solid var(--color-black); border-radius: var(--radius-xl); box-shadow: 6px 6px 0px 0px rgba(0,0,0,1); padding: var(--spacing-xl); max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; text-align: center; }
+@media (min-width: 600px) { .game-header h1 { font-size: var(--font-size-2xl); } }
+@media (min-width: 900px) { .game-card { margin: var(--spacing-lg); padding: var(--spacing-xl); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.w-full { width: 100%; }
+.hidden { display: none !important; }
+.sketch-text { font-family: var(--font-sketch); }
+
+/* ===== Game-Specific Styles ===== */
+
+/* Menu */
+#menu-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-md);
+}
+.menu-card {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+}
+.menu-card h1 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-xs);
+}
+.menu-card .desc {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+.menu-section {
+  margin-bottom: var(--spacing-lg);
+  text-align: left;
+}
+.menu-section h3 {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+}
+.option-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+.option-group .game-btn {
+  flex: 1;
+  min-width: 100px;
+}
+.option-group .game-btn.selected {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-active);
+}
+.menu-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--spacing-md);
+}
+.menu-actions .game-btn { flex: 1; min-width: 140px; }
+
+/* Game screen layout */
+#game-screen { display: none; }
+.game-top-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+.game-top-bar .game-btn-sm { white-space: nowrap; }
+
+/* Info displays */
+.selection-display {
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  text-align: center;
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+.conversion-display {
+  text-align: center;
+  font-size: var(--font-size-base);
+  color: var(--color-text-light);
+  font-weight: 500;
+  min-height: 1.5em;
+  margin-top: var(--spacing-xs);
+}
+
+/* Challenge bar */
+.challenge-bar {
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #fef3c7;
+  border: 2px solid var(--color-warning-dark);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-align: center;
+  font-size: var(--font-size-lg);
+}
+.challenge-stats {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+/* Fraction Wall */
+.wall-container {
+  margin-top: var(--spacing-md);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-white);
+}
+.wall-row {
+  display: flex;
+  width: 100%;
+  border-bottom: 2px solid var(--color-black);
+}
+.wall-row:last-child { border-bottom: none; }
+
+.wall-segment {
+  height: 54px;
+  border: none;
+  border-right: 2px solid rgba(0,0,0,0.3);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--font-size-min);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  padding: 0 2px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  outline: none;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+}
+.wall-segment:last-child { border-right: none; }
+.wall-segment:hover { filter: brightness(1.08); }
+.wall-segment:focus-visible {
+  outline: 3px solid var(--color-black);
+  outline-offset: -3px;
+  z-index: 2;
+}
+.wall-segment.selected {
+  filter: brightness(0.78);
+  box-shadow: inset 0 0 0 3px rgba(0,0,0,0.5);
+  z-index: 1;
+}
+.wall-segment.highlight-correct {
+  animation: flash-correct 0.6s ease;
+}
+.wall-segment.highlight-wrong {
+  animation: flash-wrong 0.4s ease;
+}
+
+@keyframes flash-correct {
+  0%, 100% { filter: brightness(0.78); }
+  50% { filter: brightness(1.3) saturate(1.4); box-shadow: inset 0 0 12px rgba(34,197,94,0.7); }
+}
+@keyframes flash-wrong {
+  0%, 100% { filter: brightness(0.78); }
+  50% { filter: brightness(0.5); box-shadow: inset 0 0 12px rgba(239,68,68,0.7); }
+}
+
+/* Row colours */
+.wall-row[data-denom="1"] .wall-segment  { background: #94a3b8; }
+.wall-row[data-denom="2"] .wall-segment  { background: #f87171; }
+.wall-row[data-denom="3"] .wall-segment  { background: #fb923c; }
+.wall-row[data-denom="4"] .wall-segment  { background: #facc15; }
+.wall-row[data-denom="5"] .wall-segment  { background: #4ade80; }
+.wall-row[data-denom="6"] .wall-segment  { background: #38bdf8; }
+.wall-row[data-denom="8"] .wall-segment  { background: #a78bfa; }
+.wall-row[data-denom="10"] .wall-segment { background: #f472b6; }
+
+/* Results modal extras */
+.result-score { font-size: var(--font-size-3xl); font-weight: 700; margin: var(--spacing-sm) 0; }
+.result-detail { font-size: var(--font-size-base); color: var(--color-text-light); margin-bottom: var(--spacing-md); }
+
+/* Tutorial overlay */
+.tutorial-step {
+  margin: var(--spacing-md) 0;
+  font-size: var(--font-size-base);
+  text-align: left;
+  line-height: 1.7;
+}
+.tutorial-step strong { color: var(--color-primary-dark); }
+
+/* Mute toggle */
+.mute-btn {
+  background: none;
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-sm);
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.mute-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+/* Timer bar for challenge */
+.timer-bar-wrap {
+  height: 6px;
+  background: var(--color-bg-dark);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: var(--spacing-xs);
+}
+.timer-bar {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 3px;
+  transition: width 1s linear;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .wall-segment { height: 46px; font-size: 12px; }
+  .menu-card h1 { font-size: var(--font-size-2xl); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== MENU SCREEN ===== -->
+<div id="menu-screen">
+  <div class="game-card menu-card">
+    <h1>Fraction Wall</h1>
+    <p class="desc">Explore fractions, find equivalents, and convert between fractions, decimals, and percentages.</p>
+
+    <div class="menu-section">
+      <h3>Mode</h3>
+      <div class="option-group" id="mode-options">
+        <button class="game-btn game-btn-primary selected" data-mode="explore" aria-pressed="true">Explore Mode</button>
+        <button class="game-btn game-btn-orange" data-mode="challenge" aria-pressed="false">Challenge Mode</button>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Difficulty</h3>
+      <div class="option-group" id="diff-options">
+        <button class="game-btn game-btn-success selected" data-diff="easy" aria-pressed="true">Easy</button>
+        <button class="game-btn game-btn-warning" data-diff="medium" aria-pressed="false">Medium</button>
+        <button class="game-btn game-btn-danger" data-diff="hard" aria-pressed="false">Hard</button>
+      </div>
+    </div>
+
+    <div class="menu-actions">
+      <button class="game-btn game-btn-primary game-btn-lg" id="btn-start">Start</button>
+      <button class="game-btn game-btn-purple" id="btn-tutorial">Demo Tutorial</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GAME SCREEN ===== -->
+<div id="game-screen">
+  <header class="game-header">
+    <h1 id="game-title">Fraction Wall</h1>
+    <div class="game-top-bar">
+      <button class="mute-btn" id="btn-mute" aria-label="Mute speech" title="Mute speech">&#x1F50A;</button>
+      <button class="game-btn game-btn-sm game-btn-outline" id="btn-clear">Clear All</button>
+      <button class="game-btn game-btn-sm game-btn-danger" id="btn-back">Menu</button>
+    </div>
+  </header>
+
+  <!-- Challenge info (hidden in explore) -->
+  <div id="challenge-info" class="hidden">
+    <div class="challenge-bar" id="challenge-prompt"></div>
+    <div class="challenge-stats">
+      <span id="ch-round">Round: 1/10</span>
+      <span id="ch-score">Score: 0</span>
+      <span id="ch-timer">Time: 30s</span>
+    </div>
+    <div class="timer-bar-wrap"><div class="timer-bar" id="timer-bar"></div></div>
+  </div>
+
+  <!-- Selection display -->
+  <div class="selection-display" id="selection-display" aria-live="polite">Click a segment to begin.</div>
+  <div class="conversion-display" id="conversion-display" aria-live="polite"></div>
+
+  <!-- Submit button for challenge -->
+  <div class="text-center mt-sm" id="submit-wrap" style="display:none;">
+    <button class="game-btn game-btn-success" id="btn-submit">Check Answer</button>
+  </div>
+
+  <!-- The Wall -->
+  <div class="wall-container" id="fraction-wall" role="grid" aria-label="Fraction wall"></div>
+</div>
+
+<!-- ===== OVERLAY (modal) ===== -->
+<div class="game-overlay hidden" id="overlay" role="dialog" aria-modal="true">
+  <div class="game-modal" id="modal-content"></div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ========== FRACTION MATH ========== */
+  function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { [a, b] = [b, a % b]; } return a; }
+  function lcm(a, b) { return (a / gcd(a, b)) * b; }
+  function simplify(n, d) { if (d === 0) return [0, 1]; const g = gcd(n, d); return [n / g, d / g]; }
+  function addFractions(fracs) {
+    if (fracs.length === 0) return [0, 1];
+    let num = fracs[0][0], den = fracs[0][1];
+    for (let i = 1; i < fracs.length; i++) {
+      const l = lcm(den, fracs[i][1]);
+      num = num * (l / den) + fracs[i][0] * (l / fracs[i][1]);
+      den = l;
+    }
+    return simplify(num, den);
+  }
+  function fracEqual(a, b) {
+    const sa = simplify(a[0], a[1]);
+    const sb = simplify(b[0], b[1]);
+    return sa[0] === sb[0] && sa[1] === sb[1];
+  }
+  function toDecimal(n, d) { return d === 0 ? 0 : n / d; }
+  function toPercent(n, d) { return d === 0 ? 0 : (n / d) * 100; }
+  function fracStr(n, d) {
+    const s = simplify(n, d);
+    if (s[1] === 1) return '' + s[0];
+    return s[0] + '/' + s[1];
+  }
+  function fracLabel(n, d) { return d === 1 ? '1' : n + '/' + d; }
+  function ordinal(d) {
+    const names = { 1: 'whole', 2: 'half', 3: 'third', 4: 'quarter', 5: 'fifth', 6: 'sixth', 8: 'eighth', 10: 'tenth' };
+    return names[d] || d + 'th';
+  }
+
+  /* ========== CONFIG ========== */
+  const ALL_DENOMS = [1, 2, 3, 4, 5, 6, 8, 10];
+  const DIFF_DENOMS = {
+    easy: [1, 2, 4],
+    medium: [1, 2, 3, 4, 6],
+    hard: [1, 2, 3, 4, 5, 6, 8, 10]
+  };
+
+  /* ========== STATE ========== */
+  let state = {
+    mode: 'explore',
+    difficulty: 'easy',
+    denoms: [],
+    selected: [],        // [{denom, index}]
+    round: 0,
+    score: 0,
+    totalRounds: 10,
+    target: null,        // [num, den]
+    targetType: null,    // 'fraction' | 'decimal'
+    timerLeft: 0,
+    timerMax: 30,
+    timerId: null,
+    muted: false,
+    demoRunning: false,
+    roundResults: []
+  };
+
+  /* ========== DOM REFS ========== */
+  const $ = id => document.getElementById(id);
+  const menuScreen = $('menu-screen');
+  const gameScreen = $('game-screen');
+  const wall = $('fraction-wall');
+  const selDisp = $('selection-display');
+  const convDisp = $('conversion-display');
+  const overlay = $('overlay');
+  const modal = $('modal-content');
+  const challengeInfo = $('challenge-info');
+  const challengePrompt = $('challenge-prompt');
+  const submitWrap = $('submit-wrap');
+  const timerBar = $('timer-bar');
+
+  /* ========== SPEECH ========== */
+  function speak(text) {
+    if (state.muted || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.95;
+    window.speechSynthesis.speak(u);
+  }
+
+  /* ========== MENU LOGIC ========== */
+  function setupMenu() {
+    document.querySelectorAll('#mode-options .game-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#mode-options .game-btn').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('selected');
+        btn.setAttribute('aria-pressed', 'true');
+        state.mode = btn.dataset.mode;
+      });
+    });
+    document.querySelectorAll('#diff-options .game-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#diff-options .game-btn').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('selected');
+        btn.setAttribute('aria-pressed', 'true');
+        state.difficulty = btn.dataset.diff;
+      });
+    });
+    $('btn-start').addEventListener('click', startGame);
+    $('btn-tutorial').addEventListener('click', showTutorial);
+    $('btn-back').addEventListener('click', backToMenu);
+    $('btn-clear').addEventListener('click', clearAll);
+    $('btn-mute').addEventListener('click', toggleMute);
+    $('btn-submit').addEventListener('click', checkChallengeAnswer);
+  }
+
+  /* ========== GAME START ========== */
+  function startGame() {
+    state.denoms = DIFF_DENOMS[state.difficulty];
+    state.selected = [];
+    state.round = 0;
+    state.score = 0;
+    state.roundResults = [];
+    menuScreen.style.display = 'none';
+    gameScreen.style.display = '';
+    buildWall();
+    updateSelectionDisplay();
+    if (state.mode === 'challenge') {
+      challengeInfo.classList.remove('hidden');
+      submitWrap.style.display = '';
+      nextChallengeRound();
+    } else {
+      challengeInfo.classList.add('hidden');
+      submitWrap.style.display = 'none';
+      speak('Explore mode. Click segments to select fractions.');
+    }
+  }
+
+  function backToMenu() {
+    stopTimer();
+    state.demoRunning = false;
+    // Restore saved mode/difficulty if demo changed them
+    if (state._savedMode !== undefined) {
+      state.mode = state._savedMode;
+      state.difficulty = state._savedDifficulty;
+      delete state._savedMode;
+      delete state._savedDifficulty;
+      // Sync menu UI to restored values
+      document.querySelectorAll('#mode-options .game-btn').forEach(b => {
+        const match = b.dataset.mode === state.mode;
+        b.classList.toggle('selected', match);
+        b.setAttribute('aria-pressed', match ? 'true' : 'false');
+      });
+      document.querySelectorAll('#diff-options .game-btn').forEach(b => {
+        const match = b.dataset.diff === state.difficulty;
+        b.classList.toggle('selected', match);
+        b.setAttribute('aria-pressed', match ? 'true' : 'false');
+      });
+    }
+    gameScreen.style.display = 'none';
+    menuScreen.style.display = '';
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  }
+
+  /* ========== BUILD WALL ========== */
+  function buildWall() {
+    wall.innerHTML = '';
+    state.denoms.forEach(d => {
+      const row = document.createElement('div');
+      row.className = 'wall-row';
+      row.setAttribute('data-denom', d);
+      row.setAttribute('role', 'row');
+      for (let i = 0; i < d; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'wall-segment';
+        btn.style.width = (100 / d) + '%';
+        btn.textContent = fracLabel(1, d);
+        const segNum = i + 1;
+        const pluralOrd = d === 1 ? '1 whole' : (segNum + ' ' + ordinal(d) + ', segment ' + segNum + ' of ' + d);
+        btn.setAttribute('aria-label', pluralOrd);
+        btn.setAttribute('role', 'gridcell');
+        btn.setAttribute('aria-pressed', 'false');
+        btn.dataset.denom = d;
+        btn.dataset.index = i;
+        btn.addEventListener('click', () => toggleSegment(d, i, btn));
+        row.appendChild(btn);
+      }
+      wall.appendChild(row);
+    });
+  }
+
+  /* ========== SELECTION ========== */
+  function toggleSegment(denom, index, btn) {
+    if (state.demoRunning) return;
+    const existing = state.selected.findIndex(s => s.denom === denom && s.index === index);
+    if (existing >= 0) {
+      state.selected.splice(existing, 1);
+      btn.classList.remove('selected');
+      btn.setAttribute('aria-pressed', 'false');
+    } else {
+      state.selected.push({ denom, index });
+      btn.classList.add('selected');
+      btn.setAttribute('aria-pressed', 'true');
+    }
+    updateSelectionDisplay();
+  }
+
+  function clearAll() {
+    state.selected = [];
+    wall.querySelectorAll('.wall-segment.selected').forEach(b => {
+      b.classList.remove('selected');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    updateSelectionDisplay();
+  }
+
+  function updateSelectionDisplay() {
+    if (state.selected.length === 0) {
+      selDisp.textContent = 'Click a segment to begin.';
+      convDisp.textContent = '';
+      return;
+    }
+    const fracs = state.selected.map(s => [1, s.denom]);
+    // Build display string
+    const parts = fracs.map(f => fracLabel(f[0], f[1]));
+    const sum = addFractions(fracs);
+    const unsimplified = addFractionsUnsimplified(fracs);
+    let display = parts.join(' + ') + ' = ';
+    if (unsimplified[1] !== sum[1] || unsimplified[0] !== sum[0]) {
+      display += unsimplified[0] + '/' + unsimplified[1] + ' = ';
+    }
+    display += fracStr(sum[0], sum[1]);
+    selDisp.textContent = display;
+
+    const dec = toDecimal(sum[0], sum[1]);
+    const pct = toPercent(sum[0], sum[1]);
+    const decStr = Number.isInteger(dec) ? dec.toString() : dec.toFixed(4).replace(/0+$/, '').replace(/\.$/, '');
+    const pctStr = Number.isInteger(pct) ? pct.toString() : pct.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+    convDisp.textContent = fracStr(sum[0], sum[1]) + ' = ' + decStr + ' = ' + pctStr + '%';
+
+    speak(fracStr(sum[0], sum[1]) + ' equals ' + decStr + ' equals ' + pctStr + ' percent');
+  }
+
+  function addFractionsUnsimplified(fracs) {
+    if (fracs.length === 0) return [0, 1];
+    let num = fracs[0][0], den = fracs[0][1];
+    for (let i = 1; i < fracs.length; i++) {
+      const l = lcm(den, fracs[i][1]);
+      num = num * (l / den) + fracs[i][0] * (l / fracs[i][1]);
+      den = l;
+    }
+    return [num, den];
+  }
+
+  /* ========== CHALLENGE MODE ========== */
+  function nextChallengeRound() {
+    if (state.round >= state.totalRounds) {
+      endChallenge();
+      return;
+    }
+    state.round++;
+    clearAll();
+    $('ch-round').textContent = 'Round: ' + state.round + '/' + state.totalRounds;
+    $('ch-score').textContent = 'Score: ' + state.score;
+
+    // Generate a target
+    const challenge = generateChallenge();
+    state.target = challenge.target;
+    state.targetType = challenge.type;
+    challengePrompt.textContent = challenge.prompt;
+    speak(challenge.prompt);
+
+    // Timer - scale with difficulty
+    const TIMER_BY_DIFF = { easy: 45, medium: 30, hard: 20 };
+    state.timerMax = TIMER_BY_DIFF[state.difficulty] || 30;
+    state.timerLeft = state.timerMax;
+    timerBar.style.width = '100%';
+    $('ch-timer').textContent = 'Time: ' + state.timerLeft + 's';
+    startTimer();
+  }
+
+  function generateChallenge() {
+    const denoms = state.denoms.filter(d => d > 1);
+    // Decide challenge type
+    const roll = Math.random();
+    if (roll < 0.5) {
+      // "Select fractions that equal X/Y"
+      const d = denoms[Math.floor(Math.random() * denoms.length)];
+      const maxNum = Math.min(d - 1, Math.max(1, Math.floor((state.round + 1) / 2)));
+      const n = Math.max(1, Math.floor(Math.random() * maxNum) + 1);
+      return { target: [n, d], type: 'fraction', prompt: 'Select fractions that equal ' + fracStr(n, d) };
+    } else if (roll < 0.75) {
+      // "Find a way to make X/Y using other fractions" (must use different denom)
+      const d = denoms[Math.floor(Math.random() * denoms.length)];
+      const n = Math.max(1, Math.floor(Math.random() * (d - 1)) + 1);
+      return { target: [n, d], type: 'fraction', prompt: 'Select fractions that equal ' + fracStr(n, d) };
+    } else {
+      // Decimal/percentage question
+      const d = denoms[Math.floor(Math.random() * denoms.length)];
+      const n = Math.max(1, Math.floor(Math.random() * (d - 1)) + 1);
+      const dec = toDecimal(n, d);
+      const pct = toPercent(n, d);
+      const decStr = Number.isInteger(dec) ? dec.toString() : dec.toFixed(4).replace(/0+$/, '').replace(/\.$/, '');
+      if (Math.random() < 0.5) {
+        return { target: [n, d], type: 'fraction', prompt: 'Select fractions that equal ' + decStr + ' (decimal)' };
+      } else {
+        const pctStr = Number.isInteger(pct) ? pct.toString() : pct.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+        return { target: [n, d], type: 'fraction', prompt: 'Select fractions that equal ' + pctStr + '%' };
+      }
+    }
+  }
+
+  function checkChallengeAnswer() {
+    if (state.selected.length === 0) {
+      speak('Select some fractions first.');
+      return;
+    }
+    stopTimer();
+    const fracs = state.selected.map(s => [1, s.denom]);
+    const sum = addFractions(fracs);
+    const correct = fracEqual(sum, state.target);
+    const bonus = correct ? Math.max(0, Math.floor(state.timerLeft / 3)) : 0;
+
+    // Highlight segments
+    const cls = correct ? 'highlight-correct' : 'highlight-wrong';
+    wall.querySelectorAll('.wall-segment.selected').forEach(b => {
+      b.classList.add(cls);
+      setTimeout(() => b.classList.remove(cls), 700);
+    });
+
+    const earnedPoints = correct ? 1 + bonus : 0;
+    if (correct) {
+      state.score += earnedPoints;
+      speak('Correct! ' + (bonus > 0 ? 'Plus ' + bonus + ' speed bonus!' : ''));
+      selDisp.textContent = 'Correct! +' + earnedPoints + ' points';
+    } else {
+      speak('Not quite. The answer was ' + fracStr(state.target[0], state.target[1]));
+      selDisp.textContent = 'Not quite. Answer: ' + fracStr(state.target[0], state.target[1]);
+    }
+    state.roundResults.push({
+      prompt: challengePrompt.textContent,
+      correct: correct,
+      points: earnedPoints,
+      timeLeft: state.timerLeft
+    });
+    $('ch-score').textContent = 'Score: ' + state.score;
+
+    setTimeout(() => nextChallengeRound(), 1800);
+  }
+
+  function startTimer() {
+    stopTimer();
+    state.timerId = setInterval(() => {
+      state.timerLeft--;
+      $('ch-timer').textContent = 'Time: ' + state.timerLeft + 's';
+      timerBar.style.width = (state.timerLeft / state.timerMax * 100) + '%';
+      if (state.timerLeft <= 5) timerBar.style.background = 'var(--color-danger)';
+      else timerBar.style.background = 'var(--color-primary)';
+      if (state.timerLeft <= 0) {
+        stopTimer();
+        if (state.selected.length > 0) {
+          checkChallengeAnswer();
+        } else {
+          speak('Time is up!');
+          state.roundResults.push({
+            prompt: challengePrompt.textContent,
+            correct: false,
+            points: 0,
+            timeLeft: 0
+          });
+          selDisp.textContent = 'Time up! Answer: ' + fracStr(state.target[0], state.target[1]);
+          setTimeout(() => nextChallengeRound(), 1800);
+        }
+      }
+    }, 1000);
+  }
+
+  function stopTimer() {
+    if (state.timerId) { clearInterval(state.timerId); state.timerId = null; }
+  }
+
+  function endChallenge() {
+    stopTimer();
+    let message = '';
+    if (state.score >= state.totalRounds * 5) message = 'Amazing! Fraction master!';
+    else if (state.score >= state.totalRounds * 2) message = 'Great work! Keep practising!';
+    else if (state.score >= state.totalRounds) message = 'Good effort! Try again to improve.';
+    else message = 'Keep exploring fractions!';
+
+    // Build per-round breakdown
+    let roundsHtml = '<div style="text-align:left;margin:0.75rem 0;max-height:200px;overflow-y:auto;">';
+    (state.roundResults || []).forEach(function(r, i) {
+      const icon = r.correct ? '<span style="color:var(--color-success);">&#10003;</span>' : '<span style="color:var(--color-danger);">&#10007;</span>';
+      roundsHtml += '<div style="display:flex;justify-content:space-between;align-items:center;padding:0.25rem 0.5rem;' +
+        (i % 2 === 0 ? 'background:var(--color-bg-dark);' : '') + 'border-radius:4px;font-size:0.85rem;">' +
+        '<span>' + icon + ' <strong>R' + (i + 1) + ':</strong> ' + r.prompt + '</span>' +
+        '<span style="white-space:nowrap;margin-left:0.5rem;">' + r.points + ' pt' + (r.points !== 1 ? 's' : '') + '</span>' +
+        '</div>';
+    });
+    roundsHtml += '</div>';
+
+    modal.innerHTML =
+      '<h2>Challenge Complete!</h2>' +
+      '<div class="result-score">' + state.score + ' points</div>' +
+      '<div class="result-detail">' + message + '</div>' +
+      roundsHtml +
+      '<div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">' +
+        '<button class="game-btn game-btn-primary" id="btn-replay">Play Again</button>' +
+        '<button class="game-btn game-btn-outline" id="btn-modal-menu">Menu</button>' +
+      '</div>';
+    showOverlay();
+    speak('Challenge complete. You scored ' + state.score + ' points. ' + message);
+
+    $('btn-replay').addEventListener('click', () => { hideOverlay(); startGame(); });
+    $('btn-modal-menu').addEventListener('click', () => { hideOverlay(); backToMenu(); });
+  }
+
+  /* ========== OVERLAY / MODAL ========== */
+  function showOverlay() { overlay.classList.remove('hidden'); overlay.querySelector('.game-modal').focus(); }
+  function hideOverlay() { overlay.classList.add('hidden'); }
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) hideOverlay(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (!overlay.classList.contains('hidden')) hideOverlay();
+      else if (gameScreen.style.display !== 'none' && state.mode === 'explore') clearAll();
+    }
+  });
+
+  /* ========== MUTE ========== */
+  function toggleMute() {
+    state.muted = !state.muted;
+    $('btn-mute').innerHTML = state.muted ? '&#x1F507;' : '&#x1F50A;';
+    $('btn-mute').setAttribute('aria-label', state.muted ? 'Unmute speech' : 'Mute speech');
+    if (state.muted && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+  }
+
+  /* ========== TUTORIAL ========== */
+  function showTutorial() {
+    modal.innerHTML =
+      '<h2>How to Play</h2>' +
+      '<div class="tutorial-step">' +
+        '<p><strong>The Fraction Wall</strong> shows rows of equal pieces. The top row is 1 whole, then halves, thirds, quarters, and so on.</p>' +
+        '<p class="mt-sm"><strong>Key insight:</strong> Fractions that are the same size line up vertically. For example, 2/4 lines up exactly with 1/2 - they are equivalent!</p>' +
+        '<p class="mt-sm"><strong>Explore Mode:</strong> Click any segment to select it. The display shows your total as a fraction, decimal, and percentage. Try selecting two 1/4 pieces and see that they equal 1/2 = 0.5 = 50%.</p>' +
+        '<p class="mt-sm"><strong>Challenge Mode:</strong> You are given a target fraction (or decimal/percentage). Click segments that add up to the target, then press Check Answer. Score points for correct answers, plus bonus points for speed!</p>' +
+        '<p class="mt-sm"><strong>Controls:</strong> Tab to navigate, Enter to select, Escape to clear. Tap or click on touch devices.</p>' +
+      '</div>' +
+      '<button class="game-btn game-btn-primary mt-md" id="btn-demo-close">Got it!</button>' +
+      '<button class="game-btn game-btn-purple mt-md" id="btn-demo-live" style="margin-left:0.5rem;">Show Me</button>';
+    showOverlay();
+
+    $('btn-demo-close').addEventListener('click', hideOverlay);
+    $('btn-demo-live').addEventListener('click', () => {
+      hideOverlay();
+      runLiveDemo();
+    });
+  }
+
+  async function runLiveDemo() {
+    // Save user's selections before demo overrides them
+    state._savedMode = state.mode;
+    state._savedDifficulty = state.difficulty;
+    state.mode = 'explore';
+    state.difficulty = 'easy';
+    state.demoRunning = true;
+    startGame();
+
+    await wait(600);
+    speak('Let me show you how the fraction wall works.');
+    await wait(2500);
+
+    // Click two 1/4 segments
+    speak('Watch as I select two quarters.');
+    await wait(1500);
+    await demoClick(4, 0);
+    await wait(800);
+    await demoClick(4, 1);
+    await wait(2000);
+    speak('Two quarters equal one half, which is 0.5 or 50 percent.');
+    await wait(3000);
+
+    // Clear and show 1/2
+    clearAll();
+    await wait(600);
+    speak('Now see how one half lines up with two quarters.');
+    await wait(1500);
+    await demoClick(2, 0);
+    await wait(2000);
+
+    clearAll();
+    await wait(500);
+    speak('Your turn! Explore the wall.');
+    state.demoRunning = false;
+    // Restore user's original mode/difficulty selections
+    if (state._savedMode !== undefined) {
+      state.mode = state._savedMode;
+      state.difficulty = state._savedDifficulty;
+      delete state._savedMode;
+      delete state._savedDifficulty;
+    }
+  }
+
+  function demoClick(denom, index) {
+    return new Promise(resolve => {
+      const row = wall.querySelector('.wall-row[data-denom="' + denom + '"]');
+      if (!row) { resolve(); return; }
+      const btn = row.children[index];
+      if (!btn) { resolve(); return; }
+      // Simulate
+      const existing = state.selected.findIndex(s => s.denom === denom && s.index === index);
+      if (existing >= 0) {
+        state.selected.splice(existing, 1);
+        btn.classList.remove('selected');
+      } else {
+        state.selected.push({ denom, index });
+        btn.classList.add('selected');
+      }
+      updateSelectionDisplay();
+      resolve();
+    });
+  }
+
+  function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  /* ========== INIT ========== */
+  setupMenu();
+
+})();
+</script>
+</body>
+</html>

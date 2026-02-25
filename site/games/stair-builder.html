@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stair Builder: 10 Step Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Design System Tokens ===== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+body, button, input, select, textarea {
+  font-size: max(var(--font-size-min), 1em);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== Game Header ===== */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg);
+  border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.game-header h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ===== Game Card / Panel ===== */
+.game-card {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md);
+}
+
+.game-card-sm {
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+
+/* ===== Button Base ===== */
+.game-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-btn);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.game-btn:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-active);
+}
+
+.game-btn:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+}
+
+.game-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.game-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+
+.game-btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  border-width: 2px;
+  border-radius: var(--radius-md);
+}
+
+.game-btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-xl);
+  border-radius: var(--radius-xl);
+}
+
+/* ===== Dice ===== */
+.die {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 64px;
+  height: 64px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  gap: 2px;
+  box-shadow: var(--shadow-card-sm);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  touch-action: manipulation;
+  font-family: var(--font-display);
+  font-size: 0;
+  line-height: 0;
+}
+
+.die:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.die:hover:not(:disabled):not(.die-used) {
+  transform: scale(1.08);
+}
+
+.die:active:not(:disabled):not(.die-used) {
+  transform: scale(0.95);
+}
+
+.die.die-used {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #e2e8f0;
+}
+
+.die.die-highlight {
+  box-shadow: 0 0 0 4px var(--color-warning), var(--shadow-card-sm);
+}
+
+.die.die-rolling {
+  animation: dieShake 0.12s infinite alternate;
+}
+
+@keyframes dieShake {
+  0% { transform: translateY(-3px) rotate(-3deg); }
+  100% { transform: translateY(3px) rotate(3deg); }
+}
+
+.die-face {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.die-face.filled {
+  background: var(--color-text);
+}
+
+/* ===== Score / Info Bar ===== */
+.info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+/* ===== Message Area ===== */
+.message-area {
+  text-align: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  min-height: 2.5em;
+}
+
+/* ===== Modal / Overlay ===== */
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--spacing-md);
+}
+
+.game-modal {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-xl);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 600px) {
+  .game-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sketch-text { font-family: var(--font-sketch); }
+
+/* Utilities */
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.w-full { width: 100%; }
+.hidden { display: none !important; }
+
+/* ==========================================================
+   GAME-SPECIFIC STYLES
+   ========================================================== */
+
+/* ===== Screens ===== */
+.screen { display: none; }
+.screen.active { display: flex; }
+
+/* ===== Menu Screen ===== */
+#menu-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-xl);
+  text-align: center;
+  gap: var(--spacing-lg);
+}
+
+.menu-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-white);
+  background: var(--color-success);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  border: 3px solid var(--color-black);
+  box-shadow: var(--shadow-card);
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+.menu-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.how-to-play {
+  background: var(--color-white);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  max-width: 480px;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.how-to-play h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.how-to-play p {
+  color: var(--color-text-light);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.menu-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ===== Play Screen ===== */
+#play-screen {
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.play-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--spacing-sm);
+  gap: var(--spacing-sm);
+  overflow-y: auto;
+}
+
+@media (min-width: 900px) {
+  .play-layout {
+    flex-direction: row;
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+    overflow: hidden;
+  }
+}
+
+/* ===== Control Panel ===== */
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+@media (min-width: 900px) {
+  .control-panel {
+    width: 340px;
+    min-width: 300px;
+    flex-shrink: 0;
+  }
+}
+
+/* ===== Dice Area ===== */
+.dice-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+}
+
+/* ===== Expression Display ===== */
+.expression-display {
+  background: var(--color-bg-dark);
+  border: 2px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.expr-number { color: var(--color-primary-dark); }
+.expr-operator { color: var(--color-orange); font-size: var(--font-size-xl); }
+.expr-equals { color: var(--color-text-light); }
+.expr-result { color: var(--color-purple); font-size: var(--font-size-xl); }
+.expr-result.valid-step { color: var(--color-success-dark); }
+.expr-result.invalid-step { color: var(--color-danger); }
+.expr-placeholder { color: #94a3b8; font-size: var(--font-size-base); font-weight: 500; }
+
+/* ===== Operator & Action Buttons ===== */
+.operator-row {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.op-btn {
+  width: 52px;
+  height: 52px;
+  font-size: var(--font-size-xl);
+  padding: 0;
+  font-weight: 700;
+}
+
+.action-row {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.action-row .game-btn {
+  flex: 1;
+  font-size: var(--font-size-sm);
+}
+
+/* ===== Staircase Container ===== */
+.staircase-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+@media (min-width: 900px) {
+  .staircase-area {
+    min-height: auto;
+  }
+}
+
+.staircase-wrapper {
+  background: var(--color-white);
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.staircase-label {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--spacing-xs) 0;
+}
+
+.staircase {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1;
+  padding: 0 var(--spacing-sm) 0;
+  gap: 3px;
+}
+
+.staircase-floor {
+  height: 3px;
+  background: #cbd5e1;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* ===== Individual Step ===== */
+.step-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.step-block {
+  width: 100%;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 4px;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-white);
+  transition: all var(--transition-normal);
+  border: 3px solid transparent;
+  border-bottom: none;
+  position: relative;
+}
+
+.step-block.unclaimed {
+  background: #94a3b8;
+  border-color: #64748b;
+  color: rgba(255,255,255,0.7);
+}
+
+.step-block.claimed-solo {
+  background: var(--color-success);
+  border-color: var(--color-success-dark);
+  box-shadow: 0 0 8px rgba(34,197,94,0.3);
+}
+
+.step-block.claimed-p1 {
+  background: var(--color-primary);
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 0 8px rgba(59,130,246,0.3);
+}
+
+.step-block.claimed-p2 {
+  background: var(--color-danger);
+  border-color: var(--color-danger-dark);
+  box-shadow: 0 0 8px rgba(239,68,68,0.3);
+}
+
+.step-block.step-preview {
+  box-shadow: 0 0 0 3px var(--color-warning), 0 0 12px rgba(234,179,8,0.5);
+  z-index: 2;
+}
+
+.step-block.step-preview.unclaimed {
+  background: #fbbf24;
+  border-color: #d97706;
+  color: #78350f;
+}
+
+@keyframes stepClaim {
+  0% { transform: scaleY(0.7); opacity: 0.5; }
+  50% { transform: scaleY(1.08); }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+.step-block.just-claimed {
+  animation: stepClaim 0.4s ease-out;
+}
+
+/* ===== Two-Player Layout ===== */
+.two-player-stairs {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex: 1;
+}
+
+.two-player-stairs .staircase-wrapper {
+  flex: 1;
+}
+
+/* ===== History Panel ===== */
+.history-panel {
+  background: var(--color-white);
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.history-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-light);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  background: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.history-list {
+  list-style: none;
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.history-item {
+  font-size: var(--font-size-sm);
+  padding: 2px 0;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.history-item:last-child { border-bottom: none; }
+
+.history-expr { color: var(--color-text); font-weight: 500; }
+.history-result { font-weight: 700; }
+.history-success { color: var(--color-success-dark); }
+.history-fail { color: var(--color-danger); }
+.history-skip { color: var(--color-text-light); font-style: italic; }
+
+.history-player {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.history-player.p1 { background: var(--color-primary); }
+.history-player.p2 { background: var(--color-danger); }
+
+/* ===== Mute Toggle ===== */
+.mute-btn {
+  background: var(--color-success);
+  color: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-full);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  touch-action: manipulation;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.mute-btn.muted {
+  background: var(--color-danger);
+}
+
+.mute-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== Demo Overlay ===== */
+#demo-screen {
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-modal {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-xl);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .demo-modal {
+    flex-direction: row;
+    min-height: 350px;
+  }
+}
+
+.demo-explain {
+  background: #fef9c3;
+  border-bottom: 3px solid var(--color-warning);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 600px) {
+  .demo-explain {
+    width: 42%;
+    border-bottom: none;
+    border-right: 3px solid var(--color-warning);
+  }
+}
+
+.demo-explain h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: #713f12;
+}
+
+.demo-explain p {
+  font-size: var(--font-size-base);
+  color: #78350f;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.demo-visual {
+  flex: 1;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  position: relative;
+  background: #f8fafc;
+}
+
+.demo-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--color-danger);
+  color: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-full);
+  width: 32px;
+  height: 32px;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  font-family: var(--font-display);
+  z-index: 5;
+}
+
+.demo-staircase {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  width: 100%;
+  height: 120px;
+  padding: 0 var(--spacing-sm);
+}
+
+.demo-staircase .step-col { height: 100%; }
+
+.demo-expression {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  min-height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Win Screen ===== */
+#win-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-xl);
+  text-align: center;
+  gap: var(--spacing-lg);
+}
+
+.win-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-success-dark);
+}
+
+.win-message {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+/* ===== Impossible state hint ===== */
+.skip-hint {
+  background: #fef3c7;
+  border: 2px solid var(--color-warning);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: #92400e;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Skip button: prominent when no valid moves, subtle otherwise */
+#btn-skip.skip-prominent {
+  background: var(--color-warning);
+  color: var(--color-text);
+  border-color: var(--color-black);
+  animation: skipPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes skipPulse {
+  0%, 100% { transform: scale(1); box-shadow: var(--shadow-btn); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 4px rgba(245, 166, 35, 0.4), var(--shadow-btn); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ MENU SCREEN ============ -->
+<div id="menu-screen" class="screen active">
+  <div class="menu-title">Stair Builder</div>
+  <div class="menu-subtitle">10 Step Challenge</div>
+
+  <div class="how-to-play">
+    <h3>How to Play</h3>
+    <p>
+      Roll 3 dice and use addition (+) and subtraction (-) to make a number sentence.
+      If the result equals an unclaimed step (1-10), you build that step!
+      Fill all 10 steps to complete the staircase.
+    </p>
+  </div>
+
+  <div class="menu-buttons">
+    <button class="game-btn game-btn-lg game-btn-primary" onclick="startGame(1)">1 Player</button>
+    <button class="game-btn game-btn-lg game-btn-danger" onclick="startGame(2)">2 Players</button>
+  </div>
+
+  <button class="game-btn game-btn-sm game-btn-warning" onclick="startDemo()">Watch How to Play</button>
+
+  <div style="position:absolute;top:12px;right:12px;">
+    <button class="mute-btn" id="menu-mute" onclick="toggleMute()" aria-label="Toggle sound"></button>
+  </div>
+</div>
+
+<!-- ============ PLAY SCREEN ============ -->
+<div id="play-screen" class="screen">
+  <!-- Header -->
+  <div class="game-header">
+    <button class="game-btn game-btn-sm game-btn-outline" onclick="goToMenu()">Menu</button>
+    <h1 id="turn-label">Solo Challenge</h1>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span id="step-count" style="font-weight:700;font-size:var(--font-size-sm);color:var(--color-text-light);">Steps: 0/10</span>
+      <button class="mute-btn" id="play-mute" onclick="toggleMute()" aria-label="Toggle sound"></button>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="play-layout">
+    <!-- Left: Controls -->
+    <div class="control-panel">
+      <div class="game-card-sm">
+        <!-- Dice -->
+        <div class="dice-row" id="dice-row">
+          <button class="die" id="die-0" onclick="handleDieClick(0)" aria-label="Die 1" tabindex="0"></button>
+          <button class="die" id="die-1" onclick="handleDieClick(1)" aria-label="Die 2" tabindex="0"></button>
+          <button class="die" id="die-2" onclick="handleDieClick(2)" aria-label="Die 3" tabindex="0"></button>
+        </div>
+
+        <!-- Expression Display -->
+        <div class="expression-display" id="expression-display" aria-live="polite" role="status">
+          <span class="expr-placeholder">Build your number sentence...</span>
+        </div>
+
+        <!-- Operators -->
+        <div class="operator-row mt-sm">
+          <button class="game-btn game-btn-success op-btn" onclick="handleOperator('+')" aria-label="Add">+</button>
+          <button class="game-btn game-btn-warning op-btn" onclick="handleOperator('-')" aria-label="Subtract">&minus;</button>
+          <button class="game-btn game-btn-outline game-btn-sm" onclick="clearExpression()" aria-label="Clear expression" style="font-size:var(--font-size-sm);">Clear</button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-row mt-sm">
+          <button class="game-btn game-btn-purple w-full" id="btn-check" onclick="checkResult()" disabled>Check</button>
+        </div>
+        <div class="action-row mt-sm">
+          <button class="game-btn game-btn-primary w-full" id="btn-roll" onclick="rollDice()">Roll Dice</button>
+          <button class="game-btn game-btn-outline" id="btn-skip" onclick="skipTurn()" style="display:none;">Skip</button>
+        </div>
+
+        <!-- Message -->
+        <div class="message-area" id="message-area" aria-live="polite" role="status">
+          Roll the dice to start!
+        </div>
+
+        <!-- Impossible hint -->
+        <div class="skip-hint" id="skip-hint" style="display:none;"></div>
+      </div>
+
+      <!-- History -->
+      <div class="history-panel" id="history-panel">
+        <div class="history-title">Turn History</div>
+        <ul class="history-list" id="history-list">
+          <li class="history-item history-skip">No turns yet</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right: Staircase(s) -->
+    <div class="staircase-area" id="staircase-area">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ============ DEMO SCREEN ============ -->
+<div id="demo-screen" class="screen game-overlay">
+  <div class="demo-modal">
+    <div class="demo-explain">
+      <div>
+        <h3 id="demo-title">Tutorial</h3>
+        <p id="demo-text">Welcome to Stair Builder!</p>
+      </div>
+      <button class="game-btn game-btn-purple w-full" id="demo-next" onclick="nextDemoStep()">Next Step</button>
+    </div>
+    <div class="demo-visual">
+      <button class="demo-close" onclick="closeDemo()" aria-label="Close tutorial">X</button>
+      <div class="dice-row" id="demo-dice-row">
+        <div class="die" id="demo-die-0"></div>
+        <div class="die" id="demo-die-1"></div>
+        <div class="die" id="demo-die-2"></div>
+      </div>
+      <div class="demo-expression" id="demo-expression"></div>
+      <div class="demo-staircase" id="demo-staircase"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ WIN SCREEN ============ -->
+<div id="win-screen" class="screen">
+  <div class="game-card text-center" style="max-width:480px;">
+    <div class="win-title" id="win-title">Game Over!</div>
+    <div class="win-message mt-md" id="win-message"></div>
+    <div style="display:flex;gap:var(--spacing-md);margin-top:var(--spacing-lg);justify-content:center;flex-wrap:wrap;">
+      <button class="game-btn game-btn-lg game-btn-primary" onclick="startGame(state.numPlayers)">Play Again</button>
+      <button class="game-btn game-btn-lg game-btn-outline" onclick="goToMenu()">Menu</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ==========================================================
+   Stair Builder: 10 Step Challenge
+   Pure Vanilla JS - No frameworks
+   ========================================================== */
+
+// ===== STATE =====
+const state = {
+  screen: 'menu',        // menu | play | demo | win
+  numPlayers: 1,
+  currentPlayer: 1,
+  diceValues: [0, 0, 0],
+  expression: [],         // e.g. [5, '+', 3, '-', 2]
+  usedDice: new Set(),
+  claimedSteps: {},       // { stepNum: playerNum }
+  isRolling: false,
+  isMuted: false,
+  gamePhase: 'roll',      // roll | build
+  history: [],            // { player, expression, result, success }
+  timeouts: [],           // track setTimeout IDs
+};
+
+// ===== TIMEOUT MANAGEMENT =====
+function safeTimeout(fn, ms) {
+  const id = setTimeout(() => {
+    state.timeouts = state.timeouts.filter(t => t !== id);
+    fn();
+  }, ms);
+  state.timeouts.push(id);
+  return id;
+}
+
+function clearAllTimeouts() {
+  state.timeouts.forEach(id => clearTimeout(id));
+  state.timeouts = [];
+  if (state.rollInterval) {
+    clearInterval(state.rollInterval);
+    state.rollInterval = null;
+  }
+}
+
+// ===== SCREEN MANAGEMENT =====
+function showScreen(name) {
+  clearAllTimeouts();
+  document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById(name + '-screen');
+  if (el) el.classList.add('active');
+  state.screen = name;
+}
+
+function goToMenu() {
+  clearAllTimeouts();
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  showScreen('menu');
+}
+
+// ===== SPEECH =====
+function speak(text) {
+  if (state.isMuted || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+}
+
+function toggleMute() {
+  state.isMuted = !state.isMuted;
+  if (state.isMuted && window.speechSynthesis) window.speechSynthesis.cancel();
+  updateMuteButtons();
+}
+
+function updateMuteButtons() {
+  document.querySelectorAll('.mute-btn').forEach(btn => {
+    btn.classList.toggle('muted', state.isMuted);
+    btn.innerHTML = state.isMuted
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2V15H6L11 19V5Z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+    btn.setAttribute('aria-label', state.isMuted ? 'Unmute sound' : 'Mute sound');
+  });
+}
+
+// ===== DICE RENDERING =====
+// Dot positions for a 3x3 grid die face
+// Grid areas: 1/1=TL, 1/2=TC, 1/3=TR, 2/1=ML, 2/2=MC, 2/3=MR, 3/1=BL, 3/2=BC, 3/3=BR
+const DOT_LAYOUTS = {
+  1: [[2,2]],
+  2: [[1,1],[3,3]],
+  3: [[1,1],[2,2],[3,3]],
+  4: [[1,1],[1,3],[3,1],[3,3]],
+  5: [[1,1],[1,3],[2,2],[3,1],[3,3]],
+  6: [[1,1],[1,3],[2,1],[2,3],[3,1],[3,3]],
+};
+
+function renderDieFace(el, value) {
+  el.innerHTML = '';
+  if (!value || value < 1 || value > 6) {
+    // Show question mark for rolling state
+    el.innerHTML = '<span style="font-size:1.5rem;font-weight:700;color:#94a3b8;grid-column:1/-1;grid-row:1/-1;display:flex;align-items:center;justify-content:center;">?</span>';
+    return;
+  }
+  const dots = DOT_LAYOUTS[value];
+  // Create 9 cells
+  for (let r = 1; r <= 3; r++) {
+    for (let c = 1; c <= 3; c++) {
+      const cell = document.createElement('span');
+      cell.className = 'die-face';
+      if (dots.some(d => d[0] === r && d[1] === c)) {
+        cell.classList.add('filled');
+      }
+      el.appendChild(cell);
+    }
+  }
+}
+
+function updateDice() {
+  for (let i = 0; i < 3; i++) {
+    const el = document.getElementById('die-' + i);
+    if (!el) continue;
+    el.classList.toggle('die-used', state.usedDice.has(i));
+    el.classList.toggle('die-highlight', !state.usedDice.has(i) && state.gamePhase === 'build' && !state.isRolling);
+    el.classList.toggle('die-rolling', state.isRolling);
+    el.disabled = state.usedDice.has(i) || state.gamePhase !== 'build' || state.isRolling;
+    el.setAttribute('aria-label', state.isRolling ? 'Rolling...' : `Die ${i+1}: ${state.diceValues[i]}${state.usedDice.has(i) ? ' (used)' : ''}`);
+    renderDieFace(el, state.isRolling ? Math.floor(Math.random() * 6) + 1 : state.diceValues[i]);
+  }
+}
+
+// ===== EXPRESSION =====
+function updateExpressionDisplay() {
+  const el = document.getElementById('expression-display');
+  if (!el) return;
+
+  if (state.expression.length === 0) {
+    el.innerHTML = '<span class="expr-placeholder">Build your number sentence...</span>';
+    clearStepPreview();
+    return;
+  }
+
+  let html = '';
+  state.expression.forEach(item => {
+    if (typeof item === 'number') {
+      html += `<span class="expr-number">${item}</span> `;
+    } else {
+      html += `<span class="expr-operator">${item === '-' ? '\u2212' : item}</span> `;
+    }
+  });
+
+  // Live preview: compute partial result
+  const result = computeExpression(state.expression);
+  if (result !== null && state.expression.length >= 1) {
+    const isComplete = state.usedDice.size === 3 && state.expression.length === 5;
+    const isValidStep = result >= 1 && result <= 10 && !state.claimedSteps[result];
+    const isInRange = result >= 1 && result <= 10;
+    let cls = 'expr-result';
+    if (isComplete) {
+      cls += isValidStep ? ' valid-step' : ' invalid-step';
+    }
+    html += `<span class="expr-equals">=</span> <span class="${cls}">${result}</span>`;
+
+    // Highlight preview step
+    if (isInRange && typeof result === 'number') {
+      highlightPreviewStep(result, isValidStep);
+    } else {
+      clearStepPreview();
+    }
+  } else {
+    clearStepPreview();
+  }
+
+  el.innerHTML = html;
+}
+
+function computeExpression(expr) {
+  if (expr.length === 0) return null;
+  // Must start with a number
+  if (typeof expr[0] !== 'number') return null;
+  let result = expr[0];
+  for (let i = 1; i < expr.length; i += 2) {
+    const op = expr[i];
+    const num = expr[i + 1];
+    if (op === undefined || num === undefined) break;
+    if (op === '+') result += num;
+    else if (op === '-') result -= num;
+  }
+  return result;
+}
+
+function clearExpression() {
+  if (state.gamePhase === 'transition') return;
+  state.expression = [];
+  state.usedDice.clear();
+  updateDice();
+  updateExpressionDisplay();
+  updateButtons();
+  setMessage(state.numPlayers === 2
+    ? `Player ${state.currentPlayer}, build your number sentence.`
+    : 'Click dice and operators to build your number sentence.');
+}
+
+// ===== STEP PREVIEW =====
+function highlightPreviewStep(stepNum, isValid) {
+  // Clear old previews
+  document.querySelectorAll('.step-block.step-preview').forEach(el => el.classList.remove('step-preview'));
+  // For each staircase (1 or 2 player)
+  const blocks = document.querySelectorAll(`.step-block[data-step="${stepNum}"]`);
+  blocks.forEach(b => {
+    // Only highlight if unclaimed or for current player's staircase
+    if (state.numPlayers === 1 || Number(b.closest('.staircase-wrapper').dataset.player) === state.currentPlayer) {
+      b.classList.add('step-preview');
+    }
+  });
+}
+
+function clearStepPreview() {
+  document.querySelectorAll('.step-block.step-preview').forEach(el => el.classList.remove('step-preview'));
+}
+
+// ===== STAIRCASE RENDERING =====
+function buildStaircaseHTML(playerNum) {
+  let label = '';
+  if (state.numPlayers === 2) {
+    label = playerNum === 1 ? 'Player 1 (Blue)' : 'Player 2 (Red)';
+  } else {
+    label = 'Your Staircase';
+  }
+
+  let html = `<div class="staircase-wrapper" data-player="${playerNum}">`;
+  html += `<div class="staircase-label">${label}</div>`;
+  html += '<div class="staircase">';
+
+  for (let s = 1; s <= 10; s++) {
+    const heightPct = 8 + s * 7; // step 1 = 15%, step 10 = 78%
+    const claimed = state.claimedSteps[s];
+    let cls = 'unclaimed';
+
+    if (state.numPlayers === 1 && claimed) {
+      cls = 'claimed-solo';
+    } else if (state.numPlayers === 2) {
+      if (claimed === playerNum) cls = playerNum === 1 ? 'claimed-p1' : 'claimed-p2';
+      // If claimed by other player in 2p, they each have their own staircase
+      // Actually in 2p, each step can only be claimed once globally
+      else if (claimed) cls = claimed === 1 ? 'claimed-p1' : 'claimed-p2';
+    }
+
+    html += `<div class="step-col">`;
+    html += `<div class="step-block ${cls}" data-step="${s}" style="height:${heightPct}%;">${s}</div>`;
+    html += `</div>`;
+  }
+
+  html += '</div>';
+  html += '<div class="staircase-floor"></div>';
+  html += '</div>';
+  return html;
+}
+
+function renderStaircase() {
+  const area = document.getElementById('staircase-area');
+  if (!area) return;
+  // For 2-player, show side-by-side
+  if (state.numPlayers === 2) {
+    area.innerHTML = '<div class="two-player-stairs">' + buildStaircaseHTML(1) + buildStaircaseHTML(2) + '</div>';
+  } else {
+    area.innerHTML = buildStaircaseHTML(1);
+  }
+}
+
+function updateStepCount() {
+  const el = document.getElementById('step-count');
+  if (el) el.textContent = `Steps: ${Object.keys(state.claimedSteps).length}/10`;
+}
+
+// ===== MESSAGES =====
+function setMessage(msg) {
+  const el = document.getElementById('message-area');
+  if (el) el.textContent = msg;
+}
+
+// ===== BUTTONS =====
+function updateButtons() {
+  const rollBtn = document.getElementById('btn-roll');
+  const checkBtn = document.getElementById('btn-check');
+  const skipBtn = document.getElementById('btn-skip');
+
+  if (rollBtn) {
+    rollBtn.disabled = state.isRolling || state.gamePhase === 'build';
+    if (state.numPlayers === 2) {
+      rollBtn.textContent = `Player ${state.currentPlayer}: Roll Dice`;
+      rollBtn.className = 'game-btn w-full ' + (state.currentPlayer === 1 ? 'game-btn-primary' : 'game-btn-danger');
+    } else {
+      rollBtn.textContent = 'Roll Dice';
+      rollBtn.className = 'game-btn game-btn-primary w-full';
+    }
+  }
+
+  if (checkBtn) {
+    const isComplete = state.usedDice.size === 3 && state.expression.length === 5;
+    checkBtn.disabled = !isComplete || state.gamePhase !== 'build';
+  }
+
+  if (skipBtn) {
+    skipBtn.style.display = state.gamePhase === 'build' ? '' : 'none';
+  }
+}
+
+// ===== TURN LABEL =====
+function updateTurnLabel() {
+  const el = document.getElementById('turn-label');
+  if (!el) return;
+  if (state.numPlayers === 2) {
+    el.textContent = state.currentPlayer === 1 ? 'Player 1 (Blue)' : 'Player 2 (Red)';
+    el.style.color = state.currentPlayer === 1 ? 'var(--color-primary)' : 'var(--color-danger)';
+  } else {
+    el.textContent = 'Solo Challenge';
+    el.style.color = 'var(--color-primary)';
+  }
+}
+
+// ===== IMPOSSIBLE STATE DETECTION =====
+function findAllPossibleResults(dice) {
+  const results = new Set();
+  // All permutations of 3 dice
+  const perms = [
+    [0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]
+  ];
+  const ops = ['+','-'];
+
+  for (const p of perms) {
+    const a = dice[p[0]], b = dice[p[1]], c = dice[p[2]];
+    for (const op1 of ops) {
+      for (const op2 of ops) {
+        let r = a;
+        r = op1 === '+' ? r + b : r - b;
+        r = op2 === '+' ? r + c : r - c;
+        if (r >= 1 && r <= 10 && !state.claimedSteps[r]) {
+          results.add(r);
+        }
+      }
+    }
+  }
+  return results;
+}
+
+function checkImpossibleState() {
+  const possible = findAllPossibleResults(state.diceValues);
+  const hintEl = document.getElementById('skip-hint');
+
+  const skipBtn = document.getElementById('btn-skip');
+  if (possible.size === 0) {
+    if (hintEl) {
+      hintEl.textContent = 'No valid moves possible with these dice. You may skip your turn.';
+      hintEl.style.display = '';
+    }
+    if (skipBtn) skipBtn.classList.add('skip-prominent');
+    setMessage('No valid moves! Click Skip to pass your turn.');
+    speak('No valid moves with these dice. You can skip your turn.');
+    return true;
+  } else {
+    if (hintEl) hintEl.style.display = 'none';
+    if (skipBtn) skipBtn.classList.remove('skip-prominent');
+    return false;
+  }
+}
+
+// ===== HISTORY =====
+function addHistory(player, exprStr, result, success) {
+  state.history.push({ player, expr: exprStr, result, success });
+  renderHistory();
+}
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  if (!list) return;
+
+  if (state.history.length === 0) {
+    list.innerHTML = '<li class="history-item history-skip">No turns yet</li>';
+    return;
+  }
+
+  list.innerHTML = '';
+  // Show most recent first
+  for (let i = state.history.length - 1; i >= 0; i--) {
+    const h = state.history[i];
+    const li = document.createElement('li');
+    li.className = 'history-item';
+
+    let playerDot = '';
+    if (state.numPlayers === 2) {
+      playerDot = `<span class="history-player p${h.player}"></span>`;
+    }
+
+    if (h.expr === 'SKIP') {
+      li.innerHTML = `<span class="history-expr">${playerDot}Skipped</span><span class="history-result history-skip">--</span>`;
+    } else {
+      const cls = h.success ? 'history-success' : 'history-fail';
+      const icon = h.success ? 'Step ' + h.result : (h.result !== null ? h.result + ' (miss)' : 'invalid');
+      li.innerHTML = `<span class="history-expr">${playerDot}${h.expr}</span><span class="history-result ${cls}">${icon}</span>`;
+    }
+    list.appendChild(li);
+  }
+}
+
+// ===== GAME LOGIC =====
+function startGame(players) {
+  clearAllTimeouts();
+  state.numPlayers = players;
+  state.currentPlayer = 1;
+  state.diceValues = [0, 0, 0];
+  state.expression = [];
+  state.usedDice = new Set();
+  state.claimedSteps = {};
+  state.isRolling = false;
+  state.gamePhase = 'roll';
+  state.history = [];
+
+  showScreen('play');
+  renderStaircase();
+  updateDice();
+  updateExpressionDisplay();
+  updateButtons();
+  updateTurnLabel();
+  updateStepCount();
+  renderHistory();
+  updateMuteButtons();
+
+  const msg = players === 2 ? 'Player 1 (Blue), roll the dice!' : 'Roll the dice to start!';
+  setMessage(msg);
+  document.getElementById('skip-hint').style.display = 'none';
+}
+
+function rollDice() {
+  if (state.isRolling || state.gamePhase === 'build' || state.gamePhase === 'transition') return;
+
+  state.isRolling = true;
+  state.expression = [];
+  state.usedDice.clear();
+  updateExpressionDisplay();
+  setMessage('Rolling...');
+  updateButtons();
+
+  const finalDice = [
+    Math.floor(Math.random() * 6) + 1,
+    Math.floor(Math.random() * 6) + 1,
+    Math.floor(Math.random() * 6) + 1,
+  ];
+
+  let count = 0;
+  state.rollInterval = setInterval(() => {
+    state.diceValues = [
+      Math.floor(Math.random() * 6) + 1,
+      Math.floor(Math.random() * 6) + 1,
+      Math.floor(Math.random() * 6) + 1,
+    ];
+    updateDice();
+    count++;
+    if (count > 10) {
+      clearInterval(state.rollInterval);
+      state.rollInterval = null;
+      state.diceValues = finalDice;
+      state.isRolling = false;
+      state.gamePhase = 'build';
+      updateDice();
+      updateButtons();
+
+      speak(`You rolled ${finalDice.join(', ')}.`);
+
+      const impossible = checkImpossibleState();
+      if (!impossible) {
+        setMessage(state.numPlayers === 2
+          ? `Player ${state.currentPlayer}, build your number sentence.`
+          : 'Click dice and operators to build your number sentence.');
+      }
+    }
+  }, 80);
+}
+
+function handleDieClick(index) {
+  if (state.gamePhase !== 'build' || state.isRolling || state.gamePhase === 'transition') return;
+
+  // If already used, show feedback
+  if (state.usedDice.has(index)) {
+    setMessage('Already used! Use Clear to start over.');
+    return;
+  }
+
+  const value = state.diceValues[index];
+  const len = state.expression.length;
+  const needsNumber = len === 0 || (typeof state.expression[len - 1] === 'string');
+
+  if (!needsNumber) {
+    setMessage('Add an operator (+ or -) next.');
+    return;
+  }
+
+  state.expression.push(value);
+  state.usedDice.add(index);
+  updateDice();
+  updateExpressionDisplay();
+  updateButtons();
+
+  if (state.usedDice.size === 3) {
+    setMessage('All dice used! Click Check to confirm.');
+  }
+}
+
+function handleOperator(op) {
+  if (state.gamePhase !== 'build' || state.gamePhase === 'transition') return;
+  const len = state.expression.length;
+
+  if (len === 0) {
+    setMessage('Choose a die first.');
+    return;
+  }
+
+  if (typeof state.expression[len - 1] === 'string') {
+    setMessage('Choose a die before the next operator.');
+    return;
+  }
+
+  // Max 2 operators (for 3 dice)
+  const opCount = state.expression.filter(x => x === '+' || x === '-').length;
+  if (opCount >= 2) {
+    setMessage('Expression complete! Click Check.');
+    return;
+  }
+
+  state.expression.push(op);
+  updateExpressionDisplay();
+  updateButtons();
+}
+
+function checkResult() {
+  if (state.usedDice.size !== 3 || state.expression.length !== 5) {
+    setMessage('Use all 3 dice and 2 operators!');
+    return;
+  }
+
+  const result = computeExpression(state.expression);
+  const exprStr = state.expression.map(x => typeof x === 'number' ? x : (x === '-' ? '\u2212' : x)).join(' ');
+
+  if (result === null || isNaN(result)) {
+    setMessage('Invalid expression. Try again.');
+    addHistory(state.currentPlayer, exprStr, null, false);
+    endTurn(false);
+    return;
+  }
+
+  if (result >= 1 && result <= 10 && !state.claimedSteps[result]) {
+    // Success! Lock out interaction during transition
+    state.gamePhase = 'transition';
+    state.claimedSteps[result] = state.currentPlayer;
+    const msg = state.numPlayers === 2
+      ? `Player ${state.currentPlayer} claimed Step ${result}!`
+      : `Success! You claimed Step ${result}.`;
+    setMessage(msg);
+    speak(`Claimed step ${result}!`);
+    addHistory(state.currentPlayer, exprStr + ' = ' + result, result, true);
+    renderStaircase();
+    updateStepCount();
+
+    // Animate the claimed step (scope to current player's staircase in 2-player)
+    const staircaseContainer = document.querySelector(`.staircase-wrapper[data-player="${state.currentPlayer}"]`);
+    const stepEl = staircaseContainer ? staircaseContainer.querySelector(`.step-block[data-step="${result}"]`) : null;
+    if (stepEl) {
+      stepEl.classList.add('just-claimed');
+      safeTimeout(() => stepEl && stepEl.classList.remove('just-claimed'), 500);
+    }
+
+    // Check win
+    if (Object.keys(state.claimedSteps).length === 10) {
+      safeTimeout(() => showWin(), 1200);
+      return;
+    }
+
+    safeTimeout(() => switchTurn(), 1500);
+  } else if (result >= 1 && result <= 10 && state.claimedSteps[result]) {
+    state.gamePhase = 'transition';
+    setMessage(`Step ${result} is already claimed! Turn over.`);
+    addHistory(state.currentPlayer, exprStr + ' = ' + result, result, false);
+    safeTimeout(() => switchTurn(), 1500);
+  } else {
+    state.gamePhase = 'transition';
+    setMessage(`Result ${result} is not on the stairs (1-10). Turn over.`);
+    addHistory(state.currentPlayer, exprStr + ' = ' + result, result, false);
+    safeTimeout(() => switchTurn(), 1500);
+  }
+}
+
+function skipTurn() {
+  if (state.gamePhase === 'transition') return;
+  setMessage(state.numPlayers === 2
+    ? `Player ${state.currentPlayer} skipped.`
+    : 'Turn skipped.');
+  addHistory(state.currentPlayer, 'SKIP', null, false);
+  safeTimeout(() => switchTurn(), 800);
+}
+
+function endTurn(success) {
+  safeTimeout(() => switchTurn(), 1500);
+}
+
+function switchTurn() {
+  state.expression = [];
+  state.usedDice.clear();
+  state.gamePhase = 'roll';
+  clearStepPreview();
+  document.getElementById('skip-hint').style.display = 'none';
+  const skipBtn = document.getElementById('btn-skip');
+  if (skipBtn) skipBtn.classList.remove('skip-prominent');
+
+  if (state.numPlayers === 2) {
+    state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;
+    setMessage(`Player ${state.currentPlayer} (${state.currentPlayer === 1 ? 'Blue' : 'Red'}), roll the dice!`);
+  } else {
+    setMessage('Roll again!');
+  }
+
+  updateDice();
+  updateExpressionDisplay();
+  updateButtons();
+  updateTurnLabel();
+}
+
+function showWin() {
+  clearAllTimeouts();
+  let msg = '';
+  if (state.numPlayers === 2) {
+    const p1 = Object.values(state.claimedSteps).filter(p => p === 1).length;
+    const p2 = Object.values(state.claimedSteps).filter(p => p === 2).length;
+    if (p1 > p2) msg = `Player 1 (Blue) wins with ${p1} steps vs ${p2}!`;
+    else if (p2 > p1) msg = `Player 2 (Red) wins with ${p2} steps vs ${p1}!`;
+    else msg = "It's a tie!";
+  } else {
+    msg = 'You completed the staircase!';
+  }
+
+  document.getElementById('win-title').textContent = 'Game Over!';
+  document.getElementById('win-message').textContent = msg;
+  speak(msg);
+  showScreen('win');
+}
+
+// ===== DEMO =====
+let demoStep = 0;
+const DEMO_STEPS = [
+  {
+    title: 'Tutorial: Step 1',
+    text: 'Welcome to Stair Builder! The goal is to claim steps 1 to 10 by building number sentences with dice.',
+    dice: [0, 0, 0],
+    expr: '',
+    claimed: {},
+    speech: 'Welcome to Stair Builder. The goal is to claim steps 1 to 10 by making number sentences with dice.',
+  },
+  {
+    title: 'Tutorial: Step 2',
+    text: 'First, roll the 3 dice. Watch them roll...',
+    dice: [5, 3, 2],
+    expr: '',
+    claimed: {},
+    rolling: true,
+    speech: 'First, we roll three dice.',
+  },
+  {
+    title: 'Tutorial: Step 3',
+    text: 'You rolled 5, 3, and 2. Now build a number sentence using + and - to make an unclaimed step number.',
+    dice: [5, 3, 2],
+    expr: '',
+    claimed: {},
+    speech: 'I rolled a 5, 3, and 2. Now I need to make a number between 1 and 10.',
+  },
+  {
+    title: 'Tutorial: Step 4',
+    text: 'I will calculate: 5 + 3 - 2 = 6. That claims step 6!',
+    dice: [5, 3, 2],
+    expr: '5 + 3 \u2212 2 = 6',
+    claimed: {},
+    speech: 'I calculated 5 plus 3 minus 2. That equals 6.',
+  },
+  {
+    title: 'Tutorial: Step 5',
+    text: 'Step 6 is now claimed! Keep rolling and building until all 10 steps are complete.',
+    dice: [5, 3, 2],
+    expr: '5 + 3 \u2212 2 = 6',
+    claimed: { 6: 1 },
+    speech: 'Step 6 is claimed! Keep going until all 10 steps are built.',
+  },
+];
+
+function startDemo() {
+  demoStep = 0;
+  showScreen('demo');
+  renderDemoStep();
+}
+
+function closeDemo() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  showScreen('menu');
+}
+
+function nextDemoStep() {
+  demoStep++;
+  if (demoStep >= DEMO_STEPS.length) {
+    closeDemo();
+    return;
+  }
+  renderDemoStep();
+}
+
+function renderDemoStep() {
+  const step = DEMO_STEPS[demoStep];
+  document.getElementById('demo-title').textContent = step.title;
+  document.getElementById('demo-text').textContent = step.text;
+  document.getElementById('demo-expression').innerHTML = step.expr
+    ? step.expr.split(/\s+/).map(token => {
+        if (/^\d+$/.test(token)) return `<span class="expr-number">${token}</span>`;
+        if (token === '+' || token === '\u2212') return `<span class="expr-operator">${token}</span>`;
+        if (token === '=') return `<span class="expr-equals">${token}</span>`;
+        return `<span class="expr-result">${token}</span>`;
+      }).join(' ')
+    : '<span class="expr-placeholder">...</span>';
+
+  const nextBtn = document.getElementById('demo-next');
+  nextBtn.textContent = demoStep >= DEMO_STEPS.length - 1 ? 'Start Playing' : 'Next Step';
+
+  // Dice
+  for (let i = 0; i < 3; i++) {
+    const el = document.getElementById('demo-die-' + i);
+    if (step.rolling) {
+      el.classList.add('die-rolling');
+      renderDieFace(el, Math.floor(Math.random() * 6) + 1);
+      // After a moment, stop rolling
+      safeTimeout(() => {
+        el.classList.remove('die-rolling');
+        renderDieFace(el, step.dice[i]);
+      }, 1200);
+    } else {
+      el.classList.remove('die-rolling');
+      renderDieFace(el, step.dice[i]);
+    }
+  }
+
+  // Mini staircase
+  const sc = document.getElementById('demo-staircase');
+  sc.innerHTML = '';
+  for (let s = 1; s <= 10; s++) {
+    const hPct = 8 + s * 7;
+    const claimed = step.claimed[s];
+    const cls = claimed ? 'claimed-solo' : 'unclaimed';
+    const preview = (demoStep >= 3 && s === 6 && !claimed) ? ' step-preview' : '';
+    sc.innerHTML += `<div class="step-col"><div class="step-block ${cls}${preview}" style="height:${hPct}%;">${s}</div></div>`;
+  }
+
+  speak(step.speech);
+}
+
+// ===== INIT =====
+updateMuteButtons();
+</script>
+</body>
+</html>

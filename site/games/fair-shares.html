@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fair Shares - Division Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Design System (inlined) ===== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea { font-size: max(var(--font-size-min), 1em); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.game-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg); border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm); flex-wrap: wrap;
+}
+.game-header h1 { font-size: var(--font-size-xl); font-weight: 700; margin: 0; }
+.game-card {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg); margin: var(--spacing-md);
+}
+.game-card-sm {
+  background: var(--color-white); border: 2px solid var(--color-black);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+.game-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--spacing-xs); padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black); border-radius: var(--radius-lg);
+  font-family: var(--font-display); font-size: var(--font-size-base);
+  font-weight: 600; cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-btn); touch-action: manipulation;
+  user-select: none; -webkit-tap-highlight-color: transparent;
+  text-decoration: none; line-height: 1.2;
+}
+.game-btn:active { transform: translateY(2px); box-shadow: var(--shadow-btn-active); }
+.game-btn:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+}
+.game-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.game-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+.game-btn-sm { padding: var(--spacing-xs) var(--spacing-sm); font-size: var(--font-size-sm); border-width: 2px; border-radius: var(--radius-md); }
+.game-btn-lg { padding: var(--spacing-md) var(--spacing-xl); font-size: var(--font-size-xl); border-radius: var(--radius-xl); }
+.info-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-dark); border-radius: var(--radius-md);
+  font-weight: 600; flex-wrap: wrap;
+}
+.message-area { text-align: center; padding: var(--spacing-md); font-size: var(--font-size-lg); font-weight: 500; min-height: 2.5em; }
+.game-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; padding: var(--spacing-md);
+}
+.game-modal {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-xl); box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  padding: var(--spacing-xl); max-width: 500px; width: 100%;
+  max-height: 90vh; overflow-y: auto; text-align: center;
+}
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.w-full { width: 100%; }
+.hidden { display: none !important; }
+.sketch-text { font-family: var(--font-sketch); }
+@media (min-width: 600px) { .game-header h1 { font-size: var(--font-size-2xl); } }
+@media (min-width: 900px) { .game-card { margin: var(--spacing-lg); padding: var(--spacing-xl); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ===== Fair Shares Game Styles ===== */
+
+/* --- Menu Screen --- */
+#menu-screen { max-width: 520px; margin: var(--spacing-xl) auto; text-align: center; }
+#menu-screen h2 { font-size: var(--font-size-3xl); margin-bottom: var(--spacing-xs); }
+#menu-screen .subtitle { color: var(--color-text-light); font-size: var(--font-size-lg); margin-bottom: var(--spacing-lg); }
+.menu-section { margin-bottom: var(--spacing-lg); }
+.menu-section h3 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); }
+.btn-row { display: flex; gap: var(--spacing-sm); justify-content: center; flex-wrap: wrap; }
+.diff-btn.selected, .mode-btn.selected { transform: translateY(2px); box-shadow: var(--shadow-btn-active); outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+/* --- Header controls --- */
+.header-controls { display: flex; gap: var(--spacing-sm); align-items: center; }
+.mute-btn { background: var(--color-bg-dark); border: 2px solid var(--color-black); border-radius: var(--radius-md); padding: 4px 10px; font-size: var(--font-size-lg); cursor: pointer; line-height: 1; }
+
+/* --- Play Area --- */
+#play-screen { display: none; }
+.play-area { max-width: 900px; margin: 0 auto; padding: var(--spacing-md); }
+.question-text { font-size: var(--font-size-xl); font-weight: 700; text-align: center; margin-bottom: var(--spacing-md); }
+
+/* --- Object pile --- */
+.pile-area {
+  position: relative;
+  min-height: 100px;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 6px; padding: var(--spacing-md);
+  background: var(--color-bg-dark); border: 3px dashed var(--color-text-light);
+  border-radius: var(--radius-xl); margin-bottom: var(--spacing-lg);
+  transition: background var(--transition-normal);
+}
+.pile-area.remainder-mode {
+  background: #fef3c7; border-color: var(--color-warning-dark);
+}
+.pile-label {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--color-white); border: 2px solid var(--color-black);
+  border-radius: var(--radius-sm); padding: 2px 12px;
+  font-size: var(--font-size-sm); font-weight: 600;
+}
+
+/* --- Object (circle with emoji) --- */
+.obj {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; border: 2px solid var(--color-black);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: relative; z-index: 1;
+  flex-shrink: 0;
+}
+.obj.dealing {
+  position: fixed;
+  z-index: 200;
+  transition: left 0.35s cubic-bezier(.4,0,.2,1), top 0.35s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+}
+.obj.remainder-glow {
+  animation: glow-pulse 1.2s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(234,179,8,0.5); }
+  50% { box-shadow: 0 0 18px 6px rgba(234,179,8,0.9); }
+}
+
+/* --- Groups grid --- */
+.groups-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+.group-plate {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-sm);
+  min-height: 110px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.group-plate .group-label {
+  font-weight: 700; font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-light);
+}
+.group-objects {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 4px; flex: 1; align-items: center;
+}
+.group-count {
+  font-weight: 700; font-size: var(--font-size-lg);
+  margin-top: var(--spacing-xs);
+  color: var(--color-primary-dark);
+}
+
+/* --- Equation display --- */
+.equation-display {
+  text-align: center; font-size: var(--font-size-2xl); font-weight: 700;
+  padding: var(--spacing-md); margin-bottom: var(--spacing-md);
+  background: var(--color-bg-dark); border-radius: var(--radius-lg);
+  border: 3px solid var(--color-black);
+}
+.equation-display .eq-main { color: var(--color-primary-dark); }
+.equation-display .eq-rem { color: var(--color-danger); }
+
+/* --- Answer input area --- */
+.answer-area {
+  display: flex; flex-wrap: wrap; gap: var(--spacing-md);
+  justify-content: center; align-items: flex-end;
+  margin-bottom: var(--spacing-md);
+}
+.answer-field label {
+  display: block; font-weight: 600; font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-xs); text-align: center;
+}
+.answer-field input {
+  width: 80px; padding: var(--spacing-sm);
+  border: 3px solid var(--color-black); border-radius: var(--radius-md);
+  font-family: var(--font-display); font-size: var(--font-size-xl);
+  font-weight: 700; text-align: center;
+  outline: none;
+}
+.answer-field input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.3); }
+
+/* --- Feedback --- */
+.feedback {
+  text-align: center; font-size: var(--font-size-xl); font-weight: 700;
+  padding: var(--spacing-md); min-height: 60px;
+}
+.feedback.correct { color: var(--color-success-dark); }
+.feedback.incorrect { color: var(--color-danger); }
+
+/* --- Score bar --- */
+.score-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+.score-item { font-weight: 600; }
+.player-indicator {
+  background: var(--color-purple); color: var(--color-white);
+  padding: 2px 12px; border-radius: var(--radius-full);
+  font-weight: 700; font-size: var(--font-size-sm);
+}
+
+/* --- Skip animation button --- */
+.skip-deal-btn {
+  position: absolute; bottom: 8px; right: 8px;
+  background: rgba(0,0,0,0.55); color: var(--color-white);
+  border: none; border-radius: var(--radius-sm);
+  padding: 4px 14px; font-family: var(--font-display);
+  font-size: var(--font-size-sm); font-weight: 600;
+  cursor: pointer; opacity: 0.85; z-index: 10;
+  transition: opacity 0.15s ease;
+}
+.skip-deal-btn:hover { opacity: 1; }
+
+/* --- Pass device overlay --- */
+.pass-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 200; gap: var(--spacing-md);
+}
+.pass-overlay h2 { color: var(--color-white); font-size: var(--font-size-3xl); }
+
+/* --- End screen --- */
+#end-screen { display: none; max-width: 480px; margin: var(--spacing-xl) auto; text-align: center; }
+#end-screen h2 { font-size: var(--font-size-3xl); margin-bottom: var(--spacing-md); }
+.final-scores { font-size: var(--font-size-xl); margin-bottom: var(--spacing-lg); }
+
+/* --- Demo overlay --- */
+.demo-overlay { z-index: 150; }
+.demo-modal { max-width: 600px; text-align: left; }
+.demo-modal h3 { text-align: center; margin-bottom: var(--spacing-md); }
+.demo-step { margin-bottom: var(--spacing-lg); padding: var(--spacing-md); background: var(--color-bg); border-radius: var(--radius-md); }
+.demo-step h4 { margin-bottom: var(--spacing-xs); color: var(--color-primary-dark); }
+.demo-visual { display: flex; flex-wrap: wrap; gap: 6px; margin: var(--spacing-sm) 0; justify-content: center; }
+.demo-visual .obj { width: 36px; height: 36px; font-size: 18px; }
+
+/* --- Object background colours --- */
+.obj-bg-0 { background: #fecaca; }
+.obj-bg-1 { background: #fed7aa; }
+.obj-bg-2 { background: #fef08a; }
+.obj-bg-3 { background: #bbf7d0; }
+.obj-bg-4 { background: #bfdbfe; }
+.obj-bg-5 { background: #ddd6fe; }
+.obj-bg-6 { background: #fbcfe8; }
+.obj-bg-7 { background: #99f6e4; }
+
+@media (max-width: 500px) {
+  .groups-container { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+  .obj { width: 36px; height: 36px; font-size: 18px; }
+  .equation-display { font-size: var(--font-size-xl); }
+  .question-text { font-size: var(--font-size-lg); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="game-header">
+  <h1>Fair Shares</h1>
+  <div class="header-controls">
+    <button class="mute-btn" id="mute-btn" aria-label="Toggle sound" title="Toggle sound">🔊</button>
+    <button class="game-btn game-btn-sm game-btn-outline" id="back-to-menu-btn">Menu</button>
+  </div>
+</header>
+
+<!-- ===== MENU SCREEN ===== -->
+<div id="menu-screen" class="game-card">
+  <h2>Fair Shares</h2>
+  <p class="subtitle">Share objects equally into groups. How many in each group? Any left over?</p>
+
+  <div class="menu-section">
+    <h3>Difficulty</h3>
+    <div class="btn-row">
+      <button class="game-btn game-btn-success diff-btn selected" data-diff="easy">Easy</button>
+      <button class="game-btn game-btn-warning diff-btn" data-diff="medium">Medium</button>
+      <button class="game-btn game-btn-danger diff-btn" data-diff="hard">Hard</button>
+    </div>
+    <p class="mt-sm" id="diff-desc" style="color:var(--color-text-light);font-size:var(--font-size-sm);">Totals 1-12, groups of 2-4</p>
+  </div>
+
+  <div class="menu-section">
+    <h3>Players</h3>
+    <div class="btn-row">
+      <button class="game-btn game-btn-primary mode-btn selected" data-mode="1">1 Player</button>
+      <button class="game-btn game-btn-purple mode-btn" data-mode="2">2 Players</button>
+    </div>
+  </div>
+
+  <div class="btn-row gap-md mt-lg">
+    <button class="game-btn game-btn-lg game-btn-primary" id="start-btn">Start Game</button>
+    <button class="game-btn game-btn-lg game-btn-outline" id="demo-btn">Demo</button>
+  </div>
+</div>
+
+<!-- ===== PLAY SCREEN ===== -->
+<div id="play-screen">
+  <div class="play-area">
+    <!-- Score bar -->
+    <div class="score-bar info-bar" id="score-bar">
+      <span class="score-item" id="round-label">Round 1 / 10</span>
+      <span class="score-item" id="p1-score">Score: 0</span>
+      <span class="player-indicator hidden" id="turn-indicator">Player 1's turn</span>
+      <span class="score-item hidden" id="p2-score">P2: 0</span>
+    </div>
+
+    <!-- Question -->
+    <p class="question-text" id="question-text" aria-live="polite"></p>
+
+    <!-- Central pile -->
+    <div class="pile-area" id="pile-area">
+      <span class="pile-label" id="pile-label">Pile</span>
+    </div>
+
+    <!-- Group plates -->
+    <div class="groups-container" id="groups-container"></div>
+
+    <!-- Equation display -->
+    <div class="equation-display hidden" id="equation-display" aria-live="polite"></div>
+
+    <!-- Answer area -->
+    <div class="answer-area hidden" id="answer-area">
+      <div class="answer-field">
+        <label for="answer-quotient">Each group gets:</label>
+        <input type="number" id="answer-quotient" min="0" max="99" autocomplete="off">
+      </div>
+      <div class="answer-field">
+        <label for="answer-remainder">Left over:</label>
+        <input type="number" id="answer-remainder" min="0" max="99" autocomplete="off">
+      </div>
+      <button class="game-btn game-btn-primary" id="check-btn">Check</button>
+    </div>
+
+    <!-- Feedback -->
+    <div class="feedback" id="feedback" aria-live="assertive"></div>
+
+    <!-- Next button -->
+    <div class="text-center">
+      <button class="game-btn game-btn-lg game-btn-success hidden" id="next-btn">Next Round</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== END SCREEN ===== -->
+<div id="end-screen" class="game-card">
+  <h2 id="end-title">Game Over!</h2>
+  <div class="final-scores" id="final-scores"></div>
+  <div class="btn-row gap-md">
+    <button class="game-btn game-btn-lg game-btn-primary" id="play-again-btn">Play Again</button>
+    <button class="game-btn game-btn-lg game-btn-outline" id="end-menu-btn">Menu</button>
+  </div>
+</div>
+
+<!-- ===== DEMO OVERLAY ===== -->
+<div class="game-overlay demo-overlay hidden" id="demo-overlay">
+  <div class="game-modal demo-modal" id="demo-modal">
+    <h3>How to Play Fair Shares</h3>
+
+    <div class="demo-step">
+      <h4>Step 1: See the pile</h4>
+      <p>A pile of objects appears. For example, <strong>7 apples</strong>.</p>
+      <div class="demo-visual" id="demo-pile"></div>
+    </div>
+
+    <div class="demo-step">
+      <h4>Step 2: Deal into groups</h4>
+      <p>The objects are shared equally into <strong>3 groups</strong>, one at a time, like dealing cards.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:var(--font-size-sm);font-weight:600;color:var(--color-text-light);">Group 1</div>
+          <div class="demo-visual" id="demo-g1"></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:var(--font-size-sm);font-weight:600;color:var(--color-text-light);">Group 2</div>
+          <div class="demo-visual" id="demo-g2"></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:var(--font-size-sm);font-weight:600;color:var(--color-text-light);">Group 3</div>
+          <div class="demo-visual" id="demo-g3"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-step">
+      <h4>Step 3: Spot the remainder</h4>
+      <p>1 apple is left over -- it cannot be shared equally. It stays in the middle and glows!</p>
+      <div class="demo-visual">
+        <div class="obj obj-bg-0 remainder-glow" style="width:36px;height:36px;font-size:18px;">🍎</div>
+      </div>
+    </div>
+
+    <div class="demo-step">
+      <h4>Step 4: Write the answer</h4>
+      <p>The equation is: <strong>7 ÷ 3 = 2 remainder 1</strong></p>
+      <p>Type <strong>2</strong> for "Each group gets" and <strong>1</strong> for "Left over", then press <strong>Check</strong>.</p>
+    </div>
+
+    <button class="game-btn game-btn-lg game-btn-primary w-full mt-md" id="demo-close-btn">Got it!</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== CONSTANTS =====
+  const EMOJIS = ['🍎','⭐','💜','🔵','🍊','🌸','💚','🩵'];
+  const BG_CLASSES = ['obj-bg-0','obj-bg-1','obj-bg-2','obj-bg-3','obj-bg-4','obj-bg-5','obj-bg-6','obj-bg-7'];
+  const DIFFICULTY = {
+    easy:   { minTotal: 1, maxTotal: 12, minGroups: 2, maxGroups: 4, label: 'Totals 1-12, groups of 2-4' },
+    medium: { minTotal: 1, maxTotal: 30, minGroups: 2, maxGroups: 6, label: 'Totals 1-30, groups of 2-6' },
+    hard:   { minTotal: 1, maxTotal: 50, minGroups: 2, maxGroups: 10, label: 'Totals 1-50, groups of 2-10' }
+  };
+  const MAX_2P_ROUNDS = 20;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DEAL_DELAY = prefersReducedMotion ? 50 : 350;
+
+  // ===== STATE =====
+  let state = {
+    difficulty: 'easy',
+    players: 1,
+    round: 0,
+    maxRounds: 10,
+    scores: [0, 0],
+    currentPlayer: 0,       // 0 or 1
+    total: 0,
+    groups: 0,
+    quotient: 0,
+    remainder: 0,
+    emoji: '🍎',
+    bgClass: 'obj-bg-0',
+    muted: false,
+    dealing: false,
+    dealTimers: [],            // track pending deal timeouts
+    winScore: 5               // 2-player: first to 5
+  };
+
+  // ===== DOM REFS =====
+  const $ = id => document.getElementById(id);
+  const menuScreen    = $('menu-screen');
+  const playScreen    = $('play-screen');
+  const endScreen     = $('end-screen');
+  const muteBtn       = $('mute-btn');
+  const backBtn       = $('back-to-menu-btn');
+  const startBtn      = $('start-btn');
+  const demoBtn       = $('demo-btn');
+  const diffDesc      = $('diff-desc');
+  const scoreBar      = $('score-bar');
+  const roundLabel    = $('round-label');
+  const p1Score       = $('p1-score');
+  const p2Score       = $('p2-score');
+  const turnIndicator = $('turn-indicator');
+  const questionText  = $('question-text');
+  const pileArea      = $('pile-area');
+  function getPileLabel() { return document.getElementById('pile-label'); }
+  const groupsCont    = $('groups-container');
+  const eqDisplay     = $('equation-display');
+  const answerArea    = $('answer-area');
+  const ansQuotient   = $('answer-quotient');
+  const ansRemainder  = $('answer-remainder');
+  const checkBtn      = $('check-btn');
+  const feedback      = $('feedback');
+  const nextBtn       = $('next-btn');
+  const endTitle      = $('end-title');
+  const finalScores   = $('final-scores');
+  const playAgainBtn  = $('play-again-btn');
+  const endMenuBtn    = $('end-menu-btn');
+  const demoOverlay   = $('demo-overlay');
+  const demoCloseBtn  = $('demo-close-btn');
+
+  // ===== SPEECH =====
+  function speak(text) {
+    if (state.muted || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.9; u.pitch = 1.1;
+    window.speechSynthesis.speak(u);
+  }
+
+  // ===== MUTE TOGGLE =====
+  muteBtn.addEventListener('click', () => {
+    state.muted = !state.muted;
+    muteBtn.textContent = state.muted ? '🔇' : '🔊';
+    muteBtn.setAttribute('aria-label', state.muted ? 'Unmute sound' : 'Mute sound');
+    if (state.muted) window.speechSynthesis.cancel();
+  });
+
+  // ===== UTILITY =====
+  function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+  function showScreen(screen) {
+    menuScreen.style.display = 'none';
+    playScreen.style.display = 'none';
+    endScreen.style.display = 'none';
+    if (screen === 'menu') menuScreen.style.display = '';
+    else if (screen === 'play') playScreen.style.display = '';
+    else if (screen === 'end') endScreen.style.display = '';
+  }
+
+  // ===== MENU LOGIC =====
+  document.querySelectorAll('.diff-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      state.difficulty = btn.dataset.diff;
+      diffDesc.textContent = DIFFICULTY[state.difficulty].label;
+    });
+  });
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      state.players = parseInt(btn.dataset.mode);
+    });
+  });
+
+  backBtn.addEventListener('click', () => { clearDealTimers(); showScreen('menu'); });
+
+  // ===== DEMO =====
+  demoBtn.addEventListener('click', openDemo);
+  function closeDemo() { clearDemoTimers(); demoOverlay.classList.add('hidden'); }
+  demoCloseBtn.addEventListener('click', closeDemo);
+  demoOverlay.addEventListener('click', (e) => { if (e.target === demoOverlay) closeDemo(); });
+
+  let demoTimers = [];
+  function clearDemoTimers() {
+    demoTimers.forEach(t => clearTimeout(t));
+    demoTimers = [];
+  }
+
+  function openDemo() {
+    clearDemoTimers();
+    demoOverlay.classList.remove('hidden');
+    const demoTotal = 7, demoGroups = 3, demoQuotient = 2, demoRemainder = 1;
+    const demoEmoji = '🍎';
+
+    // Reset demo visuals
+    const dp = $('demo-pile');
+    dp.innerHTML = '';
+    const demoGroupIds = ['demo-g1','demo-g2','demo-g3'];
+    demoGroupIds.forEach(id => { $(id).innerHTML = ''; });
+
+    // Populate pile
+    const demoObjs = [];
+    for (let i = 0; i < demoTotal; i++) {
+      const d = document.createElement('div');
+      d.className = 'obj obj-bg-0';
+      d.style.width = '36px'; d.style.height = '36px'; d.style.fontSize = '18px';
+      d.textContent = demoEmoji;
+      dp.appendChild(d);
+      demoObjs.push(d);
+    }
+
+    // Animate dealing after a brief pause
+    const toDeal = demoTotal - demoRemainder;
+    let dealt = 0;
+    let groupIdx = 0;
+    const demoDelay = prefersReducedMotion ? 80 : 400;
+
+    function dealDemoNext() {
+      if (dealt >= toDeal) {
+        // Highlight remainder
+        for (let i = toDeal; i < demoTotal; i++) {
+          demoObjs[i].classList.add('remainder-glow');
+        }
+        return;
+      }
+      const obj = demoObjs[dealt];
+      obj.style.opacity = '0';
+      obj.style.transform = 'scale(0.5)';
+
+      const target = $(demoGroupIds[groupIdx]);
+      const landed = document.createElement('div');
+      landed.className = 'obj obj-bg-0';
+      landed.style.width = '36px'; landed.style.height = '36px'; landed.style.fontSize = '18px';
+      landed.textContent = demoEmoji;
+      landed.style.transform = 'scale(0)';
+      target.appendChild(landed);
+      requestAnimationFrame(() => { landed.style.transform = 'scale(1)'; });
+
+      dealt++;
+      groupIdx = (groupIdx + 1) % demoGroups;
+      const tid = setTimeout(dealDemoNext, demoDelay);
+      demoTimers.push(tid);
+    }
+
+    const startTid = setTimeout(dealDemoNext, 600);
+    demoTimers.push(startTid);
+  }
+
+
+  // ===== START GAME =====
+  startBtn.addEventListener('click', startGame);
+  playAgainBtn.addEventListener('click', startGame);
+  endMenuBtn.addEventListener('click', () => { showScreen('menu'); });
+
+  function startGame() {
+    state.round = 0;
+    state.scores = [0, 0];
+    state.currentPlayer = 0;
+    showScreen('play');
+    updateScoreBar();
+    nextRound();
+  }
+
+  // ===== SCORE BAR =====
+  function updateScoreBar() {
+    const is2P = state.players === 2;
+    if (is2P) {
+      roundLabel.textContent = `Round ${state.round + 1}`;
+      p1Score.textContent = `P1: ${state.scores[0]}`;
+      p2Score.textContent = `P2: ${state.scores[1]}`;
+      p2Score.classList.remove('hidden');
+      turnIndicator.textContent = `Player ${state.currentPlayer + 1}'s turn`;
+      turnIndicator.classList.remove('hidden');
+    } else {
+      roundLabel.textContent = `Round ${state.round + 1} / ${state.maxRounds}`;
+      p1Score.textContent = `Score: ${state.scores[0]}`;
+      p2Score.classList.add('hidden');
+      turnIndicator.classList.add('hidden');
+    }
+  }
+
+  // ===== PASS DEVICE PROMPT (2-player) =====
+  function showPassPrompt(playerNum, callback) {
+    const overlay = document.createElement('div');
+    overlay.className = 'pass-overlay';
+    overlay.innerHTML = `
+      <h2>Pass to Player ${playerNum}!</h2>
+      <button class="game-btn game-btn-lg game-btn-primary" id="pass-ready-btn">Ready</button>
+    `;
+    document.body.appendChild(overlay);
+    overlay.querySelector('#pass-ready-btn').addEventListener('click', () => {
+      overlay.remove();
+      callback();
+    });
+  }
+
+  // ===== NEXT ROUND =====
+  function nextRound() {
+    // Check end conditions
+    if (state.players === 1 && state.round >= state.maxRounds) {
+      endGame(); return;
+    }
+    if (state.players === 2 && (state.scores[0] >= state.winScore || state.scores[1] >= state.winScore)) {
+      endGame(); return;
+    }
+    // 2-player round cap
+    if (state.players === 2 && state.round >= MAX_2P_ROUNDS) {
+      endGame(); return;
+    }
+
+    state.dealing = false;
+    clearDealTimers();
+    updateScoreBar();
+
+    // Clear UI
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+    eqDisplay.classList.add('hidden');
+    answerArea.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+    pileArea.classList.remove('remainder-mode');
+    getPileLabel().textContent = 'Pile';
+
+    // Generate question
+    const diff = DIFFICULTY[state.difficulty];
+    state.groups = randInt(diff.minGroups, diff.maxGroups);
+    state.total = randInt(Math.max(diff.minTotal, state.groups), diff.maxTotal);
+    state.quotient = Math.floor(state.total / state.groups);
+    state.remainder = state.total % state.groups;
+
+    // Pick random emoji + colour
+    const ei = randInt(0, EMOJIS.length - 1);
+    state.emoji = EMOJIS[ei];
+    state.bgClass = BG_CLASSES[ei];
+
+    // Show question
+    const qText = `Share ${state.total} object${state.total !== 1 ? 's' : ''} into ${state.groups} groups`;
+    questionText.textContent = qText;
+    speak(qText);
+
+    // Render pile
+    renderPile();
+
+    // Render group plates
+    renderGroups();
+
+    // Start dealing animation after a short pause
+    setTimeout(() => dealObjects(), 800);
+  }
+
+  // ===== RENDER PILE =====
+  function renderPile() {
+    // Keep the label
+    pileArea.innerHTML = '';
+    const lbl = document.createElement('span');
+    lbl.className = 'pile-label';
+    lbl.id = 'pile-label';
+    lbl.textContent = 'Pile';
+    pileArea.appendChild(lbl);
+
+    for (let i = 0; i < state.total; i++) {
+      const o = document.createElement('div');
+      o.className = `obj ${state.bgClass}`;
+      o.textContent = state.emoji;
+      o.dataset.index = i;
+      pileArea.appendChild(o);
+    }
+  }
+
+  // ===== RENDER GROUPS =====
+  function renderGroups() {
+    groupsCont.innerHTML = '';
+    for (let g = 0; g < state.groups; g++) {
+      const plate = document.createElement('div');
+      plate.className = 'group-plate';
+      plate.innerHTML = `
+        <div class="group-label">Group ${g + 1}</div>
+        <div class="group-objects" id="group-${g}"></div>
+        <div class="group-count" id="group-count-${g}">0</div>
+      `;
+      groupsCont.appendChild(plate);
+    }
+  }
+
+  // ===== DEAL ANIMATION =====
+  function clearDealTimers() {
+    state.dealTimers.forEach(t => clearTimeout(t));
+    state.dealTimers = [];
+  }
+
+  function skipDealing() {
+    clearDealTimers();
+    // Remove any in-flight flyer elements
+    document.querySelectorAll('.obj.dealing').forEach(f => f.remove());
+    // Remove skip button
+    const skipBtn = pileArea.querySelector('.skip-deal-btn');
+    if (skipBtn) skipBtn.remove();
+
+    // Distribute all remaining objects directly into groups
+    const toDeal = state.total - state.remainder;
+    for (let g = 0; g < state.groups; g++) {
+      const targetGroupEl = document.getElementById(`group-${g}`);
+      const countEl = document.getElementById(`group-count-${g}`);
+      // Clear existing objects in group to rebuild
+      targetGroupEl.innerHTML = '';
+      for (let i = 0; i < state.quotient; i++) {
+        const landed = document.createElement('div');
+        landed.className = `obj ${state.bgClass}`;
+        landed.textContent = state.emoji;
+        targetGroupEl.appendChild(landed);
+      }
+      countEl.textContent = state.quotient;
+    }
+    // Hide all pile objects
+    pileArea.querySelectorAll('.obj').forEach(o => o.style.display = 'none');
+
+    finishDealing();
+  }
+
+  function dealObjects() {
+    state.dealing = true;
+    clearDealTimers();
+    const pileObjs = Array.from(pileArea.querySelectorAll('.obj'));
+    if (pileObjs.length === 0) {
+      finishDealing(); return;
+    }
+
+    // Show skip button
+    const skipBtn = document.createElement('button');
+    skipBtn.className = 'skip-deal-btn';
+    skipBtn.textContent = 'Skip';
+    skipBtn.addEventListener('click', skipDealing);
+    pileArea.appendChild(skipBtn);
+
+    // Number of objects that will be dealt (not remainder)
+    const toDeal = state.total - state.remainder;
+    let dealt = 0;
+    let groupIndex = 0;
+
+    function dealNext() {
+      if (dealt >= toDeal) {
+        // Remove skip button
+        const sb = pileArea.querySelector('.skip-deal-btn');
+        if (sb) sb.remove();
+        finishDealing(); return;
+      }
+
+      const obj = pileObjs[dealt];
+      if (!obj) {
+        const sb = pileArea.querySelector('.skip-deal-btn');
+        if (sb) sb.remove();
+        finishDealing(); return;
+      }
+
+      const targetGroupEl = document.getElementById(`group-${groupIndex}`);
+      const countEl = document.getElementById(`group-count-${groupIndex}`);
+
+      // Get positions for animation
+      const objRect = obj.getBoundingClientRect();
+      const targetRect = targetGroupEl.getBoundingClientRect();
+
+      // Start position
+      const startX = objRect.left;
+      const startY = objRect.top;
+
+      // Target position (center of group)
+      const endX = targetRect.left + targetRect.width / 2 - 22;
+      const endY = targetRect.top + targetRect.height / 2 - 22;
+
+      // Remove from pile and create a flying clone
+      obj.style.display = 'none';
+
+      const flyer = document.createElement('div');
+      flyer.className = `obj ${state.bgClass} dealing`;
+      flyer.textContent = state.emoji;
+      flyer.style.left = startX + 'px';
+      flyer.style.top = startY + 'px';
+      document.body.appendChild(flyer);
+
+      // Trigger reflow then animate
+      flyer.offsetHeight;
+      flyer.style.left = endX + 'px';
+      flyer.style.top = endY + 'px';
+
+      const timerId = setTimeout(() => {
+        // Remove flyer, add to group
+        flyer.remove();
+        const landed = document.createElement('div');
+        landed.className = `obj ${state.bgClass}`;
+        landed.textContent = state.emoji;
+        landed.style.transform = 'scale(0)';
+        targetGroupEl.appendChild(landed);
+        // pop in
+        requestAnimationFrame(() => { landed.style.transform = 'scale(1)'; });
+
+        // Update count
+        const currentCount = targetGroupEl.querySelectorAll('.obj').length;
+        countEl.textContent = currentCount;
+
+        dealt++;
+        groupIndex = (groupIndex + 1) % state.groups;
+        dealNext();
+      }, DEAL_DELAY);
+      state.dealTimers.push(timerId);
+    }
+
+    dealNext();
+  }
+
+  function finishDealing() {
+    state.dealing = false;
+
+    // Clear pile, re-add label
+    pileArea.innerHTML = '';
+    const lbl = document.createElement('span');
+    lbl.className = 'pile-label';
+    lbl.id = 'pile-label';
+    pileArea.appendChild(lbl);
+
+    if (state.remainder > 0) {
+      pileArea.classList.add('remainder-mode');
+      lbl.textContent = `Remainder: ${state.remainder}`;
+
+      for (let i = 0; i < state.remainder; i++) {
+        const o = document.createElement('div');
+        o.className = `obj ${state.bgClass} remainder-glow`;
+        o.textContent = state.emoji;
+        pileArea.appendChild(o);
+      }
+    } else {
+      lbl.textContent = 'No remainder!';
+      pileArea.classList.remove('remainder-mode');
+    }
+
+    // Show equation
+    showEquation();
+
+    // Show answer inputs
+    answerArea.classList.remove('hidden');
+    ansQuotient.value = '';
+    ansRemainder.value = '';
+    ansQuotient.focus();
+    checkBtn.disabled = false;
+
+    speak(`How many in each group, and how many left over?`);
+  }
+
+  function showEquation() {
+    let html = `<span class="eq-main">${state.total} ÷ ${state.groups} = ?</span>`;
+    eqDisplay.innerHTML = html;
+    eqDisplay.classList.remove('hidden');
+  }
+
+  function showFullEquation() {
+    let html = `<span class="eq-main">${state.total} ÷ ${state.groups} = ${state.quotient}</span>`;
+    if (state.remainder > 0) {
+      html += ` <span class="eq-rem">remainder ${state.remainder}</span>`;
+    }
+    eqDisplay.innerHTML = html;
+  }
+
+  // ===== CHECK ANSWER =====
+  checkBtn.addEventListener('click', checkAnswer);
+
+  ansQuotient.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); ansRemainder.focus(); }
+  });
+  ansRemainder.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); checkAnswer(); }
+  });
+
+  function checkAnswer() {
+    if (state.dealing) return;
+
+    const q = parseInt(ansQuotient.value);
+    const r = parseInt(ansRemainder.value);
+
+    if (isNaN(q) || isNaN(r)) {
+      feedback.textContent = 'Please enter both numbers.';
+      feedback.className = 'feedback incorrect';
+      speak('Please enter both numbers.');
+      return;
+    }
+
+    checkBtn.disabled = true;
+    answerArea.classList.add('hidden');
+
+    if (q === state.quotient && r === state.remainder) {
+      // Correct
+      feedback.textContent = 'Correct! Well done!';
+      feedback.className = 'feedback correct';
+      state.scores[state.currentPlayer]++;
+      speak('Correct! Well done!');
+    } else {
+      // Incorrect
+      const correctText = `${state.quotient} in each group, ${state.remainder} left over`;
+      feedback.textContent = `Not quite. The answer is ${correctText}.`;
+      feedback.className = 'feedback incorrect';
+      speak(`Not quite. The answer is ${state.quotient} in each group, and ${state.remainder} left over.`);
+    }
+
+    showFullEquation();
+    updateScoreBar();
+
+    // Check if 2-player game ends (win score or round cap)
+    if (state.players === 2 && (state.scores[0] >= state.winScore || state.scores[1] >= state.winScore)) {
+      setTimeout(() => endGame(), 2000);
+      return;
+    }
+
+    // Advance round / player
+    if (state.players === 2) {
+      state.currentPlayer = state.currentPlayer === 0 ? 1 : 0;
+      state.round++;
+    } else {
+      state.round++;
+    }
+
+    // Check 2-player round cap
+    if (state.players === 2 && state.round >= MAX_2P_ROUNDS) {
+      setTimeout(() => endGame(), 2000);
+      return;
+    }
+
+    // Check 1-player end
+    if (state.players === 1 && state.round >= state.maxRounds) {
+      setTimeout(() => endGame(), 2000);
+      return;
+    }
+
+    nextBtn.classList.remove('hidden');
+    nextBtn.focus();
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (state.players === 2) {
+      nextBtn.classList.add('hidden');
+      showPassPrompt(state.currentPlayer + 1, () => { nextRound(); });
+    } else {
+      nextRound();
+    }
+  });
+
+  // Fix #8: Enter key support for Next Round button
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !nextBtn.classList.contains('hidden')) {
+      e.preventDefault();
+      nextBtn.click();
+    }
+  });
+
+  // ===== END GAME =====
+  function endGame() {
+    showScreen('end');
+
+    if (state.players === 1) {
+      endTitle.textContent = 'Game Over!';
+      finalScores.innerHTML = `<p>You scored <strong>${state.scores[0]}</strong> out of <strong>${state.maxRounds}</strong>!</p>`;
+      const pct = Math.round(state.scores[0] / state.maxRounds * 100);
+      let msg = '';
+      if (pct === 100) msg = 'Perfect score! Amazing!';
+      else if (pct >= 80) msg = 'Great job!';
+      else if (pct >= 50) msg = 'Good effort! Keep practising!';
+      else msg = 'Keep trying, you will get better!';
+      finalScores.innerHTML += `<p style="margin-top:var(--spacing-sm);color:var(--color-text-light);">${msg}</p>`;
+      speak(`Game over. You scored ${state.scores[0]} out of ${state.maxRounds}. ${msg}`);
+    } else {
+      const s0 = state.scores[0], s1 = state.scores[1];
+      const scoresHtml = `<p>Player 1: <strong>${s0}</strong> &nbsp; Player 2: <strong>${s1}</strong></p>`;
+      if (s0 === s1) {
+        endTitle.textContent = "It's a Draw!";
+        finalScores.innerHTML = scoresHtml;
+        speak("It's a draw!");
+      } else {
+        const winner = s0 > s1 ? 1 : 2;
+        endTitle.textContent = `Player ${winner} Wins!`;
+        finalScores.innerHTML = scoresHtml;
+        speak(`Player ${winner} wins! Congratulations!`);
+      }
+    }
+  }
+
+  // ===== INIT =====
+  showScreen('menu');
+
+})();
+</script>
+</body>
+</html>

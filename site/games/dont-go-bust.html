@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don't Go Bust! - Maths Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Design System Tokens ========== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea {
+  font-size: max(var(--font-size-min), 1em);
+}
+
+/* ========== SR Only ========== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========== Game Header ========== */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg);
+  border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+.game-header h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ========== Game Card ========== */
+.game-card {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md);
+}
+.game-card-sm {
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+
+/* ========== Buttons ========== */
+.game-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-btn);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.game-btn:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-active);
+}
+.game-btn:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+}
+.game-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.game-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+.game-btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  border-width: 2px;
+  border-radius: var(--radius-md);
+}
+.game-btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-xl);
+  border-radius: var(--radius-xl);
+}
+
+/* ========== Info Bar ========== */
+.info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+/* ========== Message Area ========== */
+.message-area {
+  text-align: center;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  min-height: 2.5em;
+}
+
+/* ========== Modal / Overlay ========== */
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--spacing-md);
+}
+.game-modal {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-xl);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+/* ========== Utility ========== */
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.w-full { width: 100%; }
+.hidden { display: none !important; }
+.sketch-text { font-family: var(--font-sketch); }
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Game-Specific Styles ========== */
+
+/* Screen management */
+.screen { display: none; }
+.screen.active { display: flex; flex-direction: column; }
+
+/* Die */
+.die-display {
+  width: 96px;
+  height: 96px;
+  background: var(--color-white);
+  border: 4px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal);
+  position: relative;
+}
+.die-display.rolling {
+  animation: dieRoll 0.12s infinite alternate;
+}
+@keyframes dieRoll {
+  0% { transform: rotate(-8deg) scale(1.05); }
+  100% { transform: rotate(8deg) scale(0.95); }
+}
+@keyframes dieLand {
+  0% { transform: scale(1.2) rotate(5deg); }
+  50% { transform: scale(0.95) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+.die-display.landed {
+  animation: dieLand 0.3s ease-out forwards;
+}
+
+/* Coins */
+.coin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 2px solid;
+  animation: coinPop 0.3s ease-out;
+}
+.coin-10p {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(145deg, #d1d5db, #9ca3af);
+  border-color: #6b7280;
+  color: #1f2937;
+  font-size: var(--font-size-sm);
+}
+.coin-1p {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(145deg, #f59e0b, #d97706);
+  border-color: #b45309;
+  color: #78350f;
+  font-size: 0.75rem;
+}
+@keyframes coinPop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Coin tray */
+.coin-tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  min-height: 52px;
+  align-items: center;
+}
+
+/* Exchange animation */
+@keyframes exchangeFlash {
+  0% { background: var(--color-white); }
+  25% { background: #bbf7d0; }
+  50% { background: var(--color-white); }
+  75% { background: #bbf7d0; }
+  100% { background: var(--color-white); }
+}
+.exchange-flash {
+  animation: exchangeFlash 0.8s ease;
+}
+
+/* Move history */
+.history-panel {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: var(--font-size-sm);
+}
+.history-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--color-bg-dark);
+}
+.history-row:last-child { border-bottom: none; }
+
+/* Player toggle */
+.player-toggle {
+  display: flex;
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.player-toggle button {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  background: var(--color-white);
+  color: var(--color-text-light);
+}
+.player-toggle button.selected {
+  background: var(--color-purple);
+  color: var(--color-white);
+}
+.player-toggle button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+}
+
+/* Game layout */
+.game-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+}
+@media (min-width: 768px) and (orientation: landscape) {
+  .game-layout {
+    flex-direction: row;
+    overflow: hidden;
+  }
+  .game-col-controls {
+    width: 320px;
+    flex-shrink: 0;
+    overflow-y: auto;
+  }
+  .game-col-coins {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
+
+.choice-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+/* Menu screen */
+.menu-screen {
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-lg);
+  gap: var(--spacing-lg);
+}
+.menu-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-white);
+  background: var(--color-purple);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  border: 3px solid var(--color-black);
+  box-shadow: var(--shadow-card);
+  transform: rotate(-2deg);
+  text-align: center;
+}
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Summary */
+.summary-screen {
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-lg);
+  gap: var(--spacing-lg);
+}
+.result-badge {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  border: 3px solid var(--color-black);
+  box-shadow: var(--shadow-card);
+}
+
+/* 2-player tab bar */
+.player-tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--color-black);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  overflow: hidden;
+}
+.player-tab {
+  flex: 1;
+  padding: var(--spacing-sm);
+  border: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  background: var(--color-bg-dark);
+  color: var(--color-text-light);
+  transition: background var(--transition-fast);
+}
+.player-tab.active {
+  background: var(--color-white);
+  color: var(--color-text);
+}
+.player-tab:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+}
+
+/* Mute button */
+.mute-btn {
+  background: var(--color-success);
+  color: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+.mute-btn.muted {
+  background: var(--color-danger);
+}
+.mute-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Progress bar */
+.progress-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-black);
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal);
+}
+
+/* Demo overlay tooltip */
+.demo-tooltip {
+  background: #fef3c7;
+  border: 3px solid var(--color-warning-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-card);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .game-header h1 { font-size: var(--font-size-2xl); }
+}
+@media (min-width: 900px) {
+  .game-card { margin: var(--spacing-lg); padding: var(--spacing-xl); }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== MENU SCREEN ==================== -->
+<div id="menu-screen" class="screen active menu-screen">
+  <div style="position:absolute;top:var(--spacing-sm);right:var(--spacing-sm);">
+    <button id="menu-mute-btn" class="mute-btn" aria-label="Mute audio" title="Mute audio">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+    </button>
+  </div>
+
+  <h1 class="menu-title">Don't Go Bust!</h1>
+
+  <div class="game-card" style="max-width:600px;width:100%;text-align:left;">
+    <p style="font-size:var(--font-size-base);margin-bottom:var(--spacing-sm);">
+      <strong>How to play:</strong> Roll a 10-sided die (0-9) each round. Choose whether your number goes in the <strong>tens</strong> column (worth that many 10p coins) or the <strong>ones</strong> column (worth that many 1p coins).
+    </p>
+    <p style="font-size:var(--font-size-base);">
+      Get as close to the target as you can <strong>without going over</strong>. If 10 or more pennies pile up, they automatically exchange into 10p coins!
+    </p>
+  </div>
+
+  <div style="text-align:center;">
+    <h2 style="font-size:var(--font-size-xl);margin-bottom:var(--spacing-sm);">Choose Your Level</h2>
+    <div class="level-grid">
+      <button class="game-btn game-btn-lg game-btn-success w-full" data-level="1" onclick="startGame(1)">
+        50p<br><span style="font-size:var(--font-size-sm);font-weight:400;">5 Rolls</span>
+      </button>
+      <button class="game-btn game-btn-lg game-btn-primary w-full" data-level="2" onclick="startGame(2)">
+        100p<br><span style="font-size:var(--font-size-sm);font-weight:400;">7 Rolls</span>
+      </button>
+      <button class="game-btn game-btn-lg game-btn-danger w-full" data-level="3" onclick="startGame(3)">
+        200p<br><span style="font-size:var(--font-size-sm);font-weight:400;">10 Rolls</span>
+      </button>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:var(--spacing-md);">
+    <div>
+      <span style="font-weight:600;margin-right:var(--spacing-sm);">Players:</span>
+      <div class="player-toggle" style="display:inline-flex;">
+        <button id="p1-btn" class="selected" onclick="setPlayerCount(1)">1 Player</button>
+        <button id="p2-btn" onclick="setPlayerCount(2)">2 Players</button>
+      </div>
+    </div>
+
+    <button class="game-btn game-btn-warning" onclick="startDemo()">
+      Watch How to Play
+    </button>
+  </div>
+</div>
+
+<!-- ==================== GAME SCREEN ==================== -->
+<div id="game-screen" class="screen" style="min-height:100vh;">
+  <!-- Header -->
+  <header class="game-header">
+    <div style="display:flex;gap:var(--spacing-sm);align-items:center;">
+      <button class="game-btn game-btn-sm game-btn-outline" onclick="showMenu()">Menu</button>
+      <button class="game-btn game-btn-sm game-btn-outline" onclick="restartGame()">Restart</button>
+      <button id="game-mute-btn" class="mute-btn" aria-label="Mute audio" title="Mute audio">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+    </div>
+    <h1 id="game-title">Don't Go Bust!</h1>
+    <div id="round-display" style="font-weight:600;font-size:var(--font-size-base);" aria-live="polite">
+      Round 1/5
+    </div>
+  </header>
+
+  <!-- 2-player tabs (hidden in 1-player) -->
+  <div id="player-tabs" class="player-tabs hidden">
+    <button class="player-tab active" data-player="0" onclick="switchPlayer(0)">Player 1</button>
+    <button class="player-tab" data-player="1" onclick="switchPlayer(1)">Player 2</button>
+  </div>
+
+  <!-- Score bar -->
+  <div class="info-bar" style="margin:var(--spacing-sm) var(--spacing-sm) 0;">
+    <span id="score-display" aria-live="polite">Total: 0p</span>
+    <span>|</span>
+    <span id="target-display">Target: 50p</span>
+    <div class="progress-bar-bg" style="max-width:200px;">
+      <div id="progress-fill" class="progress-bar-fill" style="width:0%;background:var(--color-success);"></div>
+    </div>
+  </div>
+
+  <!-- Message area -->
+  <div id="message-area" class="message-area" aria-live="polite" role="status"></div>
+
+  <!-- Main game layout -->
+  <div class="game-layout">
+    <!-- Controls column -->
+    <div class="game-col-controls game-card" style="display:flex;flex-direction:column;align-items:center;gap:var(--spacing-md);">
+      <div id="phase-label" style="font-weight:600;font-size:var(--font-size-lg);text-align:center;">
+        Roll the die!
+      </div>
+
+      <button id="die-btn" class="die-display" onclick="onDieClick()" aria-label="Roll the die" title="Click to roll">
+        <span id="die-face">?</span>
+      </button>
+
+      <div id="choice-buttons" class="choice-buttons hidden">
+        <button id="btn-tens" class="game-btn game-btn-lg w-full" style="background:linear-gradient(145deg,#d1d5db,#9ca3af);color:#1f2937;" onclick="choosePlace('tens')">
+          <span id="tens-label">Place as 10p (= 0p)</span>
+        </button>
+        <button id="btn-ones" class="game-btn game-btn-lg w-full" style="background:linear-gradient(145deg,#f59e0b,#d97706);color:#78350f;" onclick="choosePlace('ones')">
+          <span id="ones-label">Place as 1p (= 0p)</span>
+        </button>
+      </div>
+
+      <!-- History panel -->
+      <div class="game-card-sm w-full mt-sm">
+        <h3 style="font-size:var(--font-size-base);font-weight:600;margin-bottom:var(--spacing-xs);">Move History</h3>
+        <div id="history-panel" class="history-panel" aria-label="Move history">
+          <div style="color:var(--color-text-light);font-size:var(--font-size-sm);">No moves yet.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coins column -->
+    <div class="game-col-coins game-card" id="coin-area" style="flex:1;">
+      <h3 style="font-size:var(--font-size-lg);font-weight:600;margin-bottom:var(--spacing-xs);">10p Coins</h3>
+      <div id="tens-tray" class="coin-tray" style="border:2px dashed #9ca3af;border-radius:var(--radius-md);margin-bottom:var(--spacing-md);background:#f9fafb;">
+        <span style="color:var(--color-text-light);font-size:var(--font-size-sm);">None yet</span>
+      </div>
+
+      <h3 style="font-size:var(--font-size-lg);font-weight:600;margin-bottom:var(--spacing-xs);">1p Coins</h3>
+      <div id="ones-tray" class="coin-tray" style="border:2px dashed #d97706;border-radius:var(--radius-md);background:#fffbeb;">
+        <span style="color:var(--color-text-light);font-size:var(--font-size-sm);">None yet</span>
+      </div>
+
+      <!-- Exchange message -->
+      <div id="exchange-msg" class="hidden" style="margin-top:var(--spacing-md);padding:var(--spacing-md);background:#dcfce7;border:2px solid var(--color-success);border-radius:var(--radius-md);font-weight:600;text-align:center;" aria-live="polite">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DEMO OVERLAY ==================== -->
+<div id="demo-overlay" class="game-overlay hidden">
+  <div class="game-modal" style="max-width:600px;">
+    <h2 style="font-size:var(--font-size-2xl);margin-bottom:var(--spacing-md);">How to Play</h2>
+    <div id="demo-content" style="min-height:120px;font-size:var(--font-size-lg);margin-bottom:var(--spacing-lg);"></div>
+    <div id="demo-visual" style="display:flex;justify-content:center;gap:var(--spacing-md);margin-bottom:var(--spacing-lg);flex-wrap:wrap;"></div>
+    <div style="display:flex;gap:var(--spacing-md);justify-content:center;flex-wrap:wrap;">
+      <button id="demo-prev" class="game-btn game-btn-outline" onclick="demoNav(-1)">Previous</button>
+      <button id="demo-next" class="game-btn game-btn-primary" onclick="demoNav(1)">Next</button>
+      <button id="demo-close" class="game-btn game-btn-danger" onclick="closeDemo()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SUMMARY SCREEN ==================== -->
+<div id="summary-screen" class="screen summary-screen">
+  <h2 style="font-size:var(--font-size-2xl);font-weight:700;">Game Over!</h2>
+
+  <!-- 2-player results container -->
+  <div id="summary-results"></div>
+
+  <div style="display:flex;gap:var(--spacing-md);flex-wrap:wrap;justify-content:center;">
+    <button class="game-btn game-btn-lg game-btn-purple" onclick="restartGame()">Play Again</button>
+    <button class="game-btn game-btn-lg game-btn-outline" onclick="showMenu()">Menu</button>
+  </div>
+</div>
+
+
+<script>
+/* ================================================================
+   Don't Go Bust! - Game Logic
+   ================================================================ */
+(function() {
+  'use strict';
+
+  // ---------- LEVEL CONFIG ----------
+  const LEVELS = {
+    1: { target: 50, rounds: 5, name: '50p' },
+    2: { target: 100, rounds: 7, name: '100p' },
+    3: { target: 200, rounds: 10, name: '200p' }
+  };
+
+  // ---------- STATE ----------
+  let state = {
+    screen: 'menu',      // menu | game | summary | demo
+    level: 2,
+    playerCount: 1,
+    currentPlayer: 0,    // 0 or 1
+    isMuted: false,
+    // Per-player state arrays (index 0 and 1)
+    players: [createPlayerState(), createPlayerState()],
+    // Timers for cleanup
+    timers: []
+  };
+
+  function createPlayerState() {
+    return {
+      round: 1,
+      tens: [],     // array of numbers (each entry = how many 10p coins from that roll)
+      ones: [],     // array of numbers
+      dieValue: null,
+      isRolling: false,
+      turnPhase: 'roll',  // roll | decide | waiting | zero-wait
+      history: [],  // { round, rolled, choice, value }
+      exchangeMessage: null,
+      finished: false
+    };
+  }
+
+  function ps() {
+    return state.players[state.currentPlayer];
+  }
+
+  // ---------- DOM REFS ----------
+  const $ = (id) => document.getElementById(id);
+
+  // ---------- TIMER MANAGEMENT ----------
+  function addTimer(fn, delay) {
+    const id = setTimeout(() => {
+      const idx = state.timers.indexOf(id);
+      if (idx > -1) state.timers.splice(idx, 1);
+      fn();
+    }, delay);
+    state.timers.push(id);
+    return id;
+  }
+  function clearAllTimers() {
+    state.timers.forEach(id => {
+      clearTimeout(id);
+      clearInterval(id);
+    });
+    state.timers = [];
+  }
+
+  // ---------- SPEECH ----------
+  function speak(text) {
+    if (state.isMuted) return;
+    if (!window.speechSynthesis) return;
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-GB';
+      u.rate = 0.9;
+      // Try to find an en-GB voice
+      const voices = window.speechSynthesis.getVoices();
+      const gbVoice = voices.find(v => v.lang === 'en-GB');
+      if (gbVoice) u.voice = gbVoice;
+      window.speechSynthesis.speak(u);
+    } catch (e) {
+      // Speech not available - degrade silently
+    }
+  }
+
+  function cancelSpeech() {
+    if (window.speechSynthesis) {
+      try { window.speechSynthesis.cancel(); } catch(e) {}
+    }
+  }
+
+  // ---------- MUTE TOGGLE ----------
+  function updateMuteButtons() {
+    const svgUnmuted = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
+    const svgMuted = '<path d="M11 5L6 9H2V15H6L11 19V5Z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
+
+    [$('menu-mute-btn'), $('game-mute-btn')].forEach(btn => {
+      if (!btn) return;
+      const svg = btn.querySelector('svg');
+      if (svg) svg.innerHTML = state.isMuted ? svgMuted : svgUnmuted;
+      btn.classList.toggle('muted', state.isMuted);
+      btn.setAttribute('aria-label', state.isMuted ? 'Unmute audio' : 'Mute audio');
+      btn.setAttribute('title', state.isMuted ? 'Unmute audio' : 'Mute audio');
+    });
+  }
+
+  function toggleMute() {
+    state.isMuted = !state.isMuted;
+    cancelSpeech();
+    updateMuteButtons();
+  }
+
+  // ---------- SCREEN MANAGEMENT ----------
+  function showScreen(name) {
+    clearAllTimers();
+    cancelSpeech();
+    state.screen = name;
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+
+    if (name === 'menu') {
+      $('menu-screen').classList.add('active');
+    } else if (name === 'game') {
+      $('game-screen').classList.add('active');
+      renderGame();
+    } else if (name === 'summary') {
+      $('summary-screen').classList.add('active');
+      renderSummary();
+    }
+  }
+
+  // ---------- MENU ----------
+  window.showMenu = function() {
+    showScreen('menu');
+  };
+
+  window.setPlayerCount = function(n) {
+    state.playerCount = n;
+    $('p1-btn').classList.toggle('selected', n === 1);
+    $('p2-btn').classList.toggle('selected', n === 2);
+  };
+
+  // ---------- START GAME ----------
+  window.startGame = function(level) {
+    state.level = level;
+    state.currentPlayer = 0;
+    state.players = [createPlayerState(), createPlayerState()];
+    showScreen('game');
+    speak("Let's play Don't Go Bust! Roll the die to start.");
+  };
+
+  window.restartGame = function() {
+    window.startGame(state.level);
+  };
+
+  // ---------- PLAYER SWITCHING (2 player) ----------
+  window.switchPlayer = function(idx) {
+    if (idx === state.currentPlayer) return;
+    // Prevent switching mid-turn (only allow when current player is in 'roll' phase or finished)
+    const cur = ps();
+    if (cur.turnPhase !== 'roll' && !cur.finished) return;
+    state.currentPlayer = idx;
+    renderGame();
+  };
+
+  // ---------- DIE ROLL ----------
+  window.onDieClick = function() {
+    const p = ps();
+    if (p.turnPhase !== 'roll' || p.isRolling) return;
+
+    p.isRolling = true;
+    p.exchangeMessage = null;
+    renderGame();
+
+    let count = 0;
+    const interval = setInterval(() => {
+      p.dieValue = Math.floor(Math.random() * 10);
+      renderDie();
+      count++;
+      if (count > 12) {
+        clearInterval(interval);
+        p.isRolling = false;
+        const finalRoll = Math.floor(Math.random() * 10);
+        p.dieValue = finalRoll;
+
+        // Zero-roll handling
+        if (finalRoll === 0) {
+          p.turnPhase = 'zero-wait';
+          renderGame();
+          setMessage("You rolled 0 - nothing to place! Roll again.");
+          speak("You rolled zero. Nothing to place. Roll again.");
+          addTimer(() => {
+            if (p.turnPhase === 'zero-wait') {
+              // Record in history
+              p.history.push({ round: p.round, rolled: 0, choice: 'skip', value: '0p' });
+              const cfg = LEVELS[state.level];
+              if (p.round >= cfg.rounds) {
+                p.finished = true;
+                checkAllFinished();
+              } else {
+                p.round++;
+                p.turnPhase = 'roll';
+                p.dieValue = null;
+                renderGame();
+              }
+            }
+          }, 2000);
+        } else {
+          p.turnPhase = 'decide';
+          renderGame();
+          speak("You rolled a " + finalRoll + ". Will you place it as " + finalRoll + " ten pence, worth " + (finalRoll * 10) + " pence, or as " + finalRoll + " one pence?");
+        }
+      }
+    }, 100);
+    state.timers.push(interval);
+  };
+
+  // ---------- CHOOSE PLACEMENT ----------
+  window.choosePlace = function(place) {
+    const p = ps();
+    if (p.turnPhase !== 'decide') return;
+    const cfg = LEVELS[state.level];
+    const val = p.dieValue;
+
+    if (place === 'tens') {
+      p.tens.push(val);
+      p.history.push({ round: p.round, rolled: val, choice: '10p', value: (val * 10) + 'p' });
+    } else {
+      p.ones.push(val);
+      p.history.push({ round: p.round, rolled: val, choice: '1p', value: val + 'p' });
+    }
+
+    // Check exchange: total ones >= 10
+    const totalOnes = p.ones.reduce((a, b) => a + b, 0);
+    if (totalOnes >= 10) {
+      const exchangedTens = Math.floor(totalOnes / 10);
+      const remainingOnes = totalOnes % 10;
+      p.tens.push(exchangedTens);
+      p.ones = remainingOnes > 0 ? [remainingOnes] : [];
+      p.exchangeMessage = "Exchange! " + totalOnes + " pennies became " + exchangedTens + " x 10p coin" + (exchangedTens > 1 ? "s" : "") + ".";
+      speak(p.exchangeMessage);
+    }
+
+    // Prevent double-submit: move out of 'decide' phase immediately
+    p.turnPhase = 'waiting';
+
+    // Check if round is final
+    if (p.round >= cfg.rounds) {
+      // Brief delay for exchange to show if needed
+      const delay = p.exchangeMessage ? 1500 : 0;
+      addTimer(() => {
+        p.finished = true;
+        checkAllFinished();
+      }, delay);
+      if (p.exchangeMessage) {
+        renderGame();
+        return;
+      }
+    } else {
+      // Brief delay for exchange animation
+      if (p.exchangeMessage) {
+        renderGame(); // show exchange message
+        addTimer(() => {
+          p.round++;
+          p.turnPhase = 'roll';
+          p.dieValue = null;
+          p.exchangeMessage = null;
+          renderGame();
+        }, 1500);
+        return;
+      }
+      p.round++;
+      p.turnPhase = 'roll';
+      p.dieValue = null;
+    }
+
+    renderGame();
+  };
+
+  // ---------- CHECK ALL FINISHED ----------
+  function checkAllFinished() {
+    if (state.playerCount === 1) {
+      showScreen('summary');
+      return;
+    }
+    // 2 player: check if both done
+    if (state.players[0].finished && state.players[1].finished) {
+      showScreen('summary');
+    } else {
+      // Switch to the other player
+      const next = state.currentPlayer === 0 ? 1 : 0;
+      if (!state.players[next].finished) {
+        state.currentPlayer = next;
+        renderGame();
+        speak("Player " + (next + 1) + ", it's your turn!");
+      } else {
+        showScreen('summary');
+      }
+    }
+  }
+
+  // ---------- SCORE CALCULATION ----------
+  function calcTotal(p) {
+    const sumTens = p.tens.reduce((a, b) => a + b, 0);
+    const sumOnes = p.ones.reduce((a, b) => a + b, 0);
+    return (sumTens * 10) + sumOnes;
+  }
+
+  function formatMoney(val) {
+    if (val < 100) return val + 'p';
+    const pounds = Math.floor(val / 100);
+    const pence = val % 100;
+    if (pence === 0) return '\u00A3' + pounds + '.00';
+    return '\u00A3' + pounds + '.' + String(pence).padStart(2, '0');
+  }
+
+  function getFeedback(total, target) {
+    const diff = Math.abs(target - total);
+    if (total === target) return "PERFECT SCORE! You hit the target exactly!";
+    if (total > target) return "Oh no! You went over " + formatMoney(target) + "! You went bust!";
+    if (diff <= 5) return "Incredible! So close to the target!";
+    if (diff <= 10) return "Fantastic! You were incredibly close!";
+    if (diff <= 20) return "Great job! A very close finish.";
+    return "Good try! Play again to beat that score.";
+  }
+
+  // ---------- SET MESSAGE ----------
+  function setMessage(text) {
+    $('message-area').textContent = text;
+  }
+
+  // ---------- RENDER GAME ----------
+  function renderGame() {
+    const p = ps();
+    const cfg = LEVELS[state.level];
+    const total = calcTotal(p);
+
+    // Title and round
+    $('game-title').textContent = "Don't Go Bust!";
+    $('round-display').textContent = 'Round ' + p.round + '/' + cfg.rounds;
+    $('target-display').textContent = 'Target: ' + formatMoney(cfg.target);
+
+    // Score
+    $('score-display').textContent = 'Total: ' + formatMoney(total);
+
+    // Progress bar
+    const pct = Math.min((total / cfg.target) * 100, 100);
+    const fill = $('progress-fill');
+    fill.style.width = pct + '%';
+    if (total > cfg.target) {
+      fill.style.background = 'var(--color-danger)';
+    } else if (pct > 80) {
+      fill.style.background = 'var(--color-warning)';
+    } else {
+      fill.style.background = 'var(--color-success)';
+    }
+
+    // Player tabs
+    if (state.playerCount === 2) {
+      $('player-tabs').classList.remove('hidden');
+      $('player-tabs').querySelectorAll('.player-tab').forEach((tab, i) => {
+        tab.classList.toggle('active', i === state.currentPlayer);
+        const pState = state.players[i];
+        tab.textContent = 'Player ' + (i + 1) + (pState.finished ? ' (Done)' : '');
+      });
+    } else {
+      $('player-tabs').classList.add('hidden');
+    }
+
+    // Phase label + message
+    if (p.turnPhase === 'roll') {
+      $('phase-label').textContent = 'Roll the die!';
+      setMessage('');
+    } else if (p.turnPhase === 'decide') {
+      $('phase-label').textContent = 'Where does it go?';
+    } else if (p.turnPhase === 'zero-wait') {
+      $('phase-label').textContent = 'Rolling again...';
+    } else if (p.turnPhase === 'waiting') {
+      $('phase-label').textContent = p.exchangeMessage ? 'Exchanging coins...' : 'Moving on...';
+    }
+
+    // Die
+    renderDie();
+    const dieBtn = $('die-btn');
+    dieBtn.disabled = p.turnPhase !== 'roll' || p.isRolling;
+
+    // Choice buttons
+    const choiceDiv = $('choice-buttons');
+    if (p.turnPhase === 'decide' && p.dieValue !== null && p.dieValue > 0) {
+      choiceDiv.classList.remove('hidden');
+      $('tens-label').textContent = 'Place as 10p (= ' + (p.dieValue * 10) + 'p)';
+      $('ones-label').textContent = 'Place as 1p (= ' + p.dieValue + 'p)';
+    } else {
+      choiceDiv.classList.add('hidden');
+    }
+
+    // Coin trays
+    renderCoins(p);
+
+    // Exchange message
+    const exMsg = $('exchange-msg');
+    if (p.exchangeMessage) {
+      exMsg.classList.remove('hidden');
+      exMsg.textContent = p.exchangeMessage;
+      $('coin-area').classList.add('exchange-flash');
+      addTimer(() => {
+        $('coin-area').classList.remove('exchange-flash');
+      }, 800);
+    } else {
+      exMsg.classList.add('hidden');
+      exMsg.textContent = '';
+    }
+
+    // History
+    renderHistory(p);
+  }
+
+  function renderDie() {
+    const p = ps();
+    const dieFace = $('die-face');
+    const dieBtn = $('die-btn');
+
+    if (p.isRolling) {
+      dieBtn.classList.add('rolling');
+      dieBtn.classList.remove('landed');
+      dieFace.textContent = p.dieValue !== null ? p.dieValue : '?';
+    } else if (p.dieValue !== null) {
+      dieBtn.classList.remove('rolling');
+      dieBtn.classList.add('landed');
+      dieFace.textContent = p.dieValue;
+      addTimer(() => dieBtn.classList.remove('landed'), 300);
+    } else {
+      dieBtn.classList.remove('rolling', 'landed');
+      dieFace.textContent = '?';
+    }
+  }
+
+  function renderCoins(p) {
+    // 10p tray
+    const tensTray = $('tens-tray');
+    const totalTens = p.tens.reduce((a, b) => a + b, 0);
+    const currentTensCoins = tensTray.querySelectorAll('.coin-10p').length;
+
+    if (totalTens === 0) {
+      tensTray.innerHTML = '<span style="color:var(--color-text-light);font-size:var(--font-size-sm);">None yet</span>';
+    } else if (currentTensCoins < totalTens) {
+      // Remove placeholder if present
+      const placeholder = tensTray.querySelector('span');
+      if (placeholder) placeholder.remove();
+      // Append only new coins
+      for (let i = currentTensCoins; i < totalTens; i++) {
+        const coin = document.createElement('div');
+        coin.className = 'coin coin-10p';
+        coin.setAttribute('aria-label', '10 pence coin');
+        coin.textContent = '10';
+        tensTray.appendChild(coin);
+      }
+    } else if (currentTensCoins > totalTens) {
+      // Coins decreased (exchange scenario) - rebuild
+      let html = '';
+      for (let i = 0; i < totalTens; i++) {
+        html += '<div class="coin coin-10p" aria-label="10 pence coin">10</div>';
+      }
+      tensTray.innerHTML = html;
+    }
+
+    // 1p tray
+    const onesTray = $('ones-tray');
+    const totalOnes = p.ones.reduce((a, b) => a + b, 0);
+    const currentOnesCoins = onesTray.querySelectorAll('.coin-1p').length;
+
+    if (totalOnes === 0) {
+      onesTray.innerHTML = '<span style="color:var(--color-text-light);font-size:var(--font-size-sm);">None yet</span>';
+    } else if (currentOnesCoins < totalOnes) {
+      // Remove placeholder if present
+      const placeholder = onesTray.querySelector('span');
+      if (placeholder) placeholder.remove();
+      // Append only new coins
+      for (let i = currentOnesCoins; i < totalOnes; i++) {
+        const coin = document.createElement('div');
+        coin.className = 'coin coin-1p';
+        coin.setAttribute('aria-label', '1 penny coin');
+        coin.textContent = '1';
+        onesTray.appendChild(coin);
+      }
+    } else if (currentOnesCoins > totalOnes) {
+      // Coins decreased (after exchange) - rebuild
+      let html = '';
+      for (let i = 0; i < totalOnes; i++) {
+        html += '<div class="coin coin-1p" aria-label="1 penny coin">1</div>';
+      }
+      onesTray.innerHTML = html;
+    }
+  }
+
+  function renderHistory(p) {
+    const panel = $('history-panel');
+    if (p.history.length === 0) {
+      panel.innerHTML = '<div style="color:var(--color-text-light);font-size:var(--font-size-sm);">No moves yet.</div>';
+      return;
+    }
+    let html = '';
+    for (let i = 0; i < p.history.length; i++) {
+      const h = p.history[i];
+      const choiceText = h.choice === 'skip' ? 'Skipped (0)' : ('Placed as ' + h.choice);
+      html += '<div class="history-row">';
+      html += '<span>R' + h.round + ': rolled <strong>' + h.rolled + '</strong></span>';
+      html += '<span>' + choiceText + ' = ' + h.value + '</span>';
+      html += '</div>';
+    }
+    panel.innerHTML = html;
+    // Scroll to bottom
+    panel.scrollTop = panel.scrollHeight;
+  }
+
+  // ---------- RENDER SUMMARY ----------
+  function renderSummary() {
+    const cfg = LEVELS[state.level];
+    let html = '';
+
+    for (let i = 0; i < state.playerCount; i++) {
+      const p = state.players[i];
+      const total = calcTotal(p);
+      const diff = Math.abs(cfg.target - total);
+      const bust = total > cfg.target;
+      const perfect = total === cfg.target;
+
+      const badgeColor = perfect ? 'var(--color-success)' :
+                         bust ? 'var(--color-danger)' :
+                         'var(--color-primary)';
+
+      if (state.playerCount === 2) {
+        html += '<h3 style="font-size:var(--font-size-xl);font-weight:600;margin-top:var(--spacing-md);">Player ' + (i + 1) + '</h3>';
+      }
+
+      html += '<div class="game-card" style="max-width:400px;width:100%;text-align:center;">';
+      html += '<div class="result-badge" style="background:' + badgeColor + ';color:var(--color-white);display:inline-block;margin-bottom:var(--spacing-md);">';
+      html += formatMoney(total);
+      html += '</div>';
+      html += '<p style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-sm);">Target: ' + formatMoney(cfg.target) + '</p>';
+      if (!bust && !perfect) {
+        html += '<p style="font-size:var(--font-size-base);">You were ' + diff + 'p away.</p>';
+      }
+      html += '<p style="font-size:var(--font-size-lg);font-weight:600;margin-top:var(--spacing-sm);">' + getFeedback(total, cfg.target) + '</p>';
+
+      // Show coin summary
+      const totalTens = p.tens.reduce((a, b) => a + b, 0);
+      const totalOnes = p.ones.reduce((a, b) => a + b, 0);
+      html += '<div style="margin-top:var(--spacing-md);display:flex;justify-content:center;gap:var(--spacing-lg);flex-wrap:wrap;">';
+      html += '<div><strong>' + totalTens + '</strong> x 10p = ' + (totalTens * 10) + 'p</div>';
+      html += '<div><strong>' + totalOnes + '</strong> x 1p = ' + totalOnes + 'p</div>';
+      html += '</div>';
+
+      html += '</div>';
+    }
+
+    // 2-player winner
+    if (state.playerCount === 2) {
+      const t0 = calcTotal(state.players[0]);
+      const t1 = calcTotal(state.players[1]);
+      const target = cfg.target;
+      // Bust = over target = bad. Closest without going over wins.
+      const d0 = t0 > target ? Infinity : target - t0;
+      const d1 = t1 > target ? Infinity : target - t1;
+
+      let winnerText = '';
+      if (d0 === d1) {
+        winnerText = "It's a tie!";
+      } else if (d0 < d1) {
+        winnerText = 'Player 1 wins!';
+      } else {
+        winnerText = 'Player 2 wins!';
+      }
+      html += '<div style="margin-top:var(--spacing-lg);font-size:var(--font-size-2xl);font-weight:700;">' + winnerText + '</div>';
+    }
+
+    $('summary-results').innerHTML = html;
+
+    // Speech
+    const p0 = state.players[0];
+    const total = calcTotal(p0);
+    if (state.playerCount === 1) {
+      speak(getFeedback(total, cfg.target) + " You scored " + formatMoney(total) + ".");
+    } else {
+      const t0 = calcTotal(state.players[0]);
+      const t1 = calcTotal(state.players[1]);
+      const target = cfg.target;
+      const d0 = t0 > target ? Infinity : target - t0;
+      const d1 = t1 > target ? Infinity : target - t1;
+      if (d0 === d1) {
+        speak("It's a draw! Both players scored equally.");
+      } else if (d0 < d1) {
+        speak("Player 1 wins with " + formatMoney(t0) + "!");
+      } else {
+        speak("Player 2 wins with " + formatMoney(t1) + "!");
+      }
+    }
+  }
+
+  // ---------- DEMO MODE ----------
+  let demoStep = 0;
+  const DEMO_STEPS = [
+    {
+      text: "Welcome to Don't Go Bust! The goal is to get as close to a target amount as possible, without going over it.",
+      visual: ''
+    },
+    {
+      text: "Each turn, you roll a 10-sided die showing 0 to 9. Let's say you roll a <strong>4</strong>.",
+      visual: '<div class="die-display" style="width:80px;height:80px;font-size:2.5rem;display:inline-flex;"><span>4</span></div>'
+    },
+    {
+      text: "Now choose: place it as <strong>10p coins</strong> (4 x 10p = 40p) or as <strong>1p coins</strong> (4 x 1p = 4p). Think carefully!",
+      visual: '<div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;"><div class="game-card-sm"><div style="font-weight:600;margin-bottom:0.5rem;">As 10p:</div><div style="display:flex;gap:4px;flex-wrap:wrap;">' +
+        '<div class="coin coin-10p">10</div>'.repeat(4) +
+        '</div><div style="margin-top:0.5rem;font-weight:600;">= 40p</div></div>' +
+        '<div class="game-card-sm"><div style="font-weight:600;margin-bottom:0.5rem;">As 1p:</div><div style="display:flex;gap:4px;flex-wrap:wrap;">' +
+        '<div class="coin coin-1p">1</div>'.repeat(4) +
+        '</div><div style="margin-top:0.5rem;font-weight:600;">= 4p</div></div></div>'
+    },
+    {
+      text: "If your 1p coins add up to 10 or more, they <strong>exchange</strong> automatically into a 10p coin. For example, if you had 7 pennies and added 5 more, the 12 pennies become 1 x 10p + 2 x 1p.",
+      visual: '<div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;justify-content:center;">' +
+        '<div class="coin coin-1p">1</div>'.repeat(7) +
+        '<span style="font-size:1.5rem;font-weight:700;">+ 5 =</span>' +
+        '<div class="coin coin-10p">10</div>' +
+        '<div class="coin coin-1p">1</div><div class="coin coin-1p">1</div></div>'
+    },
+    {
+      text: "If you roll a <strong>0</strong>, there is nothing to place. You skip that turn and roll again next round.",
+      visual: '<div class="die-display" style="width:80px;height:80px;font-size:2.5rem;display:inline-flex;"><span>0</span></div>'
+    },
+    {
+      text: "After all rounds, your total is compared to the target. Get as close as you can without going over - or you go <strong>bust</strong>! Good luck!",
+      visual: ''
+    }
+  ];
+
+  window.startDemo = function() {
+    demoStep = 0;
+    renderDemo();
+    $('demo-overlay').classList.remove('hidden');
+    speak(DEMO_STEPS[0].text.replace(/<[^>]*>/g, ''));
+  };
+
+  window.closeDemo = function() {
+    $('demo-overlay').classList.add('hidden');
+    cancelSpeech();
+  };
+
+  window.demoNav = function(dir) {
+    demoStep += dir;
+    if (demoStep < 0) demoStep = 0;
+    if (demoStep >= DEMO_STEPS.length) {
+      closeDemo();
+      startGame(1); // Start at easiest difficulty (level 1 = 50p target)
+      return;
+    }
+    renderDemo();
+    speak(DEMO_STEPS[demoStep].text.replace(/<[^>]*>/g, ''));
+  };
+
+  function renderDemo() {
+    const step = DEMO_STEPS[demoStep];
+    $('demo-content').innerHTML = step.text;
+    $('demo-visual').innerHTML = step.visual;
+    $('demo-prev').disabled = demoStep === 0;
+    $('demo-next').textContent = demoStep === DEMO_STEPS.length - 1 ? 'Start Playing!' : 'Next';
+  }
+
+  // ---------- MUTE BUTTON WIRING ----------
+  $('menu-mute-btn').addEventListener('click', toggleMute);
+  $('game-mute-btn').addEventListener('click', toggleMute);
+
+  // ---------- KEYBOARD SUPPORT ----------
+  document.addEventListener('keydown', function(e) {
+    // Die roll with Enter/Space when focused
+    if ((e.key === 'Enter' || e.key === ' ') && document.activeElement === $('die-btn')) {
+      e.preventDefault();
+      onDieClick();
+    }
+  });
+
+  // Load voices (needed for some browsers)
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = function() {
+        window.speechSynthesis.getVoices();
+      };
+    }
+  }
+
+  // Initialize mute buttons
+  updateMuteButtons();
+
+})();
+</script>
+</body>
+</html>

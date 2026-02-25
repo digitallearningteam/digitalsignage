@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Bonds Bingo - Maths Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Design System Tokens ========== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea {
+  font-size: max(var(--font-size-min), 1em);
+}
+
+/* ========== SR Only ========== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========== Game Header ========== */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg);
+  border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+.game-header h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin: 0;
+}
+.header-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+/* ========== Game Card ========== */
+.game-card {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md);
+}
+.game-card-sm {
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+
+/* ========== Buttons ========== */
+.game-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-btn);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  line-height: 1.2;
+  min-height: 44px;
+  min-width: 44px;
+}
+.game-btn:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-active);
+}
+.game-btn:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+}
+.game-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.game-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+.game-btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  border-width: 2px;
+  border-radius: var(--radius-md);
+}
+.game-btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-xl);
+  border-radius: var(--radius-xl);
+}
+
+/* ========== Layout ========== */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+/* ========== Menu Screen ========== */
+.menu-title {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-3xl);
+  text-align: center;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 700;
+}
+.menu-subtitle {
+  text-align: center;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-xl);
+  font-size: var(--font-size-lg);
+}
+.menu-section {
+  margin-bottom: var(--spacing-lg);
+}
+.menu-section-label {
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+.menu-options {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.menu-option {
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+  text-align: center;
+}
+.menu-option.selected {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 3px var(--color-primary), var(--shadow-btn);
+}
+.menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: center;
+  margin-top: var(--spacing-xl);
+}
+
+/* ========== Target Display ========== */
+.target-display {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+.target-label {
+  font-size: var(--font-size-base);
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+.target-number {
+  font-family: var(--font-sketch);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-danger);
+  line-height: 1.1;
+}
+.round-info {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin-top: var(--spacing-xs);
+}
+
+/* ========== Player Label ========== */
+.player-label {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+}
+.player-label.p1 {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.player-label.p2 {
+  background: var(--color-purple);
+  color: var(--color-white);
+}
+
+/* ========== Bingo Board ========== */
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bingo-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  max-width: 340px;
+  width: 100%;
+  margin: 0 auto var(--spacing-md);
+}
+.bingo-cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  box-shadow: var(--shadow-card-sm);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 60px;
+  min-width: 60px;
+}
+.bingo-cell:hover:not(.stamped):not(.disabled) {
+  background: var(--color-bg-dark);
+}
+.bingo-cell:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.bingo-cell.selected {
+  border-color: var(--color-primary);
+  border-width: 4px;
+  background: #e0edfa;
+  box-shadow: 0 0 0 2px var(--color-primary), var(--shadow-card-sm);
+  transform: scale(1.05);
+}
+.bingo-cell.stamped {
+  cursor: default;
+  color: var(--color-white);
+  border-color: var(--color-text);
+}
+.bingo-cell.stamped .stamp-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--radius-md) - 3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  opacity: 0.92;
+}
+.bingo-cell.stamped .cell-number {
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+.bingo-cell.disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+.bingo-cell.win-cell {
+  animation: winPulse 0.6s ease-in-out infinite alternate;
+}
+
+/* Stamp colours */
+.stamp-pink { background: var(--color-pink); }
+.stamp-purple { background: var(--color-purple); }
+.stamp-teal { background: var(--color-teal); }
+.stamp-orange { background: var(--color-orange); }
+.stamp-primary { background: var(--color-primary); }
+
+/* ========== Game Actions ========== */
+.game-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--spacing-sm);
+}
+
+/* ========== Feedback ========== */
+.feedback {
+  text-align: center;
+  min-height: 2em;
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-xs);
+  transition: opacity var(--transition-fast);
+}
+.feedback.correct { color: var(--color-success-dark); }
+.feedback.incorrect { color: var(--color-danger); }
+.feedback.info { color: var(--color-primary-dark); }
+
+/* ========== Summary ========== */
+.summary-title {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-3xl);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  font-weight: 700;
+}
+.summary-stat {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 2px dashed var(--color-bg-dark);
+  font-size: var(--font-size-lg);
+}
+.summary-stat:last-child {
+  border-bottom: none;
+}
+.summary-stat-value {
+  font-weight: 700;
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-xl);
+}
+
+/* ========== Demo overlay ========== */
+.demo-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.demo-card {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+.demo-card .bingo-board {
+  max-width: 240px;
+}
+.demo-card .bingo-cell {
+  min-height: 48px;
+  min-width: 48px;
+  font-size: var(--font-size-xl);
+}
+.demo-text {
+  font-size: var(--font-size-lg);
+  margin: var(--spacing-sm) 0;
+  min-height: 2.5em;
+}
+
+/* ========== Pass Device Screen ========== */
+.pass-screen {
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-md);
+}
+.pass-screen h2 {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ========== Animations ========== */
+@keyframes stampIn {
+  0% { transform: scale(2) rotate(-15deg); opacity: 0; }
+  60% { transform: scale(0.9) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.92; }
+}
+@keyframes winPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+.stamp-animate {
+  animation: stampIn 0.4s ease forwards;
+}
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 400px) {
+  .bingo-cell {
+    font-size: var(--font-size-xl);
+    min-height: 52px;
+    min-width: 52px;
+  }
+  .target-number {
+    font-size: 3rem;
+  }
+  .game-card {
+    padding: var(--spacing-md);
+    margin: var(--spacing-sm);
+  }
+}
+
+/* ========== Hidden utility ========== */
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ========== Game Header ========== -->
+<header class="game-header">
+  <h1>Number Bonds Bingo</h1>
+  <div class="header-controls">
+    <button class="game-btn game-btn-sm game-btn-outline" id="btnMute" aria-label="Toggle sound" title="Toggle sound">
+      <span id="muteIcon">&#128264;</span>
+    </button>
+    <button class="game-btn game-btn-sm game-btn-outline" id="btnHome" aria-label="Back to menu" title="Back to menu">
+      &#127968;
+    </button>
+  </div>
+</header>
+
+<div class="container" role="main">
+  <div aria-live="polite" aria-atomic="true" id="liveRegion" class="sr-only"></div>
+
+  <!-- ========== MENU SCREEN ========== -->
+  <section id="screenMenu" class="animate-in">
+    <div class="game-card">
+      <h2 class="menu-title">Number Bonds Bingo!</h2>
+      <p class="menu-subtitle">Find pairs that add up to the target number</p>
+
+      <div class="menu-section">
+        <p class="menu-section-label">Players</p>
+        <div class="menu-options" role="radiogroup" aria-label="Number of players">
+          <button class="game-btn game-btn-primary menu-option selected" data-players="1"
+                  role="radio" aria-checked="true">1 Player</button>
+          <button class="game-btn game-btn-purple menu-option" data-players="2"
+                  role="radio" aria-checked="false">2 Players</button>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <p class="menu-section-label">Difficulty</p>
+        <div class="menu-options" role="radiogroup" aria-label="Difficulty level">
+          <button class="game-btn game-btn-success menu-option" data-diff="easy"
+                  role="radio" aria-checked="false">Easy</button>
+          <button class="game-btn game-btn-warning menu-option selected" data-diff="medium"
+                  role="radio" aria-checked="true">Medium</button>
+          <button class="game-btn game-btn-danger menu-option" data-diff="hard"
+                  role="radio" aria-checked="false">Hard</button>
+        </div>
+      </div>
+
+      <div class="menu-actions">
+        <button class="game-btn game-btn-lg game-btn-primary" id="btnStart">Start Game</button>
+        <button class="game-btn game-btn-sm game-btn-outline" id="btnDemo">How to Play</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GAME SCREEN ========== -->
+  <section id="screenGame" hidden>
+    <div class="game-card">
+      <div class="target-display">
+        <p class="target-label">Target Number</p>
+        <p class="target-number" id="targetNumber" aria-live="polite">--</p>
+        <p class="round-info" id="roundInfo"></p>
+      </div>
+
+      <div id="playerLabel" class="player-label p1" hidden>Player 1's Turn</div>
+
+      <div class="board-wrapper">
+        <div class="bingo-board" id="bingoBoard" role="grid" aria-label="Bingo board"></div>
+      </div>
+
+      <div class="feedback" id="feedback" aria-live="assertive">&nbsp;</div>
+
+      <div class="game-actions">
+        <button class="game-btn game-btn-warning" id="btnNoPairs">No Pairs</button>
+        <button class="game-btn game-btn-outline game-btn-sm" id="btnQuit">Quit</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PASS DEVICE SCREEN ========== -->
+  <section id="screenPass" hidden>
+    <div class="game-card pass-screen">
+      <h2 id="passText">Pass to Player 2</h2>
+      <p style="margin-bottom: var(--spacing-lg); color: var(--color-text-light);">
+        Hand the device to the next player, then tap Ready.
+      </p>
+      <button class="game-btn game-btn-lg game-btn-success" id="btnReady">Ready!</button>
+    </div>
+  </section>
+
+  <!-- ========== SUMMARY SCREEN ========== -->
+  <section id="screenSummary" hidden>
+    <div class="game-card animate-in">
+      <h2 class="summary-title" id="summaryTitle">Game Over!</h2>
+      <div id="summaryStats"></div>
+      <div class="menu-actions" style="margin-top: var(--spacing-lg);">
+        <button class="game-btn game-btn-lg game-btn-primary" id="btnPlayAgain">Play Again</button>
+        <button class="game-btn game-btn-sm game-btn-outline" id="btnBackMenu">Back to Menu</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ========== DEMO OVERLAY ========== -->
+<div class="demo-overlay" id="demoOverlay" hidden>
+  <div class="demo-card" role="dialog" aria-label="How to play demo" aria-modal="true">
+    <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--spacing-sm);">How to Play</h3>
+    <div class="target-display" style="margin-bottom: var(--spacing-sm);">
+      <p class="target-label">Target</p>
+      <p class="target-number" id="demoTarget" style="font-size: 2.5rem;">10</p>
+    </div>
+    <div class="bingo-board" id="demoBoard" style="max-width: 220px; margin: 0 auto var(--spacing-sm);"></div>
+    <p class="demo-text" id="demoText">Watch how it works!</p>
+    <button class="game-btn game-btn-outline" id="btnCloseDemo">Got it!</button>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   NUMBER BONDS BINGO - Game Logic
+   ================================================================ */
+(function() {
+  'use strict';
+
+  /* ---------- Constants & Config ---------- */
+  const BOARD_SIZE = 4;
+  const TOTAL_CELLS = BOARD_SIZE * BOARD_SIZE;
+  const STAMP_CLASSES = ['stamp-pink', 'stamp-purple', 'stamp-teal', 'stamp-orange', 'stamp-primary'];
+
+  const DIFFICULTY = {
+    easy:   { targetMin: 5,  targetMax: 10, boardMin: 1, boardMax: 9,  label: 'Easy' },
+    medium: { targetMin: 10, targetMax: 15, boardMin: 1, boardMax: 14, label: 'Medium' },
+    hard:   { targetMin: 15, targetMax: 20, boardMin: 1, boardMax: 19, label: 'Hard' }
+  };
+
+  const MAX_ROUNDS_1P = 10;
+  const MAX_TURNS_2P = 20; // 10 turns each
+
+  /* ---------- State ---------- */
+  let state = {
+    screen: 'menu',       // menu | game | pass | summary
+    players: 1,
+    difficulty: 'medium',
+    muted: false,
+    currentPlayer: 1,     // 1 or 2
+    round: 0,
+    target: 0,
+    boards: [[], []],     // board arrays for p1 (index 0), p2 (index 1)
+    stamped: [[], []],    // boolean arrays
+    selected: [],         // indices of currently selected cells
+    scores: [0, 0],       // stamps count per player
+    winner: 0,            // 0 = none, 1 or 2
+    roundTargets: [],     // pre-rolled targets for all rounds
+    timers: []
+  };
+
+  /* ---------- DOM refs ---------- */
+  const $ = id => document.getElementById(id);
+  const screenMenu    = $('screenMenu');
+  const screenGame    = $('screenGame');
+  const screenPass    = $('screenPass');
+  const screenSummary = $('screenSummary');
+  const demoOverlay   = $('demoOverlay');
+  const targetNumber  = $('targetNumber');
+  const roundInfo     = $('roundInfo');
+  const playerLabel   = $('playerLabel');
+  const bingoBoard    = $('bingoBoard');
+  const feedback      = $('feedback');
+  const liveRegion    = $('liveRegion');
+  const btnNoPairs    = $('btnNoPairs');
+  const muteIcon      = $('muteIcon');
+
+  /* ---------- Speech ---------- */
+  const speechSupported = 'speechSynthesis' in window;
+
+  function speak(text) {
+    if (state.muted || !speechSupported) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB';
+    u.rate = 0.95;
+    window.speechSynthesis.speak(u);
+  }
+
+  function announce(text) {
+    liveRegion.textContent = '';
+    requestAnimationFrame(() => { liveRegion.textContent = text; });
+  }
+
+  /* ---------- Utility ---------- */
+  function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = randInt(0, i);
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function clearTimers() {
+    state.timers.forEach(t => clearTimeout(t));
+    state.timers = [];
+  }
+
+  function addTimer(fn, ms) {
+    const t = setTimeout(fn, ms);
+    state.timers.push(t);
+    return t;
+  }
+
+  /* ---------- Board Generation ---------- */
+  function generateBoard(diff) {
+    const cfg = DIFFICULTY[diff];
+    const nums = [];
+    // Fill board with random numbers in range, allowing duplicates
+    while (nums.length < TOTAL_CELLS) {
+      nums.push(randInt(cfg.boardMin, cfg.boardMax));
+    }
+    return shuffle(nums);
+  }
+
+  function generateTargets(diff, count) {
+    const cfg = DIFFICULTY[diff];
+    const targets = [];
+    for (let i = 0; i < count; i++) {
+      targets.push(randInt(cfg.targetMin, cfg.targetMax));
+    }
+    return targets;
+  }
+
+  /* ---------- Win Detection ---------- */
+  function checkWin(stampedArr) {
+    // Returns winning cell indices or null
+    // Check rows
+    for (let r = 0; r < BOARD_SIZE; r++) {
+      const start = r * BOARD_SIZE;
+      const cells = [start, start+1, start+2, start+3];
+      if (cells.every(i => stampedArr[i])) return cells;
+    }
+    // Check columns
+    for (let c = 0; c < BOARD_SIZE; c++) {
+      const cells = [c, c+BOARD_SIZE, c+BOARD_SIZE*2, c+BOARD_SIZE*3];
+      if (cells.every(i => stampedArr[i])) return cells;
+    }
+    // Diagonals
+    const d1 = [0, 5, 10, 15];
+    if (d1.every(i => stampedArr[i])) return d1;
+    const d2 = [3, 6, 9, 12];
+    if (d2.every(i => stampedArr[i])) return d2;
+    return null;
+  }
+
+  function hasValidPair(board, stamped, target) {
+    for (let i = 0; i < TOTAL_CELLS; i++) {
+      if (stamped[i]) continue;
+      for (let j = i + 1; j < TOTAL_CELLS; j++) {
+        if (stamped[j]) continue;
+        if (board[i] + board[j] === target) return true;
+      }
+    }
+    return false;
+  }
+
+  /* ---------- Screen Management ---------- */
+  function showScreen(name) {
+    clearTimers();
+    state.screen = name;
+    screenMenu.hidden    = name !== 'menu';
+    screenGame.hidden    = name !== 'game';
+    screenPass.hidden    = name !== 'pass';
+    screenSummary.hidden = name !== 'summary';
+  }
+
+  /* ---------- Render Board ---------- */
+  function renderBoard() {
+    const pIdx = state.currentPlayer - 1;
+    const board = state.boards[pIdx];
+    const stamped = state.stamped[pIdx];
+
+    bingoBoard.innerHTML = '';
+    board.forEach((num, i) => {
+      const cell = document.createElement('button');
+      cell.className = 'bingo-cell';
+      cell.setAttribute('role', 'gridcell');
+      cell.dataset.index = i;
+
+      const numSpan = document.createElement('span');
+      numSpan.className = 'cell-number';
+      numSpan.textContent = num;
+      cell.appendChild(numSpan);
+
+      if (stamped[i]) {
+        cell.classList.add('stamped');
+        cell.setAttribute('aria-label', num + ' stamped');
+        cell.disabled = true;
+        const overlay = document.createElement('div');
+        overlay.className = 'stamp-overlay ' + STAMP_CLASSES[i % STAMP_CLASSES.length];
+        cell.appendChild(overlay);
+      } else {
+        cell.setAttribute('aria-label', num);
+        if (state.selected.includes(i)) {
+          cell.classList.add('selected');
+          cell.setAttribute('aria-pressed', 'true');
+        } else {
+          cell.setAttribute('aria-pressed', 'false');
+        }
+      }
+      cell.addEventListener('click', () => onCellClick(i));
+      bingoBoard.appendChild(cell);
+    });
+  }
+
+  function stampCells(indices) {
+    const pIdx = state.currentPlayer - 1;
+    indices.forEach(i => {
+      state.stamped[pIdx][i] = true;
+    });
+    state.scores[pIdx] += indices.length;
+
+    // Animate stamps
+    renderBoard();
+    const cells = bingoBoard.querySelectorAll('.bingo-cell');
+    indices.forEach(i => {
+      const overlay = cells[i].querySelector('.stamp-overlay');
+      if (overlay) overlay.classList.add('stamp-animate');
+    });
+  }
+
+  function highlightWin(winCells) {
+    const cells = bingoBoard.querySelectorAll('.bingo-cell');
+    winCells.forEach(i => cells[i].classList.add('win-cell'));
+  }
+
+  /* ---------- Cell Click ---------- */
+  function onCellClick(index) {
+    const pIdx = state.currentPlayer - 1;
+    if (state.stamped[pIdx][index]) return;
+
+    if (state.selected.includes(index)) {
+      // Deselect
+      state.selected = state.selected.filter(i => i !== index);
+      renderBoard();
+      return;
+    }
+
+    if (state.selected.length >= 2) return; // Already have 2 selected
+
+    state.selected.push(index);
+    renderBoard();
+
+    if (state.selected.length === 2) {
+      checkPair();
+    }
+  }
+
+  function checkPair() {
+    const pIdx = state.currentPlayer - 1;
+    const [i, j] = state.selected;
+    const sum = state.boards[pIdx][i] + state.boards[pIdx][j];
+
+    if (sum === state.target) {
+      // Correct pair
+      setFeedback(state.boards[pIdx][i] + ' + ' + state.boards[pIdx][j] + ' = ' + state.target + '  Correct!', 'correct');
+      speak('Correct! ' + state.boards[pIdx][i] + ' plus ' + state.boards[pIdx][j] + ' equals ' + state.target);
+      announce('Correct pair found');
+      stampCells([i, j]);
+      state.selected = [];
+
+      // Check for win
+      const winCells = checkWin(state.stamped[pIdx]);
+      if (winCells) {
+        highlightWin(winCells);
+        addTimer(() => endGame(state.currentPlayer), 1200);
+        return;
+      }
+
+      // Allow finding more pairs this round with same target
+      if (hasValidPair(state.boards[pIdx], state.stamped[pIdx], state.target)) {
+        addTimer(() => {
+          setFeedback('More pairs available! Keep going.', 'info');
+        }, 1000);
+      } else {
+        addTimer(() => advanceRound(), 1000);
+      }
+    } else {
+      // Wrong pair
+      setFeedback(state.boards[pIdx][i] + ' + ' + state.boards[pIdx][j] + ' = ' + sum + '  Try again!', 'incorrect');
+      speak('Not quite. ' + state.boards[pIdx][i] + ' plus ' + state.boards[pIdx][j] + ' equals ' + sum);
+      announce('Incorrect, try again');
+      state.selected = [];
+      addTimer(() => renderBoard(), 600);
+    }
+  }
+
+  /* ---------- Feedback ---------- */
+  function setFeedback(text, type) {
+    feedback.textContent = text;
+    feedback.className = 'feedback ' + (type || '');
+  }
+
+  /* ---------- Round Management ---------- */
+  function startRound() {
+    state.selected = [];
+    state.round++;
+    state.target = state.roundTargets[state.round - 1] || randInt(
+      DIFFICULTY[state.difficulty].targetMin,
+      DIFFICULTY[state.difficulty].targetMax
+    );
+
+    targetNumber.textContent = state.target;
+
+    if (state.players === 1) {
+      roundInfo.textContent = 'Round ' + state.round + ' of ' + MAX_ROUNDS_1P;
+    } else {
+      roundInfo.textContent = 'Turn ' + state.round + ' of ' + MAX_TURNS_2P;
+    }
+
+    setFeedback('Find two numbers that add up to ' + state.target, 'info');
+    speak('Target is ' + state.target + '. Find two numbers that add up to ' + state.target);
+    announce('Target number is ' + state.target);
+
+    // Show/hide player label
+    if (state.players === 2) {
+      playerLabel.hidden = false;
+      playerLabel.textContent = 'Player ' + state.currentPlayer + "'s Turn";
+      playerLabel.className = 'player-label p' + state.currentPlayer;
+    } else {
+      playerLabel.hidden = true;
+    }
+
+    renderBoard();
+    btnNoPairs.disabled = false;
+  }
+
+  function advanceRound() {
+    if (state.players === 1) {
+      if (state.round >= MAX_ROUNDS_1P) {
+        endGame(0); // No winner in 1P, just score
+        return;
+      }
+      startRound();
+    } else {
+      // 2 Player: check turn limit
+      if (state.round >= MAX_TURNS_2P) {
+        // Compare stamps - most stamps wins, or draw
+        if (state.scores[0] > state.scores[1]) endGame(1);
+        else if (state.scores[1] > state.scores[0]) endGame(2);
+        else endGame(0);
+        return;
+      }
+      // Alternate players
+      const nextPlayer = state.currentPlayer === 1 ? 2 : 1;
+      state.currentPlayer = nextPlayer;
+
+      // Show pass screen
+      $('passText').textContent = 'Pass to Player ' + nextPlayer;
+      showScreen('pass');
+      speak('Pass the device to Player ' + nextPlayer);
+    }
+  }
+
+  /* ---------- No Pairs ---------- */
+  function onNoPairs() {
+    const pIdx = state.currentPlayer - 1;
+    if (hasValidPair(state.boards[pIdx], state.stamped[pIdx], state.target)) {
+      setFeedback('Look again - there is a valid pair!', 'incorrect');
+      speak('Look again. There is a valid pair on your board.');
+      announce('There is still a valid pair on the board');
+      return;
+    }
+    setFeedback('No pairs available. Moving on!', 'info');
+    speak('No pairs available. Next round.');
+    announce('No valid pairs. Moving to next round.');
+    btnNoPairs.disabled = true;
+    state.selected = [];
+    addTimer(() => advanceRound(), 800);
+  }
+
+  /* ---------- End Game ---------- */
+  function endGame(winner) {
+    clearTimers();
+    state.winner = winner;
+
+    let title, statsHTML;
+
+    if (state.players === 1) {
+      const stampsCount = state.scores[0];
+      title = 'Game Over!';
+      if (stampsCount >= 12) title = 'Amazing!';
+      else if (stampsCount >= 8) title = 'Great Job!';
+      else if (stampsCount >= 4) title = 'Good Effort!';
+
+      statsHTML = `
+        <div class="summary-stat"><span>Difficulty</span><span class="summary-stat-value">${DIFFICULTY[state.difficulty].label}</span></div>
+        <div class="summary-stat"><span>Rounds Played</span><span class="summary-stat-value">${state.round}</span></div>
+        <div class="summary-stat"><span>Cells Stamped</span><span class="summary-stat-value">${stampsCount} / ${TOTAL_CELLS}</span></div>
+      `;
+
+      const winLine = checkWin(state.stamped[0]);
+      if (winLine) {
+        title = 'BINGO!';
+        statsHTML += '<div class="summary-stat"><span>Result</span><span class="summary-stat-value" style="color:var(--color-success-dark);">Line completed!</span></div>';
+      }
+
+      speak(title + '. You stamped ' + stampsCount + ' cells in ' + state.round + ' rounds.');
+    } else {
+      if (winner === 1 || winner === 2) {
+        title = 'Player ' + winner + ' wins!';
+        speak('Bingo! Player ' + winner + ' wins the game!');
+      } else {
+        title = 'Draw!';
+        speak('The game is a draw!');
+      }
+      statsHTML = `
+        <div class="summary-stat"><span>Difficulty</span><span class="summary-stat-value">${DIFFICULTY[state.difficulty].label}</span></div>
+        <div class="summary-stat"><span>Player 1 Stamps</span><span class="summary-stat-value">${state.scores[0]}</span></div>
+        <div class="summary-stat"><span>Player 2 Stamps</span><span class="summary-stat-value">${state.scores[1]}</span></div>
+        <div class="summary-stat"><span>Rounds Played</span><span class="summary-stat-value">${Math.ceil(state.round / 2)}</span></div>
+      `;
+    }
+
+    $('summaryTitle').textContent = title;
+    $('summaryStats').innerHTML = statsHTML;
+    announce(title);
+    showScreen('summary');
+  }
+
+  /* ---------- Start Game ---------- */
+  function startGame() {
+    state.round = 0;
+    state.currentPlayer = 1;
+    state.scores = [0, 0];
+    state.winner = 0;
+    state.selected = [];
+    state.boards[0] = generateBoard(state.difficulty);
+    state.stamped[0] = new Array(TOTAL_CELLS).fill(false);
+
+    if (state.players === 2) {
+      state.boards[1] = generateBoard(state.difficulty);
+      state.stamped[1] = new Array(TOTAL_CELLS).fill(false);
+    }
+
+    // Generate targets - enough for all rounds
+    const numRounds = state.players === 1 ? MAX_ROUNDS_1P : MAX_TURNS_2P;
+    state.roundTargets = generateTargets(state.difficulty, numRounds);
+
+    showScreen('game');
+    startRound();
+  }
+
+  /* ---------- Demo ---------- */
+  function runDemo() {
+    demoOverlay.hidden = false;
+    const demoBoard = $('demoBoard');
+    const demoTarget = $('demoTarget');
+    const demoText = $('demoText');
+
+    // Set up a sample board
+    const sampleNums = [3, 7, 2, 5, 8, 1, 6, 4, 9, 3, 5, 2, 4, 7, 1, 8];
+    const target = 10;
+    const stamped = new Array(16).fill(false);
+
+    demoTarget.textContent = target;
+    demoText.textContent = 'The target number is 10.';
+    speak('Watch how the game works. The target number is 10.');
+
+    function renderDemoBoard() {
+      demoBoard.innerHTML = '';
+      sampleNums.forEach((num, i) => {
+        const cell = document.createElement('div');
+        cell.className = 'bingo-cell';
+        cell.dataset.index = i;
+        const numSpan = document.createElement('span');
+        numSpan.className = 'cell-number';
+        numSpan.textContent = num;
+        cell.appendChild(numSpan);
+        if (stamped[i]) {
+          cell.classList.add('stamped');
+          const overlay = document.createElement('div');
+          overlay.className = 'stamp-overlay ' + STAMP_CLASSES[i % STAMP_CLASSES.length];
+          cell.appendChild(overlay);
+        }
+        demoBoard.appendChild(cell);
+      });
+    }
+
+    renderDemoBoard();
+
+    // Animate: highlight cell 0 (3), then cell 1 (7)
+    let step = 0;
+    const demoSteps = [
+      { delay: 1500, fn() {
+        demoText.textContent = 'Find two numbers that add to 10...';
+        speak('Find two numbers that add up to 10.');
+      }},
+      { delay: 2500, fn() {
+        // Highlight first cell: index 0 (value 3)
+        const cells = demoBoard.querySelectorAll('.bingo-cell');
+        cells[0].classList.add('selected');
+        demoText.textContent = 'Tap 3...';
+        speak('Tap 3.');
+      }},
+      { delay: 2000, fn() {
+        // Highlight second cell: index 1 (value 7)
+        const cells = demoBoard.querySelectorAll('.bingo-cell');
+        cells[1].classList.add('selected');
+        demoText.textContent = 'Then tap 7...';
+        speak('Then tap 7.');
+      }},
+      { delay: 2000, fn() {
+        demoText.textContent = '3 + 7 = 10. Correct!';
+        speak('3 plus 7 equals 10. Correct!');
+        stamped[0] = true;
+        stamped[1] = true;
+        renderDemoBoard();
+        // Animate stamps
+        const cells = demoBoard.querySelectorAll('.bingo-cell');
+        const ov0 = cells[0].querySelector('.stamp-overlay');
+        const ov1 = cells[1].querySelector('.stamp-overlay');
+        if (ov0) ov0.classList.add('stamp-animate');
+        if (ov1) ov1.classList.add('stamp-animate');
+      }},
+      { delay: 2500, fn() {
+        demoText.textContent = 'Get 4 in a row to win! Tap "Got it" to start.';
+        speak('Get 4 in a row to win. Tap Got it to start playing.');
+      }}
+    ];
+
+    const demoTimers = [];
+    let cumDelay = 0;
+    demoSteps.forEach(s => {
+      cumDelay += s.delay;
+      demoTimers.push(setTimeout(s.fn, cumDelay));
+    });
+
+    function closeDemo() {
+      demoTimers.forEach(t => clearTimeout(t));
+      demoOverlay.hidden = true;
+      $('btnCloseDemo').removeEventListener('click', closeDemo);
+    }
+    $('btnCloseDemo').addEventListener('click', closeDemo);
+  }
+
+  /* ---------- Menu Selection ---------- */
+  function setupMenuOptions() {
+    document.querySelectorAll('[data-players]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-players]').forEach(b => {
+          b.classList.remove('selected');
+          b.setAttribute('aria-checked', 'false');
+        });
+        btn.classList.add('selected');
+        btn.setAttribute('aria-checked', 'true');
+        state.players = parseInt(btn.dataset.players);
+      });
+    });
+
+    document.querySelectorAll('[data-diff]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-diff]').forEach(b => {
+          b.classList.remove('selected');
+          b.setAttribute('aria-checked', 'false');
+        });
+        btn.classList.add('selected');
+        btn.setAttribute('aria-checked', 'true');
+        state.difficulty = btn.dataset.diff;
+      });
+    });
+  }
+
+  /* ---------- Mute Toggle ---------- */
+  function toggleMute() {
+    state.muted = !state.muted;
+    muteIcon.textContent = state.muted ? '\u{1F507}' : '\u{1F508}';
+    $('btnMute').setAttribute('aria-label', state.muted ? 'Unmute sound' : 'Mute sound');
+    if (state.muted && speechSupported) {
+      window.speechSynthesis.cancel();
+    }
+  }
+
+  /* ---------- Event Listeners ---------- */
+  function init() {
+    setupMenuOptions();
+
+    $('btnStart').addEventListener('click', () => {
+      startGame();
+    });
+
+    $('btnDemo').addEventListener('click', () => {
+      runDemo();
+    });
+
+    btnNoPairs.addEventListener('click', onNoPairs);
+
+    $('btnQuit').addEventListener('click', () => {
+      clearTimers();
+      if (speechSupported) window.speechSynthesis.cancel();
+      showScreen('menu');
+    });
+
+    $('btnHome').addEventListener('click', () => {
+      clearTimers();
+      if (speechSupported) window.speechSynthesis.cancel();
+      showScreen('menu');
+    });
+
+    $('btnMute').addEventListener('click', toggleMute);
+
+    $('btnReady').addEventListener('click', () => {
+      showScreen('game');
+      startRound();
+    });
+
+    $('btnPlayAgain').addEventListener('click', () => {
+      startGame();
+    });
+
+    $('btnBackMenu').addEventListener('click', () => {
+      showScreen('menu');
+    });
+
+    // Close demo on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !demoOverlay.hidden) {
+        demoOverlay.hidden = true;
+      }
+    });
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

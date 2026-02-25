@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remainder Racer - Maths Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Design System Tokens ========== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100dvh;
+  min-font-size: var(--font-size-min);
+  overflow-x: hidden;
+}
+
+/* ========== Accessibility ========== */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+*:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Layout ========== */
+.game-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.screen { display: none; flex-direction: column; align-items: center; gap: var(--spacing-lg); }
+.screen.active { display: flex; }
+
+/* ========== Header ========== */
+.game-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+}
+.game-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.08);
+}
+.header-controls { display: flex; gap: var(--spacing-sm); }
+
+/* ========== Buttons ========== */
+.btn {
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  padding: 12px 24px;
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  min-height: 44px;
+  min-width: 44px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  line-height: 1.2;
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-active);
+}
+.btn-primary { background: var(--color-primary); color: var(--color-white); }
+.btn-primary:hover { background: var(--color-primary-dark); }
+.btn-danger { background: var(--color-danger); color: var(--color-white); }
+.btn-danger:hover { background: var(--color-danger-dark); }
+.btn-success { background: var(--color-success); color: var(--color-white); }
+.btn-success:hover { background: var(--color-success-dark); }
+.btn-warning { background: var(--color-warning); color: var(--color-white); }
+.btn-warning:hover { background: var(--color-warning-dark); }
+.btn-purple { background: var(--color-purple); color: var(--color-white); }
+.btn-purple:hover { background: var(--color-purple-dark); }
+.btn-small { padding: 8px 16px; font-size: var(--font-size-sm); }
+.btn-icon {
+  width: 44px; height: 44px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-lg);
+  background: var(--color-white);
+  border: 2px solid var(--color-text);
+}
+
+/* ========== Menu Screen ========== */
+.menu-title {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-align: center;
+  line-height: 1.1;
+  margin-top: var(--spacing-lg);
+}
+.menu-subtitle {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+  text-align: center;
+}
+.menu-section {
+  width: 100%;
+  max-width: 400px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.menu-section h2 {
+  font-size: var(--font-size-lg);
+  text-align: center;
+  font-weight: 600;
+}
+.option-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.option-btn {
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  background: var(--color-bg-dark);
+  color: var(--color-text);
+  min-height: 44px;
+  transition: all var(--transition-fast);
+}
+.option-btn:hover { background: var(--color-bg); }
+.option-btn.selected {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-card-sm);
+}
+.menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+.menu-actions .btn { width: 100%; }
+
+/* ========== Track ========== */
+.track-container {
+  width: 100%;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
+  position: relative;
+  overflow: hidden;
+}
+.track-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--spacing-xs);
+}
+.track-cell {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  position: relative;
+  background: var(--color-bg-dark);
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+}
+.track-cell.start-cell {
+  background: var(--color-success);
+  color: var(--color-white);
+}
+.track-cell.finish-cell {
+  background: var(--color-danger);
+  color: var(--color-white);
+  border-width: 3px;
+}
+.track-cell.bonus-cell {
+  background: var(--color-warning);
+  color: var(--color-white);
+}
+.track-cell.bonus-cell::after {
+  content: '\2605';
+  position: absolute;
+  font-size: 10px;
+  top: -2px;
+  right: -2px;
+}
+.track-cell.penalty-cell {
+  background: #8B4513;
+  color: var(--color-white);
+}
+.track-cell.penalty-cell::after {
+  content: '\26A0';
+  position: absolute;
+  font-size: 9px;
+  top: -3px;
+  right: -3px;
+}
+
+/* ========== Player Tokens ========== */
+.token-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.player-token {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-white);
+  z-index: 10;
+  transition: left 0.6s ease, top 0.6s ease;
+  box-shadow: var(--shadow-card-sm);
+}
+.player-token.p1 { background: var(--color-primary); }
+.player-token.p2 { background: var(--color-danger); }
+
+/* ========== Turn Info ========== */
+.turn-info {
+  width: 100%;
+  text-align: center;
+  padding: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-text);
+  background: var(--color-white);
+}
+.turn-info.p1-turn { border-color: var(--color-primary); color: var(--color-primary-dark); }
+.turn-info.p2-turn { border-color: var(--color-danger); color: var(--color-danger-dark); }
+
+/* ========== Divisor Die ========== */
+.divisor-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.divisor-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+.divisor-die {
+  width: 72px;
+  height: 72px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-purple-dark);
+}
+.divisor-die.rolling {
+  animation: dieRoll 0.4s ease-in-out;
+}
+@keyframes dieRoll {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-15deg) scale(1.1); }
+  50% { transform: rotate(10deg) scale(0.95); }
+  75% { transform: rotate(-5deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* ========== Dividend Cards ========== */
+.cards-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+.cards-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+.cards-row {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.dividend-card {
+  width: 90px;
+  height: 120px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+  min-height: 44px;
+}
+.dividend-card:hover:not(.disabled) {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+}
+.dividend-card.selected {
+  border-color: var(--color-success);
+  background: #e8f5e8;
+  transform: translateY(-6px);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.6);
+}
+.dividend-card.disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.card-number {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+.card-remainder {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin-top: var(--spacing-xs);
+  font-weight: 500;
+}
+.card-corner {
+  position: absolute;
+  font-size: 10px;
+  color: var(--color-text-light);
+}
+.card-corner-tl { top: 4px; left: 6px; }
+.card-corner-br { bottom: 4px; right: 6px; transform: rotate(180deg); }
+
+/* ========== Equation Display ========== */
+.equation-display {
+  width: 100%;
+  text-align: center;
+  padding: var(--spacing-md);
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+}
+.equation-display .remainder-highlight {
+  color: var(--color-success-dark);
+  font-size: var(--font-size-2xl);
+}
+.equation-display .move-text {
+  color: var(--color-purple-dark);
+}
+
+/* ========== Game Controls ========== */
+.game-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* ========== Score Panel ========== */
+.score-panel {
+  width: 100%;
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.score-card {
+  background: var(--color-white);
+  border: 2px solid var(--color-text);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: center;
+  min-width: 100px;
+}
+.score-card.p1 { border-color: var(--color-primary); }
+.score-card.p2 { border-color: var(--color-danger); }
+.score-card .label { font-size: var(--font-size-sm); color: var(--color-text-light); }
+.score-card .value { font-size: var(--font-size-xl); font-weight: 700; }
+
+/* ========== Summary Screen ========== */
+.summary-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-xl);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+.summary-trophy { font-size: 64px; line-height: 1; }
+.summary-title {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+.summary-stat {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+}
+.summary-stat strong { color: var(--color-text); }
+
+/* ========== Demo Overlay ========== */
+.demo-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+.demo-overlay.active { display: flex; }
+.demo-box {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.demo-step {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  min-height: 40px;
+}
+.demo-cards-row {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+}
+.demo-card {
+  width: 70px;
+  height: 96px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  transition: all var(--transition-normal);
+}
+.demo-card.demo-selected {
+  border-color: var(--color-success);
+  background: #e8f5e8;
+  transform: translateY(-6px);
+}
+.demo-die {
+  width: 60px; height: 60px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-purple-dark);
+}
+
+/* ========== Track Legend ========== */
+.track-legend {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-dot {
+  width: 16px; height: 16px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-black);
+  flex-shrink: 0;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 500px) {
+  .game-title { font-size: var(--font-size-xl); }
+  .menu-title { font-size: var(--font-size-2xl); }
+  .track-cell { width: 34px; height: 34px; font-size: 10px; }
+  .player-token { width: 26px; height: 26px; font-size: 9px; }
+  .dividend-card { width: 78px; height: 105px; }
+  .card-number { font-size: var(--font-size-xl); }
+  .divisor-die { width: 60px; height: 60px; font-size: var(--font-size-2xl); }
+  .equation-display { font-size: var(--font-size-lg); padding: var(--spacing-sm); }
+}
+</style>
+</head>
+<body>
+<div class="game-container" role="main">
+
+  <!-- ========== MENU SCREEN ========== -->
+  <div id="menu-screen" class="screen active" role="region" aria-label="Game menu">
+    <div class="menu-title">Remainder Racer</div>
+    <div class="menu-subtitle">Pick your dividend, divide, and race by the remainder!</div>
+
+    <div class="menu-section">
+      <h2>Players</h2>
+      <div class="option-group" role="radiogroup" aria-label="Number of players">
+        <button class="option-btn selected" data-group="players" data-value="1" role="radio" aria-checked="true">1 Player</button>
+        <button class="option-btn" data-group="players" data-value="2" role="radio" aria-checked="false">2 Players</button>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <h2>Difficulty</h2>
+      <div class="option-group" role="radiogroup" aria-label="Difficulty level">
+        <button class="option-btn" data-group="difficulty" data-value="easy" role="radio" aria-checked="false">Easy</button>
+        <button class="option-btn selected" data-group="difficulty" data-value="medium" role="radio" aria-checked="true">Medium</button>
+        <button class="option-btn" data-group="difficulty" data-value="hard" role="radio" aria-checked="false">Hard</button>
+      </div>
+    </div>
+
+    <div class="menu-actions">
+      <button class="btn btn-success" id="btn-start" aria-label="Start the race">Start Race!</button>
+      <button class="btn btn-purple btn-small" id="btn-demo" aria-label="Watch a demo turn">Demo</button>
+    </div>
+  </div>
+
+  <!-- ========== GAME SCREEN ========== -->
+  <div id="game-screen" class="screen" role="region" aria-label="Game board">
+    <div class="game-header">
+      <div class="game-title">Remainder Racer</div>
+      <div class="header-controls">
+        <button class="btn-icon" id="btn-mute" aria-label="Toggle sound" title="Toggle sound">&#128264;</button>
+        <button class="btn-icon" id="btn-back" aria-label="Back to menu" title="Back to menu">&#10006;</button>
+      </div>
+    </div>
+
+    <div class="score-panel" id="score-panel" aria-label="Player positions"></div>
+
+    <div class="turn-info p1-turn" id="turn-info" aria-live="polite">Player 1's turn</div>
+
+    <div class="track-container" id="track-container" aria-label="Race track">
+      <div class="track-row" id="track-row"></div>
+      <div class="token-layer" id="token-layer"></div>
+    </div>
+
+    <div class="track-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--color-success)"></div> Start</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--color-warning)"></div> Bonus &#9733;</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#8B4513"></div> Pothole &#9888;</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--color-danger)"></div> Finish</div>
+    </div>
+
+    <div class="divisor-area">
+      <div class="divisor-label">Divisor</div>
+      <div class="divisor-die" id="divisor-die" aria-live="polite">?</div>
+    </div>
+
+    <div class="cards-area">
+      <div class="cards-label">Choose a dividend card:</div>
+      <div class="cards-row" id="cards-row" role="group" aria-label="Dividend cards"></div>
+    </div>
+
+    <div class="equation-display" id="equation-display" aria-live="polite">Pick a card to see the division</div>
+
+    <div class="game-controls" id="game-controls">
+      <button class="btn btn-success" id="btn-confirm" disabled aria-label="Confirm your choice">Confirm</button>
+    </div>
+  </div>
+
+  <!-- ========== SUMMARY SCREEN ========== -->
+  <div id="summary-screen" class="screen" role="region" aria-label="Game results">
+    <div class="summary-card">
+      <div class="summary-trophy" aria-hidden="true">&#127942;</div>
+      <div class="summary-title" id="summary-title">Race Complete!</div>
+      <div id="summary-stats"></div>
+      <button class="btn btn-success" id="btn-play-again">Play Again</button>
+      <button class="btn btn-primary btn-small" id="btn-menu">Back to Menu</button>
+    </div>
+  </div>
+
+  <!-- ========== DEMO OVERLAY ========== -->
+  <div class="demo-overlay" id="demo-overlay" role="dialog" aria-label="Game demo" aria-modal="true">
+    <div class="demo-box">
+      <h2 style="font-family:var(--font-sketch); font-size:var(--font-size-2xl); color:var(--color-primary-dark)">How to Play</h2>
+      <div class="demo-step" id="demo-step" aria-live="polite">Watch a sample turn...</div>
+      <div class="demo-cards-row" id="demo-cards"></div>
+      <div id="demo-die-area" style="display:none">
+        <div class="divisor-label">Divisor:</div>
+        <div class="demo-die" id="demo-die-val">?</div>
+      </div>
+      <div id="demo-equation" class="equation-display" style="display:none; font-size:var(--font-size-lg)"></div>
+      <button class="btn btn-primary" id="btn-demo-next">Next</button>
+      <button class="btn btn-danger btn-small" id="btn-demo-close">Close</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ========== State Machine ========== */
+const STATES = { MENU: 'menu', GAME: 'game', SUMMARY: 'summary' };
+const TRACK_LENGTH = 20;
+const BONUS_SQUARES = [3, 7, 12, 16];
+const PENALTY_SQUARES = [5, 10, 14, 18];
+
+const DIFFICULTY = {
+  easy:   { divMin: 5,  divMax: 15, modMin: 2, modMax: 5,  label: 'Easy' },
+  medium: { divMin: 10, divMax: 30, modMin: 2, modMax: 8,  label: 'Medium' },
+  hard:   { divMin: 15, divMax: 50, modMin: 2, modMax: 12, label: 'Hard' }
+};
+
+let state = STATES.MENU;
+let settings = { players: 1, difficulty: 'medium' };
+let game = null;
+let timers = [];
+let muted = false;
+let speechSupported = false;
+
+/* ========== DOM References ========== */
+const $ = id => document.getElementById(id);
+const menuScreen = $('menu-screen');
+const gameScreen = $('game-screen');
+const summaryScreen = $('summary-screen');
+const trackRow = $('track-row');
+const tokenLayer = $('token-layer');
+const turnInfo = $('turn-info');
+const divisorDie = $('divisor-die');
+const cardsRow = $('cards-row');
+const equationDisplay = $('equation-display');
+const btnConfirm = $('btn-confirm');
+const scorePanel = $('score-panel');
+const summaryTitle = $('summary-title');
+const summaryStats = $('summary-stats');
+const demoOverlay = $('demo-overlay');
+
+/* ========== Speech ========== */
+function initSpeech() {
+  if ('speechSynthesis' in window) {
+    speechSupported = true;
+  }
+}
+function speak(text) {
+  if (!speechSupported || muted) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB';
+  u.rate = 0.95;
+  u.pitch = 1.1;
+  window.speechSynthesis.speak(u);
+}
+initSpeech();
+
+/* ========== Utilities ========== */
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function clearTimers() {
+  timers.forEach(t => clearTimeout(t));
+  timers = [];
+}
+function delay(ms) {
+  return new Promise(resolve => {
+    const t = setTimeout(resolve, ms);
+    timers.push(t);
+  });
+}
+
+/* ========== Screen Transitions ========== */
+function showScreen(name) {
+  clearTimers();
+  if (speechSupported) window.speechSynthesis.cancel();
+  [menuScreen, gameScreen, summaryScreen].forEach(s => s.classList.remove('active'));
+  state = name;
+  if (name === STATES.MENU) menuScreen.classList.add('active');
+  else if (name === STATES.GAME) gameScreen.classList.add('active');
+  else if (name === STATES.SUMMARY) summaryScreen.classList.add('active');
+}
+
+/* ========== Menu Logic ========== */
+document.querySelectorAll('.option-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.dataset.group;
+    document.querySelectorAll(`.option-btn[data-group="${group}"]`).forEach(b => {
+      b.classList.remove('selected');
+      b.setAttribute('aria-checked', 'false');
+    });
+    btn.classList.add('selected');
+    btn.setAttribute('aria-checked', 'true');
+    settings[group] = btn.dataset.value;
+    if (group === 'players') settings.players = parseInt(btn.dataset.value);
+  });
+});
+
+$('btn-start').addEventListener('click', startGame);
+$('btn-demo').addEventListener('click', startDemo);
+$('btn-back').addEventListener('click', () => showScreen(STATES.MENU));
+$('btn-play-again').addEventListener('click', startGame);
+$('btn-menu').addEventListener('click', () => showScreen(STATES.MENU));
+$('btn-mute').addEventListener('click', () => {
+  muted = !muted;
+  $('btn-mute').innerHTML = muted ? '&#128263;' : '&#128264;';
+  $('btn-mute').setAttribute('aria-label', muted ? 'Unmute sound' : 'Mute sound');
+  if (muted && speechSupported) window.speechSynthesis.cancel();
+});
+
+/* ========== Build Track ========== */
+function buildTrack() {
+  trackRow.innerHTML = '';
+  for (let i = 0; i <= TRACK_LENGTH; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'track-cell';
+    cell.dataset.pos = i;
+    cell.setAttribute('aria-label', getCellLabel(i));
+    if (i === 0) cell.classList.add('start-cell');
+    else if (i === TRACK_LENGTH) cell.classList.add('finish-cell');
+    else if (BONUS_SQUARES.includes(i)) cell.classList.add('bonus-cell');
+    else if (PENALTY_SQUARES.includes(i)) cell.classList.add('penalty-cell');
+    cell.textContent = i;
+    trackRow.appendChild(cell);
+  }
+}
+
+function getCellLabel(pos) {
+  if (pos === 0) return 'Start, position 0';
+  if (pos === TRACK_LENGTH) return 'Finish line, position ' + TRACK_LENGTH;
+  if (BONUS_SQUARES.includes(pos)) return 'Bonus star, position ' + pos;
+  if (PENALTY_SQUARES.includes(pos)) return 'Pothole, position ' + pos;
+  return 'Position ' + pos;
+}
+
+/* ========== Player Tokens ========== */
+function createTokens() {
+  tokenLayer.innerHTML = '';
+  const colors = ['p1', 'p2'];
+  const labels = ['P1', 'P2'];
+  const count = settings.players === 1 ? 1 : 2;
+  for (let i = 0; i < count; i++) {
+    const tok = document.createElement('div');
+    tok.className = `player-token ${colors[i]}`;
+    tok.id = `token-${i}`;
+    tok.textContent = labels[i];
+    tok.setAttribute('aria-label', `Player ${i + 1} token`);
+    tokenLayer.appendChild(tok);
+  }
+}
+
+function positionToken(playerIndex, pos) {
+  const token = $(`token-${playerIndex}`);
+  if (!token) return;
+  const cell = trackRow.querySelector(`[data-pos="${Math.min(pos, TRACK_LENGTH)}"]`);
+  if (!cell) return;
+  const containerRect = $('track-container').getBoundingClientRect();
+  const cellRect = cell.getBoundingClientRect();
+  const offsetX = playerIndex === 1 ? 10 : -5;
+  const offsetY = playerIndex === 1 ? -5 : 5;
+  token.style.left = (cellRect.left - containerRect.left + cellRect.width / 2 - 15 + offsetX) + 'px';
+  token.style.top = (cellRect.top - containerRect.top + cellRect.height / 2 - 15 + offsetY) + 'px';
+}
+
+function repositionAllTokens() {
+  if (!game) return;
+  for (let i = 0; i < game.positions.length; i++) {
+    positionToken(i, game.positions[i]);
+  }
+}
+
+/* ========== Score Panel ========== */
+function updateScorePanel() {
+  scorePanel.innerHTML = '';
+  for (let i = 0; i < game.positions.length; i++) {
+    const card = document.createElement('div');
+    card.className = `score-card p${i + 1}`;
+    const pColor = i === 0 ? 'var(--color-primary-dark)' : 'var(--color-danger-dark)';
+    card.innerHTML = `<div class="label">Player ${i + 1}</div>
+      <div class="value" style="color:${pColor}">Sq ${game.positions[i]}</div>
+      <div class="label">Turns: ${game.turns[i]}</div>`;
+    scorePanel.appendChild(card);
+  }
+}
+
+/* ========== Game Start ========== */
+function startGame() {
+  const diff = DIFFICULTY[settings.difficulty];
+  const numPlayers = settings.players;
+  game = {
+    diff,
+    numPlayers,
+    currentPlayer: 0,
+    positions: new Array(numPlayers).fill(0),
+    turns: new Array(numPlayers).fill(0),
+    dividends: [],
+    divisor: 0,
+    selectedCard: -1,
+    phase: 'deal', // deal, pick, confirm, animate, bonus, penalty, next, done
+    bonusRoll: false
+  };
+  showScreen(STATES.GAME);
+  buildTrack();
+  createTokens();
+  requestAnimationFrame(() => {
+    repositionAllTokens();
+    updateScorePanel();
+    dealTurn();
+  });
+}
+
+/* ========== Deal Turn ========== */
+function dealTurn() {
+  game.phase = 'deal';
+  game.selectedCard = -1;
+  game.bonusRoll = false;
+  btnConfirm.disabled = true;
+  equationDisplay.innerHTML = 'Pick a card to see the division';
+
+  const cp = game.currentPlayer;
+  turnInfo.textContent = game.numPlayers === 1 ? `Turn ${game.turns[0] + 1}` : `Player ${cp + 1}'s turn`;
+  turnInfo.className = `turn-info p${cp + 1}-turn`;
+
+  // Generate dividends
+  const diff = game.diff;
+  game.dividends = [];
+  for (let i = 0; i < 3; i++) {
+    game.dividends.push(randInt(diff.divMin, diff.divMax));
+  }
+  // Generate divisor
+  game.divisor = randInt(diff.modMin, diff.modMax);
+
+  // Animate die roll
+  divisorDie.classList.add('rolling');
+  divisorDie.textContent = '?';
+  const rollTimer = setTimeout(() => {
+    divisorDie.classList.remove('rolling');
+    divisorDie.textContent = game.divisor;
+    speak(`Divisor is ${game.divisor}. Choose a dividend card.`);
+    game.phase = 'pick';
+  }, 500);
+  timers.push(rollTimer);
+
+  // Render cards
+  renderCards();
+}
+
+/* ========== Render Cards ========== */
+function renderCards() {
+  cardsRow.innerHTML = '';
+  game.dividends.forEach((div, i) => {
+    const card = document.createElement('button');
+    card.className = 'dividend-card';
+    card.setAttribute('aria-label', `Dividend ${div}`);
+    card.dataset.index = i;
+    const remainder = div % game.divisor;
+    const quotient = Math.floor(div / game.divisor);
+    card.innerHTML = `
+      <span class="card-corner card-corner-tl">${div}</span>
+      <span class="card-number">${div}</span>
+      <span class="card-remainder">r = ${remainder}</span>
+      <span class="card-corner card-corner-br">${div}</span>`;
+    card.addEventListener('click', () => selectCard(i));
+    cardsRow.appendChild(card);
+  });
+}
+
+/* ========== Select Card ========== */
+function selectCard(index) {
+  if (game.phase !== 'pick') return;
+  game.selectedCard = index;
+  // Update visual selection
+  cardsRow.querySelectorAll('.dividend-card').forEach((c, i) => {
+    c.classList.toggle('selected', i === index);
+    c.setAttribute('aria-pressed', i === index ? 'true' : 'false');
+  });
+  // Show equation
+  const dividend = game.dividends[index];
+  const divisor = game.divisor;
+  const quotient = Math.floor(dividend / divisor);
+  const remainder = dividend % divisor;
+  equationDisplay.innerHTML = `${dividend} &divide; ${divisor} = ${quotient} remainder <span class="remainder-highlight">${remainder}</span> &rarr; <span class="move-text">Move ${remainder}!</span>`;
+  btnConfirm.disabled = false;
+  speak(`${dividend} divided by ${divisor} equals ${quotient} remainder ${remainder}. Move ${remainder} spaces.`);
+}
+
+/* ========== Confirm Move ========== */
+btnConfirm.addEventListener('click', async () => {
+  if (game.selectedCard < 0 || game.phase !== 'pick') return;
+  game.phase = 'animate';
+  btnConfirm.disabled = true;
+
+  const cp = game.currentPlayer;
+  const dividend = game.dividends[game.selectedCard];
+  const divisor = game.divisor;
+  const remainder = dividend % divisor;
+  const oldPos = game.positions[cp];
+  let newPos = Math.min(oldPos + remainder, TRACK_LENGTH);
+  game.positions[cp] = newPos;
+  game.turns[cp]++;
+
+  // Animate movement step by step
+  for (let p = oldPos + 1; p <= newPos; p++) {
+    game.positions[cp] = p;
+    positionToken(cp, p);
+    updateScorePanel();
+    await delay(350);
+  }
+
+  // Check finish
+  if (game.positions[cp] >= TRACK_LENGTH) {
+    await delay(400);
+    endGame();
+    return;
+  }
+
+  // Check bonus
+  if (BONUS_SQUARES.includes(newPos)) {
+    game.phase = 'bonus';
+    equationDisplay.innerHTML = '<span class="remainder-highlight">&#9733; Bonus square! Roll again!</span>';
+    speak('Bonus star! You get another turn!');
+    await delay(1200);
+    dealTurn();
+    return;
+  }
+
+  // Check penalty
+  if (PENALTY_SQUARES.includes(newPos)) {
+    game.phase = 'penalty';
+    equationDisplay.innerHTML = '<span style="color:var(--color-danger)">&#9888; Pothole! Go back 1 space.</span>';
+    speak('Oh no, a pothole! Go back one space.');
+    await delay(800);
+    let penaltyPos = Math.max(0, newPos - 1);
+    game.positions[cp] = penaltyPos;
+    positionToken(cp, penaltyPos);
+    updateScorePanel();
+    await delay(600);
+  }
+
+  // Next turn
+  game.phase = 'next';
+  if (game.numPlayers === 2) {
+    game.currentPlayer = game.currentPlayer === 0 ? 1 : 0;
+  }
+  await delay(400);
+  dealTurn();
+});
+
+/* ========== End Game ========== */
+function endGame() {
+  game.phase = 'done';
+  const cp = game.currentPlayer;
+  if (game.numPlayers === 1) {
+    summaryTitle.textContent = 'Race Complete!';
+    summaryStats.innerHTML = `
+      <div class="summary-stat">You finished in <strong>${game.turns[0]} turns</strong>!</div>
+      <div class="summary-stat" style="margin-top:8px">Difficulty: <strong>${game.diff.label}</strong></div>
+      <div class="summary-stat" style="margin-top:8px">${game.turns[0] <= 6 ? 'Amazing speed!' : game.turns[0] <= 10 ? 'Good race!' : 'Keep practising!'}</div>`;
+    speak(`Race complete! You finished in ${game.turns[0]} turns.`);
+  } else {
+    summaryTitle.textContent = `Player ${cp + 1} Wins!`;
+    summaryStats.innerHTML = `
+      <div class="summary-stat">Player 1: <strong>${game.turns[0]} turns</strong>, reached square ${game.positions[0]}</div>
+      <div class="summary-stat">Player 2: <strong>${game.turns[1]} turns</strong>, reached square ${game.positions[1]}</div>
+      <div class="summary-stat" style="margin-top:8px">Difficulty: <strong>${game.diff.label}</strong></div>`;
+    speak(`Player ${cp + 1} wins the race!`);
+  }
+  showScreen(STATES.SUMMARY);
+}
+
+/* ========== Demo ========== */
+let demoStep = 0;
+let demoTimers = [];
+
+function clearDemoTimers() {
+  demoTimers.forEach(t => clearTimeout(t));
+  demoTimers = [];
+}
+
+function startDemo() {
+  demoStep = 0;
+  demoOverlay.classList.add('active');
+  $('demo-cards').innerHTML = '';
+  $('demo-die-area').style.display = 'none';
+  $('demo-equation').style.display = 'none';
+  $('demo-step').textContent = 'Each turn, you get 3 dividend cards and 1 divisor...';
+  $('btn-demo-next').textContent = 'Next';
+  speak('Let me show you how to play.');
+}
+
+$('btn-demo-next').addEventListener('click', () => {
+  demoStep++;
+  runDemoStep();
+});
+
+$('btn-demo-close').addEventListener('click', () => {
+  clearDemoTimers();
+  demoOverlay.classList.remove('active');
+  if (speechSupported) window.speechSynthesis.cancel();
+});
+
+function runDemoStep() {
+  clearDemoTimers();
+  const cardsEl = $('demo-cards');
+  const dieArea = $('demo-die-area');
+  const eq = $('demo-equation');
+
+  if (demoStep === 1) {
+    // Show cards
+    $('demo-step').textContent = 'You are dealt 3 dividend cards:';
+    cardsEl.innerHTML = [17, 22, 9].map(n =>
+      `<div class="demo-card" id="dc-${n}">${n}</div>`
+    ).join('');
+    dieArea.style.display = 'none';
+    eq.style.display = 'none';
+    speak('You get three dividend cards: 17, 22, and 9.');
+  } else if (demoStep === 2) {
+    $('demo-step').textContent = 'A divisor is rolled:';
+    dieArea.style.display = 'block';
+    $('demo-die-val').textContent = '5';
+    speak('The divisor rolled is 5.');
+  } else if (demoStep === 3) {
+    $('demo-step').textContent = 'Pick the card that gives the best remainder!';
+    // Highlight card 17
+    const dc17 = document.getElementById('dc-17');
+    if (dc17) dc17.classList.add('demo-selected');
+    eq.style.display = 'flex';
+    eq.innerHTML = '17 &divide; 5 = 3 remainder <span class="remainder-highlight">2</span> &rarr; Move 2!';
+    speak('If you pick 17, then 17 divided by 5 is 3 remainder 2. You move 2 spaces!');
+  } else if (demoStep === 4) {
+    $('demo-step').textContent = 'Or try a different card...';
+    cardsEl.querySelectorAll('.demo-card').forEach(c => c.classList.remove('demo-selected'));
+    const dc22 = document.getElementById('dc-22');
+    if (dc22) dc22.classList.add('demo-selected');
+    eq.innerHTML = '22 &divide; 5 = 4 remainder <span class="remainder-highlight">2</span> &rarr; Move 2!';
+    speak('22 divided by 5 is 4 remainder 2. Also 2 spaces.');
+  } else if (demoStep === 5) {
+    cardsEl.querySelectorAll('.demo-card').forEach(c => c.classList.remove('demo-selected'));
+    const dc9 = document.getElementById('dc-9');
+    if (dc9) dc9.classList.add('demo-selected');
+    eq.innerHTML = '9 &divide; 5 = 1 remainder <span class="remainder-highlight">4</span> &rarr; Move 4!';
+    $('demo-step').textContent = '9 gives the biggest remainder!';
+    speak('9 divided by 5 is 1 remainder 4. Move 4 spaces! That is the most.');
+  } else if (demoStep === 6) {
+    $('demo-step').textContent = 'Land on a star for a bonus turn. Avoid potholes!';
+    cardsEl.innerHTML = '';
+    dieArea.style.display = 'none';
+    eq.style.display = 'none';
+    speak('Land on a star for a bonus turn. Watch out for potholes that send you back.');
+    $('btn-demo-next').textContent = 'Got it!';
+  } else {
+    demoOverlay.classList.remove('active');
+    demoStep = 0;
+  }
+}
+
+/* ========== Resize handler ========== */
+let resizeRaf;
+window.addEventListener('resize', () => {
+  cancelAnimationFrame(resizeRaf);
+  resizeRaf = requestAnimationFrame(repositionAllTokens);
+});
+
+/* ========== Keyboard support for cards ========== */
+document.addEventListener('keydown', (e) => {
+  if (state !== STATES.GAME || game.phase !== 'pick') return;
+  if (e.key >= '1' && e.key <= '3') {
+    const idx = parseInt(e.key) - 1;
+    if (idx < game.dividends.length) selectCard(idx);
+  }
+  if (e.key === 'Enter' && game.selectedCard >= 0) {
+    btnConfirm.click();
+  }
+});
+</script>
+</body>
+</html>

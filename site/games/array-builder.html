@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Array Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Design System Tokens ========== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+
+  --p1-color: #3b82f6;
+  --p1-light: #dbeafe;
+  --p1-preview: rgba(59,130,246,0.3);
+  --p2-color: #22c55e;
+  --p2-light: #dcfce7;
+  --p2-preview: rgba(34,197,94,0.3);
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea {
+  font-size: max(var(--font-size-min), 1em);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ========== Game Header ========== */
+.game-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg); border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm); flex-wrap: wrap;
+}
+.game-header h1 { font-size: var(--font-size-xl); font-weight: 700; margin: 0; }
+
+/* ========== Game Card ========== */
+.game-card {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg); margin: var(--spacing-md);
+}
+.game-card-sm {
+  background: var(--color-white); border: 2px solid var(--color-black);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+
+/* ========== Buttons ========== */
+.game-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--spacing-xs); padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black); border-radius: var(--radius-lg);
+  font-family: var(--font-display); font-size: var(--font-size-base);
+  font-weight: 600; cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-btn); touch-action: manipulation;
+  user-select: none; -webkit-tap-highlight-color: transparent;
+  text-decoration: none; line-height: 1.2;
+  min-height: 44px; min-width: 44px;
+}
+.game-btn:active { transform: translateY(2px); box-shadow: var(--shadow-btn-active); }
+.game-btn:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+}
+.game-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.game-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+.game-btn-sm { padding: var(--spacing-xs) var(--spacing-sm); font-size: var(--font-size-sm); border-width: 2px; border-radius: var(--radius-md); }
+.game-btn-lg { padding: var(--spacing-md) var(--spacing-xl); font-size: var(--font-size-xl); border-radius: var(--radius-xl); }
+
+/* ========== Utility ========== */
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.w-full { width: 100%; }
+.hidden { display: none !important; }
+.sketch-text { font-family: var(--font-sketch); }
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Screens ========== */
+#menu-screen, #play-screen, #summary-screen { display: none; }
+#menu-screen.active, #play-screen.active, #summary-screen.active { display: flex; }
+
+/* ========== Menu ========== */
+#menu-screen {
+  flex-direction: column; align-items: center; justify-content: center;
+  min-height: 100vh; padding: var(--spacing-lg); text-align: center;
+}
+.menu-title {
+  font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-white);
+  background: var(--color-primary); padding: var(--spacing-sm) var(--spacing-xl);
+  border-radius: var(--radius-xl); border: 3px solid var(--color-black);
+  box-shadow: var(--shadow-card); transform: rotate(-2deg);
+  margin-bottom: var(--spacing-sm);
+}
+.menu-subtitle {
+  font-size: var(--font-size-lg); color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+}
+.how-to-play {
+  max-width: 480px; text-align: left;
+  margin-bottom: var(--spacing-xl);
+}
+.how-to-play h3 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); }
+.how-to-play p { font-size: var(--font-size-base); color: var(--color-text-light); line-height: 1.6; }
+.menu-section { margin-bottom: var(--spacing-lg); }
+.menu-section h3 { font-size: var(--font-size-base); font-weight: 600; margin-bottom: var(--spacing-sm); }
+.menu-buttons { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: center; }
+
+/* ========== Play Screen ========== */
+#play-screen { flex-direction: column; min-height: 100vh; width: 100%; }
+
+.play-layout {
+  display: flex; flex: 1; gap: var(--spacing-md);
+  padding: var(--spacing-sm); overflow: hidden;
+}
+.controls-panel {
+  display: flex; flex-direction: column; gap: var(--spacing-sm);
+  width: 260px; flex-shrink: 0; overflow-y: auto;
+}
+
+/* ========== Target Display ========== */
+.target-display {
+  text-align: center; padding: var(--spacing-md);
+}
+.target-label { font-size: var(--font-size-base); font-weight: 600; color: var(--color-text-light); }
+.target-number {
+  font-size: var(--font-size-3xl); font-weight: 700;
+  color: var(--color-danger); line-height: 1.1;
+}
+
+/* ========== Equation Display ========== */
+.equation-display {
+  font-size: var(--font-size-2xl); font-weight: 700;
+  text-align: center; padding: var(--spacing-sm);
+  color: var(--color-primary-dark);
+  min-height: 2.5em; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-sketch);
+}
+
+/* ========== Factor Pairs ========== */
+.factor-pairs {
+  display: flex; flex-wrap: wrap; gap: var(--spacing-xs);
+  justify-content: center; padding: var(--spacing-xs);
+}
+.factor-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 2px solid var(--color-black); border-radius: var(--radius-full);
+  font-family: var(--font-display); font-size: var(--font-size-sm);
+  font-weight: 600; cursor: pointer;
+  background: var(--color-bg-dark); color: var(--color-text);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+  box-shadow: var(--shadow-card-sm); touch-action: manipulation;
+  min-height: 44px; min-width: 44px;
+  user-select: none; -webkit-tap-highlight-color: transparent;
+}
+.factor-btn:hover:not(:disabled) { transform: scale(1.05); }
+.factor-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.factor-btn.selected {
+  background: var(--color-primary); color: var(--color-white);
+  border-color: var(--color-primary-dark); transform: scale(1.08);
+}
+.factor-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* ========== Score / Info ========== */
+.info-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-dark); border-radius: var(--radius-md);
+  font-weight: 600; flex-wrap: wrap; font-size: var(--font-size-sm);
+}
+.score-block {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md); font-weight: 600;
+}
+.score-block.p1 { background: var(--p1-light); border-left: 4px solid var(--p1-color); }
+.score-block.p2 { background: var(--p2-light); border-left: 4px solid var(--p2-color); }
+.score-value { font-size: var(--font-size-xl); font-weight: 700; }
+.score-block.p1 .score-value { color: var(--p1-color); }
+.score-block.p2 .score-value { color: var(--p2-color); }
+
+/* ========== Message Area ========== */
+.message-area {
+  text-align: center; padding: var(--spacing-sm);
+  font-size: var(--font-size-base); font-weight: 500; min-height: 2em;
+}
+
+/* ========== Grid ========== */
+.grid-area {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  min-width: 0; min-height: 0; padding: var(--spacing-xs);
+}
+.grid-wrapper {
+  display: grid;
+  aspect-ratio: 1 / 1;
+  max-height: calc(100vh - 100px);
+  max-width: calc(100vh - 100px);
+  width: 100%;
+  gap: 0;
+  user-select: none;
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #e5e7eb;
+}
+.grid-cell {
+  border: 1px solid #ccc;
+  background: var(--color-white);
+  position: relative;
+  cursor: pointer;
+  transition: background-color 75ms ease;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.85);
+}
+.grid-cell.p1-placed { background: var(--p1-color); border-color: #2563eb; }
+.grid-cell.p2-placed { background: var(--p2-color); border-color: #16a34a; }
+.grid-cell.preview-valid {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: -2px;
+  z-index: 1;
+}
+.grid-cell.preview-p1 { background: var(--p1-preview); }
+.grid-cell.preview-p2 { background: var(--p2-preview); }
+.grid-cell.preview-invalid { background: rgba(220,38,38,0.15); }
+
+/* Rectangle labels on placed cells */
+.grid-cell .cell-label {
+  font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.9);
+  pointer-events: none;
+}
+
+/* ========== Skip Button ========== */
+.skip-section { text-align: center; padding: var(--spacing-xs) 0; }
+
+/* ========== Summary ========== */
+#summary-screen {
+  flex-direction: column; align-items: center; justify-content: center;
+  min-height: 100vh; padding: var(--spacing-lg); text-align: center;
+}
+.summary-result {
+  font-size: var(--font-size-2xl); font-weight: 700;
+  margin: var(--spacing-md) 0;
+}
+.summary-scores {
+  display: flex; gap: var(--spacing-xl); justify-content: center;
+  margin: var(--spacing-md) 0;
+}
+.summary-player { text-align: center; }
+.summary-player .label { font-size: var(--font-size-base); font-weight: 600; }
+.summary-player .value { font-size: var(--font-size-3xl); font-weight: 700; }
+.summary-grid-wrap {
+  max-width: 400px; width: 100%; margin: var(--spacing-md) auto;
+}
+
+/* ========== Demo Overlay ========== */
+.game-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; padding: var(--spacing-md);
+}
+.game-modal {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-xl); box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  padding: var(--spacing-xl); max-width: 560px; width: 100%;
+  max-height: 90vh; overflow-y: auto; text-align: center;
+}
+.demo-grid {
+  display: grid; gap: 0; margin: var(--spacing-md) auto;
+  max-width: 300px;
+}
+.demo-grid .grid-cell { width: 100%; aspect-ratio: 1; }
+.demo-step {
+  font-size: var(--font-size-lg); font-weight: 500;
+  margin: var(--spacing-sm) 0; min-height: 2em;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 700px) {
+  .play-layout { flex-direction: column; overflow-y: auto; }
+  .controls-panel { width: 100%; flex-shrink: initial; overflow-y: visible; }
+  .grid-area { min-height: 50vw; }
+  .grid-wrapper {
+    max-height: 70vw; max-width: 90vw;
+  }
+  .menu-title { font-size: var(--font-size-2xl); }
+}
+
+/* ========== Placement animation ========== */
+@keyframes cell-pop {
+  0% { transform: scale(0.7); opacity: 0.5; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.cell-placed-anim { animation: cell-pop 0.3s ease forwards; }
+</style>
+</head>
+<body>
+
+<!-- ============ MENU SCREEN ============ -->
+<div id="menu-screen" class="active" role="main">
+  <div class="menu-title">Array Builder</div>
+  <div class="menu-subtitle">Build rectangles to fill the grid!</div>
+
+  <div class="how-to-play game-card-sm">
+    <h3>How to Play</h3>
+    <p>
+      You are given a target area each round. Pick a rectangle whose area matches the target
+      (e.g. target 12 could be 3 x 4, 2 x 6, etc.), then place it on the grid.
+      Cover as many squares as you can! In 2-player mode, the player who covers more squares wins.
+    </p>
+  </div>
+
+  <div class="menu-section">
+    <h3>Players</h3>
+    <div class="menu-buttons" role="radiogroup" aria-label="Number of players">
+      <button class="game-btn game-btn-primary player-btn" data-players="1" aria-pressed="true">1 Player</button>
+      <button class="game-btn game-btn-outline player-btn" data-players="2" aria-pressed="false">2 Players</button>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h3>Difficulty</h3>
+    <div class="menu-buttons" role="radiogroup" aria-label="Difficulty">
+      <button class="game-btn game-btn-success diff-btn" data-diff="easy" aria-pressed="true">Easy</button>
+      <button class="game-btn game-btn-outline diff-btn" data-diff="medium" aria-pressed="false">Medium</button>
+      <button class="game-btn game-btn-outline diff-btn" data-diff="hard" aria-pressed="false">Hard</button>
+    </div>
+  </div>
+
+  <div class="menu-buttons mt-md">
+    <button class="game-btn game-btn-primary game-btn-lg" id="btn-start">Start Game</button>
+    <button class="game-btn game-btn-purple" id="btn-demo">Demo</button>
+  </div>
+</div>
+
+<!-- ============ PLAY SCREEN ============ -->
+<div id="play-screen">
+  <header class="game-header">
+    <h1>Array Builder</h1>
+    <div class="flex-center gap-sm">
+      <button class="game-btn game-btn-sm game-btn-outline" id="btn-mute" aria-label="Toggle sound">Sound On</button>
+      <button class="game-btn game-btn-sm game-btn-danger" id="btn-quit">Quit</button>
+    </div>
+  </header>
+
+  <div class="play-layout">
+    <div class="controls-panel">
+      <div class="game-card-sm target-display">
+        <div class="target-label">Target Area</div>
+        <div class="target-number" id="target-num" aria-live="polite">12</div>
+      </div>
+
+      <div class="game-card-sm">
+        <div class="target-label mb-md" id="pair-label">Pick a rectangle:</div>
+        <div class="factor-pairs" id="factor-pairs" role="listbox" aria-label="Factor pairs"></div>
+      </div>
+
+      <div class="equation-display" id="equation" aria-live="polite"></div>
+
+      <div class="info-bar" id="round-info">
+        <span id="round-display">Round 1 / 10</span>
+        <span id="turn-display"></span>
+      </div>
+
+      <div class="score-block p1" id="score-p1">
+        <span>Player 1</span>
+        <span class="score-value" id="score-val-p1">0</span>
+      </div>
+      <div class="score-block p2 hidden" id="score-p2">
+        <span>Player 2</span>
+        <span class="score-value" id="score-val-p2">0</span>
+      </div>
+
+      <div class="message-area" id="message" aria-live="polite"></div>
+
+      <div class="skip-section">
+        <button class="game-btn game-btn-sm game-btn-warning hidden" id="btn-skip">Skip Turn</button>
+      </div>
+    </div>
+
+    <div class="grid-area">
+      <div class="grid-wrapper" id="grid" role="grid" aria-label="Game grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SUMMARY SCREEN ============ -->
+<div id="summary-screen">
+  <div class="game-card text-center" style="max-width:500px; width:100%;">
+    <h2 style="font-size:var(--font-size-2xl); margin-bottom:var(--spacing-sm);">Game Over!</h2>
+    <div class="summary-result" id="summary-result"></div>
+    <div class="summary-scores" id="summary-scores"></div>
+    <div class="summary-grid-wrap" id="summary-grid-wrap"></div>
+    <div class="menu-buttons mt-lg">
+      <button class="game-btn game-btn-primary game-btn-lg" id="btn-play-again">Play Again</button>
+      <button class="game-btn game-btn-outline" id="btn-back-menu">Menu</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DEMO OVERLAY ============ -->
+<div class="game-overlay hidden" id="demo-overlay">
+  <div class="game-modal">
+    <h2 style="font-size:var(--font-size-xl); margin-bottom:var(--spacing-sm);">Demo</h2>
+    <div class="demo-step" id="demo-step" aria-live="polite">Watch how it works...</div>
+    <div class="demo-grid" id="demo-grid"></div>
+    <div class="mt-md">
+      <button class="game-btn game-btn-primary" id="demo-next">Next</button>
+      <button class="game-btn game-btn-outline" id="demo-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="sr-only" aria-live="assertive" id="sr-announce"></div>
+
+<script>
+/* ============================================================
+   Array Builder - Multiplication grid game
+   ============================================================ */
+(function() {
+  'use strict';
+
+  /* ---------- State ---------- */
+  const DIFFICULTY = {
+    easy:   { gridSize: 6,  minTarget: 4,  maxTarget: 12, rounds: 10 },
+    medium: { gridSize: 8,  minTarget: 6,  maxTarget: 24, rounds: 10 },
+    hard:   { gridSize: 10, minTarget: 8,  maxTarget: 36, rounds: 10 }
+  };
+
+  let state = {
+    screen: 'menu',
+    players: 1,
+    difficulty: 'easy',
+    gridSize: 6,
+    grid: [],          // 2D array: 0 = empty, 1 = player1, 2 = player2
+    round: 1,
+    maxRounds: 10,
+    currentPlayer: 1,
+    target: 0,
+    selectedPair: null,  // { w, h }
+    scores: [0, 0],
+    skips: [0, 0],       // consecutive skip count
+    previewCells: [],
+    previewValid: false,
+    touchPreview: false,  // mobile: first tap shows preview, second confirms
+    touchPreviewPos: null,
+    muted: false,
+    demoStep: 0,
+    timers: []
+  };
+
+  /* ---------- DOM refs ---------- */
+  const $ = (id) => document.getElementById(id);
+  const menuScreen = $('menu-screen');
+  const playScreen = $('play-screen');
+  const summaryScreen = $('summary-screen');
+  const gridEl = $('grid');
+  const targetNum = $('target-num');
+  const factorPairsEl = $('factor-pairs');
+  const equationEl = $('equation');
+  const roundDisplay = $('round-display');
+  const turnDisplay = $('turn-display');
+  const messageEl = $('message');
+  const scoreValP1 = $('score-val-p1');
+  const scoreValP2 = $('score-val-p2');
+  const scoreP2Block = $('score-p2');
+  const btnSkip = $('btn-skip');
+  const btnMute = $('btn-mute');
+  const srAnnounce = $('sr-announce');
+
+  /* ---------- Speech ---------- */
+  const speechSupported = 'speechSynthesis' in window;
+
+  function speak(text) {
+    if (!speechSupported || state.muted) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB';
+    u.rate = 0.95;
+    window.speechSynthesis.speak(u);
+  }
+
+  function announce(text) {
+    srAnnounce.textContent = '';
+    requestAnimationFrame(() => { srAnnounce.textContent = text; });
+  }
+
+  /* ---------- Timers ---------- */
+  function addTimer(fn, ms) {
+    const id = setTimeout(fn, ms);
+    state.timers.push(id);
+    return id;
+  }
+
+  function clearTimers() {
+    state.timers.forEach(id => clearTimeout(id));
+    state.timers = [];
+  }
+
+  /* ---------- Utility ---------- */
+  function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function getFactorPairs(n, gridSize) {
+    const pairs = [];
+    for (let i = 1; i <= n; i++) {
+      if (n % i === 0) {
+        const j = n / i;
+        if (i <= gridSize && j <= gridSize) {
+          pairs.push({ w: i, h: j });
+        }
+      }
+    }
+    return pairs;
+  }
+
+  function generateTarget(diff) {
+    const d = DIFFICULTY[diff];
+    // generate a target that has at least one valid factor pair fitting the grid
+    let attempts = 0;
+    while (attempts < 100) {
+      const t = randInt(d.minTarget, d.maxTarget);
+      if (getFactorPairs(t, d.gridSize).length > 0) return t;
+      attempts++;
+    }
+    return d.minTarget;
+  }
+
+  /* ---------- Screen management ---------- */
+  function showScreen(name) {
+    clearTimers();
+    if (speechSupported) window.speechSynthesis.cancel();
+    state.screen = name;
+    menuScreen.classList.toggle('active', name === 'menu');
+    playScreen.classList.toggle('active', name === 'game');
+    summaryScreen.classList.toggle('active', name === 'summary');
+  }
+
+  /* ---------- Menu ---------- */
+  document.querySelectorAll('.player-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.players = parseInt(btn.dataset.players);
+      document.querySelectorAll('.player-btn').forEach(b => {
+        const sel = b === btn;
+        b.classList.toggle('game-btn-primary', sel);
+        b.classList.toggle('game-btn-outline', !sel);
+        b.setAttribute('aria-pressed', sel);
+      });
+    });
+  });
+
+  document.querySelectorAll('.diff-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.difficulty = btn.dataset.diff;
+      document.querySelectorAll('.diff-btn').forEach(b => {
+        const sel = b === btn;
+        b.classList.toggle('game-btn-success', sel);
+        b.classList.toggle('game-btn-outline', !sel);
+        b.setAttribute('aria-pressed', sel);
+      });
+    });
+  });
+
+  $('btn-start').addEventListener('click', startGame);
+  $('btn-demo').addEventListener('click', startDemo);
+  $('btn-quit').addEventListener('click', () => showScreen('menu'));
+  $('btn-play-again').addEventListener('click', startGame);
+  $('btn-back-menu').addEventListener('click', () => showScreen('menu'));
+
+  btnMute.addEventListener('click', () => {
+    state.muted = !state.muted;
+    btnMute.textContent = state.muted ? 'Sound Off' : 'Sound On';
+    if (state.muted && speechSupported) window.speechSynthesis.cancel();
+  });
+
+  btnSkip.addEventListener('click', handleSkip);
+
+  /* ---------- Start game ---------- */
+  function startGame() {
+    const diff = DIFFICULTY[state.difficulty];
+    state.gridSize = diff.gridSize;
+    state.maxRounds = diff.rounds;
+    state.round = 1;
+    state.currentPlayer = 1;
+    state.scores = [0, 0];
+    state.skips = [0, 0];
+    state.selectedPair = null;
+    state.previewCells = [];
+    state.touchPreview = false;
+    state.touchPreviewPos = null;
+
+    // init grid
+    state.grid = [];
+    for (let r = 0; r < state.gridSize; r++) {
+      state.grid.push(new Array(state.gridSize).fill(0));
+    }
+
+    scoreP2Block.classList.toggle('hidden', state.players === 1);
+    showScreen('game');
+    buildGrid();
+    startRound();
+  }
+
+  /* ---------- Build grid DOM ---------- */
+  function buildGrid() {
+    gridEl.innerHTML = '';
+    gridEl.style.gridTemplateColumns = `repeat(${state.gridSize}, 1fr)`;
+    gridEl.style.gridTemplateRows = `repeat(${state.gridSize}, 1fr)`;
+
+    for (let r = 0; r < state.gridSize; r++) {
+      for (let c = 0; c < state.gridSize; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        cell.dataset.row = r;
+        cell.dataset.col = c;
+        cell.setAttribute('role', 'gridcell');
+        cell.setAttribute('aria-label', `Row ${r + 1}, Column ${c + 1}, empty`);
+        cell.tabIndex = -1;
+
+        cell.addEventListener('mouseenter', () => handleHover(r, c));
+        cell.addEventListener('mouseleave', clearPreview);
+        cell.addEventListener('click', () => handleCellClick(r, c));
+        cell.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          handleCellTouch(r, c);
+        }, { passive: false });
+
+        gridEl.appendChild(cell);
+      }
+    }
+  }
+
+  function getCell(r, c) {
+    return gridEl.children[r * state.gridSize + c];
+  }
+
+  function refreshGrid() {
+    for (let r = 0; r < state.gridSize; r++) {
+      for (let c = 0; c < state.gridSize; c++) {
+        const cell = getCell(r, c);
+        const v = state.grid[r][c];
+        cell.className = 'grid-cell';
+        cell.innerHTML = '';
+        if (v === 1) {
+          cell.classList.add('p1-placed');
+          cell.setAttribute('aria-label', `Row ${r+1}, Column ${c+1}, Player 1`);
+        } else if (v === 2) {
+          cell.classList.add('p2-placed');
+          cell.setAttribute('aria-label', `Row ${r+1}, Column ${c+1}, Player 2`);
+        } else {
+          cell.setAttribute('aria-label', `Row ${r+1}, Column ${c+1}, empty`);
+        }
+      }
+    }
+  }
+
+  /* ---------- Round ---------- */
+  function startRound() {
+    state.target = generateTarget(state.difficulty);
+    state.selectedPair = null;
+    state.previewCells = [];
+    state.touchPreview = false;
+
+    targetNum.textContent = state.target;
+    equationEl.textContent = '';
+    roundDisplay.textContent = `Round ${state.round} / ${state.maxRounds}`;
+    updateTurnDisplay();
+    updateScores();
+    buildFactorPairs();
+
+    const pairLabel = $('pair-label');
+    if (state.players === 2) {
+      pairLabel.textContent = `Player ${state.currentPlayer} - pick a rectangle:`;
+    } else {
+      pairLabel.textContent = 'Pick a rectangle:';
+    }
+    messageEl.textContent = 'Choose a rectangle size, then place it on the grid.';
+    btnSkip.classList.remove('hidden');
+
+    speak(`Target area is ${state.target}. Pick a rectangle.`);
+    announce(`Round ${state.round}. Target area: ${state.target}. Choose a factor pair.`);
+
+    checkAutoSkip();
+  }
+
+  function updateTurnDisplay() {
+    if (state.players === 2) {
+      const pName = state.currentPlayer === 1 ? 'Player 1 (Blue)' : 'Player 2 (Green)';
+      turnDisplay.textContent = pName;
+      turnDisplay.style.color = state.currentPlayer === 1 ? 'var(--p1-color)' : 'var(--p2-color)';
+    } else {
+      turnDisplay.textContent = '';
+    }
+  }
+
+  function updateScores() {
+    scoreValP1.textContent = state.scores[0];
+    scoreValP2.textContent = state.scores[1];
+  }
+
+  /* ---------- Factor pairs ---------- */
+  function buildFactorPairs() {
+    factorPairsEl.innerHTML = '';
+    const pairs = getFactorPairs(state.target, state.gridSize);
+
+    pairs.forEach(pair => {
+      const btn = document.createElement('button');
+      btn.className = 'factor-btn';
+      btn.textContent = `${pair.w} \u00d7 ${pair.h}`;
+      btn.setAttribute('role', 'option');
+      btn.setAttribute('aria-selected', 'false');
+
+      // Check if this pair can actually be placed anywhere
+      const canPlace = canPlacePairAnywhere(pair.w, pair.h);
+      btn.disabled = !canPlace;
+
+      btn.addEventListener('click', () => selectPair(pair, btn));
+      factorPairsEl.appendChild(btn);
+    });
+  }
+
+  function canPlacePairAnywhere(w, h) {
+    for (let r = 0; r <= state.gridSize - h; r++) {
+      for (let c = 0; c <= state.gridSize - w; c++) {
+        if (canPlaceAt(r, c, w, h)) return true;
+      }
+    }
+    return false;
+  }
+
+  function canPlaceAt(row, col, w, h) {
+    if (row + h > state.gridSize || col + w > state.gridSize) return false;
+    for (let r = row; r < row + h; r++) {
+      for (let c = col; c < col + w; c++) {
+        if (state.grid[r][c] !== 0) return false;
+      }
+    }
+    return true;
+  }
+
+  function selectPair(pair, btn) {
+    state.selectedPair = pair;
+    state.touchPreview = false;
+    state.touchPreviewPos = null;
+    clearPreview();
+
+    document.querySelectorAll('.factor-btn').forEach(b => {
+      b.classList.remove('selected');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('selected');
+    btn.setAttribute('aria-selected', 'true');
+
+    equationEl.textContent = `${pair.w} \u00d7 ${pair.h} = ${state.target}`;
+    messageEl.textContent = 'Now click on the grid to place your rectangle.';
+    announce(`Selected ${pair.w} by ${pair.h}. Click the grid to place.`);
+  }
+
+  /* ---------- Grid hover / preview ---------- */
+  function handleHover(row, col) {
+    if (!state.selectedPair || state.screen !== 'game') return;
+    showPreview(row, col);
+  }
+
+  function showPreview(row, col) {
+    clearPreview();
+    if (!state.selectedPair) return;
+
+    const { w, h } = state.selectedPair;
+    const valid = canPlaceAt(row, col, w, h);
+    const cells = [];
+
+    for (let r = row; r < Math.min(row + h, state.gridSize); r++) {
+      for (let c = col; c < Math.min(col + w, state.gridSize); c++) {
+        cells.push({ r, c });
+      }
+    }
+
+    state.previewCells = cells;
+    state.previewValid = valid;
+
+    const pClass = state.currentPlayer === 1 ? 'preview-p1' : 'preview-p2';
+    cells.forEach(({ r, c }) => {
+      const cell = getCell(r, c);
+      if (state.grid[r][c] === 0) {
+        cell.classList.add(valid ? 'preview-valid' : 'preview-invalid');
+        if (valid) cell.classList.add(pClass);
+      }
+    });
+  }
+
+  function clearPreview() {
+    state.previewCells.forEach(({ r, c }) => {
+      const cell = getCell(r, c);
+      cell.classList.remove('preview-valid', 'preview-invalid', 'preview-p1', 'preview-p2');
+    });
+    state.previewCells = [];
+  }
+
+  /* ---------- Cell click / touch ---------- */
+  function handleCellClick(row, col) {
+    if (!state.selectedPair || state.screen !== 'game') return;
+    placeRectangle(row, col);
+  }
+
+  function handleCellTouch(row, col) {
+    if (!state.selectedPair || state.screen !== 'game') return;
+
+    // First tap: show preview
+    if (!state.touchPreview || state.touchPreviewPos === null ||
+        state.touchPreviewPos.r !== row || state.touchPreviewPos.c !== col) {
+      clearPreview();
+      showPreview(row, col);
+      state.touchPreview = true;
+      state.touchPreviewPos = { r: row, c: col };
+      if (state.previewValid) {
+        messageEl.textContent = 'Tap again to confirm placement.';
+      } else {
+        messageEl.textContent = 'Can\'t place here. Try another spot.';
+      }
+      return;
+    }
+
+    // Second tap on same cell: confirm
+    placeRectangle(row, col);
+  }
+
+  function placeRectangle(row, col) {
+    const { w, h } = state.selectedPair;
+    if (!canPlaceAt(row, col, w, h)) {
+      messageEl.textContent = 'Can\'t place there! Try another spot.';
+      return;
+    }
+
+    // Place it
+    const p = state.currentPlayer;
+    for (let r = row; r < row + h; r++) {
+      for (let c = col; c < col + w; c++) {
+        state.grid[r][c] = p;
+      }
+    }
+
+    state.scores[p - 1] += w * h;  // cells covered
+    state.skips[p - 1] = 0;
+
+    // Animate
+    clearPreview();
+    for (let r = row; r < row + h; r++) {
+      for (let c = col; c < col + w; c++) {
+        const cell = getCell(r, c);
+        cell.classList.add(p === 1 ? 'p1-placed' : 'p2-placed', 'cell-placed-anim');
+        cell.setAttribute('aria-label', `Row ${r+1}, Column ${c+1}, Player ${p}`);
+      }
+    }
+
+    updateScores();
+    speak(`${w} times ${h} equals ${state.target}. Placed!`);
+
+    equationEl.textContent = `${w} \u00d7 ${h} = ${state.target}  \u2713`;
+    messageEl.textContent = 'Placed!';
+
+    state.selectedPair = null;
+    state.touchPreview = false;
+    state.touchPreviewPos = null;
+
+    addTimer(() => advanceTurn(), 800);
+  }
+
+  /* ---------- Skip ---------- */
+  function handleSkip() {
+    if (state.screen !== 'game') return;
+    const p = state.currentPlayer;
+    state.skips[p - 1]++;
+    speak('Skipped.');
+    messageEl.textContent = `Player ${p} skipped.`;
+    advanceTurn();
+  }
+
+  function checkAutoSkip() {
+    // Check if current player can place ANY factor pair ANYWHERE
+    const pairs = getFactorPairs(state.target, state.gridSize);
+    let canPlaceAny = false;
+    for (const pair of pairs) {
+      if (canPlacePairAnywhere(pair.w, pair.h)) {
+        canPlaceAny = true;
+        break;
+      }
+    }
+
+    if (!canPlaceAny) {
+      messageEl.textContent = `No valid placement available. Auto-skipping...`;
+      state.skips[state.currentPlayer - 1]++;
+      addTimer(() => advanceTurn(), 1000);
+      btnSkip.classList.add('hidden');
+      factorPairsEl.innerHTML = '<div style="color:var(--color-text-light); padding:var(--spacing-sm);">No placements fit!</div>';
+    }
+  }
+
+  /* ---------- Turn / round advance ---------- */
+  function advanceTurn() {
+    // Check end conditions
+    if (state.players === 2) {
+      // 2P: check if both skipped consecutively
+      if (state.skips[0] >= 1 && state.skips[1] >= 1) {
+        endGame();
+        return;
+      }
+      // Alternate player
+      if (state.currentPlayer === 1) {
+        state.currentPlayer = 2;
+        startRound(); // same round, new target for P2
+        return;
+      } else {
+        // Both players went, advance round
+        state.currentPlayer = 1;
+        state.round++;
+        if (state.round > state.maxRounds) {
+          endGame();
+          return;
+        }
+        startRound();
+        return;
+      }
+    } else {
+      // 1P: end if player skipped (grid too full)
+      if (state.skips[0] >= 1) {
+        endGame();
+        return;
+      }
+      state.round++;
+      if (state.round > state.maxRounds) {
+        endGame();
+        return;
+      }
+      startRound();
+    }
+  }
+
+  /* ---------- End game ---------- */
+  function endGame() {
+    showScreen('summary');
+
+    const totalCells = state.gridSize * state.gridSize;
+    const summaryResult = $('summary-result');
+    const summaryScores = $('summary-scores');
+
+    // Count cells per player
+    let p1Cells = 0, p2Cells = 0;
+    for (let r = 0; r < state.gridSize; r++) {
+      for (let c = 0; c < state.gridSize; c++) {
+        if (state.grid[r][c] === 1) p1Cells++;
+        else if (state.grid[r][c] === 2) p2Cells++;
+      }
+    }
+
+    if (state.players === 1) {
+      const pct = Math.round((p1Cells / totalCells) * 100);
+      summaryResult.textContent = `You covered ${p1Cells} / ${totalCells} cells (${pct}%)`;
+      summaryResult.style.color = pct >= 70 ? 'var(--color-success)' : 'var(--color-primary)';
+      summaryScores.innerHTML = `
+        <div class="summary-player">
+          <div class="label">Cells Covered</div>
+          <div class="value" style="color:var(--p1-color)">${p1Cells}</div>
+        </div>
+        <div class="summary-player">
+          <div class="label">Score</div>
+          <div class="value">${state.scores[0]}</div>
+        </div>`;
+      speak(`Game over! You covered ${p1Cells} out of ${totalCells} cells.`);
+    } else {
+      let resultText;
+      if (p1Cells > p2Cells) {
+        resultText = 'Player 1 (Blue) wins!';
+        summaryResult.style.color = 'var(--p1-color)';
+      } else if (p2Cells > p1Cells) {
+        resultText = 'Player 2 (Green) wins!';
+        summaryResult.style.color = 'var(--p2-color)';
+      } else {
+        resultText = 'It\'s a tie!';
+        summaryResult.style.color = 'var(--color-purple)';
+      }
+      summaryResult.textContent = resultText;
+      summaryScores.innerHTML = `
+        <div class="summary-player">
+          <div class="label" style="color:var(--p1-color)">Player 1</div>
+          <div class="value" style="color:var(--p1-color)">${p1Cells} cells</div>
+        </div>
+        <div class="summary-player">
+          <div class="label" style="color:var(--p2-color)">Player 2</div>
+          <div class="value" style="color:var(--p2-color)">${p2Cells} cells</div>
+        </div>`;
+      speak(resultText);
+    }
+
+    // Build summary mini-grid
+    buildSummaryGrid();
+  }
+
+  function buildSummaryGrid() {
+    const wrap = $('summary-grid-wrap');
+    wrap.innerHTML = '';
+    const g = document.createElement('div');
+    g.style.display = 'grid';
+    g.style.gridTemplateColumns = `repeat(${state.gridSize}, 1fr)`;
+    g.style.gap = '0';
+    g.style.border = '2px solid var(--color-black)';
+    g.style.borderRadius = 'var(--radius-md)';
+    g.style.overflow = 'hidden';
+
+    for (let r = 0; r < state.gridSize; r++) {
+      for (let c = 0; c < state.gridSize; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        cell.style.aspectRatio = '1';
+        const v = state.grid[r][c];
+        if (v === 1) cell.classList.add('p1-placed');
+        else if (v === 2) cell.classList.add('p2-placed');
+        g.appendChild(cell);
+      }
+    }
+    wrap.appendChild(g);
+  }
+
+  /* ---------- Demo ---------- */
+  const DEMO_STEPS = [
+    { text: 'The target area is 12. We need a rectangle with area 12.', target: 12, highlight: [] },
+    { text: 'Factor pairs for 12: 1x12, 2x6, 3x4, 4x3, 6x2, 12x1.', target: 12, highlight: [] },
+    { text: 'Let\'s pick 3 x 4. That means 3 columns and 4 rows.', target: 12, pair: { w: 3, h: 4 }, highlight: [] },
+    { text: 'We place it at the top-left of the grid.', target: 12, pair: { w: 3, h: 4 }, place: { r: 0, c: 0, p: 1 } },
+    { text: 'Now target is 8. We could pick 2 x 4 or 4 x 2.', target: 8, highlight: [] },
+    { text: 'Pick 4 x 2 and place it next to the first rectangle.', target: 8, pair: { w: 4, h: 2 }, place: { r: 0, c: 3, p: 1 } },
+    { text: 'Notice: 3x4 and 4x3 give the same area. That\'s commutativity!', highlight: [] },
+    { text: 'Keep filling the grid to maximise your score. Have fun!', highlight: [] }
+  ];
+
+  let demoGrid = [];
+  const DEMO_SIZE = 6;
+
+  function startDemo() {
+    state.demoStep = 0;
+    demoGrid = [];
+    for (let r = 0; r < DEMO_SIZE; r++) {
+      demoGrid.push(new Array(DEMO_SIZE).fill(0));
+    }
+    buildDemoGrid();
+    updateDemoStep();
+    $('demo-overlay').classList.remove('hidden');
+  }
+
+  function buildDemoGrid() {
+    const g = $('demo-grid');
+    g.innerHTML = '';
+    g.style.gridTemplateColumns = `repeat(${DEMO_SIZE}, 1fr)`;
+
+    for (let r = 0; r < DEMO_SIZE; r++) {
+      for (let c = 0; c < DEMO_SIZE; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        cell.style.aspectRatio = '1';
+        cell.dataset.row = r;
+        cell.dataset.col = c;
+        g.appendChild(cell);
+      }
+    }
+  }
+
+  function getDemoCell(r, c) {
+    return $('demo-grid').children[r * DEMO_SIZE + c];
+  }
+
+  function refreshDemoGrid() {
+    for (let r = 0; r < DEMO_SIZE; r++) {
+      for (let c = 0; c < DEMO_SIZE; c++) {
+        const cell = getDemoCell(r, c);
+        cell.className = 'grid-cell';
+        cell.style.aspectRatio = '1';
+        const v = demoGrid[r][c];
+        if (v === 1) cell.classList.add('p1-placed');
+        else if (v === 2) cell.classList.add('p2-placed');
+      }
+    }
+  }
+
+  function updateDemoStep() {
+    const step = DEMO_STEPS[state.demoStep];
+    $('demo-step').textContent = step.text;
+    speak(step.text);
+
+    // Apply placement if any
+    if (step.place) {
+      const { r, c, p } = step.place;
+      const { w, h } = step.pair;
+      for (let row = r; row < r + h; row++) {
+        for (let col = c; col < c + w; col++) {
+          demoGrid[row][col] = p;
+        }
+      }
+    }
+
+    refreshDemoGrid();
+
+    // Show preview for current pair
+    if (step.pair && !step.place) {
+      // show a preview highlight
+      const { w, h } = step.pair;
+      for (let row = 0; row < h; row++) {
+        for (let col = 0; col < w; col++) {
+          if (demoGrid[row][col] === 0) {
+            getDemoCell(row, col).classList.add('preview-valid', 'preview-p1');
+          }
+        }
+      }
+    }
+
+    $('demo-next').textContent = state.demoStep < DEMO_STEPS.length - 1 ? 'Next' : 'Done';
+  }
+
+  $('demo-next').addEventListener('click', () => {
+    if (state.demoStep < DEMO_STEPS.length - 1) {
+      state.demoStep++;
+      updateDemoStep();
+    } else {
+      $('demo-overlay').classList.add('hidden');
+    }
+  });
+
+  $('demo-close').addEventListener('click', () => {
+    $('demo-overlay').classList.add('hidden');
+    if (speechSupported) window.speechSynthesis.cancel();
+  });
+
+  // Close demo on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !$('demo-overlay').classList.contains('hidden')) {
+      $('demo-overlay').classList.add('hidden');
+      if (speechSupported) window.speechSynthesis.cancel();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Difference Dash - Maths Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Design System Tokens ========== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea {
+  font-size: max(var(--font-size-min), 1em);
+}
+
+/* ========== SR Only ========== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========== Game Header ========== */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg);
+  border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+.game-header h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin: 0;
+}
+.header-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+/* ========== Game Card ========== */
+.game-card {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md);
+}
+.game-card-sm {
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+
+/* ========== Buttons ========== */
+.game-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-btn);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  line-height: 1.2;
+  min-height: 44px;
+  min-width: 44px;
+}
+.game-btn:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-active);
+}
+.game-btn:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+}
+.game-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.game-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+.game-btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  border-width: 2px;
+  border-radius: var(--radius-md);
+}
+.game-btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-xl);
+  border-radius: var(--radius-xl);
+}
+
+/* ========== Utility ========== */
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+
+/* ========== Game Container ========== */
+.game-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: var(--spacing-xl);
+}
+
+/* ========== Screen Management ========== */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ========== Menu Screen ========== */
+.menu-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--spacing-xs);
+}
+.menu-subtitle {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-xl);
+  text-align: center;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+}
+.menu-section {
+  margin-bottom: var(--spacing-lg);
+}
+.menu-section h2 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+.option-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.option-btn {
+  position: relative;
+  min-width: 100px;
+}
+.option-btn[aria-pressed="true"] {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-active);
+  outline: 3px solid var(--color-primary);
+  outline-offset: 1px;
+}
+.menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+  margin-top: var(--spacing-xl);
+}
+
+/* ========== Dice ========== */
+.dice-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+}
+.die {
+  width: 90px;
+  height: 90px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sketch);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text);
+  transition: transform var(--transition-normal), background var(--transition-normal);
+}
+.die.rolling {
+  animation: diceShake 0.4s ease-in-out;
+}
+.die.bust {
+  background: var(--color-danger);
+  color: var(--color-white);
+  animation: diceBust 0.5s ease-in-out;
+}
+.die.match {
+  background: var(--color-success);
+  color: var(--color-white);
+}
+.dice-minus {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+/* ========== Calculation Display ========== */
+.calc-display {
+  text-align: center;
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  min-height: 2.5rem;
+  margin: var(--spacing-sm) 0;
+  transition: opacity var(--transition-normal);
+}
+.calc-display .result {
+  color: var(--color-primary-dark);
+}
+.calc-display .bust-text {
+  color: var(--color-danger);
+  font-size: var(--font-size-3xl);
+}
+
+/* ========== Pot / Running Total ========== */
+.pot-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+}
+.pot-visual {
+  position: relative;
+  width: 80px;
+  height: 70px;
+}
+.pot-chest {
+  width: 80px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--color-warning), var(--color-warning-dark));
+  border: 3px solid var(--color-black);
+  border-radius: 4px 4px var(--radius-sm) var(--radius-sm);
+  position: absolute;
+  bottom: 0;
+}
+.pot-chest::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: -3px;
+  right: -3px;
+  height: 18px;
+  background: linear-gradient(135deg, var(--color-warning), var(--color-warning-dark));
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+.pot-chest::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 12px;
+  background: var(--color-black);
+  border-radius: 2px;
+}
+.coin-stack {
+  position: absolute;
+  bottom: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  transition: all var(--transition-normal);
+}
+.coin {
+  width: 24px;
+  height: 8px;
+  background: linear-gradient(to bottom, #FFD700, #FFA500);
+  border: 1.5px solid var(--color-black);
+  border-radius: 50%;
+  margin-bottom: -2px;
+}
+.pot-value {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-warning-dark);
+}
+.pot-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+
+/* ========== Scoreboard ========== */
+.scoreboard {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin: var(--spacing-md) 0;
+}
+.score-card {
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: center;
+  min-width: 120px;
+  transition: background var(--transition-normal);
+}
+.score-card.active-player {
+  border-color: var(--color-primary);
+  border-width: 3px;
+  background: rgba(74, 144, 217, 0.08);
+}
+.score-card .player-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+.score-card .player-score {
+  font-family: var(--font-sketch);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+}
+.score-target {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ========== Action Buttons ========== */
+.action-area {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin: var(--spacing-lg) 0;
+}
+
+/* ========== Message ========== */
+.message-area {
+  text-align: center;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  min-height: 2.5em;
+}
+
+/* ========== Turn Counter ========== */
+.turn-counter {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ========== Summary Screen ========== */
+.summary-title {
+  font-size: var(--font-size-2xl);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+.summary-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-sm);
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-sm);
+}
+.stat-label { font-weight: 500; }
+.stat-value { font-weight: 700; font-family: var(--font-sketch); font-size: var(--font-size-lg); }
+
+/* ========== Overlay ========== */
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--spacing-md);
+}
+.game-overlay.hidden { display: none; }
+.game-modal {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-xl);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+/* ========== Bust Animation ========== */
+.bust-flash {
+  animation: bustFlash 0.6s ease-in-out;
+}
+@keyframes bustFlash {
+  0%, 100% { background-color: var(--color-white); }
+  25% { background-color: rgba(232, 93, 117, 0.3); }
+  50% { background-color: rgba(232, 93, 117, 0.15); }
+  75% { background-color: rgba(232, 93, 117, 0.3); }
+}
+@keyframes diceShake {
+  0% { transform: rotate(0deg) scale(1); }
+  20% { transform: rotate(-15deg) scale(1.1); }
+  40% { transform: rotate(12deg) scale(1.05); }
+  60% { transform: rotate(-8deg) scale(1.1); }
+  80% { transform: rotate(5deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+@keyframes diceBust {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.2) rotate(-5deg); }
+  40% { transform: scale(0.95) rotate(5deg); }
+  60% { transform: scale(1.15) rotate(-3deg); }
+  80% { transform: scale(1.0) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.pop-in { animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.slide-up { animation: slideUp 0.3s ease-out; }
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 400px) {
+  .die {
+    width: 72px;
+    height: 72px;
+    font-size: 2.5rem;
+  }
+  .game-card {
+    margin: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+  .menu-title { font-size: var(--font-size-2xl); }
+  .scoreboard { gap: var(--spacing-sm); }
+  .score-card { min-width: 100px; padding: var(--spacing-xs) var(--spacing-sm); }
+}
+
+/* ========== Demo Badge ========== */
+.demo-badge {
+  background: var(--color-purple);
+  color: var(--color-white);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: var(--spacing-sm);
+}
+</style>
+</head>
+<body>
+
+<!-- ========== Header ========== -->
+<header class="game-header">
+  <h1>Difference Dash</h1>
+  <div class="header-controls">
+    <button id="btn-mute" class="game-btn game-btn-sm game-btn-outline" aria-label="Mute sound" aria-pressed="false">
+      <span aria-hidden="true" id="mute-icon">&#128264;</span>
+    </button>
+    <button id="btn-home" class="game-btn game-btn-sm game-btn-outline" aria-label="Return to menu">
+      <span aria-hidden="true">&#127968;</span>
+    </button>
+  </div>
+</header>
+
+<div class="game-container">
+
+  <!-- ========== Menu Screen ========== -->
+  <div id="screen-menu" class="screen active" role="region" aria-label="Game menu">
+    <div class="game-card text-center">
+      <h2 class="menu-title">Difference Dash</h2>
+      <p class="menu-subtitle">Roll the dice. Score the difference. Don't get greedy!</p>
+
+      <div class="menu-section">
+        <h3 class="text-center" style="margin-bottom: var(--spacing-sm);">Players</h3>
+        <div class="option-group" role="radiogroup" aria-label="Number of players">
+          <button class="game-btn game-btn-primary option-btn" data-option="players" data-value="1" role="radio" aria-checked="true" aria-pressed="true">1 Player</button>
+          <button class="game-btn game-btn-outline option-btn" data-option="players" data-value="2" role="radio" aria-checked="false" aria-pressed="false">2 Players</button>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h3 class="text-center" style="margin-bottom: var(--spacing-sm);">Difficulty</h3>
+        <div class="option-group" role="radiogroup" aria-label="Difficulty level">
+          <button class="game-btn game-btn-success option-btn" data-option="difficulty" data-value="easy" role="radio" aria-checked="true" aria-pressed="true">Easy<br><small>1-6</small></button>
+          <button class="game-btn game-btn-outline option-btn" data-option="difficulty" data-value="medium" role="radio" aria-checked="false" aria-pressed="false">Medium<br><small>1-9</small></button>
+          <button class="game-btn game-btn-outline option-btn" data-option="difficulty" data-value="hard" role="radio" aria-checked="false" aria-pressed="false">Hard<br><small>1-12</small></button>
+        </div>
+      </div>
+
+      <div class="menu-actions">
+        <button id="btn-start" class="game-btn game-btn-lg game-btn-primary">Start Game</button>
+        <button id="btn-demo" class="game-btn game-btn-purple">Watch Demo</button>
+      </div>
+
+      <div style="margin-top: var(--spacing-lg); padding: var(--spacing-md); background: var(--color-bg-dark); border-radius: var(--radius-md);">
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-light);">
+          <strong>How to play:</strong> Roll two dice and score the difference between them.
+          Bank your running total to keep it safe, or roll again for more.
+          But watch out &mdash; roll a double and you lose everything for that turn!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Game Screen ========== -->
+  <div id="screen-game" class="screen" role="region" aria-label="Game play area">
+    <div id="demo-indicator" class="text-center" style="display:none;">
+      <span class="demo-badge">Demo Mode</span>
+    </div>
+
+    <div class="turn-counter" id="turn-counter"></div>
+    <div class="score-target" id="score-target">First to 50 points!</div>
+
+    <div class="scoreboard" id="scoreboard" aria-label="Player scores"></div>
+
+    <div class="game-card">
+      <div class="message-area" id="message-area" aria-live="polite"></div>
+
+      <div class="dice-area" id="dice-area">
+        <div class="die" id="die-1" aria-label="Die 1">?</div>
+        <span class="dice-minus" aria-hidden="true">&minus;</span>
+        <div class="die" id="die-2" aria-label="Die 2">?</div>
+      </div>
+
+      <div class="calc-display" id="calc-display" aria-live="polite"></div>
+
+      <div class="pot-area">
+        <div class="pot-visual" id="pot-visual">
+          <div class="pot-chest"></div>
+          <div class="coin-stack" id="coin-stack"></div>
+        </div>
+        <div>
+          <div class="pot-label">Running Total</div>
+          <div class="pot-value" id="pot-value" aria-live="polite">0</div>
+        </div>
+      </div>
+
+      <div class="action-area" id="action-area">
+        <button id="btn-roll" class="game-btn game-btn-lg game-btn-primary">Roll Dice!</button>
+        <button id="btn-bank" class="game-btn game-btn-lg game-btn-success" style="display:none;">Bank It!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Summary Screen ========== -->
+  <div id="screen-summary" class="screen" role="region" aria-label="Game results">
+    <div class="game-card text-center">
+      <h2 class="summary-title" id="summary-title"></h2>
+      <div class="summary-stats" id="summary-stats"></div>
+      <div class="menu-actions">
+        <button id="btn-play-again" class="game-btn game-btn-lg game-btn-primary">Play Again</button>
+        <button id="btn-back-menu" class="game-btn game-btn-outline">Back to Menu</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== Live Region for Announcements ========== -->
+<div id="live-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+
+<script>
+/* ========== State Machine ========== */
+const STATES = { MENU: 'menu', GAME: 'game', SUMMARY: 'summary' };
+const DIFFICULTY = { easy: 6, medium: 9, hard: 12 };
+const TARGET_SCORE = 50;
+
+const state = {
+  screen: STATES.MENU,
+  players: 1,
+  difficulty: 'easy',
+  maxDie: 6,
+  currentPlayer: 0,
+  scores: [0, 0],
+  runningTotal: 0,
+  turnCount: [0, 0],
+  bustsCount: [0, 0],
+  isRolling: false,
+  isDemo: false,
+  muted: false,
+  timers: []
+};
+
+/* ========== DOM References ========== */
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
+
+const els = {
+  screens: { menu: $('#screen-menu'), game: $('#screen-game'), summary: $('#screen-summary') },
+  die1: $('#die-1'), die2: $('#die-2'),
+  calcDisplay: $('#calc-display'),
+  potValue: $('#pot-value'),
+  coinStack: $('#coin-stack'),
+  messageArea: $('#message-area'),
+  scoreboard: $('#scoreboard'),
+  turnCounter: $('#turn-counter'),
+  scoreTarget: $('#score-target'),
+  actionArea: $('#action-area'),
+  btnRoll: $('#btn-roll'), btnBank: $('#btn-bank'),
+  btnStart: $('#btn-start'), btnDemo: $('#btn-demo'),
+  btnHome: $('#btn-home'), btnMute: $('#btn-mute'),
+  btnPlayAgain: $('#btn-play-again'), btnBackMenu: $('#btn-back-menu'),
+  muteIcon: $('#mute-icon'),
+  demoIndicator: $('#demo-indicator'),
+  summaryTitle: $('#summary-title'),
+  summaryStats: $('#summary-stats'),
+  liveAnnouncer: $('#live-announcer'),
+  gameCard: $('#screen-game .game-card')
+};
+
+/* ========== Speech Synthesis ========== */
+const speechSupported = 'speechSynthesis' in window;
+
+function speak(text) {
+  if (state.muted || !speechSupported) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-GB';
+  utterance.rate = 1.0;
+  utterance.pitch = 1.1;
+  window.speechSynthesis.speak(utterance);
+}
+
+function announce(text) {
+  els.liveAnnouncer.textContent = '';
+  requestAnimationFrame(() => { els.liveAnnouncer.textContent = text; });
+}
+
+/* ========== Timer Management ========== */
+function addTimer(fn, delay) {
+  const id = setTimeout(fn, delay);
+  state.timers.push(id);
+  return id;
+}
+
+function clearAllTimers() {
+  state.timers.forEach(id => clearTimeout(id));
+  state.timers = [];
+  if (speechSupported) window.speechSynthesis.cancel();
+}
+
+/* ========== Screen Transitions ========== */
+function showScreen(name) {
+  clearAllTimers();
+  state.screen = name;
+  Object.values(els.screens).forEach(s => s.classList.remove('active'));
+  els.screens[name].classList.add('active');
+  els.btnHome.style.display = name === STATES.MENU ? 'none' : '';
+}
+
+/* ========== Menu Logic ========== */
+function initMenu() {
+  // Option buttons
+  $$('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.option;
+      const value = btn.dataset.value;
+
+      // Update selection in the group
+      $$(`[data-option="${group}"]`).forEach(b => {
+        const isSelected = b === btn;
+        b.setAttribute('aria-checked', isSelected);
+        b.setAttribute('aria-pressed', isSelected);
+        if (isSelected) {
+          b.classList.remove('game-btn-outline');
+          if (group === 'players') b.classList.add('game-btn-primary');
+          else b.classList.add('game-btn-success');
+        } else {
+          b.classList.add('game-btn-outline');
+          b.classList.remove('game-btn-primary', 'game-btn-success');
+        }
+      });
+
+      if (group === 'players') state.players = parseInt(value);
+      if (group === 'difficulty') {
+        state.difficulty = value;
+        state.maxDie = DIFFICULTY[value];
+      }
+    });
+  });
+
+  els.btnStart.addEventListener('click', () => {
+    state.isDemo = false;
+    startGame();
+  });
+
+  els.btnDemo.addEventListener('click', () => {
+    state.isDemo = true;
+    state.players = 1;
+    startGame();
+    runDemo();
+  });
+
+  els.btnHome.addEventListener('click', () => {
+    showScreen(STATES.MENU);
+    state.isDemo = false;
+    els.demoIndicator.style.display = 'none';
+  });
+
+  els.btnMute.addEventListener('click', () => {
+    state.muted = !state.muted;
+    els.btnMute.setAttribute('aria-pressed', state.muted);
+    els.muteIcon.textContent = state.muted ? '\u{1F507}' : '\u{1F50A}';
+    if (state.muted && speechSupported) window.speechSynthesis.cancel();
+  });
+
+  els.btnPlayAgain.addEventListener('click', () => {
+    state.isDemo = false;
+    startGame();
+  });
+
+  els.btnBackMenu.addEventListener('click', () => {
+    showScreen(STATES.MENU);
+    state.isDemo = false;
+    els.demoIndicator.style.display = 'none';
+  });
+
+  els.btnRoll.addEventListener('click', () => {
+    if (!state.isDemo && !state.isRolling) rollDice();
+  });
+
+  els.btnBank.addEventListener('click', () => {
+    if (!state.isDemo && !state.isRolling) bankScore();
+  });
+}
+
+/* ========== Start Game ========== */
+function startGame() {
+  state.currentPlayer = 0;
+  state.scores = [0, 0];
+  state.runningTotal = 0;
+  state.turnCount = [0, 0];
+  state.bustsCount = [0, 0];
+  state.isRolling = false;
+
+  showScreen(STATES.GAME);
+
+  els.demoIndicator.style.display = state.isDemo ? '' : 'none';
+
+  if (state.players === 1) {
+    els.scoreTarget.textContent = `Reach ${TARGET_SCORE} in as few turns as you can!`;
+  } else {
+    els.scoreTarget.textContent = `First to ${TARGET_SCORE} points wins!`;
+  }
+
+  renderScoreboard();
+  resetTurn();
+
+  const diffLabel = state.difficulty.charAt(0).toUpperCase() + state.difficulty.slice(1);
+  speak(`Difference Dash! ${diffLabel} mode. Roll the dice!`);
+}
+
+/* ========== Render Scoreboard ========== */
+function renderScoreboard() {
+  let html = '';
+  const names = state.players === 1 ? ['You'] : ['Player 1', 'Player 2'];
+  for (let i = 0; i < state.players; i++) {
+    const active = i === state.currentPlayer ? 'active-player' : '';
+    html += `<div class="score-card ${active}" id="score-card-${i}">
+      <div class="player-name">${names[i]}</div>
+      <div class="player-score" id="player-score-${i}">${state.scores[i]}</div>
+      <div style="font-size:var(--font-size-sm);color:var(--color-text-light);">/ ${TARGET_SCORE}</div>
+    </div>`;
+  }
+  els.scoreboard.innerHTML = html;
+}
+
+/* ========== Reset Turn ========== */
+function resetTurn() {
+  state.runningTotal = 0;
+  state.isRolling = false;
+  updatePot();
+  els.die1.textContent = '?';
+  els.die2.textContent = '?';
+  els.die1.className = 'die';
+  els.die2.className = 'die';
+  els.calcDisplay.innerHTML = '';
+  els.btnRoll.style.display = '';
+  els.btnBank.style.display = 'none';
+  els.btnRoll.disabled = false;
+
+  const name = state.players === 1 ? 'Your' : `Player ${state.currentPlayer + 1}'s`;
+  state.turnCount[state.currentPlayer]++;
+  els.turnCounter.textContent = `Turn ${state.turnCount[state.currentPlayer]} \u2014 ${name} turn`;
+  els.messageArea.textContent = state.isDemo ? 'Watching demo...' : 'Roll the dice!';
+
+  renderScoreboard();
+}
+
+/* ========== Roll Dice ========== */
+function rollDice() {
+  if (state.isRolling) return;
+  state.isRolling = true;
+  els.btnRoll.disabled = true;
+  els.btnBank.style.display = 'none';
+
+  // Animate dice
+  els.die1.className = 'die rolling';
+  els.die2.className = 'die rolling';
+  els.die1.textContent = '?';
+  els.die2.textContent = '?';
+  els.calcDisplay.innerHTML = '';
+  els.messageArea.textContent = 'Rolling...';
+
+  // Random flicker during animation
+  let flickerCount = 0;
+  const flickerInterval = setInterval(() => {
+    els.die1.textContent = randDie();
+    els.die2.textContent = randDie();
+    flickerCount++;
+    if (flickerCount > 6) clearInterval(flickerInterval);
+  }, 60);
+
+  addTimer(() => {
+    clearInterval(flickerInterval);
+    const val1 = randDie();
+    const val2 = randDie();
+    revealDice(val1, val2);
+  }, 500);
+}
+
+function randDie() {
+  return Math.floor(Math.random() * state.maxDie) + 1;
+}
+
+/* ========== Reveal Dice ========== */
+function revealDice(val1, val2) {
+  els.die1.textContent = val1;
+  els.die2.textContent = val2;
+  els.die1.className = 'die pop-in';
+  els.die2.className = 'die pop-in';
+
+  const high = Math.max(val1, val2);
+  const low = Math.min(val1, val2);
+  const diff = high - low;
+
+  if (val1 === val2) {
+    // BUST!
+    handleBust(val1);
+  } else {
+    // Score the difference
+    state.runningTotal += diff;
+    els.calcDisplay.innerHTML = `<span>${high} &minus; ${low} = </span><span class="result">+${diff}</span>`;
+    updatePot();
+
+    els.messageArea.textContent = `+${diff}! Running total: ${state.runningTotal}`;
+    announce(`${high} minus ${low} equals ${diff}. Running total is ${state.runningTotal}.`);
+    speak(`${high} minus ${low} equals ${diff}. Running total ${state.runningTotal}.`);
+
+    els.die1.classList.add('match');
+    els.die2.classList.add('match');
+
+    state.isRolling = false;
+    els.btnRoll.disabled = false;
+    els.btnRoll.textContent = 'Roll Again!';
+    els.btnBank.style.display = '';
+
+    // Check if banking would win
+    if (state.scores[state.currentPlayer] + state.runningTotal >= TARGET_SCORE) {
+      els.messageArea.textContent = `+${diff}! Bank it to win!`;
+    }
+  }
+}
+
+/* ========== Handle Bust ========== */
+function handleBust(val) {
+  state.bustsCount[state.currentPlayer]++;
+  els.die1.className = 'die bust';
+  els.die2.className = 'die bust';
+
+  els.calcDisplay.innerHTML = '<span class="bust-text">BUST!</span>';
+
+  // Flash the game card
+  if (els.gameCard) els.gameCard.classList.add('bust-flash');
+  addTimer(() => {
+    if (els.gameCard) els.gameCard.classList.remove('bust-flash');
+  }, 700);
+
+  const lostAmount = state.runningTotal;
+  state.runningTotal = 0;
+  updatePot();
+
+  const name = state.players === 1 ? 'You' : `Player ${state.currentPlayer + 1}`;
+  const bustMsg = lostAmount > 0
+    ? `Double ${val}s! ${name} lost ${lostAmount} points!`
+    : `Double ${val}s! Bust!`;
+  els.messageArea.textContent = bustMsg;
+  announce(`Bust! Double ${val}s! ${lostAmount > 0 ? `Lost ${lostAmount} points.` : 'No points scored.'}`);
+  speak(`Bust! Double ${val}s!${lostAmount > 0 ? ` You lost ${lostAmount} points!` : ''}`);
+
+  els.btnRoll.style.display = 'none';
+  els.btnBank.style.display = 'none';
+
+  addTimer(() => {
+    endTurn();
+  }, 2000);
+}
+
+/* ========== Bank Score ========== */
+function bankScore() {
+  const banked = state.runningTotal;
+  state.scores[state.currentPlayer] += banked;
+  state.runningTotal = 0;
+
+  const name = state.players === 1 ? 'You' : `Player ${state.currentPlayer + 1}`;
+  els.messageArea.textContent = `${name} banked ${banked} points!`;
+  announce(`Banked ${banked} points. Total score: ${state.scores[state.currentPlayer]}.`);
+  speak(`Banked ${banked} points! Score is now ${state.scores[state.currentPlayer]}.`);
+
+  updatePot();
+  renderScoreboard();
+
+  // Check for win
+  if (state.scores[state.currentPlayer] >= TARGET_SCORE) {
+    addTimer(() => showSummary(), 1500);
+    return;
+  }
+
+  addTimer(() => endTurn(), 1200);
+}
+
+/* ========== End Turn ========== */
+function endTurn() {
+  if (state.players === 2) {
+    state.currentPlayer = state.currentPlayer === 0 ? 1 : 0;
+  }
+  resetTurn();
+  els.btnRoll.textContent = 'Roll Dice!';
+
+  if (state.players === 2) {
+    const name = `Player ${state.currentPlayer + 1}`;
+    els.messageArea.textContent = `${name}'s turn!`;
+    speak(`${name}'s turn!`);
+  }
+}
+
+/* ========== Update Pot Visual ========== */
+function updatePot() {
+  els.potValue.textContent = state.runningTotal;
+
+  // Update coin stack visual (1 coin per 2 points, max 10)
+  const coinCount = Math.min(10, Math.ceil(state.runningTotal / 2));
+  let coinsHtml = '';
+  for (let i = 0; i < coinCount; i++) {
+    coinsHtml += '<div class="coin"></div>';
+  }
+  els.coinStack.innerHTML = coinsHtml;
+}
+
+/* ========== Show Summary ========== */
+function showSummary() {
+  showScreen(STATES.SUMMARY);
+  els.demoIndicator.style.display = 'none';
+
+  if (state.isDemo) {
+    els.summaryTitle.textContent = 'Demo Complete!';
+    els.summaryStats.innerHTML = `
+      <div class="stat-row"><span class="stat-label">This was a demonstration</span><span class="stat-value"></span></div>
+    `;
+    speak('Demo complete! Try it yourself!');
+    return;
+  }
+
+  if (state.players === 1) {
+    els.summaryTitle.textContent = `You reached ${TARGET_SCORE}!`;
+    els.summaryStats.innerHTML = `
+      <div class="stat-row"><span class="stat-label">Final Score</span><span class="stat-value">${state.scores[0]}</span></div>
+      <div class="stat-row"><span class="stat-label">Turns Taken</span><span class="stat-value">${state.turnCount[0]}</span></div>
+      <div class="stat-row"><span class="stat-label">Times Busted</span><span class="stat-value">${state.bustsCount[0]}</span></div>
+      <div class="stat-row"><span class="stat-label">Difficulty</span><span class="stat-value">${state.difficulty.charAt(0).toUpperCase() + state.difficulty.slice(1)}</span></div>
+    `;
+    speak(`Well done! You reached ${TARGET_SCORE} in ${state.turnCount[0]} turns!`);
+  } else {
+    const winner = state.currentPlayer + 1;
+    els.summaryTitle.textContent = `Player ${winner} Wins!`;
+    els.summaryStats.innerHTML = `
+      <div class="stat-row"><span class="stat-label">Player 1 Score</span><span class="stat-value">${state.scores[0]}</span></div>
+      <div class="stat-row"><span class="stat-label">Player 2 Score</span><span class="stat-value">${state.scores[1]}</span></div>
+      <div class="stat-row"><span class="stat-label">Player 1 Turns</span><span class="stat-value">${state.turnCount[0]}</span></div>
+      <div class="stat-row"><span class="stat-label">Player 2 Turns</span><span class="stat-value">${state.turnCount[1]}</span></div>
+      <div class="stat-row"><span class="stat-label">Player 1 Busts</span><span class="stat-value">${state.bustsCount[0]}</span></div>
+      <div class="stat-row"><span class="stat-label">Player 2 Busts</span><span class="stat-value">${state.bustsCount[1]}</span></div>
+    `;
+    speak(`Player ${winner} wins! Congratulations!`);
+  }
+
+  announce(els.summaryTitle.textContent);
+}
+
+/* ========== Demo Mode ========== */
+function runDemo() {
+  els.btnRoll.disabled = true;
+  els.btnBank.style.display = 'none';
+  els.messageArea.textContent = 'Watch how to play...';
+  speak('Watch how to play Difference Dash.');
+
+  // Build demo sequence based on difficulty
+  const max = state.maxDie;
+  const dv = (a, b) => ({ val1: Math.min(a, max), val2: Math.min(b, max) });
+  const r1 = dv(6, 2); // diff = 4 (or less on easy: 6-2=4)
+  const r2 = dv(5, 1); // diff = 4
+  const r3 = dv(3, 6); // diff = 3
+  const bustVal = Math.min(4, max);
+
+  const diff1 = Math.abs(r1.val1 - r1.val2);
+  const diff2 = Math.abs(r2.val1 - r2.val2);
+  const diff3 = Math.abs(r3.val1 - r3.val2);
+  const running1 = diff1;
+  const running2 = diff1 + diff2;
+
+  const demoSequence = [
+    { action: 'roll', val1: r1.val1, val2: r1.val2, delay: 2000 },
+    { action: 'narrate', text: `The difference is ${diff1}. Keep rolling for more!`, delay: 2500 },
+    { action: 'roll', val1: r2.val1, val2: r2.val2, delay: 2000 },
+    { action: 'narrate', text: `Another ${diff2}! Running total is ${running2}. Let's bank it!`, delay: 2500 },
+    { action: 'bank', delay: 2000 },
+    { action: 'narrate', text: `${running2} points banked safely! Now another turn...`, delay: 2500 },
+    { action: 'roll', val1: r3.val1, val2: r3.val2, delay: 2000 },
+    { action: 'narrate', text: `${diff3} points. Let's push our luck...`, delay: 2000 },
+    { action: 'roll', val1: bustVal, val2: bustVal, delay: 2000 },
+    { action: 'narrate', text: `Double ${bustVal}s! BUST! We lost our running total!`, delay: 3000 },
+    { action: 'end', delay: 1000 }
+  ];
+
+  let totalDelay = 1500;
+  demoSequence.forEach((step) => {
+    totalDelay += step.delay;
+    addTimer(() => {
+      if (state.screen !== STATES.GAME || !state.isDemo) return;
+      executeDemoStep(step);
+    }, totalDelay);
+  });
+}
+
+function executeDemoStep(step) {
+  switch (step.action) {
+    case 'roll':
+      state.isRolling = true;
+      els.die1.className = 'die rolling';
+      els.die2.className = 'die rolling';
+      els.die1.textContent = '?';
+      els.die2.textContent = '?';
+      els.messageArea.textContent = 'Rolling...';
+
+      addTimer(() => {
+        if (state.screen !== STATES.GAME || !state.isDemo) return;
+        revealDice(step.val1, step.val2);
+        state.isRolling = false;
+      }, 500);
+      break;
+
+    case 'bank':
+      bankScore();
+      break;
+
+    case 'narrate':
+      els.messageArea.textContent = step.text;
+      speak(step.text);
+      break;
+
+    case 'end':
+      addTimer(() => {
+        if (!state.isDemo) return;
+        showSummary();
+      }, 500);
+      break;
+  }
+}
+
+/* ========== Initialise ========== */
+function init() {
+  initMenu();
+  showScreen(STATES.MENU);
+  els.btnHome.style.display = 'none';
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+/* ==========================================================================
+   Enquiry Rich Games - Design System Reference
+   ==========================================================================
+   REFERENCE FILE ONLY - not loaded at runtime.
+   Copy relevant sections into each game's <style> block.
+   ========================================================================== */
+
+/* ---------- Font Import ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+/* ---------- Design Tokens ---------- */
+:root {
+  --color-primary: #3b82f6;
+  --color-primary-dark: #1d4ed8;
+  --color-danger: #ef4444;
+  --color-danger-dark: #dc2626;
+  --color-success: #22c55e;
+  --color-success-dark: #16a34a;
+  --color-warning: #eab308;
+  --color-warning-dark: #ca8a04;
+  --color-purple: #8b5cf6;
+  --color-purple-dark: #7c3aed;
+  --color-orange: #f97316;
+  --color-pink: #ec4899;
+  --color-teal: #14b8a6;
+  --color-bg: #eff6ff;
+  --color-bg-dark: #dbeafe;
+  --color-text: #1e293b;
+  --color-text-light: #64748b;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --shadow-card: 3px 3px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.2);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.2);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Enforce minimum font size */
+body, button, input, select, textarea {
+  font-size: max(var(--font-size-min), 1em);
+}
+
+/* ---------- Screen Reader Only ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Game Header ---------- */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-white);
+  border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.game-header h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ---------- Game Card / Panel ---------- */
+.game-card {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md);
+}
+
+.game-card-sm {
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+
+/* ---------- Button Base ---------- */
+.game-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-btn);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.game-btn:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-active);
+}
+
+.game-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.game-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Button variants */
+.game-btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.game-btn-danger {
+  background: var(--color-danger);
+  color: var(--color-white);
+}
+
+.game-btn-success {
+  background: var(--color-success);
+  color: var(--color-white);
+}
+
+.game-btn-warning {
+  background: var(--color-warning);
+  color: var(--color-text);
+}
+
+.game-btn-purple {
+  background: var(--color-purple);
+  color: var(--color-white);
+}
+
+.game-btn-orange {
+  background: var(--color-orange);
+  color: var(--color-white);
+}
+
+.game-btn-outline {
+  background: var(--color-white);
+  color: var(--color-text);
+}
+
+/* Button sizes */
+.game-btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  border-width: 2px;
+  border-radius: var(--radius-md);
+}
+
+.game-btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-xl);
+  border-radius: var(--radius-xl);
+}
+
+/* ---------- Dice ---------- */
+.die {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 64px;
+  height: 64px;
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  gap: 2px;
+  box-shadow: var(--shadow-card-sm);
+}
+
+.die-face {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.die-face.filled {
+  background: var(--color-text);
+}
+
+/* ---------- Score / Info Bar ---------- */
+.info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+/* ---------- Message Area ---------- */
+.message-area {
+  text-align: center;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  min-height: 2.5em;
+}
+
+/* ---------- Modal / Overlay ---------- */
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--spacing-md);
+}
+
+.game-modal {
+  background: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-xl);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+/* Mobile first - base styles are mobile */
+
+/* Tablet (600px+) */
+@media (min-width: 600px) {
+  .game-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* Desktop (900px+) */
+@media (min-width: 900px) {
+  .game-card {
+    margin: var(--spacing-lg);
+    padding: var(--spacing-xl);
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Utility Classes ---------- */
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.w-full { width: 100%; }
+.hidden { display: none !important; }

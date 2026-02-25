@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Master: Place Value</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== Design System Tokens ========== */
+        :root {
+            --color-primary: #4A90D9;
+            --color-primary-dark: #2E5C8A;
+            --color-danger: #E85D75;
+            --color-danger-dark: #B83A50;
+            --color-success: #5CB85C;
+            --color-success-dark: #3D7A3D;
+            --color-warning: #F5A623;
+            --color-warning-dark: #C47D0E;
+            --color-purple: #9B6BC2;
+            --color-purple-dark: #6B3FA0;
+            --color-orange: #F5A623;
+            --color-pink: #E85D75;
+            --color-teal: #14b8a6;
+            --color-bg: #FFF8EE;
+            --color-bg-dark: #F0E6D3;
+            --color-text: #2C2C2C;
+            --color-text-light: #6B6B6B;
+            --color-white: #ffffff;
+            --color-black: #000000;
+
+            --font-display: 'Fredoka', Arial, sans-serif;
+            --font-sketch: 'Gaegu', cursive;
+            --font-size-min: 14px;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.25rem;
+            --font-size-xl: 1.5rem;
+            --font-size-2xl: 2rem;
+            --font-size-3xl: 2.5rem;
+
+            --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+            --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+            --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+            --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --radius-full: 9999px;
+
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 400ms ease;
+        }
+
+        /* ========== Reset & Base ========== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-display);
+            background: var(--color-bg);
+            background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+            color: var(--color-text);
+            min-height: 100vh;
+            line-height: 1.5;
+            font-size: var(--font-size-base);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body, button, input, select, textarea {
+            font-size: max(var(--font-size-min), 1em);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sketch-text { font-family: var(--font-sketch); }
+
+        /* ========== Game Card ========== */
+        .game-card {
+            background: var(--color-white);
+            border: 3px solid var(--color-black);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: var(--spacing-lg);
+        }
+
+        .game-card-sm {
+            background: var(--color-white);
+            border: 2px solid var(--color-black);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card-sm);
+            padding: var(--spacing-md);
+        }
+
+        /* ========== Button Base ========== */
+        .game-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: 3px solid var(--color-black);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-display);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+            box-shadow: var(--shadow-btn);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            text-decoration: none;
+            line-height: 1.2;
+        }
+
+        .game-btn:active {
+            transform: translateY(2px);
+            box-shadow: var(--shadow-btn-active);
+        }
+
+        .game-btn:hover:not(:disabled) {
+            transform: translateY(-2px) rotate(-1deg);
+            box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+        }
+
+        .game-btn:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        .game-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+        .game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+        .game-btn-success { background: var(--color-success); color: var(--color-white); }
+        .game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+        .game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+        .game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+        .game-btn-outline { background: var(--color-white); color: var(--color-text); }
+
+        .game-btn-sm {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            font-size: var(--font-size-sm);
+            border-width: 2px;
+            border-radius: var(--radius-md);
+        }
+
+        .game-btn-lg {
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: var(--font-size-xl);
+            border-radius: var(--radius-xl);
+        }
+
+        /* ========== Animations ========== */
+        @keyframes pop-in {
+            0% { transform: scale(0.3); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slide-up {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes dice-spin {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.1); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes flash-exchange {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .anim-pop-in {
+            animation: pop-in 0.4s ease-out 1;
+        }
+
+        .anim-slide-up {
+            animation: slide-up 0.3s ease-out 1;
+        }
+
+        .anim-dice-spin {
+            animation: dice-spin 0.15s linear infinite;
+        }
+
+        .anim-flash {
+            animation: flash-exchange 0.6s ease-in-out 3;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ========== Screen Layouts ========== */
+        .screen {
+            display: none;
+            min-height: 100vh;
+        }
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== Menu Screen ========== */
+        .menu-screen {
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-lg);
+            gap: var(--spacing-lg);
+        }
+
+        .menu-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--color-white);
+            background: var(--color-primary);
+            padding: var(--spacing-sm) var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            border: 3px solid var(--color-black);
+            box-shadow: var(--shadow-card);
+            transform: rotate(-2deg);
+            text-align: center;
+        }
+
+        .menu-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-light);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .menu-instructions {
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .menu-instructions p {
+            font-size: var(--font-size-base);
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .menu-instructions .tip {
+            color: var(--color-success-dark);
+            font-weight: 600;
+        }
+
+        .difficulty-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        @media (min-width: 700px) {
+            .difficulty-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .diff-card {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .diff-card .diff-info {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-light);
+            text-align: center;
+        }
+
+        /* ========== Game Screen ========== */
+        .game-screen {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .game-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: var(--color-white);
+            border-bottom: 3px solid var(--color-black);
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .game-main {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow: hidden;
+            padding: var(--spacing-sm);
+            gap: var(--spacing-sm);
+        }
+
+        @media (min-width: 768px) {
+            .game-main {
+                flex-direction: row;
+                padding: var(--spacing-md);
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Left Panel: Controls */
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .controls-panel {
+                width: 240px;
+                min-width: 200px;
+            }
+        }
+
+        .controls-instruction {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--color-text-light);
+            text-align: center;
+        }
+
+        /* Die */
+        .die-container {
+            position: relative;
+        }
+
+        .die {
+            width: 80px;
+            height: 80px;
+            background: var(--color-white);
+            border: 3px solid var(--color-black);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: transform var(--transition-fast);
+        }
+
+        .die:hover:not(.rolling) {
+            transform: scale(1.05);
+        }
+
+        .die.rolling {
+            animation: dice-spin 0.15s linear infinite;
+            cursor: default;
+        }
+
+        /* Place buttons */
+        .place-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            width: 100%;
+        }
+
+        @media (max-width: 767px) {
+            .place-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .place-btn {
+                flex: 1 1 45%;
+            }
+        }
+
+        .place-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 3px solid var(--color-black);
+            border-radius: var(--radius-md);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            cursor: pointer;
+            box-shadow: var(--shadow-btn);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .place-btn:active {
+            transform: translateY(2px);
+            box-shadow: var(--shadow-btn-active);
+        }
+
+        .place-btn:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        .place-btn-thousands { background: #fecaca; color: #991b1b; }
+        .place-btn-hundreds  { background: #bfdbfe; color: #1e40af; }
+        .place-btn-tens      { background: #bbf7d0; color: #166534; }
+        .place-btn-ones      { background: #fef08a; color: #854d0e; }
+
+        .place-btn .place-label {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: var(--font-size-sm);
+            letter-spacing: 0.05em;
+        }
+
+        .place-btn .place-value {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+        }
+
+        .place-btn .place-add {
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+        }
+
+        /* Exchange Messages */
+        .exchange-area {
+            width: 100%;
+            min-height: 2rem;
+        }
+
+        .exchange-msg {
+            background: #dcfce7;
+            border: 2px solid #16a34a;
+            color: #166534;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            text-align: center;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        /* Zero roll message */
+        .zero-msg {
+            background: #fef3c7;
+            border: 2px solid var(--color-warning);
+            color: #92400e;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            text-align: center;
+        }
+
+        /* Right Panel: Board */
+        .board-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 3px solid var(--color-black);
+            border-radius: var(--radius-lg);
+            background: var(--color-white);
+            box-shadow: var(--shadow-card);
+        }
+
+        .board-score-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--color-bg-dark);
+            border-bottom: 2px solid #93c5fd;
+            flex-shrink: 0;
+        }
+
+        .score-target {
+            display: flex;
+            flex-direction: column;
+            font-weight: 600;
+        }
+
+        .score-target .label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .score-target .value {
+            font-size: var(--font-size-xl);
+            color: var(--color-text);
+        }
+
+        .score-total .value {
+            font-size: var(--font-size-2xl);
+            color: var(--color-primary-dark);
+        }
+
+        .board-columns-header {
+            display: flex;
+            border-bottom: 2px solid var(--color-black);
+            flex-shrink: 0;
+        }
+
+        .col-header {
+            flex: 1;
+            text-align: center;
+            padding: var(--spacing-xs) var(--spacing-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: var(--font-size-sm);
+            letter-spacing: 0.1em;
+            border-right: 1px solid #d1d5db;
+        }
+
+        .col-header:last-child { border-right: none; }
+
+        .col-header-thousands { background: #fef2f2; color: #991b1b; }
+        .col-header-hundreds  { background: #eff6ff; color: #1e40af; }
+        .col-header-tens      { background: #f0fdf4; color: #166534; }
+        .col-header-ones      { background: #fefce8; color: #854d0e; }
+
+        .board-columns-body {
+            display: flex;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .col-body {
+            flex: 1;
+            padding: var(--spacing-sm);
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .col-body:last-child { border-right: none; }
+
+        /* Block groups */
+        .block-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2px;
+            padding: 4px;
+            border-radius: var(--radius-sm);
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            width: 100%;
+        }
+
+        .block-group.anim-pop-in {
+            animation: pop-in 0.4s ease-out 1;
+        }
+
+        /* Dienes blocks */
+        .block-one {
+            width: 14px;
+            height: 14px;
+            background: #facc15;
+            border: 1.5px solid #a16207;
+            border-radius: 2px;
+        }
+
+        .block-ten {
+            display: flex;
+            flex-direction: column;
+            margin: 1px;
+        }
+
+        .block-ten-unit {
+            width: 14px;
+            height: 3px;
+            background: #22c55e;
+            border-left: 1px solid #166534;
+            border-right: 1px solid #166534;
+            border-top: 1px solid #166534;
+        }
+
+        .block-ten-unit:last-child {
+            border-bottom: 1px solid #166534;
+        }
+
+        .block-hundred {
+            width: 36px;
+            height: 36px;
+            background: #3b82f6;
+            border: 2px solid #1e40af;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .block-hundred::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 3px,
+                rgba(255,255,255,0.2) 3px,
+                rgba(255,255,255,0.2) 4px
+            ),
+            repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 3px,
+                rgba(255,255,255,0.2) 3px,
+                rgba(255,255,255,0.2) 4px
+            );
+        }
+
+        .block-thousand {
+            width: 42px;
+            height: 42px;
+            position: relative;
+            margin: 2px;
+        }
+
+        .block-thousand-face {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background: #ef4444;
+            border: 2px solid #991b1b;
+        }
+
+        .block-thousand-top {
+            position: absolute;
+            top: 0;
+            left: 6px;
+            width: 30px;
+            height: 8px;
+            background: #f87171;
+            border: 1.5px solid #991b1b;
+            transform: skewX(-35deg);
+        }
+
+        .block-thousand-side {
+            position: absolute;
+            top: 8px;
+            right: 2px;
+            width: 8px;
+            height: 30px;
+            background: #dc2626;
+            border: 1.5px solid #991b1b;
+            transform: skewY(-35deg);
+        }
+
+        /* Col value count */
+        .col-value-count {
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+            color: var(--color-text-light);
+            margin-top: auto;
+            padding-top: var(--spacing-xs);
+            border-top: 1px solid #e5e7eb;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ========== Summary Screen ========== */
+        .summary-screen {
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-lg);
+            gap: var(--spacing-lg);
+        }
+
+        .summary-card {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .summary-score {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            line-height: 1.1;
+        }
+
+        .summary-feedback {
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .summary-breakdown {
+            text-align: left;
+            width: 100%;
+        }
+
+        .summary-breakdown h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .breakdown-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .breakdown-table th,
+        .breakdown-table td {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: var(--font-size-base);
+        }
+
+        .breakdown-table th {
+            font-weight: 700;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            font-size: var(--font-size-sm);
+        }
+
+        .summary-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            width: 100%;
+        }
+
+        /* ========== Demo Overlay ========== */
+        .demo-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: var(--spacing-md);
+        }
+
+        .demo-overlay.active {
+            display: flex;
+        }
+
+        .demo-modal {
+            background: var(--color-white);
+            border: 3px solid var(--color-black);
+            border-radius: var(--radius-xl);
+            box-shadow: 6px 6px 0 0 rgba(0,0,0,1);
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 600px) {
+            .demo-modal {
+                flex-direction: row;
+            }
+        }
+
+        .demo-text-panel {
+            padding: var(--spacing-lg);
+            background: #fefce8;
+            border-bottom: 3px solid var(--color-warning);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+        }
+
+        @media (min-width: 600px) {
+            .demo-text-panel {
+                width: 40%;
+                border-bottom: none;
+                border-right: 3px solid var(--color-warning);
+            }
+        }
+
+        .demo-step-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: #92400e;
+        }
+
+        .demo-step-text {
+            font-size: var(--font-size-base);
+            color: #78350f;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .demo-visual-panel {
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            position: relative;
+        }
+
+        @media (min-width: 600px) {
+            .demo-visual-panel {
+                width: 60%;
+            }
+        }
+
+        .demo-close-btn {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
+            border: 2px solid var(--color-black);
+            background: var(--color-danger);
+            color: var(--color-white);
+            font-weight: 700;
+            font-size: var(--font-size-base);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .demo-board-preview {
+            display: flex;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius-md);
+            background: #f8fafc;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .demo-col-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            min-width: 60px;
+        }
+
+        .demo-col-preview-label {
+            font-weight: 700;
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+        }
+
+        .demo-highlight {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 3px;
+            border-radius: var(--radius-md);
+        }
+
+        /* ========== Mute Toggle ========== */
+        .mute-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            border: 2px solid var(--color-black);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .mute-btn.muted {
+            background: var(--color-danger);
+        }
+
+        .mute-btn.unmuted {
+            background: var(--color-success);
+        }
+
+        .mute-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ========== Speech Button ========== */
+        .speech-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
+            border: 2px solid #a16207;
+            background: #facc15;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .speech-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .speech-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: #78350f;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ========== Utility ========== */
+        .w-full { width: 100%; }
+
+        /* ========== Block Count Summary ========== */
+        .block-count-summary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-dark);
+            border: 2px solid var(--color-text-light);
+            font-weight: 700;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+            text-align: center;
+            width: 100%;
+        }
+
+        /* ========== Hidden ========== */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- ==================== MENU SCREEN ==================== -->
+    <div id="screen-menu" class="screen menu-screen active">
+        <div style="position:absolute;top:var(--spacing-sm);right:var(--spacing-sm);">
+            <button class="mute-btn unmuted" id="mute-btn-menu" aria-label="Mute audio" title="Mute">
+                <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            </button>
+        </div>
+
+        <h1 class="menu-title">Target Master</h1>
+        <p class="menu-subtitle">Place Value Edition</p>
+
+        <div class="game-card menu-instructions">
+            <p><strong>How to play:</strong> Roll the die (0-9) and choose which place value column to put your digit in.</p>
+            <p>Build the biggest number you can - but try to get close to the <strong>target</strong> without going over!</p>
+            <p class="tip">Tip: When a column reaches 10 or more, it automatically exchanges for the next value up!</p>
+        </div>
+
+        <h2 style="font-size:var(--font-size-lg);color:var(--color-text-light);display:flex;align-items:center;gap:var(--spacing-sm);">
+            Select Difficulty
+            <button class="speech-btn" aria-label="Read instructions aloud" onclick="speak('Welcome to Target Master Place Value. Roll the die and choose a column. Select a difficulty level to start.')">
+                <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            </button>
+        </h2>
+
+        <div class="difficulty-grid">
+            <div class="diff-card">
+                <button class="game-btn game-btn-success w-full" onclick="startGame(1)">
+                    Level 1<br>Target ~50
+                </button>
+                <span class="diff-info">Ones &amp; Tens, 5 rounds</span>
+            </div>
+            <div class="diff-card">
+                <button class="game-btn game-btn-primary w-full" onclick="startGame(2)">
+                    Level 2<br>Target ~500
+                </button>
+                <span class="diff-info">+ Hundreds, 8 rounds</span>
+            </div>
+            <div class="diff-card">
+                <button class="game-btn game-btn-purple w-full" onclick="startGame(3)">
+                    Level 3<br>Target ~1000
+                </button>
+                <span class="diff-info">+ Hundreds, 10 rounds</span>
+            </div>
+            <div class="diff-card">
+                <button class="game-btn game-btn-danger w-full" onclick="startGame(4)">
+                    Level 4<br>Target ~5000
+                </button>
+                <span class="diff-info">+ Thousands, 12 rounds</span>
+            </div>
+        </div>
+
+        <button class="game-btn game-btn-warning" onclick="startDemo()" style="margin-top:var(--spacing-sm);">
+            Watch Demo
+        </button>
+    </div>
+
+    <!-- ==================== GAME SCREEN ==================== -->
+    <div id="screen-game" class="screen game-screen">
+        <div class="game-top-bar">
+            <div class="top-bar-left">
+                <button class="game-btn game-btn-outline game-btn-sm" onclick="showMenu()">Back</button>
+                <button class="game-btn game-btn-outline game-btn-sm" onclick="restartGame()">Restart</button>
+                <button class="mute-btn unmuted" id="mute-btn-game" aria-label="Mute audio" title="Mute">
+                    <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </button>
+            </div>
+            <div class="top-bar-right">
+                <span aria-live="polite" id="round-display">Round 1 / 5</span>
+            </div>
+        </div>
+
+        <div class="game-main">
+            <!-- Controls Panel -->
+            <div class="controls-panel game-card">
+                <div class="controls-instruction" id="instruction-text">Roll the die!</div>
+
+                <button class="die" id="die-btn" aria-label="Roll the die" onclick="rollDie()">
+                    <span id="die-face">?</span>
+                </button>
+
+                <div class="place-buttons hidden" id="place-buttons"></div>
+
+                <div class="exchange-area" id="exchange-area" aria-live="polite"></div>
+            </div>
+
+            <!-- Board Panel -->
+            <div class="board-panel">
+                <div class="board-score-bar">
+                    <div class="score-target">
+                        <span class="label">Target</span>
+                        <span class="value" id="target-display">50</span>
+                    </div>
+                    <div class="score-target score-total">
+                        <span class="label">Your Total</span>
+                        <span class="value" id="total-display" aria-live="polite">0</span>
+                    </div>
+                </div>
+                <div class="board-columns-header" id="columns-header"></div>
+                <div class="board-columns-body" id="columns-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SUMMARY SCREEN ==================== -->
+    <div id="screen-summary" class="screen summary-screen">
+        <div class="game-card summary-card">
+            <h2 style="font-size:var(--font-size-2xl);font-weight:700;margin-bottom:var(--spacing-sm);">Game Over!</h2>
+            <div class="summary-score" id="summary-score">0</div>
+            <p style="font-size:var(--font-size-base);color:var(--color-text-light);margin:var(--spacing-xs) 0 var(--spacing-md);">
+                Target: <strong id="summary-target">50</strong> | Difference: <strong id="summary-diff">0</strong>
+            </p>
+            <p class="summary-feedback" id="summary-feedback" aria-live="polite"></p>
+
+            <div class="summary-breakdown" id="summary-breakdown" style="margin:var(--spacing-lg) 0;"></div>
+
+            <div class="summary-buttons">
+                <button class="game-btn game-btn-primary w-full" onclick="restartGame()">Play Again</button>
+                <button class="game-btn game-btn-outline w-full" onclick="showMenu()">Change Level</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== DEMO OVERLAY ==================== -->
+    <div id="demo-overlay" class="demo-overlay">
+        <div class="demo-modal">
+            <div class="demo-text-panel">
+                <div>
+                    <div class="demo-step-title" id="demo-step-title">Step 1 of 7</div>
+                    <p class="demo-step-text" id="demo-step-text"></p>
+                </div>
+                <div style="display:flex;gap:var(--spacing-sm);">
+                    <button class="game-btn game-btn-primary w-full" id="demo-next-btn" onclick="demoNext()">Next</button>
+                </div>
+            </div>
+            <div class="demo-visual-panel">
+                <button class="demo-close-btn" onclick="closeDemo()" aria-label="Close tutorial" title="Close">X</button>
+                <div id="demo-visual-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    /* ==========================================================================
+       TARGET MASTER: PLACE VALUE - Game Logic
+       ========================================================================== */
+
+    // ==================== State ====================
+    let state = {
+        level: 1,
+        round: 1,
+        maxRounds: 5,
+        target: 50,
+        columns: ['tens', 'ones'],
+        board: { thousands: 0, hundreds: 0, tens: 0, ones: 0 },
+        dieValue: null,
+        phase: 'roll', // 'roll' | 'decide' | 'done'
+        isMuted: false,
+        placements: [],  // { round, dieValue, column, valueBefore, valueAfter, exchanges }
+        rollInterval: null,
+        rollTimeout: null
+    };
+
+    const LEVEL_CONFIG = {
+        1: { target: 50,   rounds: 5,  columns: ['tens', 'ones'] },
+        2: { target: 500,  rounds: 8,  columns: ['hundreds', 'tens', 'ones'] },
+        3: { target: 1000, rounds: 10, columns: ['hundreds', 'tens', 'ones'] },
+        4: { target: 5000, rounds: 12, columns: ['thousands', 'hundreds', 'tens', 'ones'] }
+    };
+
+    const COLUMN_INFO = {
+        thousands: { label: 'Thousands', val: 1000, headerClass: 'col-header-thousands', btnClass: 'place-btn-thousands' },
+        hundreds:  { label: 'Hundreds',  val: 100,  headerClass: 'col-header-hundreds',  btnClass: 'place-btn-hundreds' },
+        tens:      { label: 'Tens',      val: 10,   headerClass: 'col-header-tens',      btnClass: 'place-btn-tens' },
+        ones:      { label: 'Ones',      val: 1,    headerClass: 'col-header-ones',       btnClass: 'place-btn-ones' }
+    };
+
+    // ==================== Helpers ====================
+
+    function pluralColumn(n, colName) {
+        // "1 One", "2 Ones", "1 Ten", "3 Tens", "1 Hundred", "5 Hundreds", etc.
+        const singular = colName.replace(/s$/, '');
+        if (n === 1) return '1 ' + singular;
+        return n + ' ' + colName;
+    }
+
+    function calcTotal() {
+        return state.board.thousands * 1000
+             + state.board.hundreds * 100
+             + state.board.tens * 10
+             + state.board.ones;
+    }
+
+    function speak(text) {
+        if (state.isMuted || !window.speechSynthesis) return;
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'en-GB';
+        u.rate = 0.9;
+        window.speechSynthesis.speak(u);
+    }
+
+    function cleanupTimers() {
+        if (state.rollInterval) { clearInterval(state.rollInterval); state.rollInterval = null; }
+        if (state.rollTimeout) { clearTimeout(state.rollTimeout); state.rollTimeout = null; }
+    }
+
+    // ==================== Mute ====================
+
+    function syncMuteButtons() {
+        document.querySelectorAll('.mute-btn').forEach(btn => {
+            btn.className = 'mute-btn ' + (state.isMuted ? 'muted' : 'unmuted');
+            btn.setAttribute('aria-label', state.isMuted ? 'Unmute audio' : 'Mute audio');
+            btn.title = state.isMuted ? 'Unmute' : 'Mute';
+            if (state.isMuted) {
+                btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H2V15H6L11 19V5Z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
+            } else {
+                btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
+            }
+        });
+    }
+
+    document.querySelectorAll('.mute-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            state.isMuted = !state.isMuted;
+            if (state.isMuted && window.speechSynthesis) window.speechSynthesis.cancel();
+            syncMuteButtons();
+        });
+    });
+
+    // ==================== Screen Management ====================
+
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen-' + id).classList.add('active');
+    }
+
+    function showMenu() {
+        cleanupTimers();
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        showScreen('menu');
+    }
+
+    // ==================== Dienes Block Rendering ====================
+
+    function renderBlockOne() {
+        return '<span class="block-one"></span>';
+    }
+
+    function renderBlockTen() {
+        let html = '<span class="block-ten">';
+        for (let i = 0; i < 10; i++) html += '<span class="block-ten-unit"></span>';
+        html += '</span>';
+        return html;
+    }
+
+    function renderBlockHundred() {
+        return '<span class="block-hundred"></span>';
+    }
+
+    function renderBlockThousand() {
+        return '<span class="block-thousand"><span class="block-thousand-face"></span><span class="block-thousand-top"></span><span class="block-thousand-side"></span></span>';
+    }
+
+    function renderBlocks(type, count) {
+        if (count > 15) {
+            return '<div class="block-count-summary">' + count + ' ' + pluralColumn(count, COLUMN_INFO[type].label) + '</div>';
+        }
+        let html = '';
+        const renderer = {
+            ones: renderBlockOne,
+            tens: renderBlockTen,
+            hundreds: renderBlockHundred,
+            thousands: renderBlockThousand
+        }[type];
+        for (let i = 0; i < count; i++) html += renderer();
+        return html;
+    }
+
+    // ==================== Board Rendering ====================
+
+    function renderBoard() {
+        // Header
+        const headerEl = document.getElementById('columns-header');
+        headerEl.innerHTML = state.columns.map(col =>
+            '<div class="col-header ' + COLUMN_INFO[col].headerClass + '">' + COLUMN_INFO[col].label + '</div>'
+        ).join('');
+
+        // Body
+        const bodyEl = document.getElementById('columns-body');
+        bodyEl.innerHTML = state.columns.map(col => {
+            const count = state.board[col];
+            let blocksHtml = '';
+            if (count > 0) {
+                blocksHtml = '<div class="block-group anim-pop-in">' + renderBlocks(col, count) + '</div>';
+            }
+            return '<div class="col-body">'
+                 + blocksHtml
+                 + '<div class="col-value-count">' + count + '</div>'
+                 + '</div>';
+        }).join('');
+
+        // Scores
+        document.getElementById('total-display').textContent = calcTotal();
+        document.getElementById('target-display').textContent = state.target;
+        document.getElementById('round-display').textContent = 'Round ' + state.round + ' / ' + state.maxRounds;
+    }
+
+    // ==================== Start / Restart ====================
+
+    function startGame(level) {
+        cleanupTimers();
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+        const config = LEVEL_CONFIG[level];
+        state.level = level;
+        state.round = 1;
+        state.maxRounds = config.rounds;
+        state.target = config.target;
+        state.columns = config.columns;
+        state.board = { thousands: 0, hundreds: 0, tens: 0, ones: 0 };
+        state.dieValue = null;
+        state.phase = 'roll';
+        state.placements = [];
+
+        showScreen('game');
+        renderBoard();
+        setPhaseRoll();
+    }
+
+    function restartGame() {
+        startGame(state.level);
+    }
+
+    // ==================== Die Rolling ====================
+
+    function setPhaseRoll() {
+        state.phase = 'roll';
+        document.getElementById('instruction-text').textContent = 'Roll the die!';
+        document.getElementById('die-face').textContent = '?';
+        document.getElementById('die-btn').disabled = false;
+        document.getElementById('die-btn').classList.remove('rolling');
+        document.getElementById('place-buttons').classList.add('hidden');
+        document.getElementById('exchange-area').innerHTML = '';
+    }
+
+    function rollDie() {
+        if (state.phase !== 'roll') return;
+        state.phase = 'rolling';
+        document.getElementById('die-btn').disabled = true;
+
+        const dieBtn = document.getElementById('die-btn');
+        const dieFace = document.getElementById('die-face');
+        dieBtn.classList.add('rolling');
+
+        let count = 0;
+        state.rollInterval = setInterval(() => {
+            dieFace.textContent = Math.floor(Math.random() * 10);
+            count++;
+            if (count >= 12) {
+                clearInterval(state.rollInterval);
+                state.rollInterval = null;
+                dieBtn.classList.remove('rolling');
+
+                const finalValue = Math.floor(Math.random() * 10);
+                state.dieValue = finalValue;
+                dieFace.textContent = finalValue;
+
+                if (finalValue === 0) {
+                    handleZeroRoll();
+                } else {
+                    setPhaseDecide();
+                    speak('You rolled a ' + finalValue + '. Choose a place value column.');
+                }
+            }
+        }, 80);
+    }
+
+    function handleZeroRoll() {
+        state.phase = 'roll';
+        document.getElementById('instruction-text').textContent = '0 - nothing added!';
+        document.getElementById('exchange-area').innerHTML = '<div class="zero-msg anim-pop-in">You rolled a 0 - nothing to add!</div>';
+        speak('You rolled a zero. Nothing to add.');
+
+        // Record the zero placement
+        state.placements.push({
+            round: state.round,
+            dieValue: 0,
+            column: null,
+            valueBefore: calcTotal(),
+            valueAfter: calcTotal(),
+            exchanges: []
+        });
+
+        if (state.round >= state.maxRounds) {
+            state.rollTimeout = setTimeout(() => showSummary(), 1500);
+        } else {
+            state.round++;
+            renderBoard();
+            state.rollTimeout = setTimeout(() => {
+                setPhaseRoll();
+            }, 1500);
+        }
+    }
+
+    function setPhaseDecide() {
+        state.phase = 'decide';
+        document.getElementById('instruction-text').textContent = 'Place your ' + state.dieValue + '!';
+        document.getElementById('die-btn').disabled = true;
+
+        const container = document.getElementById('place-buttons');
+        container.classList.remove('hidden');
+        container.innerHTML = '';
+
+        state.columns.forEach(col => {
+            const info = COLUMN_INFO[col];
+            const addValue = state.dieValue * info.val;
+            const btn = document.createElement('button');
+            btn.className = 'place-btn ' + info.btnClass + ' anim-slide-up';
+            btn.innerHTML =
+                '<div><span class="place-label">' + info.label + '</span><br><span class="place-add">+' + addValue + '</span></div>' +
+                '<span class="place-value">' + state.dieValue + '</span>';
+            btn.setAttribute('aria-label', 'Place ' + state.dieValue + ' in ' + info.label + ', adding ' + addValue);
+            btn.addEventListener('click', () => choosePlace(col));
+            container.appendChild(btn);
+        });
+    }
+
+    // ==================== Place Digit & Exchange ====================
+
+    function choosePlace(col) {
+        if (state.phase !== 'decide') return;
+        state.phase = 'placed';
+
+        const valueBefore = calcTotal();
+        state.board[col] += state.dieValue;
+
+        // Exchange logic - collect ALL messages
+        const exchanges = [];
+        performExchanges(exchanges);
+
+        const valueAfter = calcTotal();
+
+        // Record placement
+        state.placements.push({
+            round: state.round,
+            dieValue: state.dieValue,
+            column: col,
+            valueBefore: valueBefore,
+            valueAfter: valueAfter,
+            exchanges: exchanges.slice()
+        });
+
+        // Show exchange messages
+        const exchangeArea = document.getElementById('exchange-area');
+        if (exchanges.length > 0) {
+            exchangeArea.innerHTML = exchanges.map(msg =>
+                '<div class="exchange-msg anim-flash">' + msg + '</div>'
+            ).join('');
+            speak(exchanges.join('. '));
+        } else {
+            exchangeArea.innerHTML = '';
+        }
+
+        // Next round or end
+        if (state.round >= state.maxRounds) {
+            renderBoard();
+            state.rollTimeout = setTimeout(() => showSummary(), 1200);
+        } else {
+            state.round++;
+            renderBoard();
+            state.rollTimeout = setTimeout(() => setPhaseRoll(), exchanges.length > 0 ? 2000 : 800);
+        }
+    }
+
+    function performExchanges(messages) {
+        // Check ones -> tens
+        if (state.board.ones >= 10 && state.columns.includes('tens')) {
+            const totalOnes = state.board.ones;
+            const newTens = Math.floor(totalOnes / 10);
+            const remainOnes = totalOnes % 10;
+            state.board.ones = remainOnes;
+            state.board.tens += newTens;
+
+            const remainText = remainOnes > 0 ? ' and ' + pluralColumn(remainOnes, 'Ones') : '';
+            messages.push('Exchange! ' + pluralColumn(totalOnes, 'Ones') + ' becomes ' + pluralColumn(newTens, 'Tens') + remainText + '.');
+        } else if (state.board.ones >= 10 && !state.columns.includes('tens')) {
+            messages.push(pluralColumn(state.board.ones, 'Ones') + ' - cannot exchange further at this level!');
+        }
+
+        // Check tens -> hundreds
+        if (state.board.tens >= 10 && state.columns.includes('hundreds')) {
+            const totalTens = state.board.tens;
+            const newHundreds = Math.floor(totalTens / 10);
+            const remainTens = totalTens % 10;
+            state.board.tens = remainTens;
+            state.board.hundreds += newHundreds;
+
+            const remainText = remainTens > 0 ? ' and ' + pluralColumn(remainTens, 'Tens') : '';
+            messages.push('Exchange! ' + pluralColumn(totalTens, 'Tens') + ' becomes ' + pluralColumn(newHundreds, 'Hundreds') + remainText + '.');
+        } else if (state.board.tens >= 10 && !state.columns.includes('hundreds')) {
+            messages.push(pluralColumn(state.board.tens, 'Tens') + ' - cannot exchange further at this level!');
+        }
+
+        // Check hundreds -> thousands
+        if (state.board.hundreds >= 10 && state.columns.includes('thousands')) {
+            const totalHundreds = state.board.hundreds;
+            const newThousands = Math.floor(totalHundreds / 10);
+            const remainHundreds = totalHundreds % 10;
+            state.board.hundreds = remainHundreds;
+            state.board.thousands += newThousands;
+
+            const remainText = remainHundreds > 0 ? ' and ' + pluralColumn(remainHundreds, 'Hundreds') : '';
+            messages.push('Exchange! ' + pluralColumn(totalHundreds, 'Hundreds') + ' becomes ' + pluralColumn(newThousands, 'Thousands') + remainText + '.');
+        } else if (state.board.hundreds >= 10 && !state.columns.includes('thousands')) {
+            messages.push(pluralColumn(state.board.hundreds, 'Hundreds') + ' - cannot exchange further at this level!');
+        }
+    }
+
+    // ==================== Summary ====================
+
+    function showSummary() {
+        cleanupTimers();
+        const total = calcTotal();
+        const diff = Math.abs(total - state.target);
+
+        document.getElementById('summary-score').textContent = total;
+        document.getElementById('summary-target').textContent = state.target;
+        document.getElementById('summary-diff').textContent = diff;
+
+        let feedback = '';
+        if (total === state.target) {
+            feedback = 'PERFECT SCORE! You hit the target exactly!';
+        } else if (total > state.target) {
+            feedback = 'Oh no! You went over the target by ' + diff + '! You went bust!';
+        } else if (diff <= state.target * 0.1) {
+            feedback = 'Fantastic! You were incredibly close!';
+        } else if (diff <= state.target * 0.25) {
+            feedback = 'Great job! A very close finish.';
+        } else {
+            feedback = 'Good try! Play again to beat that score.';
+        }
+
+        document.getElementById('summary-feedback').textContent = feedback;
+        speak('Your final total is ' + total + '. ' + feedback);
+
+        // Build breakdown table
+        const breakdownEl = document.getElementById('summary-breakdown');
+        let html = '<h3>Round Breakdown</h3>';
+        html += '<table class="breakdown-table"><thead><tr><th>Round</th><th>Rolled</th><th>Placed In</th><th>Notes</th></tr></thead><tbody>';
+
+        state.placements.forEach(p => {
+            const colLabel = p.column ? COLUMN_INFO[p.column].label : '-';
+            const notes = p.dieValue === 0 ? 'Nothing added'
+                        : p.exchanges.length > 0 ? p.exchanges.map(e => e.replace(/\.$/, '')).join('; ')
+                        : '+' + (p.dieValue * (p.column ? COLUMN_INFO[p.column].val : 0));
+            html += '<tr><td>' + p.round + '</td><td>' + p.dieValue + '</td><td>' + colLabel + '</td><td style="font-size:var(--font-size-sm);">' + notes + '</td></tr>';
+        });
+
+        html += '</tbody></table>';
+
+        // Placement distribution summary
+        const colCounts = {};
+        state.columns.forEach(c => colCounts[c] = 0);
+        state.placements.forEach(p => { if (p.column) colCounts[p.column]++; });
+
+        html += '<div style="margin-top:var(--spacing-md);display:flex;gap:var(--spacing-md);flex-wrap:wrap;">';
+        state.columns.forEach(col => {
+            html += '<div class="game-card-sm" style="flex:1;text-align:center;min-width:80px;">';
+            html += '<div style="font-weight:700;font-size:var(--font-size-sm);color:var(--color-text-light);text-transform:uppercase;">' + COLUMN_INFO[col].label + '</div>';
+            html += '<div style="font-size:var(--font-size-2xl);font-weight:700;">' + colCounts[col] + '</div>';
+            html += '<div style="font-size:var(--font-size-sm);color:var(--color-text-light);">placements</div>';
+            html += '</div>';
+        });
+        html += '</div>';
+
+        breakdownEl.innerHTML = html;
+        showScreen('summary');
+    }
+
+    // ==================== Demo Tutorial ====================
+
+    let demoStep = 0;
+    let demoTimers = [];
+
+    const DEMO_STEPS = [
+        {
+            title: 'Step 1 of 7',
+            text: 'Welcome to Target Master! The goal is to build a number as close to the target as possible, without going over.',
+            visual: 'intro'
+        },
+        {
+            title: 'Step 2 of 7',
+            text: 'Each turn, you roll a die that shows 0-9. Let\'s roll now!',
+            visual: 'roll'
+        },
+        {
+            title: 'Step 3 of 7',
+            text: 'I rolled a 7! Now I choose which column to place it in. If I put it in Tens, it becomes 70. In Ones, it becomes 7.',
+            visual: 'choose'
+        },
+        {
+            title: 'Step 4 of 7',
+            text: 'I chose Tens! See the 7 green rods? Each rod represents 10, so that\'s 70. My total is now 70.',
+            visual: 'placed-tens'
+        },
+        {
+            title: 'Step 5 of 7',
+            text: 'Next turn I roll a 5 and put it in Ones. That gives me 5 yellow squares. Total is now 75.',
+            visual: 'placed-ones'
+        },
+        {
+            title: 'Step 6 of 7',
+            text: 'Now I roll a 6 and put it in Ones. That makes 11 Ones! When you have 10 or more, they EXCHANGE: 10 Ones become 1 Ten!',
+            visual: 'exchange'
+        },
+        {
+            title: 'Step 7 of 7',
+            text: 'After the exchange: I have 8 Tens and 1 One = 81. The exchange happened automatically! Now you try!',
+            visual: 'after-exchange'
+        }
+    ];
+
+    function startDemo() {
+        demoStep = 0;
+        document.getElementById('demo-overlay').classList.add('active');
+        renderDemoStep();
+    }
+
+    function closeDemo() {
+        document.getElementById('demo-overlay').classList.remove('active');
+        demoTimers.forEach(t => { clearTimeout(t); clearInterval(t); });
+        demoTimers = [];
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    function demoNext() {
+        demoStep++;
+        if (demoStep >= DEMO_STEPS.length) {
+            closeDemo();
+            return;
+        }
+        renderDemoStep();
+    }
+
+    function renderDemoStep() {
+        const step = DEMO_STEPS[demoStep];
+        document.getElementById('demo-step-title').textContent = step.title;
+        document.getElementById('demo-step-text').textContent = step.text;
+
+        const nextBtn = document.getElementById('demo-next-btn');
+        nextBtn.textContent = demoStep === DEMO_STEPS.length - 1 ? 'Start Playing!' : 'Next';
+
+        speak(step.text);
+
+        const vis = document.getElementById('demo-visual-content');
+
+        switch (step.visual) {
+            case 'intro':
+                vis.innerHTML =
+                    '<div style="text-align:center;">' +
+                    '<div style="font-size:var(--font-size-2xl);font-weight:700;color:var(--color-primary);margin-bottom:var(--spacing-md);">Target: 50</div>' +
+                    '<div style="font-size:var(--font-size-base);color:var(--color-text-light);">Get as close as you can!</div>' +
+                    '<div class="demo-board-preview" style="margin-top:var(--spacing-md);">' +
+                        '<div class="demo-col-preview" style="background:#f0fdf4;"><span class="demo-col-preview-label" style="color:#166534;">Tens</span><div style="color:var(--color-text-light);font-weight:700;">0</div></div>' +
+                        '<div class="demo-col-preview" style="background:#fefce8;"><span class="demo-col-preview-label" style="color:#854d0e;">Ones</span><div style="color:var(--color-text-light);font-weight:700;">0</div></div>' +
+                    '</div>' +
+                    '</div>';
+                break;
+
+            case 'roll':
+                vis.innerHTML =
+                    '<div style="text-align:center;">' +
+                    '<div class="die" style="margin:0 auto;font-size:2.5rem;cursor:default;" id="demo-die">?</div>' +
+                    '<div style="margin-top:var(--spacing-md);font-size:var(--font-size-base);color:var(--color-text-light);">Rolling...</div>' +
+                    '</div>';
+                let demoDie = document.getElementById('demo-die');
+                demoDie.classList.add('rolling');
+                let ct = 0;
+                let demoRollInt = setInterval(() => {
+                    demoDie.textContent = Math.floor(Math.random() * 10);
+                    ct++;
+                    if (ct > 12) {
+                        clearInterval(demoRollInt);
+                        demoDie.textContent = '7';
+                        demoDie.classList.remove('rolling');
+                    }
+                }, 80);
+                demoTimers.push(demoRollInt);
+                demoTimers.push(setTimeout(() => clearInterval(demoRollInt), 2000));
+                break;
+
+            case 'choose':
+                vis.innerHTML =
+                    '<div style="text-align:center;">' +
+                    '<div class="die" style="margin:0 auto;cursor:default;font-size:2.5rem;">7</div>' +
+                    '<div style="display:flex;gap:var(--spacing-sm);margin-top:var(--spacing-md);justify-content:center;">' +
+                        '<div class="game-card-sm demo-highlight" style="text-align:center;padding:var(--spacing-md);"><div style="font-weight:700;color:#166534;">Tens</div><div style="font-size:var(--font-size-lg);font-weight:700;">= 70</div></div>' +
+                        '<div class="game-card-sm" style="text-align:center;padding:var(--spacing-md);opacity:0.6;"><div style="font-weight:700;color:#854d0e;">Ones</div><div style="font-size:var(--font-size-lg);font-weight:700;">= 7</div></div>' +
+                    '</div>' +
+                    '</div>';
+                break;
+
+            case 'placed-tens':
+                vis.innerHTML =
+                    '<div style="text-align:center;">' +
+                    '<div style="font-size:var(--font-size-xl);font-weight:700;color:var(--color-primary-dark);margin-bottom:var(--spacing-sm);">Total: 70</div>' +
+                    '<div class="demo-board-preview">' +
+                        '<div class="demo-col-preview" style="background:#f0fdf4;"><span class="demo-col-preview-label" style="color:#166534;">Tens</span><div style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;">' + renderBlocks('tens', 7) + '</div><div style="font-weight:700;">7</div></div>' +
+                        '<div class="demo-col-preview" style="background:#fefce8;"><span class="demo-col-preview-label" style="color:#854d0e;">Ones</span><div style="font-weight:700;color:var(--color-text-light);">0</div></div>' +
+                    '</div>' +
+                    '</div>';
+                break;
+
+            case 'placed-ones':
+                vis.innerHTML =
+                    '<div style="text-align:center;">' +
+                    '<div style="font-size:var(--font-size-xl);font-weight:700;color:var(--color-primary-dark);margin-bottom:var(--spacing-sm);">Total: 75</div>' +
+                    '<div class="demo-board-preview">' +
+                        '<div class="demo-col-preview" style="background:#f0fdf4;"><span class="demo-col-preview-label" style="color:#166534;">Tens</span><div style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;">' + renderBlocks('tens', 7) + '</div><div style="font-weight:700;">7</div></div>' +
+                        '<div class="demo-col-preview" style="background:#fefce8;"><span class="demo-col-preview-label" style="color:#854d0e;">Ones</span><div style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;">' + renderBlocks('ones', 5) + '</div><div style="font-weight:700;">5</div></div>' +
+                    '</div>' +
+                    '</div>';
+                break;
+
+            case 'exchange':
+                vis.innerHTML =
+                    '<div style="text-align:center;">' +
+                    '<div style="font-size:var(--font-size-xl);font-weight:700;color:var(--color-primary-dark);margin-bottom:var(--spacing-sm);">Rolling a 6, placing in Ones...</div>' +
+                    '<div class="demo-board-preview">' +
+                        '<div class="demo-col-preview" style="background:#f0fdf4;"><span class="demo-col-preview-label" style="color:#166534;">Tens</span><div style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;">' + renderBlocks('tens', 7) + '</div><div style="font-weight:700;">7</div></div>' +
+                        '<div class="demo-col-preview" style="background:#fefce8;"><span class="demo-col-preview-label" style="color:#854d0e;">Ones</span><div style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;">' + renderBlocks('ones', 11) + '</div><div style="font-weight:700;color:var(--color-danger);">11!</div></div>' +
+                    '</div>' +
+                    '<div class="exchange-msg anim-flash" style="margin-top:var(--spacing-md);">Exchange! 11 Ones becomes 1 Ten and 1 One.</div>' +
+                    '</div>';
+                break;
+
+            case 'after-exchange':
+                vis.innerHTML =
+                    '<div style="text-align:center;">' +
+                    '<div style="font-size:var(--font-size-xl);font-weight:700;color:var(--color-primary-dark);margin-bottom:var(--spacing-sm);">Total: 81</div>' +
+                    '<div class="demo-board-preview">' +
+                        '<div class="demo-col-preview" style="background:#f0fdf4;"><span class="demo-col-preview-label" style="color:#166534;">Tens</span><div style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;">' + renderBlocks('tens', 8) + '</div><div style="font-weight:700;">8</div></div>' +
+                        '<div class="demo-col-preview" style="background:#fefce8;"><span class="demo-col-preview-label" style="color:#854d0e;">Ones</span><div style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;">' + renderBlocks('ones', 1) + '</div><div style="font-weight:700;">1</div></div>' +
+                    '</div>' +
+                    '<div style="margin-top:var(--spacing-md);font-size:var(--font-size-base);color:var(--color-success-dark);font-weight:600;">10 Ones exchanged for 1 Ten automatically!</div>' +
+                    '</div>';
+                break;
+        }
+    }
+
+    // ==================== Init ====================
+    syncMuteButtons();
+    </script>
+</body>
+</html>

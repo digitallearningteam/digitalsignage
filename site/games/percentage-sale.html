@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Sale - Maths Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Design System Tokens ========== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea { font-size: max(var(--font-size-min), 1em); }
+
+/* ========== SR Only ========== */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ========== Game Header ========== */
+.game-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg); border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm); flex-wrap: wrap;
+}
+.game-header h1 { font-size: var(--font-size-xl); font-weight: 700; margin: 0; }
+
+/* ========== Game Card ========== */
+.game-card {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg); margin: var(--spacing-md);
+}
+.game-card-sm {
+  background: var(--color-white); border: 2px solid var(--color-black);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+
+/* ========== Buttons ========== */
+.game-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--spacing-xs); padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black); border-radius: var(--radius-lg);
+  font-family: var(--font-display); font-size: var(--font-size-base);
+  font-weight: 600; cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-btn); touch-action: manipulation;
+  user-select: none; -webkit-tap-highlight-color: transparent;
+  text-decoration: none; line-height: 1.2;
+}
+.game-btn:active { transform: translateY(2px); box-shadow: var(--shadow-btn-active); }
+.game-btn:hover:not(:disabled) { transform: translateY(-2px) rotate(-1deg); box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25); }
+.game-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.game-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+.game-btn-sm { padding: var(--spacing-xs) var(--spacing-sm); font-size: var(--font-size-sm); border-width: 2px; border-radius: var(--radius-md); }
+.game-btn-lg { padding: var(--spacing-md) var(--spacing-xl); font-size: var(--font-size-xl); border-radius: var(--radius-xl); }
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Layout ========== */
+.game-container {
+  max-width: 600px; margin: 0 auto; padding-bottom: var(--spacing-xl);
+}
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ========== Menu Screen ========== */
+.menu-title {
+  font-size: var(--font-size-3xl); text-align: center;
+  margin: var(--spacing-lg) 0 var(--spacing-sm);
+  font-family: var(--font-sketch); font-weight: 700;
+}
+.menu-subtitle {
+  text-align: center; color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg); font-size: var(--font-size-lg);
+}
+.menu-section { margin-bottom: var(--spacing-lg); }
+.menu-section h2 {
+  font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+.menu-options {
+  display: flex; gap: var(--spacing-sm); justify-content: center; flex-wrap: wrap;
+}
+.menu-options .game-btn { min-width: 120px; }
+.menu-options .game-btn.selected {
+  transform: translateY(2px); box-shadow: var(--shadow-btn-active);
+  outline: 3px solid var(--color-primary); outline-offset: 2px;
+}
+.menu-start-area {
+  display: flex; gap: var(--spacing-sm); justify-content: center;
+  flex-wrap: wrap; margin-top: var(--spacing-lg);
+}
+
+/* ========== Info Bar ========== */
+.info-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--spacing-sm); flex-wrap: wrap;
+  font-weight: 600; font-size: var(--font-size-sm);
+}
+.info-bar .player-label {
+  background: var(--color-primary); color: var(--color-white);
+  padding: 2px 10px; border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+}
+.info-bar .score-display { font-size: var(--font-size-lg); }
+
+/* ========== Timer Bar ========== */
+.timer-container {
+  height: 8px; background: var(--color-bg-dark);
+  border-bottom: 2px solid var(--color-black); overflow: hidden;
+}
+.timer-bar {
+  height: 100%; background: var(--color-success);
+  transition: width 1s linear, background-color 0.3s ease;
+  width: 100%;
+}
+.timer-bar.warning { background: var(--color-warning); }
+.timer-bar.danger { background: var(--color-danger); }
+
+/* ========== Price Tag ========== */
+.price-tag-wrapper {
+  perspective: 800px; margin: var(--spacing-md);
+}
+.price-tag {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg); text-align: center;
+  position: relative; overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.price-tag.flip-in {
+  animation: flipIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes flipIn {
+  0% { transform: rotateY(-90deg) scale(0.8); opacity: 0; }
+  100% { transform: rotateY(0) scale(1); opacity: 1; }
+}
+.price-tag-hole {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--color-black); background: var(--color-bg);
+  margin: 0 auto var(--spacing-sm);
+}
+.price-tag-emoji { font-size: 3.5rem; line-height: 1.2; margin-bottom: var(--spacing-xs); }
+.price-tag-name {
+  font-size: var(--font-size-lg); font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+.price-tag-price {
+  font-size: var(--font-size-2xl); font-weight: 700;
+  font-family: var(--font-sketch);
+}
+.price-tag-price.struck {
+  text-decoration: line-through; color: var(--color-text-light);
+  font-size: var(--font-size-xl);
+}
+.discount-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--color-danger); color: var(--color-white);
+  border: 3px solid var(--color-black); border-radius: var(--radius-full);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-xl); font-weight: 700;
+  transform: rotate(12deg);
+  box-shadow: var(--shadow-card-sm);
+}
+.price-tag-question {
+  font-size: var(--font-size-lg); font-weight: 600;
+  margin-top: var(--spacing-sm); color: var(--color-primary-dark);
+}
+
+/* ========== Numeric Keypad ========== */
+.keypad-area { margin: var(--spacing-md); }
+.answer-display {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-md); padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-2xl); font-family: var(--font-sketch);
+  font-weight: 700; text-align: right; margin-bottom: var(--spacing-sm);
+  min-height: 52px; display: flex; align-items: center; justify-content: flex-end;
+  box-shadow: var(--shadow-card-sm);
+}
+.answer-display .pound-sign { color: var(--color-text-light); margin-right: 4px; }
+.answer-display .cursor {
+  display: inline-block; width: 2px; height: 1.5em;
+  background: var(--color-primary); margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.keypad-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-sm);
+}
+.key-btn {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 56px; border: 3px solid var(--color-black);
+  border-radius: var(--radius-md); font-family: var(--font-display);
+  font-size: var(--font-size-xl); font-weight: 600; cursor: pointer;
+  background: var(--color-white); color: var(--color-text);
+  box-shadow: var(--shadow-card-sm); touch-action: manipulation;
+  user-select: none; -webkit-tap-highlight-color: transparent;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.key-btn:active { transform: translateY(2px); box-shadow: none; }
+.key-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.key-btn.key-submit {
+  background: var(--color-success); color: var(--color-white);
+  grid-column: span 2;
+}
+.key-btn.key-clear { background: var(--color-bg-dark); }
+.key-btn.key-backspace { background: var(--color-bg-dark); }
+
+/* ========== Feedback ========== */
+.feedback-area {
+  margin: var(--spacing-md); min-height: 60px;
+}
+.feedback-card {
+  padding: var(--spacing-md); border-radius: var(--radius-md);
+  border: 3px solid var(--color-black); text-align: center;
+  font-weight: 600;
+}
+.feedback-correct {
+  background: #d4edda; color: var(--color-success-dark);
+  animation: greenFlash 0.4s ease;
+}
+@keyframes greenFlash {
+  0% { background: var(--color-success); color: var(--color-white); transform: scale(1.05); }
+  100% { background: #d4edda; color: var(--color-success-dark); transform: scale(1); }
+}
+.feedback-wrong {
+  background: #fde8ec; color: var(--color-danger-dark);
+  animation: shake 0.4s ease;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.feedback-working {
+  font-family: var(--font-sketch); font-size: var(--font-size-lg);
+  margin-top: var(--spacing-sm); text-align: center;
+  color: var(--color-text); font-weight: 400;
+}
+.feedback-timeout {
+  background: var(--color-bg-dark); color: var(--color-text);
+}
+
+/* ========== Sale Banner ========== */
+.sale-banner {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 3rem; font-family: var(--font-sketch); font-weight: 700;
+  color: var(--color-success); text-shadow: 2px 2px 0 var(--color-black);
+  z-index: 100; pointer-events: none;
+  animation: salePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes salePop {
+  0% { transform: translate(-50%, -50%) scale(0) rotate(-15deg); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.3) rotate(5deg); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0) rotate(10deg); opacity: 0; }
+}
+
+/* ========== Coin Animation ========== */
+.coin {
+  position: fixed; font-size: 1.5rem; pointer-events: none; z-index: 99;
+  animation: coinFall 1s ease-in forwards;
+}
+@keyframes coinFall {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(-80px) rotate(360deg); }
+}
+
+/* ========== Summary Screen ========== */
+.summary-title {
+  font-size: var(--font-size-2xl); text-align: center;
+  margin-bottom: var(--spacing-md); font-family: var(--font-sketch);
+}
+.summary-score {
+  font-size: var(--font-size-3xl); text-align: center;
+  font-weight: 700; margin: var(--spacing-md) 0;
+}
+.summary-detail {
+  display: flex; justify-content: space-between;
+  padding: var(--spacing-sm) 0; border-bottom: 1px dashed var(--color-bg-dark);
+}
+.summary-stars { text-align: center; font-size: 2rem; margin: var(--spacing-sm) 0; }
+.summary-vs {
+  display: flex; gap: var(--spacing-md); justify-content: center;
+  align-items: center; margin: var(--spacing-md) 0;
+}
+.summary-vs .player-score {
+  text-align: center; padding: var(--spacing-md);
+  border: 3px solid var(--color-black); border-radius: var(--radius-lg);
+  background: var(--color-white); box-shadow: var(--shadow-card-sm);
+  min-width: 120px;
+}
+.summary-vs .player-score.winner { border-color: var(--color-success); background: #d4edda; }
+.summary-vs .vs-text { font-size: var(--font-size-2xl); font-weight: 700; }
+
+/* ========== Demo Screen ========== */
+.demo-step {
+  padding: var(--spacing-md); margin-bottom: var(--spacing-sm);
+  border: 2px dashed var(--color-primary); border-radius: var(--radius-md);
+  background: rgba(74,144,217,0.05); font-family: var(--font-sketch);
+  font-size: var(--font-size-lg); text-align: center;
+  opacity: 0; transform: translateY(10px);
+  animation: fadeUp 0.4s ease forwards;
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+.demo-step:nth-child(2) { animation-delay: 0.8s; }
+.demo-step:nth-child(3) { animation-delay: 1.6s; }
+.demo-step:nth-child(4) { animation-delay: 2.4s; }
+.demo-step:nth-child(5) { animation-delay: 3.2s; }
+
+/* ========== Mute Button ========== */
+.mute-btn {
+  background: none; border: 2px solid var(--color-black);
+  border-radius: var(--radius-md); padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-lg); cursor: pointer;
+  line-height: 1; touch-action: manipulation;
+}
+.mute-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+/* ========== Utility ========== */
+.text-center { text-align: center; }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.gap-sm { gap: var(--spacing-sm); }
+</style>
+</head>
+<body>
+
+<header class="game-header">
+  <h1>Percentage Sale</h1>
+  <button class="mute-btn" id="muteBtn" aria-label="Mute sound" title="Toggle sound">
+    <span id="muteIcon">&#128266;</span>
+  </button>
+</header>
+
+<div class="game-container">
+  <div aria-live="polite" id="liveRegion" class="sr-only"></div>
+
+  <!-- ========== MENU SCREEN ========== -->
+  <div class="screen active" id="menuScreen">
+    <div class="menu-title">Percentage Sale!</div>
+    <div class="menu-subtitle">Calculate the discount and grab a bargain!</div>
+
+    <div class="game-card">
+      <div class="menu-section">
+        <h2>Players</h2>
+        <div class="menu-options" role="radiogroup" aria-label="Number of players">
+          <button class="game-btn game-btn-primary selected" data-players="1" role="radio" aria-checked="true">1 Player</button>
+          <button class="game-btn game-btn-purple" data-players="2" role="radio" aria-checked="false">2 Players</button>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h2>Difficulty</h2>
+        <div class="menu-options" role="radiogroup" aria-label="Difficulty level">
+          <button class="game-btn game-btn-success selected" data-diff="easy" role="radio" aria-checked="true">Easy</button>
+          <button class="game-btn game-btn-warning" data-diff="medium" role="radio" aria-checked="false">Medium</button>
+          <button class="game-btn game-btn-danger" data-diff="hard" role="radio" aria-checked="false">Hard</button>
+        </div>
+      </div>
+
+      <div class="menu-start-area">
+        <button class="game-btn game-btn-primary game-btn-lg" id="startBtn">Start Game</button>
+        <button class="game-btn game-btn-outline" id="demoBtn">Demo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== GAME SCREEN ========== -->
+  <div class="screen" id="gameScreen">
+    <div class="info-bar">
+      <span id="playerLabel" class="player-label">Player 1</span>
+      <span id="roundLabel">Round 1 / 10</span>
+      <span id="scoreLabel" class="score-display">Score: 0</span>
+    </div>
+    <div class="timer-container">
+      <div class="timer-bar" id="timerBar" role="timer" aria-label="Time remaining"></div>
+    </div>
+
+    <div class="price-tag-wrapper">
+      <div class="price-tag" id="priceTag">
+        <div class="price-tag-hole"></div>
+        <div class="price-tag-emoji" id="itemEmoji"></div>
+        <div class="price-tag-name" id="itemName"></div>
+        <div class="price-tag-price" id="itemPrice"></div>
+        <div class="discount-badge" id="discountBadge"></div>
+        <div class="price-tag-question">What is the sale price?</div>
+      </div>
+    </div>
+
+    <div class="keypad-area">
+      <div class="answer-display" id="answerDisplay" aria-label="Your answer">
+        <span class="pound-sign">&pound;</span>
+        <span id="answerText"></span>
+        <span class="cursor" id="answerCursor"></span>
+      </div>
+      <div class="keypad-grid" role="group" aria-label="Numeric keypad">
+        <button class="key-btn" data-key="1" aria-label="1">1</button>
+        <button class="key-btn" data-key="2" aria-label="2">2</button>
+        <button class="key-btn" data-key="3" aria-label="3">3</button>
+        <button class="key-btn" data-key="4" aria-label="4">4</button>
+        <button class="key-btn" data-key="5" aria-label="5">5</button>
+        <button class="key-btn" data-key="6" aria-label="6">6</button>
+        <button class="key-btn" data-key="7" aria-label="7">7</button>
+        <button class="key-btn" data-key="8" aria-label="8">8</button>
+        <button class="key-btn" data-key="9" aria-label="9">9</button>
+        <button class="key-btn key-clear" data-key="clear" aria-label="Clear">C</button>
+        <button class="key-btn" data-key="0" aria-label="0">0</button>
+        <button class="key-btn key-backspace" data-key="back" aria-label="Backspace">&larr;</button>
+        <button class="key-btn" data-key="." aria-label="Decimal point">.</button>
+        <button class="key-btn key-submit" data-key="submit" aria-label="Submit answer">Submit</button>
+      </div>
+    </div>
+
+    <div class="feedback-area" id="feedbackArea" aria-live="assertive"></div>
+  </div>
+
+  <!-- ========== SUMMARY SCREEN ========== -->
+  <div class="screen" id="summaryScreen">
+    <div class="game-card text-center">
+      <div class="summary-title" id="summaryTitle">Game Over!</div>
+      <div id="summaryContent"></div>
+      <div class="menu-start-area mt-lg">
+        <button class="game-btn game-btn-primary game-btn-lg" id="playAgainBtn">Play Again</button>
+        <button class="game-btn game-btn-outline" id="menuBtn">Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DEMO SCREEN ========== -->
+  <div class="screen" id="demoScreen">
+    <div class="game-card">
+      <div class="summary-title">How It Works</div>
+      <div id="demoContent"></div>
+      <div class="text-center mt-lg">
+        <button class="game-btn game-btn-primary" id="demoBackBtn">Back to Menu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   Percentage Sale - Game Logic
+   ================================================================ */
+(function() {
+  'use strict';
+
+  /* ---------- Items catalogue ---------- */
+  const ITEMS = [
+    { emoji: '🎸', name: 'Guitar' },
+    { emoji: '🎮', name: 'Game Console' },
+    { emoji: '👟', name: 'Trainers' },
+    { emoji: '📱', name: 'Phone' },
+    { emoji: '🎧', name: 'Headphones' },
+    { emoji: '⌚', name: 'Smart Watch' },
+    { emoji: '🎒', name: 'Backpack' },
+    { emoji: '🏀', name: 'Basketball' },
+    { emoji: '🛹', name: 'Skateboard' },
+    { emoji: '🧸', name: 'Teddy Bear' },
+    { emoji: '📚', name: 'Book Set' },
+    { emoji: '🎨', name: 'Art Set' },
+    { emoji: '🚲', name: 'Bicycle' },
+    { emoji: '🕹️', name: 'Arcade Stick' },
+    { emoji: '👓', name: 'Sunglasses' },
+    { emoji: '🧢', name: 'Cap' },
+    { emoji: '🎹', name: 'Keyboard' },
+    { emoji: '🖊️', name: 'Pen Set' },
+    { emoji: '🧤', name: 'Gloves' },
+    { emoji: '🎿', name: 'Ski Set' },
+  ];
+
+  /* ---------- Difficulty configs ---------- */
+  const DIFFICULTY = {
+    easy: {
+      discounts: [10, 25, 50],
+      prices: [10, 20, 30, 40, 50, 60, 80, 100],
+      timer: 30,
+    },
+    medium: {
+      discounts: [10, 20, 25, 50, 75],
+      prices: [12, 15, 18, 24, 30, 36, 40, 45, 48, 60],
+      timer: 25,
+    },
+    hard: {
+      discounts: [5, 10, 15, 20, 25, 30, 50, 75],
+      prices: [13.50, 16, 22.50, 27, 35, 42, 48, 55, 64, 72, 85],
+      timer: 20,
+    },
+  };
+
+  const ROUNDS = 10;
+  const POINTS_PER_CORRECT = 10;
+
+  /* ---------- State ---------- */
+  let state = 'menu'; // menu | game | summary | demo
+  let players = 1;
+  let difficulty = 'easy';
+  let currentPlayer = 1;
+  let round = 1;
+  let scores = [0, 0];
+  let attempts = 0;
+  let currentItem = null;
+  let currentDiscount = 0;
+  let correctAnswer = 0;
+  let answerInput = '';
+  let timerInterval = null;
+  let timerRemaining = 0;
+  let muted = false;
+  let questionActive = false;
+  let usedItems = [];
+
+  /* ---------- DOM refs ---------- */
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => document.querySelectorAll(s);
+
+  const muteBtn = $('#muteBtn');
+  const muteIcon = $('#muteIcon');
+  const liveRegion = $('#liveRegion');
+  const menuScreen = $('#menuScreen');
+  const gameScreen = $('#gameScreen');
+  const summaryScreen = $('#summaryScreen');
+  const demoScreen = $('#demoScreen');
+
+  const playerLabel = $('#playerLabel');
+  const roundLabel = $('#roundLabel');
+  const scoreLabel = $('#scoreLabel');
+  const timerBar = $('#timerBar');
+  const priceTag = $('#priceTag');
+  const itemEmoji = $('#itemEmoji');
+  const itemName = $('#itemName');
+  const itemPrice = $('#itemPrice');
+  const discountBadge = $('#discountBadge');
+  const answerText = $('#answerText');
+  const answerCursor = $('#answerCursor');
+  const feedbackArea = $('#feedbackArea');
+  const summaryTitle = $('#summaryTitle');
+  const summaryContent = $('#summaryContent');
+
+  /* ---------- Speech ---------- */
+  const speechSupported = 'speechSynthesis' in window;
+  function speak(text) {
+    if (muted || !speechSupported) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB';
+    u.rate = 1.0;
+    window.speechSynthesis.speak(u);
+  }
+
+  function announce(text) {
+    liveRegion.textContent = '';
+    setTimeout(() => { liveRegion.textContent = text; }, 50);
+  }
+
+  /* ---------- Helpers ---------- */
+  function formatPrice(n) {
+    if (Number.isInteger(n)) return '\u00A3' + n;
+    return '\u00A3' + n.toFixed(2);
+  }
+
+  function formatPriceRaw(n) {
+    if (Number.isInteger(n)) return n.toString();
+    return n.toFixed(2);
+  }
+
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function roundTo2(n) {
+    return Math.round(n * 100) / 100;
+  }
+
+  /* ---------- Screen management ---------- */
+  function showScreen(id) {
+    $$('.screen').forEach(s => s.classList.remove('active'));
+    $(id).classList.add('active');
+  }
+
+  function cleanupTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  /* ---------- Menu logic ---------- */
+  $$('[data-players]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('[data-players]').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-checked', 'false'); });
+      btn.classList.add('selected');
+      btn.setAttribute('aria-checked', 'true');
+      players = parseInt(btn.dataset.players);
+    });
+  });
+
+  $$('[data-diff]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('[data-diff]').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-checked', 'false'); });
+      btn.classList.add('selected');
+      btn.setAttribute('aria-checked', 'true');
+      difficulty = btn.dataset.diff;
+    });
+  });
+
+  $('#startBtn').addEventListener('click', startGame);
+  $('#demoBtn').addEventListener('click', showDemo);
+  $('#playAgainBtn').addEventListener('click', startGame);
+  $('#menuBtn').addEventListener('click', () => { state = 'menu'; showScreen('#menuScreen'); });
+  $('#demoBackBtn').addEventListener('click', () => { state = 'menu'; showScreen('#menuScreen'); });
+
+  /* ---------- Mute toggle ---------- */
+  muteBtn.addEventListener('click', () => {
+    muted = !muted;
+    muteIcon.innerHTML = muted ? '&#128263;' : '&#128266;';
+    muteBtn.setAttribute('aria-label', muted ? 'Unmute sound' : 'Mute sound');
+    if (muted && speechSupported) window.speechSynthesis.cancel();
+  });
+
+  /* ---------- Start game ---------- */
+  function startGame() {
+    cleanupTimer();
+    state = 'game';
+    currentPlayer = 1;
+    round = 1;
+    scores = [0, 0];
+    usedItems = [];
+    showScreen('#gameScreen');
+    nextQuestion();
+  }
+
+  /* ---------- Generate question ---------- */
+  function generateQuestion() {
+    const config = DIFFICULTY[difficulty];
+    let item;
+    if (usedItems.length >= ITEMS.length) usedItems = [];
+    const available = ITEMS.filter(i => !usedItems.includes(i.name));
+    item = pick(available);
+    usedItems.push(item.name);
+
+    const price = pick(config.prices);
+    const discount = pick(config.discounts);
+    const discountAmt = roundTo2(price * discount / 100);
+    const salePrice = roundTo2(price - discountAmt);
+
+    return { item, price, discount, discountAmt, salePrice };
+  }
+
+  /* ---------- Next question ---------- */
+  function nextQuestion() {
+    cleanupTimer();
+    feedbackArea.innerHTML = '';
+    answerInput = '';
+    answerText.textContent = '';
+    attempts = 0;
+    questionActive = true;
+
+    const totalRounds = ROUNDS * players;
+    const overallRound = (players === 2) ? ((round - 1) * 2 + currentPlayer) : round;
+
+    playerLabel.textContent = players === 2 ? ('Player ' + currentPlayer) : 'Player 1';
+    playerLabel.style.background = currentPlayer === 1 ? 'var(--color-primary)' : 'var(--color-purple)';
+    roundLabel.textContent = 'Round ' + round + ' / ' + ROUNDS;
+    scoreLabel.textContent = 'Score: ' + scores[currentPlayer - 1];
+
+    const q = generateQuestion();
+    currentItem = q.item;
+    currentDiscount = q.discount;
+    correctAnswer = q.salePrice;
+
+    itemEmoji.textContent = q.item.emoji;
+    itemName.textContent = q.item.name;
+    itemPrice.textContent = formatPrice(q.price);
+    itemPrice.classList.add('struck');
+    discountBadge.textContent = q.discount + '% off!';
+
+    // Flip animation
+    priceTag.classList.remove('flip-in');
+    void priceTag.offsetWidth;
+    priceTag.classList.add('flip-in');
+
+    const msg = q.item.name + ', was ' + formatPrice(q.price) + ', now ' + q.discount + ' percent off. What is the sale price?';
+    announce(msg);
+    speak(msg);
+
+    startTimer();
+  }
+
+  /* ---------- Timer ---------- */
+  function startTimer() {
+    const config = DIFFICULTY[difficulty];
+    timerRemaining = config.timer;
+    timerBar.style.width = '100%';
+    timerBar.classList.remove('warning', 'danger');
+    timerBar.style.transition = 'none';
+    void timerBar.offsetWidth;
+    timerBar.style.transition = 'width 1s linear, background-color 0.3s ease';
+
+    timerInterval = setInterval(() => {
+      timerRemaining--;
+      const pct = (timerRemaining / config.timer) * 100;
+      timerBar.style.width = pct + '%';
+
+      if (pct <= 20) {
+        timerBar.classList.add('danger');
+        timerBar.classList.remove('warning');
+      } else if (pct <= 50) {
+        timerBar.classList.add('warning');
+      }
+
+      if (timerRemaining <= 0) {
+        cleanupTimer();
+        handleTimeout();
+      }
+    }, 1000);
+  }
+
+  function handleTimeout() {
+    questionActive = false;
+    const config = DIFFICULTY[difficulty];
+    const q = getCurrentQuestionInfo();
+    feedbackArea.innerHTML =
+      '<div class="feedback-card feedback-timeout">' +
+      '<div>Time\'s up! The answer was <strong>' + formatPrice(correctAnswer) + '</strong></div>' +
+      '<div class="feedback-working">' + getWorkingOut(q) + '</div>' +
+      '</div>';
+    announce('Time is up. The answer was ' + formatPrice(correctAnswer));
+    speak('Time is up.');
+
+    setTimeout(advanceRound, 3000);
+  }
+
+  function getCurrentQuestionInfo() {
+    const priceText = itemPrice.textContent.replace('\u00A3', '');
+    const price = parseFloat(priceText);
+    return { price, discount: currentDiscount, salePrice: correctAnswer };
+  }
+
+  function getWorkingOut(q) {
+    const discountAmt = roundTo2(q.price * q.discount / 100);
+    return q.discount + '% of ' + formatPrice(q.price) + ' = ' + formatPrice(discountAmt) +
+           ', so sale price = ' + formatPrice(q.price) + ' &minus; ' + formatPrice(discountAmt) +
+           ' = ' + formatPrice(q.salePrice);
+  }
+
+  /* ---------- Keypad input ---------- */
+  $$('.key-btn').forEach(btn => {
+    btn.addEventListener('click', () => handleKey(btn.dataset.key));
+  });
+
+  // Physical keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (state !== 'game' || !questionActive) return;
+    if (e.key >= '0' && e.key <= '9') handleKey(e.key);
+    else if (e.key === '.') handleKey('.');
+    else if (e.key === 'Backspace') handleKey('back');
+    else if (e.key === 'Enter') handleKey('submit');
+    else if (e.key === 'Escape' || e.key === 'Delete') handleKey('clear');
+  });
+
+  function handleKey(key) {
+    if (!questionActive) return;
+
+    if (key === 'clear') {
+      answerInput = '';
+    } else if (key === 'back') {
+      answerInput = answerInput.slice(0, -1);
+    } else if (key === 'submit') {
+      submitAnswer();
+      return;
+    } else if (key === '.') {
+      if (answerInput.includes('.')) return;
+      if (answerInput === '') answerInput = '0';
+      answerInput += '.';
+    } else {
+      // Limit to 2 decimal places
+      const dotIndex = answerInput.indexOf('.');
+      if (dotIndex !== -1 && answerInput.length - dotIndex > 2) return;
+      // Limit total length
+      if (answerInput.length >= 8) return;
+      answerInput += key;
+    }
+
+    answerText.textContent = answerInput;
+  }
+
+  /* ---------- Submit answer ---------- */
+  function submitAnswer() {
+    if (answerInput === '' || answerInput === '0.' || answerInput === '.') return;
+
+    const userAnswer = roundTo2(parseFloat(answerInput));
+
+    if (userAnswer === correctAnswer) {
+      handleCorrect();
+    } else {
+      handleWrong();
+    }
+  }
+
+  function handleCorrect() {
+    cleanupTimer();
+    questionActive = false;
+    scores[currentPlayer - 1] += POINTS_PER_CORRECT;
+    scoreLabel.textContent = 'Score: ' + scores[currentPlayer - 1];
+
+    feedbackArea.innerHTML =
+      '<div class="feedback-card feedback-correct">+' + POINTS_PER_CORRECT + ' points! Cha-ching!</div>';
+
+    showSaleBanner();
+    spawnCoins();
+    announce('Correct! Plus ' + POINTS_PER_CORRECT + ' points!');
+    speak('Cha-ching! Correct!');
+
+    setTimeout(advanceRound, 2000);
+  }
+
+  function handleWrong() {
+    attempts++;
+    const q = getCurrentQuestionInfo();
+
+    if (attempts >= 2) {
+      cleanupTimer();
+      questionActive = false;
+      feedbackArea.innerHTML =
+        '<div class="feedback-card feedback-wrong">' +
+        '<div>The answer was <strong>' + formatPrice(correctAnswer) + '</strong></div>' +
+        '<div class="feedback-working">' + getWorkingOut(q) + '</div>' +
+        '</div>';
+      announce('The answer was ' + formatPrice(correctAnswer));
+      speak('The answer was ' + formatPrice(correctAnswer));
+      setTimeout(advanceRound, 3500);
+    } else {
+      feedbackArea.innerHTML =
+        '<div class="feedback-card feedback-wrong">' +
+        '<div>Not quite! Try again.</div>' +
+        '<div class="feedback-working">' + getWorkingOut(q) + '</div>' +
+        '</div>';
+      announce('Not quite. Try again.');
+      speak('Not quite. Try again.');
+      answerInput = '';
+      answerText.textContent = '';
+    }
+  }
+
+  /* ---------- Visual effects ---------- */
+  function showSaleBanner() {
+    const banner = document.createElement('div');
+    banner.className = 'sale-banner';
+    banner.textContent = 'SALE!';
+    document.body.appendChild(banner);
+    setTimeout(() => banner.remove(), 900);
+  }
+
+  function spawnCoins() {
+    for (let i = 0; i < 5; i++) {
+      const coin = document.createElement('div');
+      coin.className = 'coin';
+      coin.textContent = '\uD83E\uDE99';
+      coin.style.left = (30 + Math.random() * 40) + '%';
+      coin.style.top = (40 + Math.random() * 20) + '%';
+      coin.style.animationDelay = (i * 0.1) + 's';
+      document.body.appendChild(coin);
+      setTimeout(() => coin.remove(), 1200);
+    }
+  }
+
+  /* ---------- Advance round ---------- */
+  function advanceRound() {
+    if (players === 2) {
+      if (currentPlayer === 1) {
+        currentPlayer = 2;
+        nextQuestion();
+        return;
+      } else {
+        currentPlayer = 1;
+        round++;
+      }
+    } else {
+      round++;
+    }
+
+    if (round > ROUNDS) {
+      showSummary();
+    } else {
+      nextQuestion();
+    }
+  }
+
+  /* ---------- Summary ---------- */
+  function showSummary() {
+    cleanupTimer();
+    state = 'summary';
+    showScreen('#summaryScreen');
+
+    if (players === 1) {
+      const s = scores[0];
+      const max = ROUNDS * POINTS_PER_CORRECT;
+      const pct = Math.round((s / max) * 100);
+      let stars = '';
+      if (pct >= 90) stars = '\u2B50\u2B50\u2B50';
+      else if (pct >= 60) stars = '\u2B50\u2B50';
+      else if (pct >= 30) stars = '\u2B50';
+
+      summaryTitle.textContent = 'Game Over!';
+      summaryContent.innerHTML =
+        '<div class="summary-score">' + s + ' / ' + max + '</div>' +
+        '<div class="summary-stars">' + (stars || 'Keep practising!') + '</div>' +
+        '<div class="summary-detail"><span>Correct answers</span><span>' + (s / POINTS_PER_CORRECT) + ' / ' + ROUNDS + '</span></div>' +
+        '<div class="summary-detail"><span>Difficulty</span><span>' + difficulty.charAt(0).toUpperCase() + difficulty.slice(1) + '</span></div>';
+
+      announce('Game over. You scored ' + s + ' out of ' + max);
+      speak('Game over. You scored ' + s + ' out of ' + max);
+    } else {
+      const s1 = scores[0];
+      const s2 = scores[1];
+      let winner = '';
+      if (s1 > s2) winner = 'Player 1 wins!';
+      else if (s2 > s1) winner = 'Player 2 wins!';
+      else winner = 'It\'s a draw!';
+
+      summaryTitle.textContent = winner;
+      summaryContent.innerHTML =
+        '<div class="summary-vs">' +
+        '<div class="player-score' + (s1 >= s2 ? ' winner' : '') + '">' +
+        '<div style="font-weight:600;margin-bottom:4px;">Player 1</div>' +
+        '<div style="font-size:var(--font-size-2xl);font-weight:700;">' + s1 + '</div></div>' +
+        '<div class="vs-text">VS</div>' +
+        '<div class="player-score' + (s2 >= s1 ? ' winner' : '') + '">' +
+        '<div style="font-weight:600;margin-bottom:4px;">Player 2</div>' +
+        '<div style="font-size:var(--font-size-2xl);font-weight:700;">' + s2 + '</div></div>' +
+        '</div>' +
+        '<div class="summary-detail"><span>Difficulty</span><span>' + difficulty.charAt(0).toUpperCase() + difficulty.slice(1) + '</span></div>';
+
+      announce(winner);
+      speak(winner);
+    }
+  }
+
+  /* ---------- Demo ---------- */
+  function showDemo() {
+    state = 'demo';
+    showScreen('#demoScreen');
+
+    const demoItem = { emoji: '🎮', name: 'Game Console' };
+    const demoPrice = 40;
+    const demoDiscount = 25;
+    const discountAmt = 10;
+    const salePrice = 30;
+
+    const demoContent = $('#demoContent');
+    demoContent.innerHTML =
+      '<div class="price-tag-wrapper"><div class="price-tag" style="margin-bottom:var(--spacing-md);">' +
+      '<div class="price-tag-hole"></div>' +
+      '<div class="price-tag-emoji">' + demoItem.emoji + '</div>' +
+      '<div class="price-tag-name">' + demoItem.name + '</div>' +
+      '<div class="price-tag-price struck">' + formatPrice(demoPrice) + '</div>' +
+      '<div class="discount-badge">' + demoDiscount + '% off!</div>' +
+      '</div></div>' +
+      '<div class="demo-step">Step 1: Find ' + demoDiscount + '% of ' + formatPrice(demoPrice) + '</div>' +
+      '<div class="demo-step">Step 2: ' + demoDiscount + '% means ' + demoDiscount + ' out of every 100</div>' +
+      '<div class="demo-step">Step 3: ' + demoDiscount + '/100 &times; ' + formatPrice(demoPrice) + ' = ' + formatPrice(discountAmt) + ' off</div>' +
+      '<div class="demo-step">Step 4: ' + formatPrice(demoPrice) + ' &minus; ' + formatPrice(discountAmt) + ' = <strong>' + formatPrice(salePrice) + '</strong></div>' +
+      '<div class="demo-step">The sale price is <strong>' + formatPrice(salePrice) + '</strong>!</div>';
+
+    speak('Let me show you how it works. ' + demoItem.name + ' costs ' + formatPrice(demoPrice) + ' with ' + demoDiscount + ' percent off. ' + demoDiscount + ' percent of ' + formatPrice(demoPrice) + ' is ' + formatPrice(discountAmt) + '. So the sale price is ' + formatPrice(salePrice) + '.');
+  }
+
+})();
+</script>
+</body>
+</html>

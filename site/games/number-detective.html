@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Detective - Maths Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Design System Tokens ========== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea { font-size: max(var(--font-size-min), 1em); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ========== Header ========== */
+.game-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg); border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm); flex-wrap: wrap;
+}
+.game-header h1 { font-size: var(--font-size-xl); font-weight: 700; margin: 0; }
+.header-controls { display: flex; gap: var(--spacing-sm); align-items: center; }
+
+/* ========== Buttons ========== */
+.btn {
+  font-family: var(--font-display); font-weight: 600; border: 3px solid var(--color-black);
+  border-radius: var(--radius-md); padding: 0.5rem 1.25rem; cursor: pointer;
+  box-shadow: var(--shadow-btn); transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px;
+  text-decoration: none; line-height: 1.2;
+}
+.btn:active { transform: translateY(2px); box-shadow: var(--shadow-btn-active); }
+.btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.btn-primary { background: var(--color-primary); color: var(--color-white); }
+.btn-primary:hover { background: var(--color-primary-dark); }
+.btn-danger { background: var(--color-danger); color: var(--color-white); }
+.btn-danger:hover { background: var(--color-danger-dark); }
+.btn-success { background: var(--color-success); color: var(--color-white); }
+.btn-success:hover { background: var(--color-success-dark); }
+.btn-warning { background: var(--color-warning); color: var(--color-white); }
+.btn-warning:hover { background: var(--color-warning-dark); }
+.btn-purple { background: var(--color-purple); color: var(--color-white); }
+.btn-purple:hover { background: var(--color-purple-dark); }
+.btn-sm { padding: 0.3rem 0.75rem; font-size: var(--font-size-sm); min-height: 36px; }
+.btn-icon {
+  width: 44px; height: 44px; padding: 0; display: flex; align-items: center;
+  justify-content: center; border-radius: var(--radius-md); background: var(--color-white);
+  border: 3px solid var(--color-black); box-shadow: var(--shadow-card-sm); cursor: pointer;
+  font-size: 1.3rem;
+}
+.btn-icon:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+/* ========== Game Card ========== */
+.game-card {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+}
+
+/* ========== Screens ========== */
+.screen { display: none; max-width: 720px; margin: 0 auto; padding: var(--spacing-md); }
+.screen.active { display: block; }
+
+/* ========== Menu ========== */
+.menu-title {
+  text-align: center; font-size: var(--font-size-3xl); font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+}
+.menu-icon { font-size: 3rem; display: block; text-align: center; margin-bottom: var(--spacing-sm); }
+.menu-subtitle {
+  text-align: center; font-family: var(--font-sketch); font-size: var(--font-size-lg);
+  color: var(--color-text-light); margin-bottom: var(--spacing-xl);
+}
+.menu-section { margin-bottom: var(--spacing-lg); }
+.menu-section h2 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); }
+.option-row { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; }
+.option-btn {
+  flex: 1; min-width: 100px; text-align: center; padding: 0.6rem 0.5rem;
+  border: 3px solid var(--color-black); border-radius: var(--radius-md);
+  background: var(--color-white); font-family: var(--font-display); font-weight: 600;
+  cursor: pointer; transition: all var(--transition-fast); min-height: 44px;
+}
+.option-btn:hover { background: var(--color-bg-dark); }
+.option-btn.selected { background: var(--color-primary); color: var(--color-white); box-shadow: var(--shadow-card-sm); }
+.option-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.menu-actions { display: flex; flex-direction: column; gap: var(--spacing-sm); margin-top: var(--spacing-xl); }
+.menu-actions .btn { justify-content: center; font-size: var(--font-size-lg); }
+
+/* ========== Game Screen ========== */
+.game-top-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: var(--spacing-sm); margin-bottom: var(--spacing-md);
+}
+.game-info { display: flex; gap: var(--spacing-md); flex-wrap: wrap; align-items: center; }
+.info-badge {
+  font-family: var(--font-sketch); font-size: var(--font-size-lg); font-weight: 700;
+  background: var(--color-bg-dark); padding: 0.2rem 0.6rem; border-radius: var(--radius-sm);
+  border: 2px solid var(--color-black);
+}
+
+/* Mystery number display */
+.mystery-display {
+  text-align: center; margin-bottom: var(--spacing-md);
+}
+.mystery-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 80px; height: 80px; font-size: var(--font-size-3xl); font-weight: 700;
+  background: var(--color-purple); color: var(--color-white);
+  border: 4px solid var(--color-black); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card); transition: all 0.5s ease;
+  font-family: var(--font-sketch);
+}
+.mystery-number.revealed {
+  background: var(--color-success); transform: scale(1.15);
+}
+
+/* Clue area */
+.clue-area { margin-bottom: var(--spacing-md); }
+.clue-card {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md); margin-bottom: var(--spacing-sm);
+  font-family: var(--font-sketch); font-size: var(--font-size-lg); font-weight: 700;
+  position: relative; overflow: hidden;
+  background-image: repeating-linear-gradient(transparent, transparent 27px, #e0d6c8 28px);
+  background-position: 0 8px;
+  animation: clueSlideIn 0.4s ease-out;
+}
+.clue-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--color-danger);
+}
+.clue-number {
+  display: inline-block; background: var(--color-primary); color: var(--color-white);
+  border-radius: var(--radius-full); width: 26px; height: 26px; text-align: center;
+  line-height: 26px; font-size: var(--font-size-sm); margin-right: 0.5rem;
+  font-family: var(--font-display);
+}
+.clues-list { max-height: 180px; overflow-y: auto; margin-bottom: var(--spacing-sm); }
+.clue-actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; }
+
+@keyframes clueSlideIn {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clue-card { animation: none; }
+  .mystery-number { transition: none; }
+  .num-cell { transition: none !important; }
+}
+
+/* Number grid */
+.number-grid {
+  display: grid; gap: 4px; margin-bottom: var(--spacing-md);
+  grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+}
+.num-cell {
+  width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: var(--font-size-sm); border: 2px solid var(--color-black);
+  border-radius: var(--radius-sm); cursor: pointer; position: relative;
+  background: var(--color-white); transition: all 0.3s ease; min-height: 40px;
+  font-family: var(--font-display);
+}
+.num-cell:hover:not(.eliminated):not(.clue-eliminated) {
+  background: var(--color-primary); color: var(--color-white); transform: scale(1.08);
+}
+.num-cell:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; z-index: 1; }
+.num-cell.clue-eliminated {
+  background: var(--color-bg-dark); color: var(--color-text-light); opacity: 0.4;
+  cursor: default; border-color: #ccc;
+}
+.num-cell.eliminated {
+  background: var(--color-bg-dark); color: var(--color-text-light); opacity: 0.35;
+  cursor: default; border-color: #ccc;
+}
+.num-cell.eliminated::after, .num-cell.clue-eliminated::after {
+  content: '\00D7'; position: absolute; font-size: 1.6rem; color: var(--color-danger);
+  font-weight: 700; pointer-events: none;
+}
+.num-cell.correct-guess {
+  background: var(--color-success); color: var(--color-white);
+  border-color: var(--color-success-dark); animation: popIn 0.4s ease;
+}
+.num-cell.wrong-guess {
+  background: var(--color-danger); color: var(--color-white);
+  border-color: var(--color-danger-dark); animation: shake 0.4s ease;
+}
+@keyframes popIn {
+  0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1.1); }
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); }
+}
+
+/* Summary screen */
+.summary-title { text-align: center; font-size: var(--font-size-2xl); margin-bottom: var(--spacing-md); }
+.summary-icon { font-size: 3rem; display: block; text-align: center; margin-bottom: var(--spacing-sm); }
+.scores-table {
+  width: 100%; border-collapse: collapse; margin-bottom: var(--spacing-lg);
+  font-family: var(--font-sketch); font-size: var(--font-size-lg);
+}
+.scores-table th, .scores-table td {
+  padding: 0.4rem 0.6rem; border-bottom: 2px solid var(--color-bg-dark); text-align: center;
+}
+.scores-table th { font-family: var(--font-display); font-size: var(--font-size-sm); color: var(--color-text-light); }
+.final-score {
+  text-align: center; font-size: var(--font-size-2xl); font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+}
+.final-score span { color: var(--color-primary); }
+
+/* Celebration overlay */
+.celebration {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  background: rgba(0,0,0,0.5); z-index: 100; opacity: 0;
+  transition: opacity 0.3s ease; pointer-events: none;
+}
+.celebration.active { opacity: 1; pointer-events: auto; }
+.celebration-card {
+  background: var(--color-white); border: 4px solid var(--color-black);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+  padding: var(--spacing-xl); text-align: center; max-width: 340px;
+  animation: popIn 0.5s ease;
+}
+.celebration-card h2 { font-size: var(--font-size-2xl); margin-bottom: var(--spacing-sm); }
+.celebration-card p { font-family: var(--font-sketch); font-size: var(--font-size-lg); margin-bottom: var(--spacing-md); }
+
+/* Turn indicator for 2P */
+.turn-indicator {
+  text-align: center; padding: 0.4rem; border-radius: var(--radius-sm);
+  font-weight: 600; margin-bottom: var(--spacing-sm);
+  border: 2px solid var(--color-black);
+}
+.turn-p1 { background: var(--color-primary); color: var(--color-white); }
+.turn-p2 { background: var(--color-purple); color: var(--color-white); }
+
+/* Demo overlay label */
+.demo-banner {
+  text-align: center; background: var(--color-warning); color: var(--color-white);
+  padding: 0.3rem; font-weight: 700; border-radius: var(--radius-sm);
+  border: 2px solid var(--color-black); margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+</style>
+</head>
+<body>
+<header class="game-header">
+  <h1>🔍 Number Detective</h1>
+  <div class="header-controls">
+    <button class="btn-icon" id="muteBtn" aria-label="Toggle sound">🔊</button>
+    <button class="btn-icon" id="homeBtn" aria-label="Back to menu">🏠</button>
+  </div>
+</header>
+<main>
+  <div aria-live="polite" id="liveRegion" class="sr-only"></div>
+
+  <!-- ===== MENU SCREEN ===== -->
+  <section class="screen active" id="menuScreen" aria-label="Game menu">
+    <div class="menu-icon" aria-hidden="true">🕵️</div>
+    <h2 class="menu-title">Number Detective</h2>
+    <p class="menu-subtitle">"I'm thinking of a number..." Can you crack the case?</p>
+
+    <div class="game-card">
+      <div class="menu-section">
+        <h2>Players</h2>
+        <div class="option-row" role="radiogroup" aria-label="Number of players">
+          <button class="option-btn selected" data-group="players" data-value="1" role="radio" aria-checked="true">1 Player</button>
+          <button class="option-btn" data-group="players" data-value="2" role="radio" aria-checked="false">2 Players</button>
+        </div>
+      </div>
+      <div class="menu-section">
+        <h2>Difficulty</h2>
+        <div class="option-row" role="radiogroup" aria-label="Difficulty level">
+          <button class="option-btn selected" data-group="difficulty" data-value="easy" role="radio" aria-checked="true">Easy (1-20)</button>
+          <button class="option-btn" data-group="difficulty" data-value="medium" role="radio" aria-checked="false">Medium (1-50)</button>
+          <button class="option-btn" data-group="difficulty" data-value="hard" role="radio" aria-checked="false">Hard (1-100)</button>
+        </div>
+      </div>
+      <div class="menu-actions">
+        <button class="btn btn-success" id="startBtn">▶️ Start Game</button>
+        <button class="btn btn-warning" id="demoBtn">🎬 Demo</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GAME SCREEN ===== -->
+  <section class="screen" id="gameScreen" aria-label="Game play">
+    <div id="demoBanner" class="demo-banner" style="display:none;">DEMO MODE — Watch and learn!</div>
+    <div id="turnIndicator" class="turn-indicator" style="display:none;"></div>
+
+    <div class="game-top-bar">
+      <div class="game-info">
+        <span class="info-badge" id="roundBadge">Round 1/8</span>
+        <span class="info-badge" id="scoreBadge">Score: 0</span>
+        <span class="info-badge" id="scoreBadge2" style="display:none;">P2: 0</span>
+      </div>
+    </div>
+
+    <div class="mystery-display">
+      <div class="mystery-number" id="mysteryDisplay" aria-label="Mystery number">?</div>
+    </div>
+
+    <div class="clue-area game-card">
+      <h3 style="margin-bottom:0.5rem;">📋 Case File — Clues</h3>
+      <div class="clues-list" id="cluesList" aria-label="Revealed clues"></div>
+      <div class="clue-actions">
+        <button class="btn btn-primary" id="nextClueBtn">🔎 Next Clue</button>
+        <span id="clueCount" style="font-family:var(--font-sketch);font-size:var(--font-size-lg);align-self:center;">
+          Clues used: 0
+        </span>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:0.4rem;">Suspects — click a number to guess!</h3>
+    <p style="font-size:var(--font-size-sm);color:var(--color-text-light);margin-bottom:0.5rem;">
+      Right-click or long-press to manually eliminate a number.
+    </p>
+    <div class="number-grid" id="numberGrid" role="grid" aria-label="Number grid"></div>
+  </section>
+
+  <!-- ===== SUMMARY SCREEN ===== -->
+  <section class="screen" id="summaryScreen" aria-label="Game summary">
+    <div class="game-card">
+      <div class="summary-icon" aria-hidden="true">🏆</div>
+      <h2 class="summary-title" id="summaryTitle">Case Closed!</h2>
+      <table class="scores-table" id="scoresTable">
+        <thead><tr><th>Round</th><th>Answer</th><th>Clues</th><th>Score</th></tr></thead>
+        <tbody id="scoresBody"></tbody>
+      </table>
+      <div class="final-score" id="finalScore"></div>
+      <div class="menu-actions">
+        <button class="btn btn-success" id="playAgainBtn">🔄 Play Again</button>
+        <button class="btn btn-primary" id="backMenuBtn">🏠 Main Menu</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Celebration overlay -->
+<div class="celebration" id="celebration" aria-live="assertive">
+  <div class="celebration-card">
+    <h2 id="celebTitle">🎉 Case Solved!</h2>
+    <p id="celebMsg"></p>
+    <button class="btn btn-success" id="celebBtn">Next Round</button>
+  </div>
+</div>
+
+<script>
+/* ========== State Machine & Globals ========== */
+const STATE = { MENU: 'menu', GAME: 'game', SUMMARY: 'summary' };
+let state = STATE.MENU;
+let settings = { players: 1, difficulty: 'easy' };
+let game = null;
+let demoMode = false;
+let demoTimers = [];
+let muted = false;
+let speechSupported = false;
+
+/* ========== DOM refs ========== */
+const $ = id => document.getElementById(id);
+const menuScreen = $('menuScreen');
+const gameScreen = $('gameScreen');
+const summaryScreen = $('summaryScreen');
+const liveRegion = $('liveRegion');
+const mysteryDisplay = $('mysteryDisplay');
+const cluesList = $('cluesList');
+const numberGrid = $('numberGrid');
+const nextClueBtn = $('nextClueBtn');
+const clueCount = $('clueCount');
+const roundBadge = $('roundBadge');
+const scoreBadge = $('scoreBadge');
+const scoreBadge2 = $('scoreBadge2');
+const celebration = $('celebration');
+const turnIndicator = $('turnIndicator');
+const demoBanner = $('demoBanner');
+
+/* ========== Speech ========== */
+function initSpeech() {
+  if ('speechSynthesis' in window) {
+    speechSupported = true;
+  }
+}
+function speak(text) {
+  if (!speechSupported || muted) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB'; u.rate = 0.95;
+  window.speechSynthesis.speak(u);
+}
+initSpeech();
+
+$('muteBtn').addEventListener('click', () => {
+  muted = !muted;
+  $('muteBtn').textContent = muted ? '🔇' : '🔊';
+  $('muteBtn').setAttribute('aria-label', muted ? 'Unmute sound' : 'Mute sound');
+  if (muted) window.speechSynthesis.cancel();
+});
+
+/* ========== Screen transitions ========== */
+function showScreen(name) {
+  clearDemoTimers();
+  [menuScreen, gameScreen, summaryScreen].forEach(s => s.classList.remove('active'));
+  if (name === STATE.MENU) { menuScreen.classList.add('active'); state = STATE.MENU; }
+  else if (name === STATE.GAME) { gameScreen.classList.add('active'); state = STATE.GAME; }
+  else if (name === STATE.SUMMARY) { summaryScreen.classList.add('active'); state = STATE.SUMMARY; }
+}
+
+$('homeBtn').addEventListener('click', () => {
+  if (state === STATE.GAME && !demoMode) {
+    if (!confirm('Leave the current game?')) return;
+  }
+  celebration.classList.remove('active');
+  showScreen(STATE.MENU);
+});
+
+/* ========== Menu option buttons ========== */
+document.querySelectorAll('.option-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.dataset.group;
+    document.querySelectorAll(`.option-btn[data-group="${group}"]`).forEach(b => {
+      b.classList.remove('selected'); b.setAttribute('aria-checked', 'false');
+    });
+    btn.classList.add('selected'); btn.setAttribute('aria-checked', 'true');
+    settings[group] = group === 'players' ? parseInt(btn.dataset.value) : btn.dataset.value;
+  });
+});
+
+$('startBtn').addEventListener('click', () => { demoMode = false; startNewGame(); });
+$('demoBtn').addEventListener('click', () => { demoMode = true; startNewGame(); });
+$('playAgainBtn').addEventListener('click', () => { demoMode = false; startNewGame(); });
+$('backMenuBtn').addEventListener('click', () => showScreen(STATE.MENU));
+
+/* ========== Number properties helpers ========== */
+function isEven(n) { return n % 2 === 0; }
+function isOdd(n) { return n % 2 !== 0; }
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let i = 2; i * i <= n; i++) { if (n % i === 0) return false; }
+  return true;
+}
+function isSquare(n) { const s = Math.sqrt(n); return s === Math.floor(s); }
+function digitSum(n) { return String(n).split('').reduce((a, b) => a + parseInt(b), 0); }
+function factors(n) {
+  const f = [];
+  for (let i = 1; i <= n; i++) { if (n % i === 0) f.push(i); }
+  return f;
+}
+
+/* ========== Clue generation ========== */
+function getRange() {
+  if (settings.difficulty === 'easy') return 20;
+  if (settings.difficulty === 'medium') return 50;
+  return 100;
+}
+
+function generateClues(target, max) {
+  const allNumbers = [];
+  for (let i = 1; i <= max; i++) allNumbers.push(i);
+
+  const possibleClues = [];
+
+  /* Even/Odd */
+  if (isEven(target)) possibleClues.push({ text: "It's an even number", test: n => isEven(n) });
+  else possibleClues.push({ text: "It's an odd number", test: n => isOdd(n) });
+
+  /* Multiples */
+  [2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(m => {
+    if (target % m === 0 && m <= max) {
+      possibleClues.push({ text: `It's a multiple of ${m}`, test: n => n % m === 0 });
+    }
+    if (target % m !== 0) {
+      possibleClues.push({ text: `It's NOT a multiple of ${m}`, test: n => n % m !== 0 });
+    }
+  });
+
+  /* Greater/less than */
+  for (let t = 5; t < max; t += 5) {
+    if (target > t) possibleClues.push({ text: `It's greater than ${t}`, test: n => n > t });
+    if (target < t) possibleClues.push({ text: `It's less than ${t}`, test: n => n < t });
+  }
+  /* Tighter bounds */
+  if (target > 1) {
+    const lb = target - Math.floor(Math.random() * 3) - 1;
+    if (lb >= 1) possibleClues.push({ text: `It's greater than ${lb}`, test: n => n > lb });
+  }
+  if (target < max) {
+    const ub = target + Math.floor(Math.random() * 3) + 1;
+    if (ub <= max) possibleClues.push({ text: `It's less than ${ub}`, test: n => n < ub });
+  }
+
+  /* Prime / Square */
+  if (isPrime(target)) possibleClues.push({ text: "It's a prime number", test: n => isPrime(n) });
+  else possibleClues.push({ text: "It's NOT a prime number", test: n => !isPrime(n) });
+  if (isSquare(target)) possibleClues.push({ text: "It's a square number", test: n => isSquare(n) });
+  else possibleClues.push({ text: "It's NOT a square number", test: n => !isSquare(n) });
+
+  /* Hard mode: digit sum, factor of */
+  if (settings.difficulty === 'hard' || settings.difficulty === 'medium') {
+    const ds = digitSum(target);
+    possibleClues.push({ text: `Its digits add up to ${ds}`, test: n => digitSum(n) === ds });
+
+    /* Factor of a larger number */
+    [12, 18, 24, 30, 36, 48, 60, 72, 100].forEach(big => {
+      if (big % target === 0 && big <= max * 2) {
+        possibleClues.push({ text: `It's a factor of ${big}`, test: n => big % n === 0 });
+      }
+    });
+
+    /* Number of digits */
+    const nd = String(target).length;
+    possibleClues.push({ text: `It has ${nd} digit${nd > 1 ? 's' : ''}`, test: n => String(n).length === nd });
+  }
+
+  /* Now pick clues greedily to narrow to exactly the target */
+  let remaining = new Set(allNumbers);
+  const chosen = [];
+  const shuffled = possibleClues.sort(() => Math.random() - 0.5);
+
+  /* Always ensure clues uniquely identify the target */
+  const maxClues = settings.difficulty === 'easy' ? 6 : settings.difficulty === 'medium' ? 7 : 8;
+
+  for (let attempts = 0; attempts < 200 && remaining.size > 1 && chosen.length < maxClues; attempts++) {
+    let bestClue = null;
+    let bestEliminated = 0;
+
+    for (const clue of shuffled) {
+      if (chosen.includes(clue)) continue;
+      if (!clue.test(target)) continue; /* safety: clue must be true for target */
+      const eliminated = [...remaining].filter(n => !clue.test(n)).length;
+      /* Prefer clues that eliminate some but not too many (keeps it interesting) */
+      if (eliminated > 0 && (bestClue === null || eliminated > bestEliminated)) {
+        bestClue = clue;
+        bestEliminated = eliminated;
+      }
+    }
+
+    if (!bestClue) break;
+    chosen.push(bestClue);
+    remaining = new Set([...remaining].filter(n => bestClue.test(n)));
+  }
+
+  /* If still not unique, add a very specific clue */
+  if (remaining.size > 1) {
+    const nearClue = target > max / 2
+      ? { text: `It's greater than ${target - 1}`, test: n => n > target - 1 }
+      : { text: `It's less than ${target + 1}`, test: n => n < target + 1 };
+    chosen.push(nearClue);
+  }
+
+  return chosen;
+}
+
+/* ========== Game Logic ========== */
+function startNewGame() {
+  const max = getRange();
+  const totalRounds = 8;
+
+  game = {
+    max, totalRounds,
+    round: 0,
+    scores: settings.players === 2 ? [[], []] : [[]],
+    totalScore: settings.players === 2 ? [0, 0] : [0],
+    currentPlayer: 0,  /* for 2P alternating first-guesser */
+    roundData: [],
+  };
+
+  showScreen(STATE.GAME);
+  demoBanner.style.display = demoMode ? 'block' : 'none';
+  scoreBadge2.style.display = settings.players === 2 ? 'inline' : 'none';
+  turnIndicator.style.display = settings.players === 2 ? 'block' : 'none';
+
+  updateScoreDisplay();
+  startRound();
+}
+
+function startRound() {
+  game.round++;
+  if (game.round > game.totalRounds) { endGame(); return; }
+
+  const target = Math.floor(Math.random() * game.max) + 1;
+  const clues = generateClues(target, game.max);
+
+  const rd = {
+    target, clues,
+    cluesRevealed: 0,
+    wrongGuesses: 0,
+    score: 0,
+    solved: false,
+    eliminatedByClue: new Set(),
+    eliminatedManually: new Set(),
+    currentPlayer: settings.players === 2 ? (game.round % 2 === 1 ? 0 : 1) : 0,
+  };
+  game.roundData.push(rd);
+
+  roundBadge.textContent = `Round ${game.round}/${game.totalRounds}`;
+  mysteryDisplay.textContent = '?';
+  mysteryDisplay.classList.remove('revealed');
+  cluesList.innerHTML = '';
+  clueCount.textContent = 'Clues used: 0';
+  nextClueBtn.disabled = false;
+
+  if (settings.players === 2) {
+    turnIndicator.style.display = 'block';
+    updateTurnIndicator(rd);
+  } else {
+    turnIndicator.style.display = 'none';
+  }
+
+  buildGrid();
+  announce(`Round ${game.round}. A mystery number between 1 and ${game.max}. Click Next Clue to get a clue.`);
+  speak(`Round ${game.round}. I'm thinking of a number between 1 and ${game.max}.`);
+
+  if (demoMode) runDemo(rd);
+}
+
+function updateTurnIndicator(rd) {
+  const p = rd.currentPlayer + 1;
+  turnIndicator.textContent = `Player ${p}'s turn to guess`;
+  turnIndicator.className = 'turn-indicator ' + (p === 1 ? 'turn-p1' : 'turn-p2');
+}
+
+function buildGrid() {
+  numberGrid.innerHTML = '';
+  const rd = currentRound();
+  for (let i = 1; i <= game.max; i++) {
+    const cell = document.createElement('button');
+    cell.className = 'num-cell';
+    cell.textContent = i;
+    cell.dataset.num = i;
+    cell.setAttribute('role', 'gridcell');
+    cell.setAttribute('aria-label', `Number ${i}`);
+
+    cell.addEventListener('click', () => handleGuess(i));
+    cell.addEventListener('contextmenu', (e) => { e.preventDefault(); toggleManualEliminate(i); });
+
+    /* Long press for mobile */
+    let pressTimer = null;
+    cell.addEventListener('touchstart', (e) => {
+      pressTimer = setTimeout(() => { e.preventDefault(); toggleManualEliminate(i); pressTimer = -1; }, 500);
+    }, { passive: false });
+    cell.addEventListener('touchend', (e) => {
+      if (pressTimer === -1) { e.preventDefault(); }
+      else { clearTimeout(pressTimer); }
+      pressTimer = null;
+    });
+
+    numberGrid.appendChild(cell);
+  }
+}
+
+function currentRound() {
+  return game.roundData[game.roundData.length - 1];
+}
+
+function getCellForNumber(n) {
+  return numberGrid.querySelector(`[data-num="${n}"]`);
+}
+
+/* ========== Clue reveal ========== */
+nextClueBtn.addEventListener('click', () => {
+  if (demoMode) return;
+  revealNextClue();
+});
+
+function revealNextClue() {
+  const rd = currentRound();
+  if (rd.solved || rd.cluesRevealed >= rd.clues.length) return;
+
+  const clue = rd.clues[rd.cluesRevealed];
+  rd.cluesRevealed++;
+
+  /* Add clue card */
+  const card = document.createElement('div');
+  card.className = 'clue-card';
+  card.innerHTML = `<span class="clue-number">${rd.cluesRevealed}</span> ${clue.text}`;
+  cluesList.appendChild(card);
+  cluesList.scrollTop = cluesList.scrollHeight;
+
+  clueCount.textContent = `Clues used: ${rd.cluesRevealed}`;
+  announce(`Clue ${rd.cluesRevealed}: ${clue.text}`);
+  speak(`Clue ${rd.cluesRevealed}: ${clue.text}`);
+
+  /* Eliminate numbers that don't match */
+  for (let i = 1; i <= game.max; i++) {
+    if (!clue.test(i) && !rd.eliminatedByClue.has(i)) {
+      rd.eliminatedByClue.add(i);
+      const cell = getCellForNumber(i);
+      if (cell) cell.classList.add('clue-eliminated');
+    }
+  }
+
+  if (rd.cluesRevealed >= rd.clues.length) {
+    nextClueBtn.disabled = true;
+  }
+}
+
+/* ========== Manual eliminate ========== */
+function toggleManualEliminate(n) {
+  const rd = currentRound();
+  if (rd.solved) return;
+  if (rd.eliminatedByClue.has(n)) return;
+
+  const cell = getCellForNumber(n);
+  if (!cell) return;
+
+  if (rd.eliminatedManually.has(n)) {
+    rd.eliminatedManually.delete(n);
+    cell.classList.remove('eliminated');
+    cell.setAttribute('aria-label', `Number ${n}`);
+  } else {
+    rd.eliminatedManually.add(n);
+    cell.classList.add('eliminated');
+    cell.setAttribute('aria-label', `Number ${n}, eliminated`);
+  }
+}
+
+/* ========== Guessing ========== */
+function handleGuess(n) {
+  if (demoMode) return;
+  const rd = currentRound();
+  if (rd.solved) return;
+  if (rd.eliminatedByClue.has(n) || rd.eliminatedManually.has(n)) return;
+
+  const cell = getCellForNumber(n);
+  if (!cell) return;
+
+  if (n === rd.target) {
+    /* Correct! */
+    rd.solved = true;
+    const baseScore = Math.max(10, 100 - rd.cluesRevealed * 10);
+    const penalty = rd.wrongGuesses * 20;
+    rd.score = Math.max(10, baseScore - penalty);
+
+    cell.classList.add('correct-guess');
+    mysteryDisplay.textContent = rd.target;
+    mysteryDisplay.classList.add('revealed');
+    nextClueBtn.disabled = true;
+
+    const player = rd.currentPlayer;
+    game.scores[player].push(rd.score);
+    game.totalScore[player] += rd.score;
+    updateScoreDisplay();
+
+    announce(`Correct! The number was ${rd.target}. You scored ${rd.score} points.`);
+    speak(`Case solved! The number was ${rd.target}. You scored ${rd.score} points.`);
+
+    showCelebration(rd);
+  } else {
+    /* Wrong guess */
+    rd.wrongGuesses++;
+    cell.classList.add('wrong-guess');
+    cell.classList.add('eliminated');
+    rd.eliminatedManually.add(n);
+    setTimeout(() => cell.classList.remove('wrong-guess'), 500);
+
+    announce(`Wrong! ${n} is not the number. Minus 20 points.`);
+    speak(`Not ${n}. Try again!`);
+
+    /* In 2P mode, switch turns */
+    if (settings.players === 2) {
+      rd.currentPlayer = rd.currentPlayer === 0 ? 1 : 0;
+      updateTurnIndicator(rd);
+    }
+  }
+}
+
+function showCelebration(rd) {
+  $('celebTitle').textContent = '🎉 Case Solved!';
+  $('celebMsg').textContent = `The number was ${rd.target}. Score: ${rd.score} points!`;
+  $('celebBtn').textContent = game.round >= game.totalRounds ? 'See Results' : 'Next Round';
+  celebration.classList.add('active');
+  $('celebBtn').focus();
+}
+
+$('celebBtn').addEventListener('click', () => {
+  celebration.classList.remove('active');
+  if (game.round >= game.totalRounds) endGame();
+  else startRound();
+});
+
+/* ========== Score display ========== */
+function updateScoreDisplay() {
+  if (settings.players === 2) {
+    scoreBadge.textContent = `P1: ${game.totalScore[0]}`;
+    scoreBadge2.textContent = `P2: ${game.totalScore[1]}`;
+  } else {
+    scoreBadge.textContent = `Score: ${game.totalScore[0]}`;
+  }
+}
+
+/* ========== End game / Summary ========== */
+function endGame() {
+  showScreen(STATE.SUMMARY);
+  const tbody = $('scoresBody');
+  tbody.innerHTML = '';
+
+  if (settings.players === 1) {
+    $('summaryTitle').textContent = 'Case Closed!';
+    game.roundData.forEach((rd, i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${i + 1}</td><td>${rd.target}</td><td>${rd.cluesRevealed}</td><td>${rd.score}</td>`;
+      tbody.appendChild(tr);
+    });
+    $('finalScore').innerHTML = `Final Score: <span>${game.totalScore[0]}</span>`;
+  } else {
+    const winner = game.totalScore[0] > game.totalScore[1] ? 'Player 1 wins!'
+      : game.totalScore[1] > game.totalScore[0] ? 'Player 2 wins!' : "It's a tie!";
+    $('summaryTitle').textContent = winner;
+
+    /* Update table headers for 2P */
+    const thead = $('scoresTable').querySelector('thead tr');
+    thead.innerHTML = '<th>Round</th><th>Answer</th><th>Clues</th><th>Score</th>';
+
+    game.roundData.forEach((rd, i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${i + 1}</td><td>${rd.target}</td><td>${rd.cluesRevealed}</td><td>${rd.score}</td>`;
+      tbody.appendChild(tr);
+    });
+    $('finalScore').innerHTML = `P1: <span>${game.totalScore[0]}</span> — P2: <span>${game.totalScore[1]}</span>`;
+  }
+
+  announce('Game over! ' + $('finalScore').textContent);
+  speak('Game over! ' + $('summaryTitle').textContent);
+}
+
+/* ========== Demo mode ========== */
+function clearDemoTimers() {
+  demoTimers.forEach(t => clearTimeout(t));
+  demoTimers = [];
+}
+
+function runDemo(rd) {
+  nextClueBtn.disabled = true;
+  let delay = 1500;
+
+  for (let i = 0; i < rd.clues.length; i++) {
+    demoTimers.push(setTimeout(() => {
+      if (state !== STATE.GAME || !demoMode) return;
+      revealNextClue();
+    }, delay));
+    delay += 2000;
+  }
+
+  /* Auto-guess correct answer after all clues */
+  demoTimers.push(setTimeout(() => {
+    if (state !== STATE.GAME || !demoMode) return;
+    const cell = getCellForNumber(rd.target);
+    if (cell) {
+      rd.solved = true;
+      rd.score = Math.max(10, 100 - rd.cluesRevealed * 10);
+      cell.classList.add('correct-guess');
+      mysteryDisplay.textContent = rd.target;
+      mysteryDisplay.classList.add('revealed');
+
+      game.scores[0].push(rd.score);
+      game.totalScore[0] += rd.score;
+      updateScoreDisplay();
+
+      announce(`Demo: The number was ${rd.target}.`);
+      speak(`The number was ${rd.target}!`);
+
+      /* Auto advance */
+      demoTimers.push(setTimeout(() => {
+        if (state !== STATE.GAME || !demoMode) return;
+        if (game.round >= game.totalRounds) endGame();
+        else startRound();
+      }, 2500));
+    }
+  }, delay));
+}
+
+/* ========== Accessibility helpers ========== */
+function announce(msg) {
+  liveRegion.textContent = '';
+  requestAnimationFrame(() => { liveRegion.textContent = msg; });
+}
+
+/* ========== Keyboard support ========== */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (celebration.classList.contains('active')) {
+      $('celebBtn').click();
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blockout: Area Master</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Design System Tokens ========== */
+:root {
+  --color-primary: #4A90D9;
+  --color-primary-dark: #2E5C8A;
+  --color-danger: #E85D75;
+  --color-danger-dark: #B83A50;
+  --color-success: #5CB85C;
+  --color-success-dark: #3D7A3D;
+  --color-warning: #F5A623;
+  --color-warning-dark: #C47D0E;
+  --color-purple: #9B6BC2;
+  --color-purple-dark: #6B3FA0;
+  --color-orange: #F5A623;
+  --color-pink: #E85D75;
+  --color-teal: #14b8a6;
+  --color-bg: #FFF8EE;
+  --color-bg-dark: #F0E6D3;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: 'Fredoka', Arial, sans-serif;
+  --font-sketch: 'Gaegu', cursive;
+  --font-size-min: 14px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-card-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  --shadow-btn: 0 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-btn-active: 0 2px 0 0 rgba(0,0,0,0.25);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  --p1-color: #3b82f6;
+  --p1-light: #dbeafe;
+  --p1-preview: rgba(59,130,246,0.3);
+  --p2-color: #ef4444;
+  --p2-light: #fee2e2;
+  --p2-preview: rgba(239,68,68,0.3);
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  background-image: radial-gradient(circle at 20% 50%, rgba(74,144,217,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(232,93,117,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(92,184,92,0.03) 0%, transparent 50%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+}
+body, button, input, select, textarea {
+  font-size: max(var(--font-size-min), 1em);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ========== Game Header ========== */
+.game-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg); border-bottom: 3px solid var(--color-black);
+  gap: var(--spacing-sm); flex-wrap: wrap;
+}
+.game-header h1 { font-size: var(--font-size-xl); font-weight: 700; margin: 0; }
+
+/* ========== Game Card ========== */
+.game-card {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg); margin: var(--spacing-md);
+}
+.game-card-sm {
+  background: var(--color-white); border: 2px solid var(--color-black);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card-sm);
+  padding: var(--spacing-md);
+}
+
+/* ========== Buttons ========== */
+.game-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--spacing-xs); padding: var(--spacing-sm) var(--spacing-lg);
+  border: 3px solid var(--color-black); border-radius: var(--radius-lg);
+  font-family: var(--font-display); font-size: var(--font-size-base);
+  font-weight: 600; cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-btn); touch-action: manipulation;
+  user-select: none; -webkit-tap-highlight-color: transparent;
+  text-decoration: none; line-height: 1.2;
+}
+.game-btn:active { transform: translateY(2px); box-shadow: var(--shadow-btn-active); }
+.game-btn:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 5px 6px 0 0 rgba(0,0,0,0.25);
+}
+.game-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.game-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.game-btn-primary { background: var(--color-primary); color: var(--color-white); }
+.game-btn-danger { background: var(--color-danger); color: var(--color-white); }
+.game-btn-success { background: var(--color-success); color: var(--color-white); }
+.game-btn-warning { background: var(--color-warning); color: var(--color-text); }
+.game-btn-purple { background: var(--color-purple); color: var(--color-white); }
+.game-btn-orange { background: var(--color-orange); color: var(--color-white); }
+.game-btn-outline { background: var(--color-white); color: var(--color-text); }
+.game-btn-sm { padding: var(--spacing-xs) var(--spacing-sm); font-size: var(--font-size-sm); border-width: 2px; border-radius: var(--radius-md); }
+.game-btn-lg { padding: var(--spacing-md) var(--spacing-xl); font-size: var(--font-size-xl); border-radius: var(--radius-xl); }
+
+/* ========== Dice ========== */
+.die {
+  display: inline-grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
+  width: 64px; height: 64px; background: var(--color-white);
+  border: 3px solid var(--color-black); border-radius: var(--radius-md);
+  padding: 6px; gap: 2px; box-shadow: var(--shadow-card-sm);
+}
+.die-face { width: 100%; height: 100%; border-radius: 50%; }
+.die-face.filled { background: var(--color-text); }
+
+/* ========== Info Bar ========== */
+.info-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-dark); border-radius: var(--radius-md);
+  font-weight: 600; flex-wrap: wrap;
+}
+
+/* ========== Message Area ========== */
+.message-area {
+  text-align: center; padding: var(--spacing-md);
+  font-size: var(--font-size-lg); font-weight: 500; min-height: 2.5em;
+}
+
+/* ========== Modal / Overlay ========== */
+.game-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; padding: var(--spacing-md);
+}
+.game-modal {
+  background: var(--color-white); border: 3px solid var(--color-black);
+  border-radius: var(--radius-xl); box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  padding: var(--spacing-xl); max-width: 500px; width: 100%;
+  max-height: 90vh; overflow-y: auto; text-align: center;
+}
+
+/* ========== Utility ========== */
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.w-full { width: 100%; }
+.hidden { display: none !important; }
+.sketch-text { font-family: var(--font-sketch); }
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Game-specific Styles ========== */
+
+/* -- Screens -- */
+#menu-screen, #play-screen, #summary-screen { display: none; }
+#menu-screen.active, #play-screen.active, #summary-screen.active { display: flex; }
+
+/* -- Menu -- */
+#menu-screen {
+  flex-direction: column; align-items: center; justify-content: center;
+  min-height: 100vh; padding: var(--spacing-lg); text-align: center;
+}
+.menu-title {
+  font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-white);
+  background: var(--color-primary); padding: var(--spacing-sm) var(--spacing-xl);
+  border-radius: var(--radius-xl); border: 3px solid var(--color-black);
+  box-shadow: var(--shadow-card); transform: rotate(-2deg);
+  margin-bottom: var(--spacing-xl);
+}
+.menu-subtitle {
+  font-size: var(--font-size-lg); color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+}
+.how-to-play {
+  max-width: 480px; text-align: left;
+  margin-bottom: var(--spacing-xl);
+}
+.how-to-play h3 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); }
+.how-to-play p { font-size: var(--font-size-base); color: var(--color-text-light); }
+.menu-buttons { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: center; }
+
+/* -- Play Screen -- */
+#play-screen {
+  flex-direction: column; min-height: 100vh; width: 100%;
+}
+
+.play-layout {
+  display: flex; flex: 1; gap: var(--spacing-md);
+  padding: var(--spacing-sm); overflow: hidden;
+}
+
+/* Controls panel */
+.controls-panel {
+  display: flex; flex-direction: column; gap: var(--spacing-sm);
+  width: 280px; flex-shrink: 0; overflow-y: auto;
+}
+
+/* -- Equation Display -- */
+.equation-display {
+  font-size: var(--font-size-2xl); font-weight: 700;
+  text-align: center; padding: var(--spacing-sm);
+  color: var(--color-primary-dark);
+  min-height: 2.5em; display: flex; align-items: center; justify-content: center;
+}
+
+/* -- Dice row -- */
+.dice-row { display: flex; justify-content: center; gap: var(--spacing-md); margin: var(--spacing-sm) 0; }
+
+/* -- Strike indicators -- */
+.strikes-row { display: flex; gap: var(--spacing-xs); justify-content: center; align-items: center; font-weight: 600; }
+.strike-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--color-danger); background: transparent;
+  display: inline-block;
+}
+.strike-dot.active { background: var(--color-danger); }
+
+/* -- Score section -- */
+.score-block {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md); font-weight: 600;
+}
+.score-block.p1 { background: var(--p1-light); border-left: 4px solid var(--p1-color); }
+.score-block.p2 { background: var(--p2-light); border-left: 4px solid var(--p2-color); }
+.score-value { font-size: var(--font-size-xl); font-weight: 700; }
+.score-block.p1 .score-value { color: var(--p1-color); }
+.score-block.p2 .score-value { color: var(--p2-color); }
+
+/* -- Coverage -- */
+.coverage-bar {
+  text-align: center; font-size: var(--font-size-sm); font-weight: 600;
+  color: var(--color-text-light); padding: var(--spacing-xs) 0;
+}
+
+/* -- Grid container -- */
+.grid-area {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  min-width: 0; min-height: 0; padding: var(--spacing-xs);
+}
+
+.grid-wrapper {
+  display: grid;
+  /* 1 col for labels + 12 for grid */
+  grid-template-columns: 24px repeat(12, 1fr);
+  grid-template-rows: 24px repeat(12, 1fr);
+  aspect-ratio: 13 / 13;
+  max-height: calc(100vh - 120px);
+  max-width: calc(100vh - 120px);
+  width: 100%;
+  gap: 0;
+  user-select: none;
+}
+
+.grid-label {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; color: var(--color-text-light);
+}
+.grid-corner { /* top-left corner spacer */ }
+
+.grid-cell {
+  border: 1px solid #d1d5db;
+  background: var(--color-white);
+  position: relative;
+  cursor: pointer;
+  transition: background-color 75ms ease;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.85);
+}
+.grid-cell.p1-placed { background: var(--p1-color); border-color: #2563eb; }
+.grid-cell.p2-placed { background: var(--p2-color); border-color: #dc2626; }
+.grid-cell.preview-valid-p1 { background: var(--p1-preview); }
+.grid-cell.preview-valid-p2 { background: var(--p2-preview); }
+.grid-cell.preview-invalid { background: rgba(0,0,0,0.1); }
+.grid-cell.cursor-cell { outline: 3px solid var(--color-warning); outline-offset: -2px; z-index: 2; }
+
+/* Dice rolling animation */
+@keyframes dice-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.die.rolling { animation: dice-bounce 0.15s ease infinite; }
+
+/* -- Summary -- */
+#summary-screen {
+  flex-direction: column; align-items: center; justify-content: center;
+  min-height: 100vh; padding: var(--spacing-lg); text-align: center;
+}
+.summary-scores { display: flex; gap: var(--spacing-xl); justify-content: center; margin: var(--spacing-lg) 0; }
+.summary-player { text-align: center; }
+.summary-player .label { font-size: var(--font-size-base); font-weight: 600; }
+.summary-player .value { font-size: var(--font-size-3xl); font-weight: 700; }
+.summary-player.p1 .label { color: var(--p1-color); }
+.summary-player.p1 .value { color: var(--p1-color); }
+.summary-player.p2 .label { color: var(--p2-color); }
+.summary-player.p2 .value { color: var(--p2-color); }
+
+/* ========== Responsive ========== */
+@media (max-width: 700px) {
+  .play-layout {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .controls-panel {
+    width: 100%; flex-shrink: 0;
+    order: 2;
+  }
+  .grid-area {
+    order: 1;
+    min-height: 0;
+    flex: 0 0 auto;
+  }
+  .grid-wrapper {
+    max-height: none;
+    max-width: 100%;
+    width: 100%;
+  }
+  .controls-panel { padding-bottom: var(--spacing-lg); }
+}
+
+@media (min-width: 600px) {
+  .game-header h1 { font-size: var(--font-size-2xl); }
+}
+
+@media (min-width: 900px) {
+  .game-card { margin: var(--spacing-lg); padding: var(--spacing-xl); }
+}
+
+/* -- Mute button -- */
+.mute-btn {
+  background: none; border: none; font-size: 1.5rem; cursor: pointer;
+  padding: var(--spacing-xs); line-height: 1;
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== MENU SCREEN ==================== -->
+<div id="menu-screen" class="active">
+  <div class="menu-title">Blockout: Area Master</div>
+  <p class="menu-subtitle">Fill the grid with rectangles!</p>
+
+  <div class="game-card how-to-play">
+    <h3>How to Play</h3>
+    <p>Roll 2 dice to get the width and height of a rectangle (e.g. 3 x 4 = 12).
+       Place that rectangle on the 12 x 12 grid. Try to fill as much space as possible
+       without overlapping!</p>
+    <p class="mt-sm" style="font-size:var(--font-size-sm);color:var(--color-primary-dark);font-weight:600;">
+      Calculate area (length x width) and fit shapes to maximise grid coverage.
+    </p>
+  </div>
+
+  <div class="menu-buttons">
+    <button class="game-btn game-btn-lg game-btn-primary" onclick="startGame(1)">1 Player</button>
+    <button class="game-btn game-btn-lg game-btn-danger" onclick="startGame(2)">2 Players</button>
+  </div>
+</div>
+
+<!-- ==================== PLAY SCREEN ==================== -->
+<div id="play-screen">
+  <!-- Header -->
+  <div class="game-header">
+    <button class="game-btn game-btn-sm game-btn-outline" onclick="showMenu()">Menu</button>
+    <h1 id="current-player-label">Solo Challenge</h1>
+    <button class="mute-btn" id="mute-btn" onclick="toggleMute()" aria-label="Toggle sound">&#x1F50A;</button>
+  </div>
+
+  <div class="play-layout">
+    <!-- Controls -->
+    <div class="controls-panel">
+      <!-- Dice -->
+      <div class="game-card-sm">
+        <div class="dice-row">
+          <div class="die" id="die-0"></div>
+          <div class="die" id="die-1"></div>
+        </div>
+
+        <!-- Equation -->
+        <div class="equation-display" id="equation" aria-live="polite" role="status"></div>
+
+        <!-- Action buttons -->
+        <div id="roll-area" class="text-center">
+          <button class="game-btn game-btn-primary w-full" id="roll-btn" onclick="rollDice()">Roll Dice</button>
+        </div>
+        <div id="place-area" class="hidden text-center flex-col gap-sm">
+          <div style="display:flex;gap:var(--spacing-sm);">
+            <button class="game-btn game-btn-warning" style="flex:1" onclick="rotateBlock()">Rotate (R)</button>
+            <button class="game-btn game-btn-outline" style="flex:1" onclick="passTurn()">Pass</button>
+          </div>
+          <button class="game-btn game-btn-success w-full" id="confirm-btn" onclick="confirmPlacement()" disabled>Place Block</button>
+        </div>
+
+        <!-- Message -->
+        <div class="message-area" id="message" aria-live="polite" role="status">Roll the dice to start!</div>
+      </div>
+
+      <!-- Strikes (solo) -->
+      <div id="strikes-panel" class="game-card-sm text-center hidden">
+        <span style="font-weight:600;margin-right:var(--spacing-sm);">Strikes:</span>
+        <div class="strikes-row" style="display:inline-flex;">
+          <span class="strike-dot" id="strike-0"></span>
+          <span class="strike-dot" id="strike-1"></span>
+          <span class="strike-dot" id="strike-2"></span>
+        </div>
+      </div>
+
+      <!-- Scores -->
+      <div class="game-card-sm flex-col gap-sm" id="score-panel">
+        <div class="score-block p1">
+          <span>Player 1</span>
+          <span class="score-value" id="score-1" aria-live="polite">0</span>
+        </div>
+        <div class="score-block p2 hidden" id="score-row-2">
+          <span>Player 2</span>
+          <span class="score-value" id="score-2" aria-live="polite">0</span>
+        </div>
+      </div>
+
+      <!-- Coverage -->
+      <div class="coverage-bar" id="coverage" aria-live="polite">0/144 - 0%</div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid-area">
+      <div class="grid-wrapper" id="grid-wrapper" role="grid" aria-label="12 by 12 placement grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SUMMARY SCREEN ==================== -->
+<div id="summary-screen">
+  <div class="game-modal">
+    <h2 style="font-size:var(--font-size-2xl);margin-bottom:var(--spacing-md);">Game Over!</h2>
+    <p id="summary-msg" style="font-size:var(--font-size-lg);font-weight:600;margin-bottom:var(--spacing-md);"></p>
+    <div class="summary-scores" id="summary-scores"></div>
+    <button class="game-btn game-btn-lg game-btn-primary" onclick="showMenu()">Back to Menu</button>
+  </div>
+</div>
+
+<script>
+/* ====================================================================
+   Blockout: Area Master  -  Pure vanilla JS
+   ==================================================================== */
+
+const GRID = 12;
+const TOTAL_CELLS = GRID * GRID;
+
+/* ---------- State ---------- */
+let state = {
+  numPlayers: 1,
+  currentPlayer: 1,
+  grid: [],            // 2D array: 0=empty, 1=P1, 2=P2
+  areaLabels: [],      // 2D array: number to show in cell (area of block placed)
+  dice: [0, 0],
+  currentDims: [0, 0], // [width, height]
+  turnPhase: 'roll',   // roll | place
+  scores: { 1: 0, 2: 0 },
+  consecutivePasses: 0,
+  strikes: 0,          // solo mode only
+  isRolling: false,
+  isMuted: false,
+  cursorR: 0,
+  cursorC: 0,
+  cursorVisible: false,
+  selectedCell: null,        // mouse click-to-confirm tracking
+  touchSelectedCell: null,   // touch tap-to-confirm tracking
+  cellRefs: [],              // cached grid cell DOM references
+  touchStartHandler: null,   // stored handler ref for cleanup
+  touchMoveHandler: null     // stored handler ref for cleanup
+};
+
+/* ---------- DOM refs ---------- */
+const $ = id => document.getElementById(id);
+const menuScreen = $('menu-screen');
+const playScreen = $('play-screen');
+const summaryScreen = $('summary-screen');
+const gridWrapper = $('grid-wrapper');
+const equationEl = $('equation');
+const messageEl = $('message');
+const rollArea = $('roll-area');
+const placeArea = $('place-area');
+const rollBtn = $('roll-btn');
+const confirmBtn = $('confirm-btn');
+const coverageEl = $('coverage');
+const playerLabel = $('current-player-label');
+const strikesPanel = $('strikes-panel');
+
+/* ---------- Helpers ---------- */
+
+function speak(text) {
+  if (state.isMuted || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleMute() {
+  state.isMuted = !state.isMuted;
+  $('mute-btn').textContent = state.isMuted ? '\u{1F507}' : '\u{1F50A}';
+}
+
+function setScreen(name) {
+  menuScreen.classList.toggle('active', name === 'menu');
+  playScreen.classList.toggle('active', name === 'play');
+  summaryScreen.classList.toggle('active', name === 'summary');
+}
+
+function showMenu() { setScreen('menu'); }
+
+function setMessage(msg) { messageEl.textContent = msg; }
+
+function updateCoverage() {
+  let filled = 0;
+  for (let r = 0; r < GRID; r++)
+    for (let c = 0; c < GRID; c++)
+      if (state.grid[r][c] !== 0) filled++;
+  const pct = Math.round(filled / TOTAL_CELLS * 100);
+  coverageEl.textContent = filled + '/' + TOTAL_CELLS + ' - ' + pct + '%';
+}
+
+function updateScores() {
+  $('score-1').textContent = state.scores[1];
+  $('score-2').textContent = state.scores[2];
+}
+
+function updateStrikes() {
+  for (let i = 0; i < 3; i++) {
+    $('strike-' + i).classList.toggle('active', i < state.strikes);
+  }
+}
+
+function updatePlayerLabel() {
+  if (state.numPlayers === 1) {
+    playerLabel.textContent = 'Solo Challenge';
+    playerLabel.style.color = 'var(--p1-color)';
+  } else {
+    playerLabel.textContent = state.currentPlayer === 1 ? 'Player 1 (Blue)' : 'Player 2 (Red)';
+    playerLabel.style.color = state.currentPlayer === 1 ? 'var(--p1-color)' : 'var(--p2-color)';
+  }
+}
+
+function setTurnPhase(phase) {
+  state.turnPhase = phase;
+  if (phase === 'roll') {
+    rollArea.classList.remove('hidden');
+    placeArea.classList.add('hidden');
+    placeArea.style.display = '';
+    confirmBtn.disabled = true;
+  } else {
+    rollArea.classList.add('hidden');
+    placeArea.classList.remove('hidden');
+    placeArea.style.display = 'flex';
+    confirmBtn.disabled = true;
+  }
+}
+
+/* ========== Dice rendering ========== */
+// dot positions: each value maps to list of grid positions (1-indexed row,col in 3x3)
+const DOT_MAP = {
+  1: [[2,2]],
+  2: [[1,3],[3,1]],
+  3: [[1,3],[2,2],[3,1]],
+  4: [[1,1],[1,3],[3,1],[3,3]],
+  5: [[1,1],[1,3],[2,2],[3,1],[3,3]],
+  6: [[1,1],[1,3],[2,1],[2,3],[3,1],[3,3]]
+};
+
+function renderDie(el, value) {
+  el.innerHTML = '';
+  for (let r = 1; r <= 3; r++) {
+    for (let c = 1; c <= 3; c++) {
+      const dot = document.createElement('span');
+      dot.className = 'die-face';
+      if (value > 0) {
+        const positions = DOT_MAP[value] || [];
+        if (positions.some(p => p[0] === r && p[1] === c)) {
+          dot.classList.add('filled');
+        }
+      }
+      el.appendChild(dot);
+    }
+  }
+}
+
+function renderDice() {
+  renderDie($('die-0'), state.dice[0]);
+  renderDie($('die-1'), state.dice[1]);
+}
+
+/* ========== Grid building ========== */
+
+function buildGrid() {
+  // Remove old touch listeners before rebuilding (fix #2: duplicate listeners)
+  if (state.touchStartHandler) {
+    gridWrapper.removeEventListener('touchstart', state.touchStartHandler);
+    gridWrapper.removeEventListener('touchmove', state.touchMoveHandler);
+  }
+
+  gridWrapper.innerHTML = '';
+  state.cellRefs = [];  // fix #6: reset cell cache
+
+  // Corner
+  const corner = document.createElement('div');
+  corner.className = 'grid-label grid-corner';
+  gridWrapper.appendChild(corner);
+
+  // Column headers
+  for (let c = 0; c < GRID; c++) {
+    const lbl = document.createElement('div');
+    lbl.className = 'grid-label';
+    lbl.textContent = c + 1;
+    gridWrapper.appendChild(lbl);
+  }
+
+  // Rows
+  for (let r = 0; r < GRID; r++) {
+    state.cellRefs[r] = [];
+
+    // Row label
+    const rl = document.createElement('div');
+    rl.className = 'grid-label';
+    rl.textContent = r + 1;
+    gridWrapper.appendChild(rl);
+
+    for (let c = 0; c < GRID; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'grid-cell';
+      cell.dataset.r = r;
+      cell.dataset.c = c;
+      cell.setAttribute('role', 'gridcell');
+      cell.setAttribute('aria-label', 'Row ' + (r+1) + ' Column ' + (c+1));
+
+      cell.addEventListener('mouseenter', () => onCellHover(r, c));
+      cell.addEventListener('click', () => onCellClick(r, c));
+
+      gridWrapper.appendChild(cell);
+      state.cellRefs[r][c] = cell;  // fix #6: cache cell reference
+    }
+  }
+
+  // Touch support (fix #2: store refs so we can remove on next buildGrid)
+  state.touchStartHandler = handleTouchOnGrid;
+  state.touchMoveHandler = handleTouchOnGrid;
+  gridWrapper.addEventListener('touchstart', state.touchStartHandler, { passive: false });
+  gridWrapper.addEventListener('touchmove', state.touchMoveHandler, { passive: false });
+}
+
+function handleTouchOnGrid(e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const el = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (el && el.classList.contains('grid-cell')) {
+    const r = parseInt(el.dataset.r);
+    const c = parseInt(el.dataset.c);
+    // Only update the visual preview (hover), do NOT update touchSelectedCell here
+    // Fix #1: touchstart/touchmove only shows preview, touchend handles tap logic
+    state.cursorR = r;
+    state.cursorC = c;
+    state.cursorVisible = true;
+    showPreview(r, c);
+  }
+}
+
+function getCell(r, c) {
+  if (state.cellRefs[r] && state.cellRefs[r][c]) return state.cellRefs[r][c];
+  return gridWrapper.querySelector('[data-r="' + r + '"][data-c="' + c + '"]');
+}
+
+function renderGrid() {
+  for (let r = 0; r < GRID; r++) {
+    for (let c = 0; c < GRID; c++) {
+      const cell = getCell(r, c);
+      if (!cell) continue;
+
+      // Reset classes
+      cell.className = 'grid-cell';
+      cell.textContent = '';
+
+      const val = state.grid[r][c];
+      if (val === 1) {
+        cell.classList.add('p1-placed');
+        if (state.areaLabels[r][c]) cell.textContent = state.areaLabels[r][c];
+      } else if (val === 2) {
+        cell.classList.add('p2-placed');
+        if (state.areaLabels[r][c]) cell.textContent = state.areaLabels[r][c];
+      }
+    }
+  }
+}
+
+/* ========== Preview ========== */
+
+function clearPreview() {
+  const cells = gridWrapper.querySelectorAll('.grid-cell');
+  cells.forEach(cell => {
+    cell.classList.remove('preview-valid-p1', 'preview-valid-p2', 'preview-invalid', 'cursor-cell');
+  });
+}
+
+function showPreview(r, c) {
+  clearPreview();
+  if (state.turnPhase !== 'place') return;
+
+  const [w, h] = state.currentDims;
+  const valid = isValidPlacement(r, c, w, h);
+
+  // Show cursor on anchor cell
+  const anchor = getCell(r, c);
+  if (anchor) anchor.classList.add('cursor-cell');
+
+  if (valid) {
+    for (let i = 0; i < h; i++) {
+      for (let j = 0; j < w; j++) {
+        const cell = getCell(r + i, c + j);
+        if (cell) {
+          cell.classList.add(state.currentPlayer === 1 ? 'preview-valid-p1' : 'preview-valid-p2');
+        }
+      }
+    }
+    confirmBtn.disabled = false;
+  } else {
+    // Show what would be covered if within bounds
+    for (let i = 0; i < h; i++) {
+      for (let j = 0; j < w; j++) {
+        if (r + i < GRID && c + j < GRID) {
+          const cell = getCell(r + i, c + j);
+          if (cell) cell.classList.add('preview-invalid');
+        }
+      }
+    }
+    confirmBtn.disabled = true;
+  }
+}
+
+/* ========== Placement logic ========== */
+
+function isValidPlacement(r, c, w, h) {
+  if (r < 0 || c < 0) return false;
+  if (r + h > GRID || c + w > GRID) return false;
+  for (let i = 0; i < h; i++)
+    for (let j = 0; j < w; j++)
+      if (state.grid[r + i][c + j] !== 0) return false;
+  return true;
+}
+
+function checkPossibleMoves(w, h) {
+  for (let r = 0; r < GRID; r++)
+    for (let c = 0; c < GRID; c++)
+      if (isValidPlacement(r, c, w, h)) return true;
+  // Try rotated
+  if (w !== h) {
+    for (let r = 0; r < GRID; r++)
+      for (let c = 0; c < GRID; c++)
+        if (isValidPlacement(r, c, h, w)) return true;
+  }
+  return false;
+}
+
+/* ========== Event handlers ========== */
+
+function onCellHover(r, c) {
+  if (state.turnPhase !== 'place') return;
+  state.cursorR = r;
+  state.cursorC = c;
+  state.cursorVisible = true;
+  showPreview(r, c);
+}
+
+function onCellClick(r, c) {
+  if (state.turnPhase !== 'place') return;
+  state.cursorR = r;
+  state.cursorC = c;
+  state.cursorVisible = true;
+
+  // Fix #4: Two-click confirm for mouse - first click previews, second click places
+  if (state.selectedCell && state.selectedCell.r === r && state.selectedCell.c === c) {
+    // Second click on same cell - place the block
+    const [w, h] = state.currentDims;
+    if (isValidPlacement(r, c, w, h)) {
+      placeBlock(r, c);
+    }
+    state.selectedCell = null;
+  } else {
+    // First click - select and show preview
+    state.selectedCell = { r, c };
+    showPreview(r, c);
+  }
+}
+
+function confirmPlacement() {
+  if (state.turnPhase !== 'place' || !state.cursorVisible) return;
+  const [w, h] = state.currentDims;
+  if (isValidPlacement(state.cursorR, state.cursorC, w, h)) {
+    placeBlock(state.cursorR, state.cursorC);
+  }
+}
+
+function placeBlock(r, c) {
+  state.selectedCell = null;
+  state.touchSelectedCell = null;
+  const [w, h] = state.currentDims;
+  const area = w * h;
+
+  for (let i = 0; i < h; i++) {
+    for (let j = 0; j < w; j++) {
+      state.grid[r + i][c + j] = state.currentPlayer;
+      state.areaLabels[r + i][c + j] = area;
+    }
+  }
+
+  state.scores[state.currentPlayer] += area;
+  state.consecutivePasses = 0; // Reset on successful placement
+
+  updateScores();
+  updateCoverage();
+  renderGrid();
+  clearPreview();
+
+  // Next turn
+  const nextPlayer = (state.currentPlayer === 1 && state.numPlayers === 2) ? 2 : 1;
+  state.currentPlayer = nextPlayer;
+  setTurnPhase('roll');
+  updatePlayerLabel();
+
+  const nextMsg = state.numPlayers === 2
+    ? 'Player ' + nextPlayer + ', roll the dice.'
+    : 'Roll again.';
+  setMessage(nextMsg);
+  speak('Placed! ' + nextMsg);
+  equationEl.textContent = '';
+}
+
+/* ========== Roll dice ========== */
+
+function rollDice() {
+  if (state.isRolling || state.turnPhase !== 'roll') return;
+  state.isRolling = true;
+  state.selectedCell = null;
+  state.touchSelectedCell = null;
+  rollBtn.disabled = true;
+  // Do NOT reset consecutivePasses here - only reset on successful placement
+
+  const d0 = $('die-0');
+  const d1 = $('die-1');
+  d0.classList.add('rolling');
+  d1.classList.add('rolling');
+
+  const finalRolls = [
+    Math.floor(Math.random() * 6) + 1,
+    Math.floor(Math.random() * 6) + 1
+  ];
+
+  let count = 0;
+  const interval = setInterval(() => {
+    state.dice = [
+      Math.floor(Math.random() * 6) + 1,
+      Math.floor(Math.random() * 6) + 1
+    ];
+    renderDice();
+    count++;
+    if (count > 10) {
+      clearInterval(interval);
+      state.dice = finalRolls;
+      renderDice();
+      d0.classList.remove('rolling');
+      d1.classList.remove('rolling');
+      state.isRolling = false;
+      rollBtn.disabled = false;
+      onRollComplete(finalRolls);
+    }
+  }, 80);
+}
+
+function onRollComplete(rolls) {
+  const w = rolls[0], h = rolls[1];
+  const area = w * h;
+
+  // Show equation prominently
+  equationEl.textContent = w + ' \u00D7 ' + h + ' = ' + area;
+
+  const canPlace = checkPossibleMoves(w, h);
+
+  if (canPlace) {
+    state.currentDims = [w, h];
+    setTurnPhase('place');
+    const who = state.numPlayers === 2 ? 'Player ' + state.currentPlayer + ', p' : 'P';
+    setMessage(who + 'lace a ' + w + ' \u00D7 ' + h + ' block.');
+    speak('You rolled ' + w + ' and ' + h + '. ' + w + ' times ' + h + ' equals ' + area + '. Place your block.');
+  } else {
+    handleNoMoves(rolls);
+  }
+}
+
+/* ========== No moves / strikes ========== */
+
+let noMovesTimeout = null;
+
+function handleNoMoves(rolls) {
+  const w = rolls[0], h = rolls[1];
+  const failMsg = 'No space for ' + w + ' \u00D7 ' + h + '!';
+  setMessage(failMsg);
+  speak('No space for ' + w + ' multiplied by ' + h + '.');
+
+  if (state.numPlayers === 1) {
+    // 3-strike system
+    state.strikes++;
+    updateStrikes();
+
+    if (state.strikes >= 3) {
+      if (noMovesTimeout) clearTimeout(noMovesTimeout);
+      noMovesTimeout = setTimeout(() => { noMovesTimeout = null; finishGame(); }, 1500);
+      return;
+    }
+
+    // Still have strikes left - go back to roll
+    if (noMovesTimeout) clearTimeout(noMovesTimeout);
+    noMovesTimeout = setTimeout(() => {
+      noMovesTimeout = null;
+      setTurnPhase('roll');
+      setMessage('Strike ' + state.strikes + ' of 3. Roll again.');
+      speak('Strike ' + state.strikes + '. Roll again.');
+    }, 2000);
+  } else {
+    // 2-player: consecutive passes
+    state.consecutivePasses++;
+
+    if (state.consecutivePasses >= 2) {
+      if (noMovesTimeout) clearTimeout(noMovesTimeout);
+      noMovesTimeout = setTimeout(() => { noMovesTimeout = null; finishGame(); }, 1500);
+      return;
+    }
+
+    const nextPlayer = state.currentPlayer === 1 ? 2 : 1;
+    if (noMovesTimeout) clearTimeout(noMovesTimeout);
+    noMovesTimeout = setTimeout(() => {
+      noMovesTimeout = null;
+      state.currentPlayer = nextPlayer;
+      setTurnPhase('roll');
+      updatePlayerLabel();
+      setMessage('Skipped. Player ' + nextPlayer + ', roll the dice.');
+      speak('Skipped. Player ' + nextPlayer + ', roll the dice.');
+    }, 2000);
+  }
+}
+
+function passTurn() {
+  if (state.turnPhase !== 'place') return;
+  state.selectedCell = null;
+  state.touchSelectedCell = null;
+
+  if (state.numPlayers === 1) {
+    state.strikes++;
+    updateStrikes();
+    if (state.strikes >= 3) {
+      finishGame();
+      return;
+    }
+    setTurnPhase('roll');
+    setMessage('Strike ' + state.strikes + ' of 3. Roll again.');
+    speak('Pass. Strike ' + state.strikes + '. Roll again.');
+  } else {
+    state.consecutivePasses++;
+    if (state.consecutivePasses >= 2) {
+      finishGame();
+      return;
+    }
+    const nextPlayer = state.currentPlayer === 1 ? 2 : 1;
+    state.currentPlayer = nextPlayer;
+    setTurnPhase('roll');
+    updatePlayerLabel();
+    setMessage('Passed. Player ' + nextPlayer + ', roll the dice.');
+    speak('Passed. Player ' + nextPlayer + ', roll the dice.');
+  }
+  equationEl.textContent = '';
+  clearPreview();
+}
+
+/* ========== Rotate ========== */
+
+function rotateBlock() {
+  if (state.turnPhase !== 'place') return;
+  state.selectedCell = null;
+  state.touchSelectedCell = null;
+  state.currentDims = [state.currentDims[1], state.currentDims[0]];
+
+  const w = state.currentDims[0], h = state.currentDims[1];
+  const area = w * h;
+  equationEl.textContent = w + ' \u00D7 ' + h + ' = ' + area;
+
+  speak('Rotated.');
+  if (state.cursorVisible) showPreview(state.cursorR, state.cursorC);
+}
+
+/* ========== Finish ========== */
+
+function finishGame() {
+  if (noMovesTimeout) { clearTimeout(noMovesTimeout); noMovesTimeout = null; }
+
+  let msg = '';
+  if (state.numPlayers === 1) {
+    const filled = state.scores[1];
+    const pct = Math.round(filled / TOTAL_CELLS * 100);
+    msg = 'You filled ' + filled + ' squares (' + pct + '%).';
+  } else {
+    if (state.scores[1] > state.scores[2]) msg = 'Player 1 (Blue) Wins!';
+    else if (state.scores[2] > state.scores[1]) msg = 'Player 2 (Red) Wins!';
+    else msg = "It's a Tie!";
+  }
+
+  $('summary-msg').textContent = msg;
+
+  let scoresHtml = '<div class="summary-player p1"><div class="label">Player 1</div><div class="value">' + state.scores[1] + '</div></div>';
+  if (state.numPlayers === 2) {
+    scoresHtml += '<div class="summary-player p2"><div class="label">Player 2</div><div class="value">' + state.scores[2] + '</div></div>';
+  }
+  $('summary-scores').innerHTML = scoresHtml;
+
+  setScreen('summary');
+  speak(msg);
+}
+
+/* ========== Start game ========== */
+
+function startGame(players) {
+  state.numPlayers = players;
+  state.currentPlayer = 1;
+  state.grid = Array.from({ length: GRID }, () => Array(GRID).fill(0));
+  state.areaLabels = Array.from({ length: GRID }, () => Array(GRID).fill(0));
+  state.scores = { 1: 0, 2: 0 };
+  state.dice = [0, 0];
+  state.currentDims = [0, 0];
+  state.consecutivePasses = 0;
+  state.strikes = 0;
+  state.isRolling = false;
+  state.cursorR = 0;
+  state.cursorC = 0;
+  state.cursorVisible = false;
+  state.selectedCell = null;
+  state.touchSelectedCell = null;
+
+  if (noMovesTimeout) { clearTimeout(noMovesTimeout); noMovesTimeout = null; }
+
+  // UI setup
+  if (players === 1) {
+    strikesPanel.classList.remove('hidden');
+    $('score-row-2').classList.add('hidden');
+  } else {
+    strikesPanel.classList.add('hidden');
+    $('score-row-2').classList.remove('hidden');
+  }
+
+  updateStrikes();
+  updateScores();
+  updateCoverage();
+  updatePlayerLabel();
+  renderDice();
+  buildGrid();
+  renderGrid();
+  equationEl.textContent = '';
+  setTurnPhase('roll');
+  setScreen('play');
+
+  const msg = players === 2 ? 'Player 1 (Blue), roll the dice!' : 'Roll the dice to start!';
+  setMessage(msg);
+  speak(players === 2 ? 'Player 1, roll the dice!' : 'Roll the dice!');
+
+  // Style roll button color for current player
+  updateRollBtnColor();
+}
+
+function updateRollBtnColor() {
+  rollBtn.classList.remove('game-btn-primary', 'game-btn-danger');
+  if (state.currentPlayer === 1) {
+    rollBtn.classList.add('game-btn-primary');
+  } else {
+    rollBtn.classList.add('game-btn-danger');
+  }
+}
+
+// Override setTurnPhase to also update button color
+const _origSetTurnPhase = setTurnPhase;
+setTurnPhase = function(phase) {
+  _origSetTurnPhase(phase);
+  updateRollBtnColor();
+};
+
+/* ========== Keyboard navigation ========== */
+
+document.addEventListener('keydown', (e) => {
+  if (playScreen.classList.contains('active') === false) return;
+
+  switch (e.key) {
+    case 'ArrowUp':
+      e.preventDefault();
+      moveCursor(-1, 0);
+      break;
+    case 'ArrowDown':
+      e.preventDefault();
+      moveCursor(1, 0);
+      break;
+    case 'ArrowLeft':
+      e.preventDefault();
+      moveCursor(0, -1);
+      break;
+    case 'ArrowRight':
+      e.preventDefault();
+      moveCursor(0, 1);
+      break;
+    case 'Enter':
+    case ' ':
+      e.preventDefault();
+      if (state.turnPhase === 'place' && state.cursorVisible) {
+        const [w, h] = state.currentDims;
+        if (isValidPlacement(state.cursorR, state.cursorC, w, h)) {
+          placeBlock(state.cursorR, state.cursorC);
+        }
+      } else if (state.turnPhase === 'roll') {
+        rollDice();
+      }
+      break;
+    case 'r':
+    case 'R':
+      if (state.turnPhase === 'place') {
+        e.preventDefault();
+        rotateBlock();
+      }
+      break;
+    case 'p':
+    case 'P':
+      if (state.turnPhase === 'place') {
+        e.preventDefault();
+        passTurn();
+      }
+      break;
+  }
+});
+
+function moveCursor(dr, dc) {
+  if (state.turnPhase !== 'place') return;
+
+  let nr = state.cursorR + dr;
+  let nc = state.cursorC + dc;
+  if (nr < 0) nr = 0;
+  if (nr >= GRID) nr = GRID - 1;
+  if (nc < 0) nc = 0;
+  if (nc >= GRID) nc = GRID - 1;
+
+  state.cursorR = nr;
+  state.cursorC = nc;
+  state.cursorVisible = true;
+  showPreview(nr, nc);
+}
+
+/* ========== Touch: tap grid to select, tap again or use button to confirm ========== */
+
+// Touch end on grid for tap-to-place
+// Fix #1: Use touchSelectedCell (separate from cursor) so touchstart preview doesn't break double-tap
+document.addEventListener('touchend', (e) => {
+  if (!playScreen.classList.contains('active')) return;
+  if (state.turnPhase !== 'place') return;
+
+  const touch = e.changedTouches[0];
+  const el = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (el && el.classList.contains('grid-cell')) {
+    const r = parseInt(el.dataset.r);
+    const c = parseInt(el.dataset.c);
+
+    if (state.touchSelectedCell && state.touchSelectedCell.r === r && state.touchSelectedCell.c === c) {
+      // Second tap on same cell - place the block
+      const [w, h] = state.currentDims;
+      if (isValidPlacement(r, c, w, h)) {
+        placeBlock(r, c);
+      }
+      state.touchSelectedCell = null;
+    } else {
+      // First tap - select this cell, show preview
+      state.touchSelectedCell = { r, c };
+      state.cursorR = r;
+      state.cursorC = c;
+      state.cursorVisible = true;
+      showPreview(r, c);
+    }
+  }
+});
+
+/* ========== Init ========== */
+renderDice();
+</script>
+</body>
+</html>
